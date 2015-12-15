@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="CameraColorSettingsViewer.cpp" />
+    <ClCompile Include="CameraExposureSettingsViewer.cpp" />
+    <ClCompile Include="CameraSettingsViewer.cpp" />
+    <ClCompile Include="ImageRenderer.cpp" />
+    <ClCompile Include="CustomDrawListControl.cpp" />
+    <ClCompile Include="KinectSettings.cpp" />
+    <ClCompile Include="KinectWindow.cpp" />
+    <ClCompile Include="KinectWindowManager.cpp" />
+    <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="NuiAccelerometerStream.cpp" />
+    <ClCompile Include="NuiAccelerometerViewer.cpp" />
+    <ClCompile Include="NuiActivityWatcher.cpp" />
+    <ClCompile Include="NuiAudioStream.cpp" />
+    <ClCompile Include="NuiAudioViewer.cpp" />
+    <ClCompile Include="NuiColorStream.cpp" />
+    <ClCompile Include="NuiDepthStream.cpp" />
+    <ClCompile Include="NuiImageBuffer.cpp" />
+    <ClCompile Include="NuiSkeletonStream.cpp" />
+    <ClCompile Include="NuiStream.cpp" />
+    <ClCompile Include="NuiStreamViewer.cpp" />
+    <ClCompile Include="NuiTiltAngleViewer.cpp" />
+    <ClCompile Include="NuiViewer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CameraColorSettingsViewer.h" />
+    <ClInclude Include="CameraExposureSettingsViewer.h" />
+    <ClInclude Include="CameraSettingsViewer.h" />
+    <ClInclude Include="Utility.h" />
+    <ClInclude Include="ImageRenderer.h" />
+    <ClInclude Include="CustomDrawListControl.h" />
+    <ClInclude Include="KinectSettings.h" />
+    <ClInclude Include="KinectWindow.h" />
+    <ClInclude Include="KinectWindowManager.h" />
+    <ClInclude Include="MainWindow.h" />
+    <ClInclude Include="NuiAccelerometerStream.h" />
+    <ClInclude Include="NuiAccelerometerViewer.h" />
+    <ClInclude Include="NuiActivityWatcher.h" />
+    <ClInclude Include="NuiAudioStream.h" />
+    <ClInclude Include="NuiAudioViewer.h" />
+    <ClInclude Include="NuiColorStream.h" />
+    <ClInclude Include="NuiDepthStream.h" />
+    <ClInclude Include="NuiImageBuffer.h" />
+    <ClInclude Include="NuiSkeletonStream.h" />
+    <ClInclude Include="NuiStream.h" />
+    <ClInclude Include="NuiStreamViewer.h" />
+    <ClInclude Include="NuiTiltAngleViewer.h" />
+    <ClInclude Include="NuiViewer.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="StaticMediaBuffer.h" />
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="KinectExplorer.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.ico" />
+    <None Include="Images\KinectSensor.bmp">
+      <Filter>Images</Filter>
+    </None>
+    <None Include="Images\Logo.bmp">
+      <Filter>Images</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Images">
+      <UniqueIdentifier>{aa99c218-4fbf-4bd6-89c6-04617058fcf6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
