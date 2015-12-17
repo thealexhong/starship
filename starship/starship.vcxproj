@@ -127,6 +127,7 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ImageRenderer.h" />
     <ClInclude Include="NuiViewer.h" />
     <ClInclude Include="StaticMediaBuffer.h" />
     <ClInclude Include="Utility.h" />

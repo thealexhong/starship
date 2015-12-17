@@ -32,5 +32,8 @@
     <ClInclude Include="NuiViewer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ImageRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
