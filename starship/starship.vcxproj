@@ -27,15 +27,15 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -81,8 +81,8 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(OPENCV_DIR)\lib;$(KINECTSDK10_DIR)\lib\x86</AdditionalLibraryDirectories>
-      <AdditionalDependencies>kinect10.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OPENCV_DIR)\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>shlwapi.lib;kernel32.lib;gdiplus.lib;comctl32.lib;user32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Kinect10.lib;d2d1.lib;dwrite.lib;msdmo.lib;dmoguids.lib;amstrmid.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -124,13 +124,65 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CameraColorSettingsViewer.cpp" />
+    <ClCompile Include="CameraExposureSettingsViewer.cpp" />
+    <ClCompile Include="CameraSettingsViewer.cpp" />
+    <ClCompile Include="CustomDrawListControl.cpp" />
+    <ClCompile Include="ImageRenderer.cpp" />
+    <ClCompile Include="KinectSettings.cpp" />
+    <ClCompile Include="KinectWindow.cpp" />
+    <ClCompile Include="KinectWindowManager.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="NuiAccelerometerStream.cpp" />
+    <ClCompile Include="NuiAccelerometerViewer.cpp" />
+    <ClCompile Include="NuiActivityWatcher.cpp" />
+    <ClCompile Include="NuiAudioStream.cpp" />
+    <ClCompile Include="NuiAudioViewer.cpp" />
+    <ClCompile Include="NuiColorStream.cpp" />
+    <ClCompile Include="NuiDepthStream.cpp" />
+    <ClCompile Include="NuiImageBuffer.cpp" />
+    <ClCompile Include="NuiSkeletonStream.cpp" />
+    <ClCompile Include="NuiStream.cpp" />
+    <ClCompile Include="NuiStreamViewer.cpp" />
+    <ClCompile Include="NuiTiltAngleViewer.cpp" />
+    <ClCompile Include="NuiViewer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CameraColorSettingsViewer.h" />
+    <ClInclude Include="CameraExposureSettingsViewer.h" />
+    <ClInclude Include="CameraSettingsViewer.h" />
+    <ClInclude Include="CustomDrawListControl.h" />
     <ClInclude Include="ImageRenderer.h" />
+    <ClInclude Include="KinectSettings.h" />
+    <ClInclude Include="KinectWindow.h" />
+    <ClInclude Include="KinectWindowManager.h" />
+    <ClInclude Include="MainWindow.h" />
+    <ClInclude Include="NuiAccelerometerStream.h" />
+    <ClInclude Include="NuiAccelerometerViewer.h" />
+    <ClInclude Include="NuiActivityWatcher.h" />
+    <ClInclude Include="NuiAudioStream.h" />
+    <ClInclude Include="NuiAudioViewer.h" />
+    <ClInclude Include="NuiColorStream.h" />
+    <ClInclude Include="NuiDepthStream.h" />
+    <ClInclude Include="NuiImageBuffer.h" />
+    <ClInclude Include="NuiSkeletonStream.h" />
+    <ClInclude Include="NuiStream.h" />
+    <ClInclude Include="NuiStreamViewer.h" />
+    <ClInclude Include="NuiTiltAngleViewer.h" />
     <ClInclude Include="NuiViewer.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="StaticMediaBuffer.h" />
+    <ClInclude Include="stdafx.h" />
     <ClInclude Include="Utility.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="app.ico" />
+    <Image Include="Images\KinectSensor.bmp" />
+    <Image Include="Images\Logo.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="KinectExplorer.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
