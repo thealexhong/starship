@@ -86,7 +86,8 @@ public:
 	  * @param  brush   Index of brush
 	  * @param  format  Text format
 	  */
-	void DrawText(const WCHAR* pText, UINT cch, const D2D1_RECT_F &rect, ImageRendererBrush brush, ImageRendererTextFormat format);
+	void DrawText(const WCHAR* pText, UINT cch, const D2D1_RECT_F &rect, 
+		          ImageRendererBrush brush, ImageRendererTextFormat format);
 
 	
 	/** 
@@ -97,7 +98,8 @@ public:
 	 * @param  strokeWidth  Width of the line
 	 * @param  strokeStyle  Style of the line
 	 */
-	void DrawLine(const D2D1_POINT_2F& point0, const D2D1_POINT_2F& point1, ImageRendererBrush brush, float strokeWidth = 1.0f, ID2D1StrokeStyle* strokeStyle = nullptr);
+	void DrawLine(const D2D1_POINT_2F& point0, const D2D1_POINT_2F& point1, ImageRendererBrush brush, 
+		          float strokeWidth = 1.0f, ID2D1StrokeStyle* strokeStyle = nullptr);
 
 	
 	/**
@@ -108,7 +110,8 @@ public:
 	 * @param  strokeWidth  Width of the line
 	 * @param  strokeStyle  Style of the line
 	 */
-	void DrawCircle(const D2D1_POINT_2F& center, float radius, ImageRendererBrush brush, float strokeWidth = 1.0f, ID2D1StrokeStyle* strokeStyle = nullptr);
+	void DrawCircle(const D2D1_POINT_2F& center, float radius, ImageRendererBrush brush, 
+		            float strokeWidth = 1.0f, ID2D1StrokeStyle* strokeStyle = nullptr);
 
 	
 	/**
@@ -198,7 +201,7 @@ private:
 	 * @param  ppTextFormat        Created text format
 	 */
 	void CreateTextFormat(const WCHAR* fontFamilyName, FLOAT fontSize, DWRITE_TEXT_ALIGNMENT textAlignment, 
-						  DWRITE_PARAGRAPH_ALIGNMENT paragraphAlignment, IDWriteTextFormat** ppTextFormat);
+                          DWRITE_PARAGRAPH_ALIGNMENT paragraphAlignment, IDWriteTextFormat** ppTextFormat);
 
 	/**
 	 * Retrieve client area rect and transform into D2D size structure
