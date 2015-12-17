@@ -132,7 +132,6 @@
     <ClCompile Include="KinectSettings.cpp" />
     <ClCompile Include="KinectWindow.cpp" />
     <ClCompile Include="KinectWindowManager.cpp" />
-    <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="NuiAccelerometerStream.cpp" />
     <ClCompile Include="NuiAccelerometerViewer.cpp" />
