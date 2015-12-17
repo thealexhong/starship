@@ -1,8 +1,8 @@
-//------------------------------------------------------------------------------
-// <copyright file="MainWindow.h" company="Microsoft">
-//     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>
-//------------------------------------------------------------------------------
+/**
+* MainWindow.h
+* Modfied from Kinect SDK v.1.8
+* alex.hong@mail.utoronto.ca
+*/
 
 #pragma once
 
@@ -11,14 +11,12 @@
 #include "NuiViewer.h"
 #include "resource.h"
 
-/// <summary>
-/// Helper class to calculate the position rectangle inside the parent window
-/// </summary>
+/**
+ * Helper class to calculate the position rectangle inside the parent window
+ */
 struct ClientRect : public RECT
 {
-    ClientRect(HWND hWnd, HWND hParent)
-        : m_hWnd(hWnd)
-        , m_hParent(hParent)
+    ClientRect(HWND hWnd, HWND hParent) : m_hWnd(hWnd), m_hParent(hParent)
     {
         GetClientRect(hWnd, this);
         MapWindowPoints(hWnd, m_hParent, (LPPOINT)this, sizeof(RECT) / sizeof(POINT));
@@ -56,12 +54,12 @@ private:
     HWND m_hParent;
 };
 
-/// <summary>
-/// The main window is used to manage the Kinect status changes,
-/// and mainly contains device view and log view.
-/// Each connected sensor will have an entry in the device view,
-/// and the device's status is indicated in the log view.
-/// </summary>
+/**
+ * The main window is used to manage the Kinect status changes,
+ * and mainly contains device view and log view.
+ * Each connected sensor will have an entry in the device view,
+ * and the device's status is indicated in the log view.
+ */
 class CMainWindow : public NuiViewer
 {
 public:
@@ -70,95 +68,111 @@ public:
 
     ~CMainWindow();
 
-    /// <summary>
-    /// Handle windows messages for a class instance
-    /// </summary>
-    /// <param name="hWnd">Window message is for</param>
-    /// <param name="uMsg">Message</param>
-    /// <param name="wParam">Message data</param>
-    /// <param name="lParam">Additional message data</param>
-    /// <returns>result of message processing</returns>
+    
+    /**
+	 * Handle windows messages for a class instance
+     * @param   hWnd    Window handler
+     * @param   uMsg    Message
+     * @param   wParam  Message data
+     * @param   lParam  Additional message data
+     * @return  result of message processing
+	 */
     LRESULT DialogProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
-    /// <summary>
-    /// Creates the main window and begins processing
-    /// </summary>
-    int                     Run();
+    
+    /**
+	 * Creates the main window and begins processing
+	 */
+    int Run();
 
 private:
 
-    /// <summary>
-    /// This function will be called when Kinect device status changed
-    /// </summary>
+    
+    /**
+	 * This function will be called when Kinect device status changed
+	 */
     static void CALLBACK StatusChangeCallback(HRESULT hrStatus, const OLECHAR* instanceName, const OLECHAR* uniqueDeviceName, void* pUserData);
 
-    /// <summary>
-    /// Show all the kinect windows
-    /// </summary>
+    
+    /**
+	 * Show all the kinect windows
+	 */
     void ShowAllKinectWindows();
 
-    /// <summary>
-    /// Handle WM_SIZE message to auto layout all the controls in the window based
-    /// on the new window size.
-    /// </summary>
+    
+    /**
+	 * Handle WM_SIZE message to auto layout all the controls in the window based
+     * on the new window size.
+	 */
     void Resize();
 
-    /// <summary>
-    /// This method will initialize all the members and enumerate all the sensors
-    /// </summary>
+    
+    /**
+	 * This method will initialize all the members and enumerate all the sensors
+	 */
     void InitializeResource();
 
-    /// <summary>
-    /// Enumerate and construct all the sensors when the app starts up
-    /// </summary>
+    
+    /**
+	 * Enumerate and construct all the sensors when the app starts up
+	 */
     void EnumerateSensors();
 
-    /// <summary>
-    /// Update the main window status
-    /// </summary>
+    
+    /**
+	 * Update the main window status
+	 */
     void UpdateMainWindow(PCWSTR instanceName, HRESULT hrStatus);
 
-    /// <summary>
-    /// Respond to the click event of "moreinfo" link
-    /// </summary>
+    
+    /**
+	 * Respond to the click event of "moreinfo" link
+	 */
     void OnClickMoreInfoLink(LPARAM lParam);
 
-    /// <summary>
-    /// Draw the break line between the two list controls
-    /// </summary>
+    
+    /**
+	 * Draw the break line between the two list controls
+	 */
     void DrawBreakLine();
 
-    /// <summary>
-    /// Update the window layout and show/hide status of the controls
-    /// </summary>
+    
+    /**
+	 * Update the window layout and show/hide status of the controls
+	 */
     void UpdateLayoutAndShowStatus();
 
-    /// <summary>
-    /// Get the handle of the specified child control
-    /// </summary>
+    
+    /**
+	 * Get the handle of the specified child control
+	 */
     HWND GetHandle(UINT controlId) { return GetDlgItem(m_hWnd, controlId); }
 
-    /// <summary>
-    /// Update the window layout
-    /// </summary>
+    
+    /**
+	 * Update the window layout
+	 */
     void UpdateLayout();
 
-    /// <summary>
-    /// Show/Hide the controls
-    /// </summary>
+    
+    /**
+	 * Show/Hide the controls
+	 */
     void UpdateShowStatus();
 
-    /// <summary>
-    /// Returns the ID of the dialog
-    /// </summary>
+    
+    /**
+	 * Returns the ID of the dialog
+     */
     UINT GetDlgId()
     {
         return IDD_KEMAINWINDOW;
     }
 
-    /// <summary>
-    /// Check whether Kinect window manager has any sensor
-    /// </summary>
+    
+    /**
+	 * Check whether Kinect window manager has any sensor
+	 */
     bool HasSensor()
     {
         return m_pKinectWindowMgr->GetSensorCount() > 0;
@@ -167,9 +181,7 @@ private:
 private:
 
     HWND                            m_hWnd;
-
     KinectWindowManager*            m_pKinectWindowMgr;
-
     SensorListControl*              m_pSensorListControl;
     StatusLogListControl*           m_pStatusLogListControl;
 
@@ -182,8 +194,8 @@ private:
     static HFONT LargeTextFont;
 
     // Define some parameters for layout
-    static const int RightMargin = 25;
+    static const int RightMargin   = 25;
     static const int StretchMargin = 50;
-    static const int GenericGap = 8;
-    static const int BottomMargin = 20;
+    static const int GenericGap    = 8;
+    static const int BottomMargin  = 20;
 };

@@ -89,9 +89,9 @@ CMainWindow::~CMainWindow()
     SafeDelete(m_pStatusLogListControl);
 }
 
-/// <summary>
-/// Creates the main window and begins processing
-/// </summary>
+/**
+ * Creates the main window and begins processing
+ */
 int CMainWindow::Run()
 {
     // Create main application window
