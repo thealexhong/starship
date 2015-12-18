@@ -26,9 +26,9 @@
 #define TIMER_PERIOD                20
 
 // Titles of tab control items
-#define TAB_TITLE_SKELETON          L"Skeleton"
-#define TAB_TITLE_FEATURES          L"Features"
-#define TAB_TITLE_CLASSIFICATION    L"Classification"
+#define TAB_TITLE_SKELETON            L"Skeleton"
+#define TAB_TITLE_BLFEATURES          L"Features"
+#define TAB_TITLE_BLCLASSIFICATION    L"Classification"
 /*
 #define TAB_TITLE_AUDIO             L"Audio"
 #define TAB_TITLE_ACCELEROMETER     L"Accelerometer"
@@ -36,9 +36,9 @@
 */
 
 // Index of tab control items
-#define TAB_INDEX_SKELETON          0
-#define TAB_INDEX_FEATURES          1
-#define TAB_INDEX_CLASSIFICATION    2
+#define TAB_INDEX_SKELETON            0
+#define TAB_INDEX_BLFEATURES          1
+#define TAB_INDEX_BLCLASSIFICATION    2
 /*
 #define TAB_INDEX_AUDIO             1
 #define TAB_INDEX_ACCELEROMETER     2
@@ -486,9 +486,9 @@ bool KinectWindow::CreateTabControl()
             tci.mask        = TCIF_TEXT;
             tci.iImage      = -1;
 
-			InsertTabItem(TAB_TITLE_SKELETON,       TAB_INDEX_SKELETON);
-			InsertTabItem(TAB_TITLE_FEATURES,       TAB_INDEX_FEATURES);
-			InsertTabItem(TAB_TITLE_CLASSIFICATION, TAB_INDEX_CLASSIFICATION);
+			InsertTabItem(TAB_TITLE_SKELETON,         TAB_INDEX_SKELETON);
+			InsertTabItem(TAB_TITLE_BLFEATURES,       TAB_INDEX_BLFEATURES);
+			InsertTabItem(TAB_TITLE_BLCLASSIFICATION, TAB_INDEX_BLCLASSIFICATION);
 			/*
             InsertTabItem(TAB_TITLE_AUDIO,          TAB_INDEX_AUDIO);
             InsertTabItem(TAB_TITLE_ACCELEROMETER,  TAB_INDEX_ACCELEROMETER);
