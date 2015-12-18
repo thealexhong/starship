@@ -1,21 +1,22 @@
-//------------------------------------------------------------------------------
-// <copyright file="MainWindow.cpp" company="Microsoft">
-//     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>
-//------------------------------------------------------------------------------
+/**
+* MainWindow.cpp
+* Modfied from Kinect SDK v.1.8
+* alex.hong@mail.utoronto.ca
+*/
 
 #include "stdafx.h"
 
 #include "MainWindow.h"
 #include "Utility.h"
 
-//Define the global independent Direct resources
+// Define the global independent Direct resources
 ID2D1Factory* g_pD2DFactory = nullptr;
 IDWriteFactory* g_pDWriteFactory = nullptr;
 
-/// <summary>
-/// Ensure the independent Direct2D resources have been created
-/// </summary>
+
+/**
+ * Ensure the independent Direct2D resources have been created
+ */
 void EnsureIndependentResourcesCreated()
 {
     if (nullptr == g_pD2DFactory)
@@ -29,23 +30,23 @@ void EnsureIndependentResourcesCreated()
     }
 }
 
-/// <summary>
-/// Release the independent Direct2D resources
-/// </summary>
+/**
+ * Release the independent Direct2D resources
+ */
 void DiscardIndependentResources()
 {
     SafeRelease(g_pDWriteFactory);
     SafeRelease(g_pD2DFactory);
 }
 
-/// <summary>
-/// Entry point for the application
-/// </summary>
-/// <param name="hInstance">Handle to the application instance</param>
-/// <param name="hPrevInstance">Always 0</param>
-/// <param name="lpCmdLine">Command line arguments</param>
-/// <param name="nCmdShow">Whether to display minimized, maximized, or normally</param>
-/// <returns>status</returns>
+/**
+ * Entry point for the application
+ * @param   hInstance      Handle to the application instance
+ * @param   hPrevInstance  Always 0
+ * @param   lpCmdLine      Command line arguments
+ * @param   nCmdShow       Whether to display minimized, maximized, or normally
+ * @return  status
+ */
 int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow)
 {
     EnsureIndependentResourcesCreated();
@@ -58,30 +59,31 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmd
     return result;
 }
 
-// ---------------------------------------------------------------------------
-//
-// Class CMainWindow
-//
-// ---------------------------------------------------------------------------
+/**
+ +--------------------------------------+
+ |         Class CMainWindow            |
+ +--------------------------------------+
+ */
 
 HFONT CMainWindow::LargeTextFont;
 
-/// <summary>
-/// Constructor
-/// </summary>
-CMainWindow::CMainWindow()
-    : NuiViewer(nullptr)
-    , m_hWnd(nullptr)
-    , m_pKinectWindowMgr(nullptr)
-    , m_pSensorListControl(nullptr)
-    , m_pStatusLogListControl(nullptr)
+
+/**
+ * Constructor
+ */
+CMainWindow::CMainWindow() : NuiViewer(nullptr),
+                             m_hWnd(nullptr),
+							 m_pKinectWindowMgr(nullptr),
+							 m_pSensorListControl(nullptr),
+							 m_pStatusLogListControl(nullptr)
 {
     EnsureFontCreated(LargeTextFont, 25, FW_MEDIUM);
 }
 
-/// <summary>
-/// Deconstructor
-/// </summary>
+
+/**
+ * Deconstructor
+ */
 CMainWindow::~CMainWindow()
 {
     SafeDelete(m_pKinectWindowMgr);
@@ -118,14 +120,15 @@ int CMainWindow::Run()
     return static_cast<int>(msg.wParam);
 }
 
-/// <summary>
-/// Handle windows messages for a class instance
-/// </summary>
-/// <param name="hWnd">Window message is for</param>
-/// <param name="uMsg">Message</param>
-/// <param name="wParam">Message data</param>
-/// <param name="lParam">Additional message data</param>
-/// <returns>result of message processing</returns>
+
+/**
+ * Handle windows messages for a class instance
+ * @param   hWnd    Window message is for
+ * @param   uMsg    Message
+ * @param   wParam  Message data
+ * @param   lParam  Additional message data
+ * @return  result of message processing
+ */
 LRESULT CMainWindow::DialogProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     switch (uMsg)
@@ -208,9 +211,9 @@ LRESULT CMainWindow::DialogProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
     return FALSE;
 }
 
-/// <summary>
-/// This function will be called when Kinect device status changed
-/// </summary>
+/**
+ * This function will be called when Kinect device status changed
+ */
 void CALLBACK CMainWindow::StatusChangeCallback(
     HRESULT hrStatus,
     const OLECHAR* instanceName,
@@ -225,9 +228,10 @@ void CALLBACK CMainWindow::StatusChangeCallback(
     }
 }
 
-/// <summary>
-/// Show all the kinect windows
-/// </summary>
+
+/**
+ * Show all the kinect windows
+ */
 void CMainWindow::ShowAllKinectWindows()
 {
     // Show windows
@@ -238,10 +242,11 @@ void CMainWindow::ShowAllKinectWindows()
     m_pKinectWindowMgr->SetKinectWindowShowParam(ShowWindowParam);
 }
 
-/// <summary>
-/// Handle WM_SIZE message to auto layout all the controls in the window based
-/// on the new window size.
-/// </summary>
+
+/**
+ * Handle WM_SIZE message to auto layout all the controls in the window based
+ * on the new window size.
+ */
 void CMainWindow::Resize()
 {
     // Rearrange the layout of the main window
@@ -252,9 +257,10 @@ void CMainWindow::Resize()
     m_pStatusLogListControl->HandleResizeMessage();
 }
 
-/// <summary>
-/// This method will construct all the member classes and enumerate all the sensors
-/// </summary>
+
+/**
+ * This method will construct all the member classes and enumerate all the sensors
+ */
 void CMainWindow::InitializeResource()
 {
     // Set the dialog icon
@@ -292,9 +298,10 @@ void CMainWindow::InitializeResource()
     UpdateLayoutAndShowStatus();
 }
 
-/// <summary>
-/// Enumerate and construct all the sensors when the app starts up
-/// </summary>
+
+/**
+ * Enumerate and construct all the sensors when the app starts up
+ */
 void CMainWindow::EnumerateSensors()
 {
     int iCount = 0;
@@ -317,9 +324,10 @@ void CMainWindow::EnumerateSensors()
     }
 }
 
-/// <summary>
-/// Update the main window status
-/// </summary>
+
+/**
+ * Update the main window status
+ */
 void CMainWindow::UpdateMainWindow(PCWSTR instanceName, HRESULT sensorStatus)
 {
     // The new status is "not connected"
@@ -342,9 +350,10 @@ void CMainWindow::UpdateMainWindow(PCWSTR instanceName, HRESULT sensorStatus)
     m_pStatusLogListControl->AddLog(instanceName, sensorStatus);
 }
 
-/// <summary>
-/// Update the window layout and show/hide status of the controls
-/// </summary>
+
+/**
+ * Update the window layout and show/hide status of the controls
+ */
 void CMainWindow::UpdateLayoutAndShowStatus()
 {
     // Update layout
@@ -354,9 +363,10 @@ void CMainWindow::UpdateLayoutAndShowStatus()
     UpdateShowStatus();
 }
 
-/// <summary>
-/// Respond to the click event of "moreinfo" link
-/// </summary>
+
+/**
+ * Respond to the click event of "moreinfo" link
+ */
 void CMainWindow::OnClickMoreInfoLink(LPARAM lParam)
 {
     PNMLINK pnm = (PNMLINK)lParam;
@@ -375,9 +385,10 @@ void CMainWindow::OnClickMoreInfoLink(LPARAM lParam)
     }
 }
 
-/// <summary>
-/// Draw the break line between the two list controls
-/// </summary>
+
+/**
+ * Draw the break line between the two list controls
+ */
 void CMainWindow::DrawBreakLine()
 {
     PAINTSTRUCT ps;
@@ -398,9 +409,10 @@ void CMainWindow::DrawBreakLine()
     ReleaseDC(hBreakLine, hdcBreakLine);
 }
 
-/// <summary>
-/// Update the window layout
-/// </summary>
+
+/**
+ * Update the window layout
+ */
 void CMainWindow::UpdateLayout()
 {
     SIZE windowSize = GetClientSize(m_hWnd);
@@ -428,9 +440,10 @@ void CMainWindow::UpdateLayout()
     SetWindowPos(GetHandle(IDC_STATUSLOGLIST), 0, sensorListRect.left, statusTextBottom + GenericGap, windowSize.cx - StretchMargin, statusListHeight, 0);
 }
 
-/// <summary>
-/// Show/Hide the controls
-/// </summary>
+
+/**
+ * Show/Hide the controls
+ */
 void CMainWindow::UpdateShowStatus()
 {
     int hasSensorCmdShow = (HasSensor()) ? SW_SHOW : SW_HIDE;

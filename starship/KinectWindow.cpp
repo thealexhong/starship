@@ -1,8 +1,8 @@
-//------------------------------------------------------------------------------
-// <copyright file="KinectWindow.cpp" company="Microsoft">
-//     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>
-//------------------------------------------------------------------------------
+/**
+* KinectWindow.cpp
+* Modfied from Kinect SDK v.1.8
+* alex.hong@mail.utoronto.ca
+*/
 
 #include "stdafx.h"
 #include "KinectWindow.h"
@@ -26,14 +26,24 @@
 #define TIMER_PERIOD                20
 
 // Titles of tab control items
+#define TAB_TITLE_SKELETON          L"Skeleton"
+#define TAB_TITLE_FEATURES          L"Features"
+#define TAB_TITLE_CLASSIFICATION    L"Classification"
+/*
 #define TAB_TITLE_AUDIO             L"Audio"
 #define TAB_TITLE_ACCELEROMETER     L"Accelerometer"
 #define TAB_TITLE_TILTANGLE         L"Sensor Settings"
+*/
 
 // Index of tab control items
-#define TAB_INDEX_AUDIO             0
-#define TAB_INDEX_ACCELEROMETER     1
-#define TAB_INDEX_TILTANGLE         2
+#define TAB_INDEX_SKELETON          0
+#define TAB_INDEX_FEATURES          1
+#define TAB_INDEX_CLASSIFICATION    2
+/*
+#define TAB_INDEX_AUDIO             1
+#define TAB_INDEX_ACCELEROMETER     2
+#define TAB_INDEX_TILTANGLE         3
+*/
 
 #define ERROR_MESSAGE_BUFFER_SIZE   1024
 
@@ -50,35 +60,34 @@ static const int DepthTreatmentMenuPosition         = 3;
 static const int SkeletonTrackingModeMenuPosition   = 1;
 static const int SkeletonChooserModeMenuPosition    = 2;
 
-/// <summary>
-/// Constructor
-/// </summary>
-/// <param name="hInstance">Handle to the application instance</param>
-/// <param name="hWndParent">Handle to main console window</param>
-/// <param name="pNuiSensor">Pointer to Nui sensor instance</param>
-KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, INuiSensor* pNuiSensor)
-    : NuiViewer(nullptr)
-    , m_hWndTab(nullptr)
-    , m_hWndParent(hWndParent)
-    , m_hInstance(hInstance)
-    , m_hTimer(nullptr)
-    , m_hThread(nullptr)
-    , m_pNuiSensor(pNuiSensor)
-    , m_bSupportCameraSettings(true)
-    , m_hStartWindow(INVALID_HANDLE_VALUE)
-    , m_hStopStreamEventThread(INVALID_HANDLE_VALUE)
+/**
+ * Constructor
+ * @param  hInstance   Handle to the application instance
+ * @param  hWndParent  Handle to main console window
+ * @param  pNuiSensor  Pointer to Nui sensor instance
+ */
+KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, INuiSensor* pNuiSensor) : NuiViewer(nullptr),
+                                                                                           m_hWndTab(nullptr),
+																						   m_hWndParent(hWndParent),
+																						   m_hInstance(hInstance),
+																						   m_hTimer(nullptr),
+																						   m_hThread(nullptr),
+																						   m_pNuiSensor(pNuiSensor),
+																						   m_bSupportCameraSettings(true),
+																						   m_hStartWindow(INVALID_HANDLE_VALUE),
+																						   m_hStopStreamEventThread(INVALID_HANDLE_VALUE)
 {
     assert(m_pNuiSensor);
     m_pNuiSensor->AddRef();
 
     // Create instances of sub views
-    m_pPrimaryView    = new NuiStreamViewer(this);
-    m_pSecondaryView  = new NuiStreamViewer(this);
-    m_pAudioView      = new NuiAudioViewer(this);
-    m_pAccelView      = new NuiAccelerometerViewer(this);
-    m_pTiltAngleView  = new NuiTiltAngleViewer(this, pNuiSensor);
-    m_pCurTabbedView  = nullptr;
-    m_pColorSettingsView = new CameraColorSettingsViewer(this);
+    m_pPrimaryView          = new NuiStreamViewer(this);
+    m_pSecondaryView        = new NuiStreamViewer(this);
+    m_pAudioView            = new NuiAudioViewer(this);
+    m_pAccelView            = new NuiAccelerometerViewer(this);
+    m_pTiltAngleView        = new NuiTiltAngleViewer(this, pNuiSensor);
+    m_pCurTabbedView        = nullptr;
+    m_pColorSettingsView    = new CameraColorSettingsViewer(this);
     m_pExposureSettingsView = new CameraExposureSettingsViewer(this);
 
     m_views.push_back(m_pPrimaryView);
@@ -122,18 +131,19 @@ KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, INuiSensor* pNu
                                      m_pExposureSettingsView);
 }
 
-/// <summary>
-/// Destructor
-/// </summary>
+/**
+ * Destructor
+ */
 KinectWindow::~KinectWindow()
 {
     CleanUp();
 }
 
-/// <summary>
-/// Initialization
-/// </summary>
-/// <returns>Indicate success or failure</returns>
+
+/**
+ * Initialization
+ * @return  Indicate success or failure
+ */
 bool KinectWindow::Initialize()
 {
     // Check Nui sensor pointer
@@ -169,10 +179,11 @@ bool KinectWindow::Initialize()
     return SUCCEEDED(hr) || E_NUI_DEVICE_IN_USE == hr;
 }
 
-/// <summary>
-/// Initialize common control.
-/// </summary>
-/// <returns>Indicates success or failure</returns>
+
+/**
+ * Initialize common control.
+ * @return  Indicates success or failure
+ */
 bool KinectWindow::InitializeCommonControl()
 {
     static bool initialized = false;
@@ -188,10 +199,11 @@ bool KinectWindow::InitializeCommonControl()
     return initialized;
 }
 
-/// <summary>
-/// Initialize camera setting viewers
-/// </summary>
-/// <returns>Indicate success or failure</returns>
+
+/**
+ * Initialize camera setting viewers
+ * @return  Indicate success or failure
+ */
 bool KinectWindow::CreateCameraSettingViews()
 {
     INuiColorCameraSettings* pNuiCameraSettings = nullptr;
@@ -222,10 +234,11 @@ bool KinectWindow::CreateCameraSettingViews()
     return true;
 }
 
-/// <summary>
-/// Start a new thread and Kinect window runs in it
-/// </summary>
-/// <returns>Handle to thread</returns>
+
+/**
+ * Start a new thread and Kinect window runs in it
+ * @return  Handle to thread
+ */
 HANDLE KinectWindow::StartWindow()
 {
     if (!m_hThread)
@@ -249,9 +262,9 @@ HANDLE KinectWindow::StartWindow()
     return m_hThread;
 }
 
-/// <summary>
+
 /// Explictly called by main window to close Kinect window and stop the thread on exit of main window
-/// </summary>
+
 void KinectWindow::NotifyOfExit()
 {
     HideView();
@@ -260,20 +273,22 @@ void KinectWindow::NotifyOfExit()
     PostMessageW(m_hWnd, WM_CLOSE, 0, 0);
 }
 
-/// <summary>
-/// Returns the handle to the thread of the Kinect window
-/// </summary>
-/// <returns>The thread handle</returns>
+
+/**
+ * Returns the handle to the thread of the Kinect window
+ * @return  The thread handle
+ */
 HANDLE KinectWindow::GetThreadHandle() const
 {
     return m_hThread;
 }
 
-/// <summary>
-/// The thread procedure in which the window runs
-/// </summary>
-/// <param name="pThis">The pointer to Kinect window instance</param>
-/// <returns>The result from message loop</returns>
+
+/**
+ * The thread procedure in which the window runs
+ * @param   pThis  The pointer to Kinect window instance
+ * @return  The result from message loop
+ */
 DWORD WINAPI KinectWindow::ThreadProc(KinectWindow* pThis)
 {
     DWORD result = 0;
@@ -307,10 +322,11 @@ DWORD WINAPI KinectWindow::ThreadProc(KinectWindow* pThis)
     return result;
 }
 
-/// <summary>
-/// Window message loop
-/// </summary>
-/// <returns>wParam of last received message</returns>
+
+/**
+ * Window message loop
+ * @return  wParam of last received message
+ */
 WPARAM KinectWindow::MessageLoop()
 {
     m_hStopStreamEventThread = CreateEventW(nullptr, TRUE, FALSE, nullptr);
@@ -341,14 +357,15 @@ WPARAM KinectWindow::MessageLoop()
     return msg.wParam;
 }
 
-/// <summary>
-/// Dispatch the message to the handler function
-/// </summary>
-/// <param name="hWnd">The handle to the window which receives the message</param>
-/// <param name="uMsg">The message identifier</param>
-/// <param name="wParam">The additional message information</param>
-/// <param name="lParam">The additional message information</param>
-/// <returns>If the message has been processed by handler function, TRUE is returned. Otherwise FALSE is returned and the message is handled by default dialog procedure</returns>
+
+/**
+ * Dispatch the message to the handler function
+ * @param   hWnd    The handle to the window which receives the message
+ * @param   uMsg    The message identifier
+ * @param   wParam  The additional message information
+ * @param   lParam  The additional message information
+ * @return  If the message has been processed by handler function, TRUE is returned. Otherwise FALSE is returned and the message is handled by default dialog procedure
+ */
 LRESULT KinectWindow::DialogProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     switch (uMsg)
@@ -401,19 +418,21 @@ LRESULT KinectWindow::DialogProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
     return FALSE;
 }
 
-/// <summary>
-/// Returns ID of the dialog
-/// </summary>
-/// <returns>ID of dialog</returns>
+
+/**
+ * Returns ID of the dialog
+ * @return  ID of dialog
+ */
 UINT KinectWindow::GetDlgId()
 {
     return IDD_KINECT_WINDOW;
 }
 
-/// <summary>
-/// Create Kinect window and its sub views
-/// </summary>
-/// <returns>Indicates success or failure</returns>
+
+/**
+ * Create Kinect window and its sub views
+ * @return  Indicates success or failure
+ */
 bool KinectWindow::CreateWindows()
 {
     // Create window for Kinect window
@@ -440,10 +459,11 @@ bool KinectWindow::CreateWindows()
     return CreateTabControl();
 }
 
-/// <summary>
-/// Create tab control
-/// </summary>
-/// <returns>Indicates success or failure</returns>
+
+/**
+ * Create tab control
+ * @return  Indicates success or failure
+ */
 bool KinectWindow::CreateTabControl()
 {
     if (!m_hWndTab)
@@ -466,20 +486,26 @@ bool KinectWindow::CreateTabControl()
             tci.mask        = TCIF_TEXT;
             tci.iImage      = -1;
 
+			InsertTabItem(TAB_TITLE_SKELETON,       TAB_INDEX_SKELETON);
+			InsertTabItem(TAB_TITLE_FEATURES,       TAB_INDEX_FEATURES);
+			InsertTabItem(TAB_TITLE_CLASSIFICATION, TAB_INDEX_CLASSIFICATION);
+			/*
             InsertTabItem(TAB_TITLE_AUDIO,          TAB_INDEX_AUDIO);
             InsertTabItem(TAB_TITLE_ACCELEROMETER,  TAB_INDEX_ACCELEROMETER);
             InsertTabItem(TAB_TITLE_TILTANGLE,      TAB_INDEX_TILTANGLE);
+			*/
         }
     }
 
     return (nullptr != m_hWndTab);
 }
 
-/// <summary>
-/// Insert a tab item to tab control
-/// </summary>
-/// <param name="title">Text displayed on tab item</param>
-/// <param name="index">Index of tab item</param>
+
+/**
+ * Insert a tab item to tab control
+ * @param   title  Text displayed on tab item
+ * @param   index  Index of tab item
+ */
 void KinectWindow::InsertTabItem(LPWSTR title, int index)
 {
     TCITEMW tci    = {0};
@@ -491,9 +517,10 @@ void KinectWindow::InsertTabItem(LPWSTR title, int index)
     TabCtrl_InsertItem(m_hWndTab, index, &tci);
 }
 
-/// <summary>
-/// Display Kinect window and its sub views.
-/// </summary>
+
+/**
+ * Display Kinect window and its sub views.
+ */
 void KinectWindow::ShowWindows()
 {
     // Kinect window
@@ -518,17 +545,19 @@ void KinectWindow::ShowWindows()
     BringUpWindow();
 }
 
-/// <summary>
-/// Bring up Kinect window on top of main console window
-/// </summary>
+
+/**
+ * Bring up Kinect window on top of main console window
+ */
 void KinectWindow::BringUpWindow()
 {
     SetForegroundWindow(m_hWnd);
 }
 
-/// <summary>
-/// Start all streams and timer
-/// </sumamry>
+
+/**
+ * Start all streams and timer
+ */
 void KinectWindow::StartStreams()
 {
     // Color stream
@@ -550,9 +579,10 @@ void KinectWindow::StartStreams()
     StartTimer();
 }
 
-/// <summary>
-/// Start the waitable timer to trigger process of timed streams
-/// </summary>
+
+/**
+ * Start the waitable timer to trigger process of timed streams
+ */
 void KinectWindow::StartTimer()
 {
     m_hTimer = CreateWaitableTimerW(nullptr, FALSE, nullptr);
@@ -563,9 +593,10 @@ void KinectWindow::StartTimer()
     }
 }
 
-/// <summary>
-/// Release all resources
-/// </summary>
+
+/**
+ * Release all resources
+ */
 void KinectWindow::CleanUp()
 {
     if (m_hTimer)
@@ -603,9 +634,10 @@ void KinectWindow::CleanUp()
     }
 }
 
-/// <summary>
-/// Handler function for WM_SIZE message
-/// </summary>
+
+/**
+ * Handler function for WM_SIZE message
+ */
 void KinectWindow::OnResize()
 {
     // Move window of sub views to their positions.
@@ -634,10 +666,11 @@ void KinectWindow::OnResize()
     }
 }
 
-/// <summary>
-/// Handler function for menu commands
-/// </summary>
-/// <param name="wParam">Command parameter</param>
+
+/**
+ * Handler function for menu commands
+ * @param   wParam  Command parameter
+ */
 void KinectWindow::OnCommand(WPARAM wParam)
 {
     WORD id     = LOWORD(wParam);   // Get menu item ID
@@ -653,9 +686,10 @@ void KinectWindow::OnCommand(WPARAM wParam)
     }
 }
 
-/// <summary>
-/// Initialize menu control on Kinect window. Set initial check status for menu items
-/// </summary>
+
+/**
+ * Initialize menu control on Kinect window. Set initial check status for menu items
+ */
 void KinectWindow::InitializeMenu()
 {
     HMENU hMenu = GetMenu(m_hWnd);
@@ -705,12 +739,13 @@ void KinectWindow::InitializeMenu()
     }
 }
 
-/// <summary>
-/// Update menu item status
-/// </summary>
-/// <param name="id">Identifier of menu item</param>
-/// <param name="checked">Check status of menu item</param>
-/// <returns>Indicates success or failure<returns>
+
+/**
+ * Update menu item status
+ * @param   id       Identifier of menu item
+ * @param   checked  Check status of menu item
+ * @return  Indicates success or failure
+ */
 bool KinectWindow::ProcessMenuItem(UINT id, bool& checked)
 {
     if (ID_FORCE_OFF_IR == id)
@@ -808,14 +843,15 @@ bool KinectWindow::ProcessMenuItem(UINT id, bool& checked)
     return false;
 }
 
-/// <summary>
-/// Enable or disable popup menu
-/// </summary>
-/// <param name="hMenu">Handle to window menu</param>
-/// <param name="subMenuPosition">Position of sub menu which owns the pop up menu item</param>
-/// <param name="popupMenuPosition">Position of popup menu to enable or disable</param>
-/// <param name="enable">True to enable and false to disable the menu</param>
-/// <returns>Indicates success or failure</returns>
+
+/**
+ * Enable or disable popup menu
+ * @param   hMenu">Handle to window menu
+ * @param   subMenuPosition    Position of sub menu which owns the pop up menu item
+ * @param   popupMenuPosition  Position of popup menu to enable or disable
+ * @param   enable">True to enable and false to disable the menu
+ * @return  Indicates success or failure
+ */
 bool KinectWindow::EnablePopupMenuItem(HMENU hMenu, UINT subMenuPosition, UINT popupMenuPosition, bool enable)
 {
     HMENU hSubMenu = GetSubMenu(hMenu, subMenuPosition);
@@ -827,26 +863,28 @@ bool KinectWindow::EnablePopupMenuItem(HMENU hMenu, UINT subMenuPosition, UINT p
     return false;
 }
 
-/// <summary>
-/// Invert the check status of menu item
-/// </summary>
-/// <param name="hMenu">Handle to window menu</param>
-/// <param name="id">ID of menu item to check or uncheck</param>
-/// <param name="previouslyChecked">Previous check status of menu item</param>
-/// <returns>Indicates success or failure</returns>
+
+/**
+ * Invert the check status of menu item
+ * @param   hMenu              Handle to window menu
+ * @param   id                 ID of menu item to check or uncheck
+ * @param   previouslyChecked  Previous check status of menu item
+ * @return  Indicates success or failure
+ */
 bool KinectWindow::InvertCheckMenuItem(HMENU hMenu, UINT id, bool previouslyChecked)
 {
     return (-1 != CheckMenuItem(hMenu, id, MF_BYCOMMAND | (previouslyChecked ? MF_UNCHECKED : MF_CHECKED)));
 }
 
-/// <summary>
-/// Check radio menu item
-/// </summary>
-/// <param name="id">ID of menu item to check<param>
-/// <param name="start">Start ID of grouped radio items</param>
-/// <param name="end">End ID of grouped radio items</param>
-/// <param name="hMenu">Handle to menu</param>
-/// <returns>Indicate success or failure</returns>
+
+/**
+ * Check radio menu item
+ * @param   id     ID of menu item to check
+ * @param   start  Start ID of grouped radio items
+ * @param   end    End ID of grouped radio items
+ * @param   hMenu  Handle to menu
+ * @returnb Indicate success or failure
+ */
 bool KinectWindow::CheckRadioItem(UINT id, UINT start, UINT end, HMENU hMenu)
 {
     if (id >= start && id <= end)
@@ -857,13 +895,14 @@ bool KinectWindow::CheckRadioItem(UINT id, UINT start, UINT end, HMENU hMenu)
     return false;
 }
 
-/// <summary>
-/// Retrieve check status of menu item
-/// </summary>
-/// <param name="hMenu">Handle to menu control</param>
-/// <param name="id">Identifier of menu item</param>
-/// <param name="checked">Retrieve the check status of menu item</param>
-/// <returns>Indicates success or failure</returns>
+
+/**
+ * Retrieve check status of menu item
+ * @param   hMenu    Handle to menu control
+ * @param   id       Identifier of menu item
+ * @param   checked  Retrieve the check status of menu item
+ * @return  Indicates success or failure
+ */
 bool KinectWindow::GetMenuItemCheckStatus(HMENU hMenu, UINT id, bool& checked)
 {
     MENUITEMINFOW mii = {0};
@@ -878,10 +917,11 @@ bool KinectWindow::GetMenuItemCheckStatus(HMENU hMenu, UINT id, bool& checked)
     return false;
 }
 
-/// <summary>
-/// Handler function to process tab control events
-/// </summary>
-/// <param name="lParam">Additional message information</param>
+
+/**
+ * Handler function to process tab control events
+ * @param   lParam  Additional message information
+ */
 void KinectWindow::OnNotify(LPARAM lParam)
 {
     LPNMHDR pNMHDR = (LPNMHDR)lParam;
@@ -904,11 +944,12 @@ void KinectWindow::OnNotify(LPARAM lParam)
     }
 }
 
-/// <summary>
-/// Handler function to process WM_CLOSE message
-/// </summary>
-/// <param name="hWnd">Handle to the window</param>
-/// <param name="wParam">Command parameter</param>
+
+/**
+ * Handler function to process WM_CLOSE message
+ * @param   hWnd    Handle to the window
+ * @param   wParam  Command parameter
+ */
 void KinectWindow::OnClose(HWND hWnd, WPARAM wParam)
 {
     // The reason of closing is from status changed
@@ -936,14 +977,15 @@ void KinectWindow::OnClose(HWND hWnd, WPARAM wParam)
     }
 }
 
-/// <summary>
-/// Calculates new positions and sizes for sub windows when Kinect window is resized
-/// </summary>
-/// <param name="priRect">New position and size for primary display viewer</param>
-/// <param name="secRect">New position and size for secondary display viewer</param>
-/// <param name="tabRect">New position and size for tab control</param>
-/// <param name="tabbedRect">New position and size for tabbed viewers</param>
-/// <returns>Indicates success or failure</returns>
+
+/**
+ * Calculates new positions and sizes for sub windows when Kinect window is resized
+ * @param   priRect     New position and size for primary display viewer
+ * @param   secRect     New position and size for secondary display viewer
+ * @param   tabRect     New position and size for tab control
+ * @param   tabbedRect  New position and size for tabbed viewers
+ * @return  Indicates success or failure
+ */
 bool KinectWindow::CalculateViewRects(RECT& priRect, RECT& secRect, RECT& tabRect, RECT& tabbedRect)
 {
     RECT client;
@@ -981,9 +1023,10 @@ bool KinectWindow::CalculateViewRects(RECT& priRect, RECT& secRect, RECT& tabRec
     return false;
 }
 
-/// <summary>
-/// Process color, depth and skeleton streams
-/// </summary>
+
+/**
+ * Process color, depth and skeleton streams
+ */
 void KinectWindow::UpdateStreams()
 {
     m_pColorStream->ProcessStreamFrame();
@@ -991,20 +1034,22 @@ void KinectWindow::UpdateStreams()
     m_pSkeletonStream->ProcessStreamFrame();
 }
 
-/// <summary>
-/// Process audio, accelerometer and tilt angle streams
-/// </summary>
+
+/**
+ * Process audio, accelerometer and tilt angle streams
+ */
 void KinectWindow::UpdateTimedStreams()
 {
     m_pAudioStream->ProcessStream();
     m_pAccelerometerStream->ProcessStream();
 }
 
-/// <summary>
-/// Thread to handle stream events
-/// </summary>
-/// <param name="pThis">Pionter to Kinect window instance</param>
-/// <returns>Exit result from thread</returns>
+
+/**
+ * Thread to handle stream events
+ * @param   pThis Pointer to Kinect window instance
+ * @return  Exit result from thread
+ */
 DWORD KinectWindow::StreamEventThread(KinectWindow* pThis)
 {
     HANDLE events[] = {pThis->m_hStopStreamEventThread, 
