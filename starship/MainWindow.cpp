@@ -73,9 +73,9 @@ HFONT CMainWindow::LargeTextFont;
  */
 CMainWindow::CMainWindow() : NuiViewer(nullptr),
                              m_hWnd(nullptr),
-							 m_pKinectWindowMgr(nullptr),
-							 m_pSensorListControl(nullptr),
-							 m_pStatusLogListControl(nullptr)
+                             m_pKinectWindowMgr(nullptr),
+                             m_pSensorListControl(nullptr),
+                             m_pStatusLogListControl(nullptr)
 {
     EnsureFontCreated(LargeTextFont, 25, FW_MEDIUM);
 }
