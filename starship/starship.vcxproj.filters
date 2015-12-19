@@ -84,6 +84,9 @@
     <ClCompile Include="NuiAccelerometerStream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="NuiSkeletonPointsViewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility.h">
@@ -162,6 +165,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="NuiAudioViewer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NuiSkeletonPointsViewer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
