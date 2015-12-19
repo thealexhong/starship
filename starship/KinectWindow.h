@@ -11,9 +11,12 @@
 #include "NuiDepthStream.h"
 #include "NuiColorStream.h"
 #include "NuiSkeletonStream.h"
+#include "NuiSkeletonPointsStream.h"
+/*
 #include "NuiAudioStream.h"
 #include "NuiAccelerometerStream.h"
 #include "NuiTiltAngleViewer.h"
+*/
 #include "KinectSettings.h"
 
 class KinectWindow : public NuiViewer
@@ -255,9 +258,13 @@ private:
 
     NuiStreamViewer*        m_pPrimaryView;             // Pointer to primary viewer
     NuiStreamViewer*        m_pSecondaryView;           // Pointer to secondary viewer
+
+	NuiSkeletonPointsViewer*m_pSkeletonPointsView;
+	/*
     NuiAudioViewer*         m_pAudioView;               // Pointer to audio viewer
     NuiAccelerometerViewer* m_pAccelView;               // Pointer to accelerometer viewer
     NuiTiltAngleViewer*     m_pTiltAngleView;           // Pointer to tilt angle viewer
+	*/
     NuiViewer*              m_pCurTabbedView;           // Pointer to tabbed viewer currently visible
 
     CameraSettingsViewer*   m_pColorSettingsView;       // Pointer to camera color settings viewer
@@ -267,8 +274,11 @@ private:
     NuiColorStream*         m_pColorStream;             // Pointer to color stream
     NuiDepthStream*         m_pDepthStream;             // Pointer to depth stream
     NuiSkeletonStream*      m_pSkeletonStream;          // Pointer to skeleton stream
+	NuiSkeletonPointsStream*m_pSkeletonPointsStream;
+	/*
     NuiAudioStream*         m_pAudioStream;             // Pointer to audio stream
     NuiAccelerometerStream* m_pAccelerometerStream;     // Pointer to accelerometer stream
+	*/
 
     INuiSensor*             m_pNuiSensor;               // Pointer to Nui sensor
 

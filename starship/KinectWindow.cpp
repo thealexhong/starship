@@ -16,9 +16,9 @@
 // Window size definations
 #define PRIMARY_VIEW_MIN_WIDTH      480
 #define PRIMARY_VIEW_MIN_HEIGHT     360
-#define SECOND_VIEW_FIXED_WIDTH     320
-#define SECOND_VIEW_FIXED_HEIGHT    240
-#define TABBED_VIEW_FIXED_HEIGHT    240
+#define SECOND_VIEW_FIXED_WIDTH     480
+#define SECOND_VIEW_FIXED_HEIGHT    360
+#define TABBED_VIEW_FIXED_HEIGHT    600
 #define TAB_CONTROL_FIXED_HEIGHT    25
 #define GAP_BETWEEN_VIEWS           5
 
@@ -29,10 +29,10 @@
 #define TAB_TITLE_SKELETON            L"Skeleton"
 #define TAB_TITLE_BLFEATURES          L"Features"
 #define TAB_TITLE_BLCLASSIFICATION    L"Classification"
-/*
-#define TAB_TITLE_AUDIO             L"Audio"
-#define TAB_TITLE_ACCELEROMETER     L"Accelerometer"
-#define TAB_TITLE_TILTANGLE         L"Sensor Settings"
+/**
+#define TAB_TITLE_AUDIO               L"Audio"
+#define TAB_TITLE_ACCELEROMETER       L"Accelerometer"
+#define TAB_TITLE_TILTANGLE           L"Sensor Settings"
 */
 
 // Index of tab control items
@@ -40,9 +40,9 @@
 #define TAB_INDEX_BLFEATURES          1
 #define TAB_INDEX_BLCLASSIFICATION    2
 /*
-#define TAB_INDEX_AUDIO             1
-#define TAB_INDEX_ACCELEROMETER     2
-#define TAB_INDEX_TILTANGLE         3
+#define TAB_INDEX_AUDIO               3
+#define TAB_INDEX_ACCELEROMETER       4
+#define TAB_INDEX_TILTANGLE           5
 */
 
 #define ERROR_MESSAGE_BUFFER_SIZE   1024
@@ -83,42 +83,59 @@ KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, INuiSensor* pNu
     // Create instances of sub views
     m_pPrimaryView          = new NuiStreamViewer(this);
     m_pSecondaryView        = new NuiStreamViewer(this);
+
+	m_pSkeletonPointsView = new NuiSkeletonPointsViewer(this);
+	
+	/*
     m_pAudioView            = new NuiAudioViewer(this);
     m_pAccelView            = new NuiAccelerometerViewer(this);
     m_pTiltAngleView        = new NuiTiltAngleViewer(this, pNuiSensor);
+	*/
     m_pCurTabbedView        = nullptr;
     m_pColorSettingsView    = new CameraColorSettingsViewer(this);
     m_pExposureSettingsView = new CameraExposureSettingsViewer(this);
 
     m_views.push_back(m_pPrimaryView);
     m_views.push_back(m_pSecondaryView);
+	m_views.push_back(m_pSkeletonPointsView);
+	/*
     m_views.push_back(m_pAudioView);
     m_views.push_back(m_pAccelView);
     m_views.push_back(m_pTiltAngleView);
+	*/
 
     // Group camera setting views
     m_settingViews.push_back(m_pColorSettingsView);
     m_settingViews.push_back(m_pExposureSettingsView);
 
     // Group tabbed sub views together
+	m_tabbedViews.push_back((m_pSkeletonPointsView));
+	/*
     m_tabbedViews.push_back((m_pAudioView));
     m_tabbedViews.push_back((m_pAccelView));
     m_tabbedViews.push_back((m_pTiltAngleView));
+	*/
 
     // Create stream objects
     m_pColorStream         = new NuiColorStream(m_pNuiSensor);
     m_pDepthStream         = new NuiDepthStream(m_pNuiSensor);
     m_pSkeletonStream      = new NuiSkeletonStream(m_pNuiSensor);
+	m_pSkeletonPointsStream = new NuiSkeletonPointsStream(m_pNuiSensor);
+	/*
     m_pAudioStream         = new NuiAudioStream(m_pNuiSensor);
     m_pAccelerometerStream = new NuiAccelerometerStream(m_pNuiSensor);
+	*/
 
     // Attach stream objects to viewers
     m_pColorStream->SetStreamViewer(m_pPrimaryView);
     m_pDepthStream->SetStreamViewer(m_pSecondaryView);
     m_pSkeletonStream->SetStreamViewer(m_pPrimaryView);
     m_pSkeletonStream->SetSecondStreamViewer(m_pSecondaryView);
+	m_pSkeletonPointsStream->SetStreamViewer(m_pSkeletonPointsView);
+	/*
     m_pAudioStream->SetStreamViewer(m_pAudioView);
     m_pAccelerometerStream->SetStreamViewer(m_pAccelView);
+	*/
 
     // Create settings object
     m_pSettings = new KinectSettings(m_pNuiSensor,
@@ -569,11 +586,14 @@ void KinectWindow::StartStreams()
     // Skeleton stream
     m_pSkeletonStream->StartStream();
 
+	m_pSkeletonPointsStream->StartStream();
+	/*
     // Audio reading stream
     m_pAudioStream->StartStream();
 
     // Accelerometer reading stream
     m_pAccelerometerStream->StartStream();
+	*/
 
     // Start waitble timer
     StartTimer();
@@ -608,13 +628,18 @@ void KinectWindow::CleanUp()
     SafeDelete(m_pColorStream);
     SafeDelete(m_pDepthStream);
     SafeDelete(m_pSkeletonStream);
+	SafeDelete(m_pSkeletonPointsStream);
+	/*
     SafeDelete(m_pAudioStream);
     SafeDelete(m_pAccelerometerStream);
+	*/
     SafeDelete(m_pPrimaryView);
     SafeDelete(m_pSecondaryView);
+	/*
     SafeDelete(m_pAudioView);
     SafeDelete(m_pAccelView);
     SafeDelete(m_pTiltAngleView);
+	*/
     SafeDelete(m_pColorSettingsView);
     SafeDelete(m_pExposureSettingsView);
     SafeDelete(m_pSettings);
@@ -734,7 +759,7 @@ void KinectWindow::InitializeMenu()
             DeleteMenu(hMenu, CameraSettingMenuPositon, MF_BYPOSITION);
 
             // Disable IR force off button
-            EnableWindow(GetDlgItem(m_pTiltAngleView->GetWindow(), IDC_FORCE_OFF_IR), FALSE);
+            // EnableWindow(GetDlgItem(m_pTiltAngleView->GetWindow(), IDC_FORCE_OFF_IR), FALSE);
         }
     }
 }
@@ -1040,8 +1065,11 @@ void KinectWindow::UpdateStreams()
  */
 void KinectWindow::UpdateTimedStreams()
 {
+	m_pSkeletonPointsStream->ProcessStream();
+	/*
     m_pAudioStream->ProcessStream();
     m_pAccelerometerStream->ProcessStream();
+	*/
 }
 
 
