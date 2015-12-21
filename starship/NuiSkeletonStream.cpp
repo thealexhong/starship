@@ -1,8 +1,8 @@
-//------------------------------------------------------------------------------
-// <copyright file="NuiSkeletonStream.cpp" company="Microsoft">
-//     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>
-//------------------------------------------------------------------------------
+/**
+* NuiSkeletonStream.cpp
+* Modfied from Kinect SDK v.1.8
+* alex.hong@mail.utoronto.ca
+*/
 
 #include "stdafx.h"
 #include "NuiSkeletonStream.h"

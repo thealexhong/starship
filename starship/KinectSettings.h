@@ -24,7 +24,9 @@ public:
     /// <param name="pColorStream">The pointer to color stream object instance</param>
     /// <param name="pDepthStream">The pointer to depth stream object instance</param>
     /// <param name="pSkeletonStream">The pointer to skeleton stream object instance</param>
-    KinectSettings(INuiSensor* pNuiSensor, NuiStreamViewer* pPrimaryView, NuiStreamViewer* pSecondarView, NuiColorStream* pColorStream, NuiDepthStream* pDepthStream, NuiSkeletonStream* pSkeletonStream, CameraSettingsViewer* pColorSettingsView, CameraSettingsViewer* pExposureSettingsView);
+    KinectSettings(INuiSensor* pNuiSensor,       NuiStreamViewer* pPrimaryView, NuiStreamViewer* pSecondarView, 
+		           NuiColorStream* pColorStream, NuiDepthStream* pDepthStream,  NuiSkeletonStream* pSkeletonStream,
+				   CameraSettingsViewer* pColorSettingsView, CameraSettingsViewer* pExposureSettingsView);
 
     /// <summary>
     /// Destructor

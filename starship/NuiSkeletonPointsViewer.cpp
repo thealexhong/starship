@@ -1,5 +1,6 @@
 /**
 * NuiSkeletonPointsViewer.cpp
+* Modfied from Kinect SDK v.1.8
 * alex.hong@mail.utoronto.ca
 */
 
