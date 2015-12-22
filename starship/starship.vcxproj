@@ -124,6 +124,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BLFeatureCalculator.cpp" />
     <ClCompile Include="CameraColorSettingsViewer.cpp" />
     <ClCompile Include="CameraExposureSettingsViewer.cpp" />
     <ClCompile Include="CameraSettingsViewer.cpp" />
@@ -146,6 +147,7 @@
     <ClCompile Include="NuiViewer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BLFeatureCalculator.h" />
     <ClInclude Include="CameraColorSettingsViewer.h" />
     <ClInclude Include="CameraExposureSettingsViewer.h" />
     <ClInclude Include="CameraSettingsViewer.h" />

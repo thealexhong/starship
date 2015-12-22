@@ -78,6 +78,9 @@
     <ClCompile Include="NuiBLFeatureViewer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BLFeatureCalculator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility.h">
@@ -150,6 +153,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="NuiBLClassificationViewer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BLFeatureCalculator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <NuiApi.h>
 #include "Utility.h"
 #include "NuiViewer.h"
 
@@ -27,31 +28,12 @@ public:
 
 public:
 	/**
-	 * Set skeleton 3D position readings to display
-	 * @param  headx
-	 * ...
-	 * @param lfoot
-	 */
-	void SetSkeletonPointsReadings(FLOAT headx,      FLOAT heady,      FLOAT headz,
-		                           FLOAT cshoulderx, FLOAT cshouldery, FLOAT cshoulderz,
-								   FLOAT spinex,     FLOAT spiney,     FLOAT spinez, 
-								   FLOAT chipx,      FLOAT chipy,      FLOAT chipz, 
-								   FLOAT rhandx,     FLOAT rhandy,     FLOAT rhandz, 
-								   FLOAT rwristx,    FLOAT rwristy,    FLOAT rwristz,
-								   FLOAT relbowx,    FLOAT relbowy,    FLOAT relbowz,
-								   FLOAT rshoulderx, FLOAT rshouldery, FLOAT rshoulderz,
-								   FLOAT rhipx,      FLOAT rhipy,      FLOAT rhipz,
-								   FLOAT rkneex,     FLOAT rkneey,     FLOAT rkneez, 
-								   FLOAT ranklex,    FLOAT rankley,    FLOAT ranklez,
-								   FLOAT rfootx,     FLOAT rfooty,     FLOAT rfootz,
-								   FLOAT lhandx,     FLOAT lhandy,     FLOAT lhandz,
-								   FLOAT lwristx,    FLOAT lwristy,    FLOAT lwristz,
-								   FLOAT lelbowx,    FLOAT lelbowy,    FLOAT lelbowz,
-								   FLOAT lshoulderx, FLOAT lshouldery, FLOAT lshoulderz,
-								   FLOAT lhipx,      FLOAT lhipy,      FLOAT lhipz,
-								   FLOAT lkneex,     FLOAT lkneey,     FLOAT lkneez,
-								   FLOAT lanklex,    FLOAT lankley,    FLOAT lanklez,
-								   FLOAT lfootx,     FLOAT lfooty,     FLOAT lfootz);
+	* Set skeleton 3D position readings to display
+	* @param  headx
+	* ...
+	* @param lfoot
+	*/
+	void SetSkeletonPointsReadings(const NUI_SKELETON_DATA& skeletonData);
 
 private:
 	/**
@@ -60,6 +42,32 @@ private:
 	 */
 	virtual UINT GetDlgId();
 
+	/**
+	* Set skeleton 3D position readings to display
+	* @param  headx
+	* ...
+	* @param lfoot
+	*/
+	void SetSkeletonPointsReadings(FLOAT headx, FLOAT heady, FLOAT headz,
+		FLOAT cshoulderx, FLOAT cshouldery, FLOAT cshoulderz,
+		FLOAT spinex, FLOAT spiney, FLOAT spinez,
+		FLOAT chipx, FLOAT chipy, FLOAT chipz,
+		FLOAT rhandx, FLOAT rhandy, FLOAT rhandz,
+		FLOAT rwristx, FLOAT rwristy, FLOAT rwristz,
+		FLOAT relbowx, FLOAT relbowy, FLOAT relbowz,
+		FLOAT rshoulderx, FLOAT rshouldery, FLOAT rshoulderz,
+		FLOAT rhipx, FLOAT rhipy, FLOAT rhipz,
+		FLOAT rkneex, FLOAT rkneey, FLOAT rkneez,
+		FLOAT ranklex, FLOAT rankley, FLOAT ranklez,
+		FLOAT rfootx, FLOAT rfooty, FLOAT rfootz,
+		FLOAT lhandx, FLOAT lhandy, FLOAT lhandz,
+		FLOAT lwristx, FLOAT lwristy, FLOAT lwristz,
+		FLOAT lelbowx, FLOAT lelbowy, FLOAT lelbowz,
+		FLOAT lshoulderx, FLOAT lshouldery, FLOAT lshoulderz,
+		FLOAT lhipx, FLOAT lhipy, FLOAT lhipz,
+		FLOAT lkneex, FLOAT lkneey, FLOAT lkneez,
+		FLOAT lanklex, FLOAT lankley, FLOAT lanklez,
+		FLOAT lfootx, FLOAT lfooty, FLOAT lfootz);
 
 	/**
 	 * Process message or send it to coreponding handler
