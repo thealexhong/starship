@@ -259,6 +259,8 @@ private:
     NuiStreamViewer*        m_pPrimaryView;             // Pointer to primary viewer
     NuiStreamViewer*        m_pSecondaryView;           // Pointer to secondary viewer
 	NuiSkeletonPointsViewer*m_pSkeletonPointsView;
+	NuiBLFeatureViewer*     m_pBLFeatureView;
+	NuiBLClassificationViewer*m_pBLClassificationView;
 	/*
     NuiAudioViewer*         m_pAudioView;               // Pointer to audio viewer
     NuiAccelerometerViewer* m_pAccelView;               // Pointer to accelerometer viewer

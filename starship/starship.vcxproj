@@ -134,6 +134,8 @@
     <ClCompile Include="KinectWindowManager.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="NuiActivityWatcher.cpp" />
+    <ClCompile Include="NuiBLClassificationViewer.cpp" />
+    <ClCompile Include="NuiBLFeatureViewer.cpp" />
     <ClCompile Include="NuiColorStream.cpp" />
     <ClCompile Include="NuiDepthStream.cpp" />
     <ClCompile Include="NuiImageBuffer.cpp" />
@@ -154,6 +156,8 @@
     <ClInclude Include="KinectWindowManager.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="NuiActivityWatcher.h" />
+    <ClInclude Include="NuiBLClassificationViewer.h" />
+    <ClInclude Include="NuiBLFeatureViewer.h" />
     <ClInclude Include="NuiColorStream.h" />
     <ClInclude Include="NuiDepthStream.h" />
     <ClInclude Include="NuiImageBuffer.h" />

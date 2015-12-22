@@ -36,11 +36,15 @@ NuiStreamViewer::~NuiStreamViewer()
 {
     SafeDelete(m_pImageRenderer);
 	SafeDelete(m_pSkeletonPointsViewer);
+	SafeDelete(m_pBLFeatureViewer);
+	SafeDelete(m_pBLClassificationViewer);
 }
 
-void NuiStreamViewer::SetStreamViewer(NuiSkeletonPointsViewer* pViewer)
+void NuiStreamViewer::SetStreamViewer(NuiSkeletonPointsViewer* pViewer, NuiBLFeatureViewer* pBLFeatureViewer, NuiBLClassificationViewer* pBLClassificationViewer)
 {
 	m_pSkeletonPointsViewer = pViewer;
+	m_pBLFeatureViewer = pBLFeatureViewer;
+	m_pBLClassificationViewer = pBLClassificationViewer;
 }
 
 /// <summary>
@@ -274,6 +278,9 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_FOOT_LEFT].x,
 			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_FOOT_LEFT].y,
 			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_FOOT_LEFT].z);
+
+		m_pBLFeatureViewer->SetFeatureReadings(0, 0, 0, 0, 0, 0, 0, 0);
+		m_pBLClassificationViewer->SetAffectReadings(0, 0);
 	}
 }
 

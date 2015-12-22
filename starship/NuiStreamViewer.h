@@ -10,6 +10,8 @@
 #include "NuiViewer.h"
 #include "NuiImageBuffer.h"
 #include "NuiSkeletonPointsViewer.h"
+#include "NuiBLFeatureViewer.h"
+#include "NuiBLClassificationViewer.h"
 #include "ImageRenderer.h"
 
 enum DRAW_EDGE_FLAG
@@ -60,7 +62,7 @@ public:
         m_imageType = type;
     }
 
-	void SetStreamViewer(NuiSkeletonPointsViewer* pViewer);
+	void SetStreamViewer(NuiSkeletonPointsViewer* pViewer, NuiBLFeatureViewer* pBLFeatureViewer, NuiBLClassificationViewer* pBLClassificationViewer);
 
 private:
     
@@ -198,4 +200,6 @@ private:
 
     ImageRenderer*              m_pImageRenderer;
 	NuiSkeletonPointsViewer*    m_pSkeletonPointsViewer;
+	NuiBLFeatureViewer*         m_pBLFeatureViewer;
+	NuiBLClassificationViewer*  m_pBLClassificationViewer;
 };
