@@ -38,17 +38,17 @@ void NuiSkeletonPointsStream::ProcessStream()
 	// Get the reading
 	// NEED TO CHANGE
 	Vector4 reading;
-	NUI_SKELETON_FRAME skeletonFrame = { 0 };
-	//HRESULT hr = m_pNuiSensor->NuiAccelerometerGetCurrentReading(&reading);
-	HRESULT hr = m_pNuiSensor->NuiSkeletonGetNextFrame(0, &skeletonFrame);
+	//NUI_SKELETON_FRAME skeletonFrame = { 0 };
+	HRESULT hr = m_pNuiSensor->NuiAccelerometerGetCurrentReading(&reading);
+	// HRESULT hr = m_pNuiSensor->NuiSkeletonGetNextFrame(0, &skeletonFrame);
 	
 
 	if (SUCCEEDED(hr) && m_pSkeletonPointsViewer)
 	{
 		// Set the reading to viewer
-		NUI_SKELETON_TRACKING_STATE trackingState = skeletonFrame.SkeletonData[0].eTrackingState;
+		// NUI_SKELETON_TRACKING_STATE trackingState = skeletonFrame.SkeletonData[0].eTrackingState;
 		//if (trackingState == NUI_SKELETON_TRACKED) {
-
+		/*
 			NUI_SKELETON_DATA * skeletonData = &skeletonFrame.SkeletonData[0];
 			m_pSkeletonPointsViewer->SetSkeletonPointsReadings(skeletonData->SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].y, 0, 0,
 				0, 0, 0,
@@ -70,8 +70,9 @@ void NuiSkeletonPointsStream::ProcessStream()
 				0, 0, 0,
 				0, 0, 0,
 				0, 0, 0);
+				*/
 		//}
-		/*m_pSkeletonPointsViewer->SetSkeletonPointsReadings(reading.x, reading.y, reading.z,
+		m_pSkeletonPointsViewer->SetSkeletonPointsReadings(reading.x, reading.y, reading.z,
 			                                               reading.x, reading.y, reading.z,
 														   reading.x, reading.y, reading.z, 
 														   reading.x, reading.y, reading.z, 
@@ -91,6 +92,6 @@ void NuiSkeletonPointsStream::ProcessStream()
 														   reading.x, reading.y, reading.z, 
 														   reading.x, reading.y, reading.z, 
 														   reading.x, reading.y, reading.z);
-														   */
+														  
 	}
 }
