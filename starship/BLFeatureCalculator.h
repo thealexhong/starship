@@ -4,3 +4,9 @@
 */
 
 #pragma once
+
+class BLFeatureCalculator
+{
+
+
+};
