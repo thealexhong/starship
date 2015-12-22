@@ -27,8 +27,10 @@
 
 // Titles of tab control items
 #define TAB_TITLE_SKELETON            L"Skeleton"
-#define TAB_TITLE_BLFEATURES          L"Features"
-#define TAB_TITLE_BLCLASSIFICATION    L"Classification"
+#define TAB_TITLE_BLFEATURES          L"BL Features"
+#define TAB_TITLE_BLCLASSIFICATION    L"BL Classification"
+#define TAB_TITLE_VLFEATURES          L"V Features"
+#define TAB_TITLE_VCLASSIFICATION     L"V Classification"
 /**
 #define TAB_TITLE_AUDIO               L"Audio"
 #define TAB_TITLE_ACCELEROMETER       L"Accelerometer"
@@ -39,6 +41,8 @@
 #define TAB_INDEX_SKELETON            0
 #define TAB_INDEX_BLFEATURES          1
 #define TAB_INDEX_BLCLASSIFICATION    2
+#define TAB_INDEX_VFEATURES           3
+#define TAB_INDEX_VCLASSIFICATION     4
 /*
 #define TAB_INDEX_AUDIO               3
 #define TAB_INDEX_ACCELEROMETER       4
@@ -81,11 +85,10 @@ KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, INuiSensor* pNu
     m_pNuiSensor->AddRef();
 
     // Create instances of sub views
-    m_pPrimaryView          = new NuiStreamViewer(this);
-    m_pSecondaryView        = new NuiStreamViewer(this);
-
+    m_pPrimaryView          = new NuiStreamViewer(this, TRUE);
+    m_pSecondaryView        = new NuiStreamViewer(this, FALSE);
 	m_pSkeletonPointsView = new NuiSkeletonPointsViewer(this);
-	
+	m_pPrimaryView->SetStreamViewer(m_pSkeletonPointsView);
 	/*
     m_pAudioView            = new NuiAudioViewer(this);
     m_pAccelView            = new NuiAccelerometerViewer(this);
@@ -120,7 +123,7 @@ KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, INuiSensor* pNu
     m_pColorStream         = new NuiColorStream(m_pNuiSensor);
     m_pDepthStream         = new NuiDepthStream(m_pNuiSensor);
     m_pSkeletonStream      = new NuiSkeletonStream(m_pNuiSensor);
-	m_pSkeletonPointsStream = new NuiSkeletonPointsStream(m_pNuiSensor);
+	// m_pSkeletonPointsStream = new NuiSkeletonPointsStream(m_pNuiSensor);
 	/*
     m_pAudioStream         = new NuiAudioStream(m_pNuiSensor);
     m_pAccelerometerStream = new NuiAccelerometerStream(m_pNuiSensor);
@@ -131,7 +134,7 @@ KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, INuiSensor* pNu
     m_pDepthStream->SetStreamViewer(m_pSecondaryView);
     m_pSkeletonStream->SetStreamViewer(m_pPrimaryView);
     m_pSkeletonStream->SetSecondStreamViewer(m_pSecondaryView);
-	m_pSkeletonPointsStream->SetStreamViewer(m_pSkeletonPointsView);
+	// m_pSkeletonPointsStream->SetStreamViewer(m_pSkeletonPointsView);
 	/*
     m_pAudioStream->SetStreamViewer(m_pAudioView);
     m_pAccelerometerStream->SetStreamViewer(m_pAccelView);
@@ -586,7 +589,7 @@ void KinectWindow::StartStreams()
     // Skeleton stream
     m_pSkeletonStream->StartStream();
 
-	m_pSkeletonPointsStream->StartStream();
+	// m_pSkeletonPointsStream->StartStream();
 	/*
     // Audio reading stream
     m_pAudioStream->StartStream();
@@ -628,13 +631,15 @@ void KinectWindow::CleanUp()
     SafeDelete(m_pColorStream);
     SafeDelete(m_pDepthStream);
     SafeDelete(m_pSkeletonStream);
-	SafeDelete(m_pSkeletonPointsStream);
+	SafeDelete(m_pCurTabbedView);
+	// SafeDelete(m_pSkeletonPointsStream);
 	/*
     SafeDelete(m_pAudioStream);
     SafeDelete(m_pAccelerometerStream);
 	*/
     SafeDelete(m_pPrimaryView);
     SafeDelete(m_pSecondaryView);
+	SafeDelete(m_pSkeletonPointsView);
 	/*
     SafeDelete(m_pAudioView);
     SafeDelete(m_pAccelView);
@@ -1065,7 +1070,7 @@ void KinectWindow::UpdateStreams()
  */
 void KinectWindow::UpdateTimedStreams()
 {
-	m_pSkeletonPointsStream->ProcessStream();
+	// m_pSkeletonPointsStream->ProcessStream();
 	/*
     m_pAudioStream->ProcessStream();
     m_pAccelerometerStream->ProcessStream();

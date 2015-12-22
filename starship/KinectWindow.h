@@ -11,7 +11,7 @@
 #include "NuiDepthStream.h"
 #include "NuiColorStream.h"
 #include "NuiSkeletonStream.h"
-#include "NuiSkeletonPointsStream.h"
+// #include "NuiSkeletonPointsStream.h"
 /*
 #include "NuiAudioStream.h"
 #include "NuiAccelerometerStream.h"
@@ -258,7 +258,6 @@ private:
 
     NuiStreamViewer*        m_pPrimaryView;             // Pointer to primary viewer
     NuiStreamViewer*        m_pSecondaryView;           // Pointer to secondary viewer
-
 	NuiSkeletonPointsViewer*m_pSkeletonPointsView;
 	/*
     NuiAudioViewer*         m_pAudioView;               // Pointer to audio viewer
@@ -274,7 +273,7 @@ private:
     NuiColorStream*         m_pColorStream;             // Pointer to color stream
     NuiDepthStream*         m_pDepthStream;             // Pointer to depth stream
     NuiSkeletonStream*      m_pSkeletonStream;          // Pointer to skeleton stream
-	NuiSkeletonPointsStream*m_pSkeletonPointsStream;
+	// NuiSkeletonPointsStream*m_pSkeletonPointsStream;
 	/*
     NuiAudioStream*         m_pAudioStream;             // Pointer to audio stream
     NuiAccelerometerStream* m_pAccelerometerStream;     // Pointer to accelerometer stream

@@ -14,7 +14,7 @@
 /// Constructor
 /// </summary>
 /// <param name="pParent">The pointer to parent window</param>
-NuiStreamViewer::NuiStreamViewer(const NuiViewer* pParent) : NuiViewer(pParent),
+NuiStreamViewer::NuiStreamViewer(const NuiViewer* pParent, bool displayCoordinates) : NuiViewer(pParent),
                                                              m_imageType(NUI_IMAGE_TYPE_COLOR),
 															 m_pImage(nullptr),
 															 m_pauseSkeleton(false),
@@ -25,7 +25,7 @@ NuiStreamViewer::NuiStreamViewer(const NuiViewer* pParent) : NuiViewer(pParent),
 															 m_fps(0)
 {
     m_pImageRenderer = new ImageRenderer();
-
+	m_displayCoordinates = displayCoordinates;
     m_lastTick = GetTickCount();
 }
 
@@ -35,6 +35,12 @@ NuiStreamViewer::NuiStreamViewer(const NuiViewer* pParent) : NuiViewer(pParent),
 NuiStreamViewer::~NuiStreamViewer()
 {
     SafeDelete(m_pImageRenderer);
+	SafeDelete(m_pSkeletonPointsViewer);
+}
+
+void NuiStreamViewer::SetStreamViewer(NuiSkeletonPointsViewer* pViewer)
+{
+	m_pSkeletonPointsViewer = pViewer;
 }
 
 /// <summary>
@@ -205,6 +211,70 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
     {
         DrawJoint(skeletonData, imageRect, (NUI_SKELETON_POSITION_INDEX)i);
     }
+
+	if (m_displayCoordinates) {
+
+		m_pSkeletonPointsViewer->SetSkeletonPointsReadings(skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_HEAD].x,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_HEAD].y,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_HEAD].z,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_SHOULDER_CENTER].x,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_SHOULDER_CENTER].y,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_SHOULDER_CENTER].z,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_SPINE].x,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_SPINE].y,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_SPINE].z,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_HIP_CENTER].x,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_HIP_CENTER].y,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_HIP_CENTER].z,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].x,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].y,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].z,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_WRIST_RIGHT].x,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_WRIST_RIGHT].y,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_WRIST_RIGHT].z,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_ELBOW_RIGHT].x,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_ELBOW_RIGHT].y,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_ELBOW_RIGHT].z,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_SHOULDER_RIGHT].x,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_SHOULDER_RIGHT].y,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_SHOULDER_RIGHT].z,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_HIP_RIGHT].x,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_HIP_RIGHT].y,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_HIP_RIGHT].z,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_KNEE_RIGHT].x,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_KNEE_RIGHT].y,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_KNEE_RIGHT].z,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_ANKLE_RIGHT].x,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_ANKLE_RIGHT].y,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_ANKLE_RIGHT].z,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_FOOT_RIGHT].x,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_FOOT_RIGHT].y,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_FOOT_RIGHT].z,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_HAND_LEFT].x,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_HAND_LEFT].y,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_HAND_LEFT].z,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_WRIST_LEFT].x,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_WRIST_LEFT].y,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_WRIST_LEFT].z,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_ELBOW_LEFT].x,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_ELBOW_LEFT].y,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_ELBOW_LEFT].z,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_SHOULDER_LEFT].x,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_SHOULDER_LEFT].y,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_SHOULDER_LEFT].z,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_HIP_LEFT].x,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_HIP_LEFT].y,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_HIP_LEFT].z,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_KNEE_LEFT].x,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_KNEE_LEFT].y,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_KNEE_LEFT].z,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_ANKLE_LEFT].x,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_ANKLE_LEFT].y,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_ANKLE_LEFT].z,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_FOOT_LEFT].x,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_FOOT_LEFT].y,
+			skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_FOOT_LEFT].z);
+	}
 }
 
 /// <summary>

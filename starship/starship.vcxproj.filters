@@ -18,16 +18,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="NuiAccelerometerViewer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="NuiActivityWatcher.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NuiAudioStream.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NuiAudioViewer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="NuiColorStream.cpp">
@@ -46,9 +37,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="NuiStreamViewer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NuiTiltAngleViewer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="NuiViewer.cpp">
@@ -81,13 +69,7 @@
     <ClCompile Include="MainWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NuiAccelerometerStream.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="NuiSkeletonPointsViewer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NuiSkeletonPointsStream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -122,9 +104,6 @@
     <ClInclude Include="NuiStreamViewer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NuiTiltAngleViewer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -155,25 +134,10 @@
     <ClInclude Include="MainWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NuiAccelerometerStream.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NuiAccelerometerViewer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="NuiActivityWatcher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NuiAudioStream.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NuiAudioViewer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="NuiSkeletonPointsViewer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NuiSkeletonPointsStream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

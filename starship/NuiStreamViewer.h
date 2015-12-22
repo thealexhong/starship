@@ -9,6 +9,7 @@
 #include "Utility.h"
 #include "NuiViewer.h"
 #include "NuiImageBuffer.h"
+#include "NuiSkeletonPointsViewer.h"
 #include "ImageRenderer.h"
 
 enum DRAW_EDGE_FLAG
@@ -26,7 +27,7 @@ public:
 	 * Constructor
 	 * @param  pParent  The pointer to parent window
 	 */
-    NuiStreamViewer(const NuiViewer* pParent);
+    NuiStreamViewer(const NuiViewer* pParent, bool displayCoordinates);
 
     /**
 	 * Destructor
@@ -58,6 +59,8 @@ public:
     {
         m_imageType = type;
     }
+
+	void SetStreamViewer(NuiSkeletonPointsViewer* pViewer);
 
 private:
     
@@ -186,6 +189,7 @@ private:
     const NUI_SKELETON_FRAME*   m_pSkeletonFrame;
 
     bool                        m_pauseSkeleton;
+	bool                        m_displayCoordinates;
     UINT                        m_fps;
     UINT                        m_frameCount;
     UINT                        m_lastFrameCount;
@@ -193,4 +197,5 @@ private:
     DWORD                       m_drawEdgeFlags;
 
     ImageRenderer*              m_pImageRenderer;
+	NuiSkeletonPointsViewer*    m_pSkeletonPointsViewer;
 };
