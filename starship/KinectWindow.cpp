@@ -649,9 +649,9 @@ void KinectWindow::CleanUp()
 	*/
     SafeDelete(m_pPrimaryView);
     SafeDelete(m_pSecondaryView);
-	SafeDelete(m_pSkeletonPointsView);
-	SafeDelete(m_pBLFeatureView);
-	SafeDelete(m_pBLClassificationView);
+	//SafeDelete(m_pSkeletonPointsView);
+	//SafeDelete(m_pBLFeatureView);
+	//SafeDelete(m_pBLClassificationView);
 	/*
     SafeDelete(m_pAudioView);
     SafeDelete(m_pAccelView);

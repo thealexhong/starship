@@ -35,9 +35,9 @@ NuiStreamViewer::NuiStreamViewer(const NuiViewer* pParent, bool displayCoordinat
 NuiStreamViewer::~NuiStreamViewer()
 {
     SafeDelete(m_pImageRenderer);
-	SafeDelete(m_pSkeletonPointsViewer);
-	SafeDelete(m_pBLFeatureViewer);
-	SafeDelete(m_pBLClassificationViewer);
+	//SafeDelete(m_pSkeletonPointsViewer);
+	//SafeDelete(m_pBLFeatureViewer);
+	//SafeDelete(m_pBLClassificationViewer);
 }
 
 void NuiStreamViewer::SetStreamViewer(NuiSkeletonPointsViewer* pViewer, NuiBLFeatureViewer* pBLFeatureViewer, NuiBLClassificationViewer* pBLClassificationViewer)
