@@ -1,9 +1,8 @@
-//------------------------------------------------------------------------------
-// <copyright file="NuiColorStream.h" company="Microsoft">
-//     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>
-//------------------------------------------------------------------------------
-
+/**
+* NuiColorStream.h
+* Modfied from Kinect SDK v.1.8
+* alex.hong@mail.utoronto.ca
+*/
 #pragma once
 
 #include "NuiStream.h"

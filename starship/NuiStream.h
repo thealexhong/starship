@@ -1,8 +1,8 @@
-//------------------------------------------------------------------------------
-// <copyright file="NuiStream.h" company="Microsoft">
-//     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>
-//------------------------------------------------------------------------------
+/**
+* NuiStream.h
+* Modfied from Kinect SDK v.1.8
+* alex.hong@mail.utoronto.ca
+*/
 
 #pragma once
 

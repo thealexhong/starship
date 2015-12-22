@@ -1,8 +1,8 @@
-//------------------------------------------------------------------------------
-// <copyright file="stdafx.h" company="Microsoft">
-//     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>
-//------------------------------------------------------------------------------
+/**
+* stdafx.h
+* Modfied from Kinect SDK v.1.8
+* alex.hong@mail.utoronto.ca
+*/
 
 // include file for standard system and project includes
 
