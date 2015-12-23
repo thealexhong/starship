@@ -64,6 +64,7 @@ public:
     }
 
 	void SetStreamViewer(NuiSkeletonPointsViewer* pViewer, NuiBLFeatureViewer* pBLFeatureViewer, NuiBLClassificationViewer* pBLClassificationViewer);
+	void SetSeated(bool seated);
 
 private:
     
@@ -193,9 +194,11 @@ private:
 
     bool                        m_pauseSkeleton;
 	bool                        m_displayCoordinates;
+	bool                        m_seated;
     UINT                        m_fps;
     UINT                        m_frameCount;
     UINT                        m_lastFrameCount;
+	UINT                        m_frameTracker;
     DWORD                       m_lastTick;
     DWORD                       m_drawEdgeFlags;
 

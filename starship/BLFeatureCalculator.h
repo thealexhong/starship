@@ -12,7 +12,7 @@
 class BLFeatureCalculator
 {
 public:
-	BLFeatureCalculator(std::vector<NUI_SKELETON_DATA> skeletonData, unsigned int frames);
+	BLFeatureCalculator(std::vector<NUI_SKELETON_DATA> skeletonData, UINT frames, UINT fps, bool seated);
 	~BLFeatureCalculator();
 
 public:
@@ -31,6 +31,8 @@ private:
 
 
 private:
-	unsigned int m_frames;
+	UINT m_frames;
+	UINT m_fps;
+	bool m_seated;
 	std::vector<NUI_SKELETON_DATA>m_skeletonData;
 };

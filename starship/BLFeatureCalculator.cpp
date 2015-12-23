@@ -4,11 +4,14 @@
 * Some math: Search for Derek McColl thesis doc for more information
 */
 
+#include "stdafx.h"
 #include "BLFeatureCalculator.h"
 
-BLFeatureCalculator::BLFeatureCalculator(std::vector<NUI_SKELETON_DATA> skeletonData, unsigned int frames)
+BLFeatureCalculator::BLFeatureCalculator(std::vector<NUI_SKELETON_DATA> skeletonData, UINT frames, UINT fps, bool seated)
 {
 	m_skeletonData = skeletonData;
+	m_fps = fps;
+	m_seated = seated;
 	if (frames > 0)
 		m_frames = frames;
 	else
@@ -100,11 +103,12 @@ FLOAT BLFeatureCalculator::vert_motion_body()
 	{
 		// TODO: could be improved by replacing NUI_SKELETON_POSITION_COUNT with active points instead
 		// or detect if user is seated...
-		for (int j = 0; j < NUI_SKELETON_POSITION_COUNT; j++)
+		int n = ((m_seated) ? NUI_SKELETON_POSITION_COUNT / 2 : NUI_SKELETON_POSITION_COUNT);
+		for (int j = 0; j < n; j++)
 		{
 			result += m_skeletonData[i + 1].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].y - m_skeletonData[i].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].y;
 		}
-		result += 1 / NUI_SKELETON_POSITION_COUNT;
+		result += 1 / n;
 	}
 	result /= (m_frames - 1);
 	return result;
@@ -117,11 +121,12 @@ FLOAT BLFeatureCalculator::fwd_bwd_motion_body()
 	{
 		// TODO: could be improved by replacing NUI_SKELETON_POSITION_COUNT with active points instead
 		// or detect if user is seated...
-		for (int j = 0; j < NUI_SKELETON_POSITION_COUNT; j++)
+		int n = ((m_seated) ? NUI_SKELETON_POSITION_COUNT / 2 : NUI_SKELETON_POSITION_COUNT);
+		for (int j = 0; j < n; j++)
 		{
 			result += m_skeletonData[i + 1].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].z - m_skeletonData[i].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].z;
 		}
-		result += 1 / NUI_SKELETON_POSITION_COUNT;
+		result += 1 / n;
 	}
 	result /= (m_frames - 1);
 	return result;
@@ -163,15 +168,16 @@ FLOAT BLFeatureCalculator::spd_body()
 	{
 		// TODO: could be improved by replacing NUI_SKELETON_POSITION_COUNT with active points instead
 		// or detect if user is seated...
-		for (int j = 0; j < NUI_SKELETON_POSITION_COUNT; j++)
+		int n = ((m_seated) ? NUI_SKELETON_POSITION_COUNT / 2 : NUI_SKELETON_POSITION_COUNT);
+		for (int j = 0; j < n; j++)
 		{
 			FLOAT x = m_skeletonData[i + 1].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].x - m_skeletonData[i].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].x;
 			FLOAT y = m_skeletonData[i + 1].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].y - m_skeletonData[i].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].y;
 			FLOAT z = m_skeletonData[i + 1].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].z - m_skeletonData[i].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].z;
-			int timeDiff = m_frames * 30; // 30 FPS
+			int timeDiff = m_frames * m_fps;
 			result += (norm(x, y, z) / timeDiff);
 		}
-		result += 1 / NUI_SKELETON_POSITION_COUNT;
+		result += 1 / n;
 	}
 	result /= (m_frames - 1);
 	return result;
@@ -191,5 +197,3 @@ FLOAT BLFeatureCalculator::norm(FLOAT x, FLOAT y, FLOAT z)
 {
 	return sqrtf((x * x) + (y * y) + (z * z));
 }
-
-

@@ -18,10 +18,12 @@ NuiStreamViewer::NuiStreamViewer(const NuiViewer* pParent, bool displayCoordinat
                                                              m_imageType(NUI_IMAGE_TYPE_COLOR),
 															 m_pImage(nullptr),
 															 m_pauseSkeleton(false),
+															 m_seated(false),
 															 m_pSkeletonFrame(nullptr),
 															 m_drawEdgeFlags(0),
 															 m_frameCount(0),
 															 m_lastFrameCount(0),
+															 m_frameTracker(0),
 															 m_fps(0)
 {
     m_pImageRenderer = new ImageRenderer();
@@ -45,6 +47,11 @@ void NuiStreamViewer::SetStreamViewer(NuiSkeletonPointsViewer* pViewer, NuiBLFea
 	m_pSkeletonPointsViewer = pViewer;
 	m_pBLFeatureViewer = pBLFeatureViewer;
 	m_pBLClassificationViewer = pBLClassificationViewer;
+}
+
+void NuiStreamViewer::SetSeated(bool seated)
+{
+	m_seated = seated;
 }
 
 /// <summary>
@@ -217,10 +224,16 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
     }
 
 	if (m_displayCoordinates) {
-
 		m_pSkeletonPointsViewer->SetSkeletonPointsReadings(skeletonData);
-		m_pBLFeatureViewer->SetFeatureReadings(0, 0, 0, 0, 0, 0, 0, 0); // another parameter for seated
-		m_pBLClassificationViewer->SetAffectReadings(0, 0);
+
+		m_frameTracker++;
+
+		if (m_frameTracker == (5 * m_fps)) // after 5 secs?
+		{
+			m_frameTracker = 0;
+			m_pBLFeatureViewer->SetFeatureReadings(0, 0, 0, 0, 0, 0, 0, 0); // another parameter for seated
+			m_pBLClassificationViewer->SetAffectReadings(0, 0);
+		}
 	}
 }
 

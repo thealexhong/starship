@@ -16,7 +16,7 @@ NuiSkeletonStream::NuiSkeletonStream(INuiSensor* pNuiSensor)
     : NuiStream(pNuiSensor)
     , m_near(false)
     , m_seated(false)
-    , m_chooserMode(ChooserModeDefault)
+    , m_chooserMode(ChooserModeClosest1)
     , m_pSecondStreamViewer(nullptr)
 {
     m_stickyIDs[FirstTrackID] = 0;
@@ -57,6 +57,7 @@ void NuiSkeletonStream::SetSeatedMode(bool seated)
 {
     if (m_seated != seated)
     {
+		m_pStreamViewer->SetSeated(seated);
         m_seated = seated;
         StartStream();  // Restart stream with new parameter value
     }

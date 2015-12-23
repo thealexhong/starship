@@ -766,7 +766,7 @@ void KinectWindow::InitializeMenu()
         CheckMenuRadioItem(hMenu,
                              ID_SKELETONSTREAM_CHOOSERMODE_START,
                              ID_SKELETONSTREAM_CHOOSERMODE_END,
-                             ID_CHOOSERMODE_DEFAULTSYSTEMTRACKING,
+							 ID_CHOOSERMODE_CLOSEST1PLAYER,
                              MF_BYCOMMAND);
 
         // This device does not support camera settings
