@@ -7,6 +7,7 @@
 #pragma once
 
 #include <NuiApi.h>
+#include <vector>
 #include "Utility.h"
 #include "NuiViewer.h"
 #include "NuiImageBuffer.h"
@@ -206,4 +207,5 @@ private:
 	NuiSkeletonPointsViewer*    m_pSkeletonPointsViewer;
 	NuiBLFeatureViewer*         m_pBLFeatureViewer;
 	NuiBLClassificationViewer*  m_pBLClassificationViewer;
+	std::vector<NUI_SKELETON_DATA>m_skeletonData;
 };
