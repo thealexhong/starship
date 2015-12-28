@@ -243,10 +243,12 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 												   myBLFeatures->fwd_bwd_motion_body(), 
 												   myBLFeatures->expand_body(), 
 												   myBLFeatures->spd_body()); // another parameter for seated
-			SafeDelete(myBLFeatures);
+			
 			
 			m_pBLClassificationViewer->SetAffectReadings(0, 0);
 
+			// Clean up
+			SafeDelete(myBLFeatures);
 			m_skeletonData.clear();
 		}
 	}
