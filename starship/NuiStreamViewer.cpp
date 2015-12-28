@@ -232,13 +232,22 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 		if (m_frameTracker >= frames) // after 5 secs?
 		{
 			m_frameTracker = 0;
-			m_skeletonData.clear();
+			
 			BLFeatureCalculator * myBLFeatures = new BLFeatureCalculator(m_skeletonData, frames, m_fps, m_seated);
 
 			m_pBLFeatureViewer->SetFeatureReadings(myBLFeatures->bow_stretch_trunk(),
-				                                   0, 0, 0, 0, 0, 0, 0); // another parameter for seated
+				                                   myBLFeatures->open_close_arms(), 
+												   myBLFeatures->vert_head(), 
+												   myBLFeatures->fwd_bwd_head(), 
+												   myBLFeatures->vert_motion_body(), 
+												   myBLFeatures->fwd_bwd_motion_body(), 
+												   myBLFeatures->expand_body(), 
+												   myBLFeatures->spd_body()); // another parameter for seated
 			SafeDelete(myBLFeatures);
+			
 			m_pBLClassificationViewer->SetAffectReadings(0, 0);
+
+			m_skeletonData.clear();
 		}
 	}
 }

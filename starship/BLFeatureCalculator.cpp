@@ -38,7 +38,7 @@ FLOAT BLFeatureCalculator::bow_stretch_trunk()
 		if ((zshoulder - zhip) != 0)
 			result += atan((yshoulder - yhip)/(zshoulder - zhip));
 	}
-	result /= m_frames;
+	result /= ((float)m_frames);
 	return result;
 }
 FLOAT BLFeatureCalculator::open_close_arms()
@@ -65,10 +65,9 @@ FLOAT BLFeatureCalculator::open_close_arms()
 		FLOAT xright = m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].x - xtrunkcenter;
 		FLOAT yright = m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].y - ytrunkcenter;
 		FLOAT zright = m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].z - ztrunkcenter;
-
-		result += 1 / 2 * norm(xleft, yleft, zleft) + 1 / 2 * norm(xright, yright, zright);
+		result += 0.5f * norm(xleft, yleft, zleft) + 0.5f * norm(xright, yright, zright);
 	}
-	result /= m_frames;
+	result /= ((float)m_frames);
 	return result;
 }
 
@@ -80,7 +79,7 @@ FLOAT BLFeatureCalculator::vert_head()
 		result += m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HEAD].y - m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_SHOULDER_CENTER].y; // shoulder center = neck
 	}
 
-	result /= m_frames;
+	result /= ((float)m_frames);
 	return result;
 }
 
@@ -92,7 +91,7 @@ FLOAT BLFeatureCalculator::fwd_bwd_head()
 		result += m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HEAD].z - m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_SHOULDER_CENTER].z; // shoulder center = neck
 	}
 
-	result /= m_frames;
+	result /= ((float)m_frames);
 	return result;
 }
 
@@ -108,9 +107,9 @@ FLOAT BLFeatureCalculator::vert_motion_body()
 		{
 			result += m_skeletonData[i + 1].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].y - m_skeletonData[i].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].y;
 		}
-		result += 1 / n;
+		result += 1 / ((float)(n));
 	}
-	result /= (m_frames - 1);
+	result /= ((float)(m_frames - 1));
 	return result;
 }
 
@@ -126,9 +125,9 @@ FLOAT BLFeatureCalculator::fwd_bwd_motion_body()
 		{
 			result += m_skeletonData[i + 1].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].z - m_skeletonData[i].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].z;
 		}
-		result += 1 / n;
+		result += 1 / ((float)(n));
 	}
-	result /= (m_frames - 1);
+	result /= ((float)(m_frames - 1));
 	return result;
 }
 
@@ -157,7 +156,7 @@ FLOAT BLFeatureCalculator::expand_body()
 		}
 		result += (xmax - xmin) * (ymax - ymin) * (zmax - zmin);
 	}
-	result /= m_frames;
+	result /= ((float)m_frames);
 	return result;
 }
 
@@ -175,22 +174,22 @@ FLOAT BLFeatureCalculator::spd_body()
 			FLOAT y = m_skeletonData[i + 1].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].y - m_skeletonData[i].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].y;
 			FLOAT z = m_skeletonData[i + 1].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].z - m_skeletonData[i].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].z;
 			int timeDiff = m_frames * m_fps;
-			result += (norm(x, y, z) / timeDiff);
+			result += (norm(x, y, z) / ((float)(timeDiff)));
 		}
-		result += 1 / n;
+		result += 1 / ((float)(n));
 	}
-	result /= (m_frames - 1);
+	result /= ((float)(m_frames - 1));
 	return result;
 }
 
 FLOAT BLFeatureCalculator::average(FLOAT a, FLOAT b)
 {
-	return 1 / 2 * (a + b);
+	return 0.5f * (a + b);
 }
 
 FLOAT BLFeatureCalculator::average(FLOAT a, FLOAT b, FLOAT c, FLOAT d)
 {
-	return 1 / 4 * (a + b + c + d);
+	return 0.25f * (a + b + c + d);
 }
 
 FLOAT BLFeatureCalculator::norm(FLOAT x, FLOAT y, FLOAT z)
