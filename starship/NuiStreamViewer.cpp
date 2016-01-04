@@ -6,6 +6,8 @@
 
 #include "stdafx.h"
 #include <stdio.h>
+#include <iostream>
+#include <fstream>
 
 #include "NuiStreamViewer.h"
 #include "resource.h"
@@ -182,6 +184,66 @@ void NuiStreamViewer::DrawSkeletons(const D2D1_RECT_F& imageRect)
     }
 }
 
+void createTestData(std::string filename, FLOAT volume, FLOAT speed, FLOAT armopen,
+	                                      FLOAT headfb, FLOAT headud, FLOAT trunkangle,
+										  FLOAT freq, FLOAT deltay, FLOAT deltaz) {
+	std::ofstream myfile;
+	myfile.open(filename);
+	myfile << "@relation BLArousalResponse\n\n"
+		<< "@attribute volume real\n"
+		<< "@attribute speed real\n"
+		<< "@attribute armopen real\n"
+		<< "@attribute headfb real\n"
+		<< "@attribute headud real\n"
+		<< "@attribute trunkangle real\n"
+		<< "@attribute freq real\n"
+		<< "@attribute deltay real\n"
+		<< "@attribute deltaz real\n"
+		<< "@attribute arousal{ 0, 1, 2, 3, 4 }\n\n"
+		<< "@data\n"
+		<< volume << "," << speed << "," << armopen << ","
+		<< headfb << "," << headud << "," << trunkangle << ","
+		<< freq << "," << deltay << "," << deltaz << ",?";
+	myfile.close();
+
+	/*
+	@relation BLArousalResponse
+
+	@attribute volume real
+	@attribute speed real
+	@attribute armopen real
+	@attribute headfb real
+	@attribute headud real
+	@attribute trunkangle real
+	@attribute freq real
+	@attribute deltay real
+	@attribute deltaz real
+	@attribute arousal {0,1,2,3,4}
+
+	@data
+	1.096175289,0.031499748,0.403615896,0.170590255,0.375560715,0.952752455,0,0.223848659,-0.070440821,?
+	*/
+}
+
+void createBatWekaFile(std::string filename, std::string path_to_java,
+	std::string path_to_weka,
+	std::string weka_classifier,
+	std::string path_to_weka_model,
+	std::string path_to_test_data) {
+	std::ofstream myfile;
+	myfile.open(filename);
+	myfile << "\"" << path_to_java << "\"" << " -cp "
+		<< "\"" << path_to_weka << "\"" << " "
+		<< weka_classifier << " -l "
+		<< path_to_weka_model << " -T "
+		<< path_to_test_data << " -p 0";
+	myfile.close();
+
+	/*
+	"C:\Program Files\Java\jdk1.8.0_05\bin\java.exe" -cp "C:\Program Files (x86)/Weka-3-6/weka.jar" weka.classifiers.trees.RandomForest -l C:\Users\Alex\Desktop\starship\starship\TrainingData\BLArousalTrain.model -T C:\Users\Alex\Desktop\starship\starship\TrainingData\BLArousalTest.arff -p 0
+	*/
+}
+
 /// <summary>
 /// Draw skeleton.
 /// </summary>
@@ -244,7 +306,18 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 												   myBLFeatures->expand_body(), 
 												   myBLFeatures->spd_body()); // another parameter for seated
 			
-			
+			/**
+			 * ARFF file format (by Derek)
+			 * volume      = Expansiveness               expand_body()
+			 * speed       = Speed of Body               spd_body()
+			 * armopen     = Open / Close arms           open_close_arms()
+			 * headfb      = Forward / Backward Head     fwd_bwd_head()
+			 * headud      = Vertical Head               vert_head()0
+			 * trunkangle  = Bowing / Stretching Trunk   bow_stretch_trunk()
+			 * freq        = ALWAYS ZERO
+			 * deltay      = Vertical motion Body        vert_motion_body()
+			 * deltaz      = Forward /Backward Body      fwd_bwd_motion
+			 */
 			m_pBLClassificationViewer->SetAffectReadings(0, 0);
 
 			// Clean up
