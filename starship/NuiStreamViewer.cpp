@@ -184,7 +184,8 @@ void NuiStreamViewer::DrawSkeletons(const D2D1_RECT_F& imageRect)
     }
 }
 
-void createTestData(std::string filename, FLOAT volume, FLOAT speed, FLOAT armopen,
+void createTestData(std::string filename, std::string nomAttribute, 
+	                                      FLOAT volume, FLOAT speed, FLOAT armopen,
 	                                      FLOAT headfb, FLOAT headud, FLOAT trunkangle,
 										  FLOAT freq, FLOAT deltay, FLOAT deltaz) {
 	std::ofstream myfile;
@@ -199,7 +200,8 @@ void createTestData(std::string filename, FLOAT volume, FLOAT speed, FLOAT armop
 		<< "@attribute freq real\n"
 		<< "@attribute deltay real\n"
 		<< "@attribute deltaz real\n"
-		<< "@attribute arousal{ 0, 1, 2, 3, 4 }\n\n"
+		<< "@attribute " << nomAttribute.c_str() << "\n\n"
+		//<< "@attribute arousal{ 0, 1, 2, 3, 4 }\n\n"
 		<< "@data\n"
 		<< volume << "," << speed << "," << armopen << ","
 		<< headfb << "," << headud << "," << trunkangle << ","
@@ -226,22 +228,30 @@ void createTestData(std::string filename, FLOAT volume, FLOAT speed, FLOAT armop
 }
 
 void createBatWekaFile(std::string filename, std::string path_to_java,
-	std::string path_to_weka,
-	std::string weka_classifier,
-	std::string path_to_weka_model,
-	std::string path_to_test_data) {
+                                             std::string path_to_weka,
+                                             std::string weka_classifier,
+                                             std::string path_to_weka_model,
+                                             std::string path_to_test_data,
+	                                         std::string outFilename) {
 	std::ofstream myfile;
-	myfile.open(filename);
-	myfile << "\"" << path_to_java << "\"" << " -cp "
-		<< "\"" << path_to_weka << "\"" << " "
-		<< weka_classifier << " -l "
-		<< path_to_weka_model << " -T "
-		<< path_to_test_data << " -p 0";
+	myfile.open(filename);	
+	myfile << "\"" << path_to_java.c_str() << "\"" << " -cp "
+		   << "\"" << path_to_weka.c_str() << "\"" << " "
+		   << weka_classifier.c_str() << " -l "
+		   << path_to_weka_model.c_str() << " -T "
+		   << path_to_test_data.c_str() << " -p 0 > " 
+		   << outFilename.c_str();
 	myfile.close();
 
 	/*
 	"C:\Program Files\Java\jdk1.8.0_05\bin\java.exe" -cp "C:\Program Files (x86)/Weka-3-6/weka.jar" weka.classifiers.trees.RandomForest -l C:\Users\Alex\Desktop\starship\starship\TrainingData\BLArousalTrain.model -T C:\Users\Alex\Desktop\starship\starship\TrainingData\BLArousalTest.arff -p 0
 	*/
+}
+
+std::string getWekaResult(std::string execFile, std::string outFilename) {
+	system(execFile.c_str());
+
+	// parse outFilename for results
 }
 
 /// <summary>
@@ -318,6 +328,14 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			 * deltay      = Vertical motion Body        vert_motion_body()
 			 * deltaz      = Forward /Backward Body      fwd_bwd_motion
 			 */
+
+			// create test data
+
+			// create batch file with classifier
+
+			// execute batch file and read the output
+
+
 			m_pBLClassificationViewer->SetAffectReadings(0, 0);
 
 			// Clean up
