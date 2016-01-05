@@ -1,0 +1,15 @@
+@relation BLValenceResponse
+
+@attribute volume real
+@attribute speed real
+@attribute armopen real
+@attribute headfb real
+@attribute headud real
+@attribute trunkangle real
+@attribute freq real
+@attribute deltay real
+@attribute deltaz real
+@attribute valence {-2,-1,0,1,2}
+
+@data
+1.096175289,0.031499748,0.403615896,0.170590255,0.375560715,0.952752455,0,0.223848659,-0.070440821,?

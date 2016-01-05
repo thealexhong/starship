@@ -1,0 +1,1 @@
+"C:\Program Files\Java\jdk1.8.0_05\bin\java.exe" -cp "C:\Program Files (x86)\Weka-3-6\weka.jar" weka.classifiers.trees.RandomForest -l .\TrainingData\BLArousalTrain.model -T .\testDataFiles\arousal_test.arff -p 0 > .\wekaOutputFiles\outArousal.txt

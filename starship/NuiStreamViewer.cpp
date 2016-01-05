@@ -7,6 +7,7 @@
 #include "stdafx.h"
 #include <stdio.h>
 #include <iostream>
+#include <string>
 #include <fstream>
 
 #include "NuiStreamViewer.h"
@@ -184,13 +185,13 @@ void NuiStreamViewer::DrawSkeletons(const D2D1_RECT_F& imageRect)
     }
 }
 
-void createTestData(std::string filename, std::string nomAttribute, 
-	                                      FLOAT volume, FLOAT speed, FLOAT armopen,
-	                                      FLOAT headfb, FLOAT headud, FLOAT trunkangle,
-										  FLOAT freq, FLOAT deltay, FLOAT deltaz) {
+void createTestData(std::string filename, std::string response, std::string nomAttribute,
+	float volume, float speed, float armopen,
+	float headfb, float headud, float trunkangle,
+	float freq, float deltay, float deltaz) {
 	std::ofstream myfile;
 	myfile.open(filename);
-	myfile << "@relation BLArousalResponse\n\n"
+	myfile << "@relation " << response.c_str() << "\n\n"
 		<< "@attribute volume real\n"
 		<< "@attribute speed real\n"
 		<< "@attribute armopen real\n"
@@ -248,10 +249,32 @@ void createBatWekaFile(std::string filename, std::string path_to_java,
 	*/
 }
 
-std::string getWekaResult(std::string execFile, std::string outFilename) {
+FLOAT getWekaResult(std::string execFile, std::string outFilename) {
 	system(execFile.c_str());
 
 	// parse outFilename for results
+	// some bad code because i'm tired
+	std::string line;
+	std::ifstream myfile(outFilename);
+	if (myfile.is_open())
+	{
+		while (getline(myfile, line))
+		{
+			std::size_t found = line.find(":", 0);
+			found = line.find(":", found + 1);
+			if (found != std::string::npos) {
+				std::string out = "";
+				for (int i = (int)(found + 1); i < (int)line.length(); i++)
+				{
+					if (i == ' ')
+						return std::stof(out);
+					out += line[i];
+				}
+			}
+		}
+		myfile.close();
+	}
+	return 0.0;
 }
 
 /// <summary>
@@ -301,7 +324,7 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 		m_skeletonData.push_back(skeletonData);
 		m_frameTracker++;
 		int frames = 5 * m_fps;
-		if (m_frameTracker >= frames) // after 5 secs?
+		if ((int)m_frameTracker >= frames) // after 5 secs?
 		{
 			m_frameTracker = 0;
 			
@@ -322,21 +345,51 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			 * speed       = Speed of Body               spd_body()
 			 * armopen     = Open / Close arms           open_close_arms()
 			 * headfb      = Forward / Backward Head     fwd_bwd_head()
-			 * headud      = Vertical Head               vert_head()0
+			 * headud      = Vertical Head               vert_head()
 			 * trunkangle  = Bowing / Stretching Trunk   bow_stretch_trunk()
 			 * freq        = ALWAYS ZERO
 			 * deltay      = Vertical motion Body        vert_motion_body()
-			 * deltaz      = Forward /Backward Body      fwd_bwd_motion
+			 * deltaz      = Forward /Backward Body      fwd_bwd_motion_body()
 			 */
 
+			/* Some bad program design here because I'm tired */
+
 			// create test data
+			std::string path_to_arousalTest = "testDataFiles\\arousal_test.arff";
+			std::string path_to_valenceTest = "testDataFiles\\valence_test.arff";
+			createTestData(path_to_arousalTest, "BLArousalResponse", "@attribute arousal {0,1,2,3,4}", myBLFeatures->expand_body(),
+				myBLFeatures->spd_body(),myBLFeatures->open_close_arms(),myBLFeatures->fwd_bwd_head(),myBLFeatures->vert_head(),
+				myBLFeatures->bow_stretch_trunk(),0,myBLFeatures->vert_motion_body(),myBLFeatures->fwd_bwd_motion_body());
+			createTestData(path_to_valenceTest, "BLValenceResponse", "@attribute arousal {-2,-1,0,1,2}", myBLFeatures->expand_body(),
+				myBLFeatures->spd_body(), myBLFeatures->open_close_arms(), myBLFeatures->fwd_bwd_head(), myBLFeatures->vert_head(),
+				myBLFeatures->bow_stretch_trunk(), 0, myBLFeatures->vert_motion_body(), myBLFeatures->fwd_bwd_motion_body());
 
 			// create batch file with classifier
+			// TODO: change these to relative directories and use environment variables instead
+			// TODO: these variables shouldn't be in loop...
+			std::string path_to_java = "C:\\Program Files\\Java\\jdk1.8.0_05\\bin\\java.exe";
+			std::string path_to_weka = "C:\\Program Files (x86)\\Weka-3-6\\weka.jar";
+			std::string randomForest_classifier = "weka.classifiers.trees.RandomForest";
+			std::string rbf_classifier = "weka.classifiers.functions.RBFNetwork";
+			std::string path_to_BLArousalTrainingModel = ".\\TrainingData\\BLArousalTrain.model";
+			std::string path_to_BLValenceTrainingModel = ".\\TrainingData\\BLValenceTrain.model";
+			std::string path_to_BLArousalTestData = ".\\testDataFiles\\arousal_test.arff";
+			std::string path_to_BLValenceTestData = ".\\testDataFiles\\valence_test.arff";
+			std::string path_to_arousalBat = ".\\batFiles\\arousal.bat";
+			std::string path_to_valenceBat = ".\\batFiles\\valence.bat";
+			std::string path_to_outArousal = ".\\wekaOutputFiles\\outArousal.txt";
+			std::string path_to_outValence = ".\\wekaOutputFiles\\outValence.txt";
+
+			createBatWekaFile(path_to_arousalBat, path_to_java, path_to_weka, randomForest_classifier, path_to_BLArousalTrainingModel, path_to_BLArousalTestData, path_to_outArousal);
+			createBatWekaFile(path_to_valenceBat, path_to_java, path_to_weka, rbf_classifier, path_to_BLValenceTrainingModel, path_to_BLValenceTestData, path_to_outValence);
 
 			// execute batch file and read the output
+			m_pBLClassificationViewer->SetAffectReadings(getWekaResult(path_to_arousalBat, path_to_outArousal),
+				getWekaResult(path_to_valenceBat, path_to_outValence));
+
+			// log everything!
 
 
-			m_pBLClassificationViewer->SetAffectReadings(0, 0);
 
 			// Clean up
 			SafeDelete(myBLFeatures);
