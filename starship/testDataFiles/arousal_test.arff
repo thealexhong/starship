@@ -9,7 +9,7 @@
 @attribute freq real
 @attribute deltay real
 @attribute deltaz real
-@attribute @attribute arousal {0,1,2,3,4}
+@attribute arousal {0,1,2,3,4}
 
 @data
-0.101429,0.0500941,0.328658,-0.00360047,0.154053,-0.494259,0,0.0262224,-0.0249213,?
+0.244204,0.0500299,0.41796,-0.0119064,0.128666,0.155695,0,0.0782997,0.0347243,?

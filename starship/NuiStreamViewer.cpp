@@ -385,11 +385,25 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 
 			//system(path_to_arousalBat.c_str());
 			// execute batch file and read the output
-			m_pBLClassificationViewer->SetAffectReadings(getWekaResult(path_to_valenceBat, path_to_outValence),
-				getWekaResult(path_to_arousalBat, path_to_outArousal));
+			FLOAT arousal = getWekaResult(path_to_arousalBat, path_to_outArousal);
+			FLOAT valence = getWekaResult(path_to_valenceBat, path_to_outValence);
+			m_pBLClassificationViewer->SetAffectReadings(valence,arousal);
 
 			// log everything!
-
+			std::ofstream myfile;
+			myfile.open(".\\logs\\bodylanguage_log.csv", std::ios::app);
+			myfile << myBLFeatures->expand_body() << ","
+				<< myBLFeatures->spd_body() << ","
+				<< myBLFeatures->open_close_arms() << ","
+				<< myBLFeatures->fwd_bwd_head() << ","
+				<< myBLFeatures->vert_head() << ","
+				<< myBLFeatures->bow_stretch_trunk() << ","
+				<< 0 << ","
+				<< myBLFeatures->vert_motion_body() << ","
+				<< myBLFeatures->fwd_bwd_motion_body() << ","
+				<< valence << ","
+				<< arousal << "\n";
+			myfile.close();
 
 
 			// Clean up
