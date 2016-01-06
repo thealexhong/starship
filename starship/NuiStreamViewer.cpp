@@ -14,6 +14,9 @@
 #include "resource.h"
 #include "BLFeatureCalculator.h"
 
+// TODO: a struct of arousal and valence. They always come in a pair, makes code more readable. but I'm lazy...
+// TODO: all classification stuff should happen in a seperate file
+
 /// <summary>
 /// Constructor
 /// </summary>
@@ -211,7 +214,7 @@ void createTestData(std::string filename, std::string response, std::string nomA
 		<< freq << "," << deltay << "," << deltaz << ",?";
 	myfile.close();
 
-	/*
+	/* Sample output
 	@relation BLArousalResponse
 
 	@attribute volume real
@@ -246,11 +249,12 @@ void createBatWekaFile(std::string filename, std::string path_to_java,
 		   << outFilename.c_str();
 	myfile.close();
 
-	/*
+	/* Sample Output
 	"C:\Program Files\Java\jdk1.8.0_05\bin\java.exe" -cp "C:\Program Files (x86)/Weka-3-6/weka.jar" weka.classifiers.trees.RandomForest -l C:\Users\Alex\Desktop\starship\starship\TrainingData\BLArousalTrain.model -T C:\Users\Alex\Desktop\starship\starship\TrainingData\BLArousalTest.arff -p 0
 	*/
 }
 
+// get predicted value from weka
 FLOAT getWekaResult(std::string execFile, std::string outFilename) {
 	system(execFile.c_str());
 	// parse outFilename for results
@@ -392,13 +396,25 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			m_pBLClassificationViewer->SetAffectReadings(blvalence,blarousal);
 
 
-			// Voice
+			// Voice retrieval from Yuma's code
+			// TODO: Open TCP/IP socket is better than writing and reading to a file... but we're short on time :P
 			FLOAT vvalence = 21.0;
 			FLOAT varousal = 22.0;
 
-			// Multimodal
+			/**************** Multimodal calculation ********************/
+
+			// Normalization
+
+
 			FLOAT mmvalence = 11.0;
 			FLOAT mmarousal = 12.0;
+
+			/* Calculation 1 */
+			FLOAT nu = 0.5f; // get optimized nu
+			FLOAT mu = 0.5f; // get optimized mu
+			mmvalence = nu * blvalence + (1-nu) * vvalence;
+			mmarousal = mu * blarousal + (1-mu) * varousal;
+
 			
 
 			m_pMClassificationViewer->SetAffectReadings(mmvalence, mmarousal, blvalence, blarousal, vvalence, varousal);
