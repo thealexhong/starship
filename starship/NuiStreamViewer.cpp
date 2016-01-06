@@ -46,11 +46,13 @@ NuiStreamViewer::~NuiStreamViewer()
 	//SafeDelete(m_pBLClassificationViewer);
 }
 
-void NuiStreamViewer::SetStreamViewer(NuiSkeletonPointsViewer* pViewer, NuiBLFeatureViewer* pBLFeatureViewer, NuiBLClassificationViewer* pBLClassificationViewer)
+void NuiStreamViewer::SetStreamViewer(NuiSkeletonPointsViewer* pViewer, NuiBLFeatureViewer* pBLFeatureViewer, NuiBLClassificationViewer* pBLClassificationViewer, 
+	                                  NuiMClassificationViewer* pMClassificationViewer)
 {
 	m_pSkeletonPointsViewer = pViewer;
 	m_pBLFeatureViewer = pBLFeatureViewer;
 	m_pBLClassificationViewer = pBLClassificationViewer;
+	m_pMClassificationViewer = pMClassificationViewer;
 }
 
 void NuiStreamViewer::SetSeated(bool seated)
@@ -385,13 +387,25 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 
 			//system(path_to_arousalBat.c_str());
 			// execute batch file and read the output
-			FLOAT arousal = getWekaResult(path_to_arousalBat, path_to_outArousal);
-			FLOAT valence = getWekaResult(path_to_valenceBat, path_to_outValence);
-			m_pBLClassificationViewer->SetAffectReadings(valence,arousal);
+			FLOAT blarousal = getWekaResult(path_to_arousalBat, path_to_outArousal);
+			FLOAT blvalence = getWekaResult(path_to_valenceBat, path_to_outValence);
+			m_pBLClassificationViewer->SetAffectReadings(blvalence,blarousal);
+
+
+			// Voice
+			FLOAT vvalence = 21.0;
+			FLOAT varousal = 22.0;
+
+			// Multimodal
+			FLOAT mmvalence = 11.0;
+			FLOAT mmarousal = 12.0;
+			
+
+			m_pMClassificationViewer->SetAffectReadings(mmvalence, mmarousal, blvalence, blarousal, vvalence, varousal);
 
 			// log everything!
 			std::ofstream myfile;
-			myfile.open(".\\logs\\bodylanguage_log.csv", std::ios::app);
+			myfile.open(".\\logs\\log.csv", std::ios::app);
 			myfile << myBLFeatures->expand_body() << ","
 				<< myBLFeatures->spd_body() << ","
 				<< myBLFeatures->open_close_arms() << ","
@@ -401,8 +415,12 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 				<< 0 << ","
 				<< myBLFeatures->vert_motion_body() << ","
 				<< myBLFeatures->fwd_bwd_motion_body() << ","
-				<< valence << ","
-				<< arousal << "\n";
+				<< blvalence << ","
+				<< blarousal << ","
+				<< vvalence << ","
+				<< varousal << ","
+				<< mmvalence << ","
+				<< mmarousal << "\n";
 			myfile.close();
 
 

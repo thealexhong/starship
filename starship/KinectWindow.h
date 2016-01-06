@@ -261,6 +261,7 @@ private:
 	NuiSkeletonPointsViewer*m_pSkeletonPointsView;
 	NuiBLFeatureViewer*     m_pBLFeatureView;
 	NuiBLClassificationViewer*m_pBLClassificationView;
+	NuiMClassificationViewer* m_pMClassificationView;
 	/*
     NuiAudioViewer*         m_pAudioView;               // Pointer to audio viewer
     NuiAccelerometerViewer* m_pAccelView;               // Pointer to accelerometer viewer

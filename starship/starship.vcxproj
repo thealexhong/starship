@@ -140,6 +140,7 @@
     <ClCompile Include="NuiColorStream.cpp" />
     <ClCompile Include="NuiDepthStream.cpp" />
     <ClCompile Include="NuiImageBuffer.cpp" />
+    <ClCompile Include="NuiMClassificationViewer.cpp" />
     <ClCompile Include="NuiSkeletonPointsViewer.cpp" />
     <ClCompile Include="NuiSkeletonStream.cpp" />
     <ClCompile Include="NuiStream.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="NuiColorStream.h" />
     <ClInclude Include="NuiDepthStream.h" />
     <ClInclude Include="NuiImageBuffer.h" />
+    <ClInclude Include="NuiMClassificationViewer.h" />
     <ClInclude Include="NuiSkeletonPointsViewer.h" />
     <ClInclude Include="NuiSkeletonStream.h" />
     <ClInclude Include="NuiStream.h" />

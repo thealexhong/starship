@@ -81,6 +81,9 @@
     <ClCompile Include="BLFeatureCalculator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="NuiMClassificationViewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility.h">
@@ -156,6 +159,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BLFeatureCalculator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NuiMClassificationViewer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

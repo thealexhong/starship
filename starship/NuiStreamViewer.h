@@ -14,6 +14,7 @@
 #include "NuiSkeletonPointsViewer.h"
 #include "NuiBLFeatureViewer.h"
 #include "NuiBLClassificationViewer.h"
+#include "NuiMClassificationViewer.h"
 #include "ImageRenderer.h"
 
 enum DRAW_EDGE_FLAG
@@ -64,7 +65,7 @@ public:
         m_imageType = type;
     }
 
-	void SetStreamViewer(NuiSkeletonPointsViewer* pViewer, NuiBLFeatureViewer* pBLFeatureViewer, NuiBLClassificationViewer* pBLClassificationViewer);
+	void SetStreamViewer(NuiSkeletonPointsViewer* pViewer, NuiBLFeatureViewer* pBLFeatureViewer, NuiBLClassificationViewer* pBLClassificationViewer, NuiMClassificationViewer* pMClassificationViewer);
 	void SetSeated(bool seated);
 
 private:
@@ -207,5 +208,6 @@ private:
 	NuiSkeletonPointsViewer*    m_pSkeletonPointsViewer;
 	NuiBLFeatureViewer*         m_pBLFeatureViewer;
 	NuiBLClassificationViewer*  m_pBLClassificationViewer;
+	NuiMClassificationViewer*   m_pMClassificationViewer;
 	std::vector<NUI_SKELETON_DATA>m_skeletonData;
 };

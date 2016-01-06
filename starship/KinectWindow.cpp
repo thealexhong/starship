@@ -29,8 +29,9 @@
 #define TAB_TITLE_SKELETON            L"Skeleton"
 #define TAB_TITLE_BLFEATURES          L"BL Features"
 #define TAB_TITLE_BLCLASSIFICATION    L"BL Classification"
-#define TAB_TITLE_VFEATURES           L"V Features"
-#define TAB_TITLE_VCLASSIFICATION     L"V Classification"
+//#define TAB_TITLE_VFEATURES           L"V Features"
+//#define TAB_TITLE_VCLASSIFICATION     L"V Classification"
+#define TAB_TITLE_MCLASSIFICATION     L"M Classification"
 /**
 #define TAB_TITLE_AUDIO               L"Audio"
 #define TAB_TITLE_ACCELEROMETER       L"Accelerometer"
@@ -41,8 +42,9 @@
 #define TAB_INDEX_SKELETON            0
 #define TAB_INDEX_BLFEATURES          1
 #define TAB_INDEX_BLCLASSIFICATION    2
-#define TAB_INDEX_VFEATURES           3
-#define TAB_INDEX_VCLASSIFICATION     4
+//#define TAB_INDEX_VFEATURES           3
+//#define TAB_INDEX_VCLASSIFICATION     3
+#define TAB_INDEX_MCLASSIFICATION     3
 /*
 #define TAB_INDEX_AUDIO               3
 #define TAB_INDEX_ACCELEROMETER       4
@@ -90,7 +92,8 @@ KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, INuiSensor* pNu
 	m_pSkeletonPointsView   = new NuiSkeletonPointsViewer(this);
 	m_pBLFeatureView        = new NuiBLFeatureViewer(this);
 	m_pBLClassificationView = new NuiBLClassificationViewer(this);
-	m_pPrimaryView->SetStreamViewer(m_pSkeletonPointsView, m_pBLFeatureView, m_pBLClassificationView);
+	m_pMClassificationView = new NuiMClassificationViewer(this);
+	m_pPrimaryView->SetStreamViewer(m_pSkeletonPointsView, m_pBLFeatureView, m_pBLClassificationView, m_pMClassificationView);
 	/*
     m_pAudioView            = new NuiAudioViewer(this);
     m_pAccelView            = new NuiAccelerometerViewer(this);
@@ -105,6 +108,7 @@ KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, INuiSensor* pNu
 	m_views.push_back(m_pSkeletonPointsView);
 	m_views.push_back(m_pBLFeatureView);
 	m_views.push_back(m_pBLClassificationView);
+	m_views.push_back(m_pMClassificationView);
 	/*
     m_views.push_back(m_pAudioView);
     m_views.push_back(m_pAccelView);
@@ -120,6 +124,7 @@ KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, INuiSensor* pNu
 	m_tabbedViews.push_back((m_pSkeletonPointsView));
 	m_tabbedViews.push_back((m_pBLFeatureView));
 	m_tabbedViews.push_back((m_pBLClassificationView));
+	m_tabbedViews.push_back((m_pMClassificationView));
 	/*
     m_tabbedViews.push_back((m_pAudioView));
     m_tabbedViews.push_back((m_pAccelView));
@@ -516,8 +521,9 @@ bool KinectWindow::CreateTabControl()
 			InsertTabItem(TAB_TITLE_SKELETON,         TAB_INDEX_SKELETON);
 			InsertTabItem(TAB_TITLE_BLFEATURES,       TAB_INDEX_BLFEATURES);
 			InsertTabItem(TAB_TITLE_BLCLASSIFICATION, TAB_INDEX_BLCLASSIFICATION);
-			InsertTabItem(TAB_TITLE_VFEATURES,        TAB_INDEX_VFEATURES);
-			InsertTabItem(TAB_TITLE_VCLASSIFICATION,  TAB_INDEX_VCLASSIFICATION);
+			//InsertTabItem(TAB_TITLE_VFEATURES,        TAB_INDEX_VFEATURES); // TODO: unimportant for now
+			// InsertTabItem(TAB_TITLE_VCLASSIFICATION,  TAB_INDEX_VCLASSIFICATION); // TODO: unimportant for now
+			InsertTabItem(TAB_TITLE_MCLASSIFICATION,  TAB_INDEX_MCLASSIFICATION);
 			
 			/*
             InsertTabItem(TAB_TITLE_AUDIO,          TAB_INDEX_AUDIO);
