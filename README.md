@@ -9,3 +9,4 @@ An architecture for affective human-robot interaction (HRI) on the NAO robots (L
 * OpenCV
 * Weka
 * Java Runtime Environment
+* Nemesysco QA5 SDK
