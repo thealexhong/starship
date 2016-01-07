@@ -190,7 +190,7 @@ void NuiStreamViewer::DrawSkeletons(const D2D1_RECT_F& imageRect)
     }
 }
 
-void createTestData(std::string filename, std::string response, std::string nomAttribute,
+void createBLTestData(std::string filename, std::string response, std::string nomAttribute,
 	float volume, float speed, float armopen,
 	float headfb, float headud, float trunkangle,
 	float freq, float deltay, float deltaz) {
@@ -360,83 +360,134 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			/* Some bad program design here because I'm tired */
 
 			// create test data
-			std::string path_to_arousalTest = "testDataFiles\\arousal_test.arff";
-			std::string path_to_valenceTest = "testDataFiles\\valence_test.arff";
-			createTestData(path_to_arousalTest, "BLArousalResponse", "arousal {0,1,2,3,4}", myBLFeatures->expand_body(),
-				myBLFeatures->spd_body(),myBLFeatures->open_close_arms(),myBLFeatures->fwd_bwd_head(),myBLFeatures->vert_head(),
-				myBLFeatures->bow_stretch_trunk(),0,myBLFeatures->vert_motion_body(),myBLFeatures->fwd_bwd_motion_body());
-			createTestData(path_to_valenceTest, "BLValenceResponse", "valence {-2,-1,0,1,2}", myBLFeatures->expand_body(),
+			std::string path_to_blvalenceTest = "testDataFiles\\blvalence_test.arff";
+			std::string path_to_blarousalTest = "testDataFiles\\blarousal_test.arff";
+			
+			createBLTestData(path_to_blvalenceTest, "BLValenceResponse", "valence {-2,-1,0,1,2}", myBLFeatures->expand_body(),
+				myBLFeatures->spd_body(), myBLFeatures->open_close_arms(), myBLFeatures->fwd_bwd_head(), myBLFeatures->vert_head(),
+				myBLFeatures->bow_stretch_trunk(), 0, myBLFeatures->vert_motion_body(), myBLFeatures->fwd_bwd_motion_body());
+			createBLTestData(path_to_blarousalTest, "BLArousalResponse", "arousal {0,1,2,3,4}", myBLFeatures->expand_body(),
 				myBLFeatures->spd_body(), myBLFeatures->open_close_arms(), myBLFeatures->fwd_bwd_head(), myBLFeatures->vert_head(),
 				myBLFeatures->bow_stretch_trunk(), 0, myBLFeatures->vert_motion_body(), myBLFeatures->fwd_bwd_motion_body());
 
 			// create batch file with classifier
 			// TODO: change these to relative directories and use environment variables instead
 			// TODO: these variables shouldn't be in loop...
+
+			// ATTENTION: Change these variables when using another computer
+			/*****************************************************************************************************************************************************************************/
+			/*****************************************************************************************************************************************************************************/
 			std::string path_to_local_dir = "C:\\Users\\Alex\\Desktop\\starship\\starship\\";
 			std::string path_to_java = "C:\\Program Files\\Java\\jdk1.8.0_05\\bin\\java.exe";
 			std::string path_to_weka = "C:\\Program Files (x86)\\Weka-3-6\\weka.jar";
-			std::string randomForest_classifier = "weka.classifiers.trees.RandomForest";
-			std::string rbf_classifier = "weka.classifiers.functions.RBFNetwork";
+			/*****************************************************************************************************************************************************************************/
+			/*****************************************************************************************************************************************************************************/
+
+			std::string blvalence_classifier = "weka.classifiers.functions.RBFNetwork";
+			std::string blarousal_classifier = "weka.classifiers.trees.RandomForest";
+			
 			std::string path_to_BLArousalTrainingModel = path_to_local_dir + "TrainingData\\BLArousalTrain.model";
 			std::string path_to_BLValenceTrainingModel = path_to_local_dir + "TrainingData\\BLValenceTrain.model";
-			std::string path_to_BLArousalTestData = path_to_local_dir + "testDataFiles\\arousal_test.arff";
-			std::string path_to_BLValenceTestData = path_to_local_dir+"testDataFiles\\valence_test.arff";
-			std::string path_to_arousalBat = path_to_local_dir + "batFiles\\arousal.bat";
-			std::string path_to_valenceBat = path_to_local_dir + "batFiles\\valence.bat";
-			std::string path_to_outArousal = path_to_local_dir + "wekaOutputFiles\\outArousal.txt";
-			std::string path_to_outValence = path_to_local_dir + "wekaOutputFiles\\outValence.txt";
+			std::string path_to_BLArousalTestData = path_to_local_dir + "testDataFiles\\blarousal_test.arff";
+			std::string path_to_BLValenceTestData = path_to_local_dir+"testDataFiles\\blvalence_test.arff";
+			std::string path_to_BLarousalBat = path_to_local_dir + "batFiles\\blarousal.bat";
+			std::string path_to_BLvalenceBat = path_to_local_dir + "batFiles\\blvalence.bat";
+			std::string path_to_BLoutArousal = path_to_local_dir + "wekaOutputFiles\\bloutArousal.txt";
+			std::string path_to_BLoutValence = path_to_local_dir + "wekaOutputFiles\\bloutValence.txt";
 
-			createBatWekaFile(path_to_arousalBat, path_to_java, path_to_weka, randomForest_classifier, path_to_BLArousalTrainingModel, path_to_BLArousalTestData, path_to_outArousal);
-			createBatWekaFile(path_to_valenceBat, path_to_java, path_to_weka, rbf_classifier, path_to_BLValenceTrainingModel, path_to_BLValenceTestData, path_to_outValence);
-
-			//system(path_to_arousalBat.c_str());
+			createBatWekaFile(path_to_BLvalenceBat, path_to_java, path_to_weka, blvalence_classifier, path_to_BLValenceTrainingModel, path_to_BLValenceTestData, path_to_BLoutValence);
+			createBatWekaFile(path_to_BLarousalBat, path_to_java, path_to_weka, blarousal_classifier, path_to_BLArousalTrainingModel, path_to_BLArousalTestData, path_to_BLoutArousal);
+			
 			// execute batch file and read the output
-			FLOAT blarousal = getWekaResult(path_to_arousalBat, path_to_outArousal);
-			FLOAT blvalence = getWekaResult(path_to_valenceBat, path_to_outValence);
-			m_pBLClassificationViewer->SetAffectReadings(blvalence,blarousal);
+			FLOAT blvalence = getWekaResult(path_to_BLvalenceBat, path_to_BLoutValence);
+			FLOAT blarousal = getWekaResult(path_to_BLarousalBat, path_to_BLoutArousal);
+			
+			m_pBLClassificationViewer->SetAffectReadings(blvalence,blarousal); // display it on GUI
 
 
 			// Voice retrieval from Yuma's code
 			// TODO: Open TCP/IP socket is better than writing and reading to a file... but we're short on time :P
-			FLOAT vvalence = 21.0;
-			FLOAT varousal = 22.0;
-
-			/**************** Multimodal calculation ********************/
-
-			// Normalization
+			FLOAT vvalence = 0;
+			FLOAT varousal = 0;
 
 
-			FLOAT mmvalence = 11.0;
-			FLOAT mmarousal = 12.0;
 
-			/* Calculation 1 */
-			FLOAT nu = 0.5f; // get optimized nu
-			FLOAT mu = 0.5f; // get optimized mu
-			mmvalence = nu * blvalence + (1-nu) * vvalence;
-			mmarousal = mu * blarousal + (1-mu) * varousal;
 
+			/* 
+			       +--------------------------------------------+
+				   |          Multimodal Calculation            |
+				   +--------------------------------------------+
+		     */
+
+
+			// Normalization: Scale: [-1, 1]
 			
 
+
+
+			// Decision-level fusion
+			FLOAT mmvalence = 0;
+			FLOAT mmarousal = 0;
+
+			/* Average */
+			/*
+			FLOAT nu = 0.5f;
+			FLOAT mu = 0.5f; 
+			mmvalence = nu * blvalence + (1-nu) * vvalence;
+			mmarousal = mu * blarousal + (1-mu) * varousal;			
+			*/
+			
+			/* Multimodal Classification */
+			/*
+
+			// create test data
+			std::string path_to_MvalenceTest = "testDataFiles\\Mvalence_test.arff";
+			std::string path_to_MarousalTest = "testDataFiles\\Marousal_test.arff";
+
+			createMTestData(path_to_MvalenceTest, "MValenceResponse", "valence {-2,-1,0,1,2}", blvalence, blarousal, vvalence, varousal);
+			createMTestData(path_to_MarousalTest, "MArousalResponse", "arousal {0,1,2,3,4}", blvalence, blarousal, vvalence, varousal);
+
+			std::string mvalence_classifier = "weka.classifiers.functions.RBFNetwork";
+			std::string marousal_classifier = "weka.classifiers.trees.RandomForest";
+
+			std::string path_to_MArousalTrainingModel = path_to_local_dir + "TrainingData\\MArousalTrain.model";
+			std::string path_to_MValenceTrainingModel = path_to_local_dir + "TrainingData\\MValenceTrain.model";
+			std::string path_to_MArousalTestData = path_to_local_dir + "testDataFiles\\Marousal_test.arff";
+			std::string path_to_MValenceTestData = path_to_local_dir + "testDataFiles\\Mvalence_test.arff";
+			std::string path_to_MarousalBat = path_to_local_dir + "batFiles\\Marousal.bat";
+			std::string path_to_MvalenceBat = path_to_local_dir + "batFiles\\Mvalence.bat";
+			std::string path_to_MoutArousal = path_to_local_dir + "wekaOutputFiles\\MoutArousal.txt";
+			std::string path_to_MoutValence = path_to_local_dir + "wekaOutputFiles\\MoutValence.txt";
+
+			createBatWekaFile(path_to_MvalenceBat, path_to_java, path_to_weka, mvalence_classifier, path_to_MValenceTrainingModel, path_to_MValenceTestData, path_to_MoutValence);
+			createBatWekaFile(path_to_MarousalBat, path_to_java, path_to_weka, marousal_classifier, path_to_MArousalTrainingModel, path_to_MArousalTestData, path_to_MoutArousal);
+
+			mmarousal = getWekaResult(path_to_MarousalBat, path_to_MoutArousal);
+			mmvalence = getWekaResult(path_to_MvalenceBat, path_to_MoutValence);
+			*/
+
+
+			// Display!
 			m_pMClassificationViewer->SetAffectReadings(mmvalence, mmarousal, blvalence, blarousal, vvalence, varousal);
 
 			// log everything!
 			std::ofstream myfile;
 			myfile.open(".\\logs\\log.csv", std::ios::app);
 			myfile << myBLFeatures->expand_body() << ","
-				<< myBLFeatures->spd_body() << ","
-				<< myBLFeatures->open_close_arms() << ","
-				<< myBLFeatures->fwd_bwd_head() << ","
-				<< myBLFeatures->vert_head() << ","
-				<< myBLFeatures->bow_stretch_trunk() << ","
-				<< 0 << ","
-				<< myBLFeatures->vert_motion_body() << ","
-				<< myBLFeatures->fwd_bwd_motion_body() << ","
-				<< blvalence << ","
-				<< blarousal << ","
-				<< vvalence << ","
-				<< varousal << ","
-				<< mmvalence << ","
-				<< mmarousal << "\n";
+			   	   << myBLFeatures->spd_body() << ","
+				   << myBLFeatures->open_close_arms() << ","
+				   << myBLFeatures->fwd_bwd_head() << ","
+				   << myBLFeatures->vert_head() << ","
+				   << myBLFeatures->bow_stretch_trunk() << ","
+				   << 0 << ","
+				   << myBLFeatures->vert_motion_body() << ","
+				   << myBLFeatures->fwd_bwd_motion_body() << ","
+				   << blvalence << ","
+				   << blarousal << ","
+				   << vvalence << ","
+				   << varousal << ","
+				   << mmvalence << ","
+				   << mmarousal << "\n";
 			myfile.close();
 
 
