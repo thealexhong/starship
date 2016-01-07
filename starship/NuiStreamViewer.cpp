@@ -244,9 +244,9 @@ void createBatWekaFile(std::string filename, std::string path_to_java,
 	myfile << "\"" << path_to_java.c_str() << "\"" << " -cp "
 		   << "\"" << path_to_weka.c_str() << "\"" << " "
 		   << weka_classifier.c_str() << " -l "
-		   << path_to_weka_model.c_str() << " -T "
-		   << path_to_test_data.c_str() << " -p 0 > " 
-		   << outFilename.c_str();
+		   << "\""<<path_to_weka_model.c_str()<<"\"" << " -T "
+		   << "\""<<path_to_test_data.c_str()<<"\"" << " -p 0 > " 
+		   << "\"" << outFilename.c_str() << "\"";
 	myfile.close();
 
 	/* Sample Output
@@ -256,7 +256,7 @@ void createBatWekaFile(std::string filename, std::string path_to_java,
 
 // get predicted value from weka
 FLOAT getWekaResult(std::string execFile, std::string outFilename) {
-	system(execFile.c_str());
+	system(("\"" + execFile + "\"").c_str());
 	// parse outFilename for results
 	// some bad code because i'm tired
 	std::string line;
@@ -377,9 +377,16 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			// ATTENTION: Change these variables when using another computer, you can make code better by changing to local directory by copying .exe,.jar file locally
 			/*****************************************************************************************************************************************************************************/
 			/*****************************************************************************************************************************************************************************/
+			/*
 			std::string path_to_local_dir = "C:\\Users\\Alex\\Desktop\\starship\\starship\\";
 			std::string path_to_java = "C:\\Program Files\\Java\\jdk1.8.0_05\\bin\\java.exe";
 			std::string path_to_weka = "C:\\Program Files (x86)\\Weka-3-6\\weka.jar";
+			*/
+			std::string path_to_local_dir = "C:\\Users\\ASB Workstation\\Desktop\\starship\\starship\\";
+			//std::string path_to_java = "C:\\Program Files\\Java\\jdk1.8.0_05\\bin\\java.exe";
+			std::string path_to_java = "C:\\Program Files (x86)\\Java\\jre7\\bin\\java.exe";
+			std::string path_to_weka = "C:\\Program Files\\Weka-3-6\\weka.jar";
+			//std::string path_to_weka = "C:\\Program Files (x86)\\Weka-3-6\\weka.jar";
 			/*****************************************************************************************************************************************************************************/
 			/*****************************************************************************************************************************************************************************/
 
