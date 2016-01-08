@@ -1,0 +1,63 @@
+---------- Start Segment ----------
+Energy                0
+Content               0
+Upset                 0
+Angry                 0
+Stress                0
+Concentration         0
+Intensive Thinking    0
+SAF                   0
+Excitement            0
+Atmosphere            0
+EmoCog Ratio          0
+Embarrassment         0
+Hesitation            0
+Imagination           0
+Extreme State         0
+Uncertainty           0
+Brain Power           0
+Max Volume            16255
+Voice Energy          160
+---------- End Segment ----------
+---------- Start Segment ----------
+Energy                0
+Content               0
+Upset                 0
+Angry                 0
+Stress                0
+Concentration         0
+Intensive Thinking    0
+SAF                   0
+Excitement            15
+Atmosphere            0
+EmoCog Ratio          849
+Embarrassment         0
+Hesitation            15
+Imagination           0
+Extreme State         24
+Uncertainty           15
+Brain Power           2850
+Max Volume            16255
+Voice Energy          157
+---------- End Segment ----------
+---------- Start Segment ----------
+Energy                50
+Content               30
+Upset                 0
+Angry                 0
+Stress                0
+Concentration         0
+Intensive Thinking    0
+SAF                   0
+Excitement            30
+Atmosphere            77
+EmoCog Ratio          768
+Embarrassment         14
+Hesitation            15
+Imagination           0
+Extreme State         30
+Uncertainty           2
+Brain Power           2769
+Max Volume            16255
+Voice Energy          290
+---------- End Segment ----------

@@ -1,0 +1,67 @@
+[Bootstrap]
+SetupTitle=Install
+SetupText=Copying Files, please stand by.
+CabFile=NMSQA5COM.CAB
+Spawn=Setup1.exe
+Uninstal=st6unst.exe
+TmpDir=msftqws.pdw
+Cabs=1
+
+[Bootstrap Files]
+File1=@COMCAT.DLL,$(WinSysPathSysFile),$(DLLSelfRegister),,5/31/98 12:00:00 AM,22288,4.71.1460.1
+File2=@STDOLE2.TLB,$(WinSysPathSysFile),$(TLBRegister),,6/3/99 12:00:00 AM,17920,2.40.4275.1
+File3=@ASYCFILT.DLL,$(WinSysPathSysFile),,,3/8/99 12:00:00 AM,147728,2.40.4275.1
+File4=@OLEPRO32.DLL,$(WinSysPathSysFile),$(DLLSelfRegister),,3/8/99 12:00:00 AM,164112,5.0.4275.1
+File5=@OLEAUT32.DLL,$(WinSysPathSysFile),$(DLLSelfRegister),,4/12/00 12:00:00 AM,598288,2.40.4275.1
+File6=@msvbvm60.dll,$(WinSysPathSysFile),$(DLLSelfRegister),,2/23/04 12:00:00 AM,1386496,6.0.97.82
+File7=@VB6STKIT.DLL,$(WinSysPathSysFile),,,3/26/99 12:00:00 AM,101888,6.0.84.50
+
+[IconGroups]
+Group0=QA5.5 SDK
+PrivateGroup0=0
+Parent0=$(Programs)
+
+[QA5.5 SDK]
+Icon1="QA5_Trainer.exe"
+Title1=QA5.5 Evaluation (EXE)
+StartIn1=$(AppPath)
+Icon2="QA5_Trainer.vbp"
+Title2=QA5.5 sample ode (VB6)
+StartIn2=$(AppPath)
+
+[Setup]
+Title=QA5.5 SDK (2009)
+DefaultDir=$(ProgramFiles)\QA5.5 SDK 2009
+AppExe=NMSQA5COM.dll
+AppToUninstall=NMSQA5COM.dll
+
+[Setup1 Files]
+File1=@NMSQA5COM.exp,$(AppPath),,,2/22/09 3:03:51 AM,993,0.0.0.0
+File2=@NMSQA5COM.lib,$(AppPath),,,2/22/09 3:03:51 AM,2626,0.0.0.0
+File3=@NMSQA5COM.DEP,$(AppPath),,,2/15/09 8:47:40 PM,316,5.5.0.13
+File4=@QA5_Trainer.DEP,$(AppPath),,,2/22/09 12:10:07 AM,788,5.3.0.15
+File5=@nmsAShistoryBar.ctl,$(AppPath),,,2/5/09 1:50:11 PM,9482,0.0.0.0
+File6=@QA5_trainer_bas.bas,$(AppPath),,,2/22/09 2:06:51 AM,2541,0.0.0.0
+File7=@Main.frm,$(AppPath),,,2/5/09 3:09:31 PM,183581,0.0.0.0
+File8=@Main.frx,$(AppPath),,,2/5/09 3:09:31 PM,189723,0.0.0.0
+File9=@QA5_Trainer.PDM,$(AppPath),,,2/22/09 12:10:07 AM,11970,0.0.0.0
+File10=@MCI32.OCX,$(WinSysPath),$(DLLSelfRegister),$(Shared),3/9/04 12:00:00 AM,200224,6.0.84.18
+File11=@MSCOMCTL.OCX,$(WinSysPath),$(DLLSelfRegister),$(Shared),3/9/04 12:00:00 AM,1081616,6.1.97.82
+File12=@TABCTL32.OCX,$(WinSysPath),$(DLLSelfRegister),$(Shared),6/23/98 5:57:04 PM,209192,6.0.81.69
+File13=@RICHED32.DLL,$(WinSysPathSysFile),,,5/7/98 12:00:00 AM,174352,4.0.993.4
+File14=@RICHTX32.OCX,$(WinSysPath),$(DLLSelfRegister),$(Shared),3/9/04 12:00:00 AM,212240,6.1.97.82
+File15=@FullDplx.ocx,$(WinSysPath),$(DLLSelfRegister),$(Shared),4/18/08 3:24:40 AM,48640,1.0.0.1
+File16=@COMDLG32.OCX,$(WinSysPath),$(DLLSelfRegister),$(Shared),3/9/04 12:00:00 AM,152848,6.1.97.82
+File17=@MSFLXGRD.OCX,$(WinSysPath),$(DLLSelfRegister),$(Shared),3/9/04 12:00:00 AM,260880,6.1.97.82
+File18=@msstdfmt.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),11/8/07 8:19:22 AM,129024,6.1.98.4
+File19=@QA5_Trainer.vbw,$(AppPath),,,2/25/09 12:09:16 PM,207,0.0.0.0
+File20=@QA5_Trainer.vbp,$(AppPath),,,2/22/09 3:04:26 AM,2200,5.5.0.1
+File21=@nmsHSAhistoryBar.ctl,$(AppPath),,,2/5/09 1:50:04 PM,10730,0.0.0.0
+File22=@hasp_com_windows.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),11/10/04 12:10:28 PM,778240,1.11.20.0
+File23=@NMSQA5COM.dll,$(AppPath),$(DLLSelfRegister),,2/22/09 3:03:51 AM,1376256,5.5.0.21
+File24=@QA5_Trainer.exe,$(AppPath),,,2/22/09 3:04:14 AM,438272,5.5.0.0
+
+
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXX  All rights reserved (2009) Nemesysco Ltd. (Israel)  XXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

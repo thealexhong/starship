@@ -1,0 +1,1 @@
+java -cp weka.jar weka.classifiers.functions.Logistic -T FeatureVector.arff -l logistic_dmd.model -p 0

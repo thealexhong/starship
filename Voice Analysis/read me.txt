@@ -1,0 +1,12 @@
+**************** READ ME****************
+
+##############--Required Software--#############
+1 - Install Nemesysco QA5 Win32 SDK.
+2 - Download and install the .NET SDK from the following website. If you already have it installed, just run “repair” on the installation. http://www.microsoft.com/downloads/details.aspx?FamilyID=fe6f2099-b7b4-4f47-a244-c96d69c35dec&displaylang=en
+
+##############--Running the Program and Changing the Code--##############
+1 - Make sure that the Nemesysco verification USB is plugged in and lit red.
+2 - Open the file “…\nmsVoiceAnalysisLibrary\nmsVoiceAnalysisLibrary.sln” in Microsoft Visual Studio 2008 (for some reason, the code does not work properly in 2010 version). Change whatever code you need, and Rebuild the program. Remember that the main chunk of the code is in nmsFunctions.cs file. 
+3 - After the alterations, open the .NET SDK command prompt from Start ? Microsoft .NET Framework SDK 2.0 ? SDK Command Prompt. Change the directory to the one that contains your .dll file, you should type something like “cd C:\Users\ASB Workstation\Desktop\Voice Analysis\Realtime Recognition\nmsVoiceAnalysisLibrary\bin\Debug”. Now, insert the command “regasm nmsVoiceAnalysisLibrary.dll /tlb:nmsVoiceAnalysisLibrary.tlb /codebase” without quotes in the command prompt.
+4 - Finally, open “…\nmsVoiceAnalysisRunCPP\nmsVoiceAnalysisRunCPP.sln” and run the program in C++.
+OBS.: The program may not work properly if the microphone sensitivity is not adjusted correctly. Additionally, you can increase or reduce the value of the variable backgroundLevel, in the nmsFunctions.cs file, to adjust the program noise sensitivity.

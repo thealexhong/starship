@@ -1,0 +1,104 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "HistoryBarsControls", "Common\HistoryBarsControls\HistoryBarsControls.vbproj", "{38F1DAD2-E6BD-42E4-A13D-DBEBCCD398C1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2A28A2A5-6CD4-435A-B4AF-C614DAA17DA0} = {2A28A2A5-6CD4-435A-B4AF-C614DAA17DA0}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{68049F07-2162-46BD-9F49-8780D2374E37}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "VB6PictureControlEmu", "Common\VB6PictureControlEmu\VB6PictureControlEmu.vbproj", "{2A28A2A5-6CD4-435A-B4AF-C614DAA17DA0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CSharp", "CSharp", "{DDD095E6-954F-498F-8492-7F7D7175E114}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VB", "VB", "{930501CF-DCC6-4BDC-8A14-E2FE1467941E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QA5_Trainer.CSharp.Interfaces", "CSharp\QA5_Trainer.CSharp.Interfaces\QA5_Trainer.CSharp.Interfaces.csproj", "{9B0E5008-F7C6-4F01-864F-466B2E3766F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QA5_Trainer.CSharp.Logic", "CSharp\QA5_Trainer.CSharp.Logic\QA5_Trainer.CSharp.Logic.csproj", "{86D5BA6C-82E4-4D10-A145-70EFC1F13B0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QA5_Trainer.CSharp.UI", "CSharp\QA5_Trainer.CSharp.UI\QA5_Trainer.CSharp.UI.csproj", "{1C81336A-A857-4A74-9276-3E9F77E862BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QA5_Trainer.CSharp.Application", "CSharp\QA5_Trainer.CSharp.Application\QA5_Trainer.CSharp.Application.csproj", "{BDDF39B2-D81D-4589-A9B0-FA8509945BC8}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "QA5_Trainer.VB.Logic", "VB\.NET\QA5_Trainer.VB.Logic\QA5_Trainer.VB.Logic.vbproj", "{7CE62732-46DE-47A6-8CC7-53E989225C90}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug With C-Sharp Logic|Any CPU = Debug With C-Sharp Logic|Any CPU
+		Debug With VB Logic|Any CPU = Debug With VB Logic|Any CPU
+		Release With C-Sharp Logic|Any CPU = Release With C-Sharp Logic|Any CPU
+		Release With VB Logic|Any CPU = Release With VB Logic|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{38F1DAD2-E6BD-42E4-A13D-DBEBCCD398C1}.Debug With C-Sharp Logic|Any CPU.ActiveCfg = Debug With C-Sharp Logic|Any CPU
+		{38F1DAD2-E6BD-42E4-A13D-DBEBCCD398C1}.Debug With C-Sharp Logic|Any CPU.Build.0 = Debug With C-Sharp Logic|Any CPU
+		{38F1DAD2-E6BD-42E4-A13D-DBEBCCD398C1}.Debug With VB Logic|Any CPU.ActiveCfg = Debug With VB Logic|Any CPU
+		{38F1DAD2-E6BD-42E4-A13D-DBEBCCD398C1}.Debug With VB Logic|Any CPU.Build.0 = Debug With VB Logic|Any CPU
+		{38F1DAD2-E6BD-42E4-A13D-DBEBCCD398C1}.Release With C-Sharp Logic|Any CPU.ActiveCfg = Release With C-Sharp Logic|Any CPU
+		{38F1DAD2-E6BD-42E4-A13D-DBEBCCD398C1}.Release With C-Sharp Logic|Any CPU.Build.0 = Release With C-Sharp Logic|Any CPU
+		{38F1DAD2-E6BD-42E4-A13D-DBEBCCD398C1}.Release With VB Logic|Any CPU.ActiveCfg = Release With VB Logic|Any CPU
+		{38F1DAD2-E6BD-42E4-A13D-DBEBCCD398C1}.Release With VB Logic|Any CPU.Build.0 = Release With VB Logic|Any CPU
+		{2A28A2A5-6CD4-435A-B4AF-C614DAA17DA0}.Debug With C-Sharp Logic|Any CPU.ActiveCfg = Debug With C-Sharp Logic|Any CPU
+		{2A28A2A5-6CD4-435A-B4AF-C614DAA17DA0}.Debug With C-Sharp Logic|Any CPU.Build.0 = Debug With C-Sharp Logic|Any CPU
+		{2A28A2A5-6CD4-435A-B4AF-C614DAA17DA0}.Debug With VB Logic|Any CPU.ActiveCfg = Debug With VB Logic|Any CPU
+		{2A28A2A5-6CD4-435A-B4AF-C614DAA17DA0}.Debug With VB Logic|Any CPU.Build.0 = Debug With VB Logic|Any CPU
+		{2A28A2A5-6CD4-435A-B4AF-C614DAA17DA0}.Release With C-Sharp Logic|Any CPU.ActiveCfg = Release With C-Sharp Logic|Any CPU
+		{2A28A2A5-6CD4-435A-B4AF-C614DAA17DA0}.Release With C-Sharp Logic|Any CPU.Build.0 = Release With C-Sharp Logic|Any CPU
+		{2A28A2A5-6CD4-435A-B4AF-C614DAA17DA0}.Release With VB Logic|Any CPU.ActiveCfg = Release With VB Logic|Any CPU
+		{2A28A2A5-6CD4-435A-B4AF-C614DAA17DA0}.Release With VB Logic|Any CPU.Build.0 = Release With VB Logic|Any CPU
+		{9B0E5008-F7C6-4F01-864F-466B2E3766F1}.Debug With C-Sharp Logic|Any CPU.ActiveCfg = Debug With C-Sharp Logic|Any CPU
+		{9B0E5008-F7C6-4F01-864F-466B2E3766F1}.Debug With C-Sharp Logic|Any CPU.Build.0 = Debug With C-Sharp Logic|Any CPU
+		{9B0E5008-F7C6-4F01-864F-466B2E3766F1}.Debug With VB Logic|Any CPU.ActiveCfg = Debug With VB Logic|Any CPU
+		{9B0E5008-F7C6-4F01-864F-466B2E3766F1}.Debug With VB Logic|Any CPU.Build.0 = Debug With VB Logic|Any CPU
+		{9B0E5008-F7C6-4F01-864F-466B2E3766F1}.Release With C-Sharp Logic|Any CPU.ActiveCfg = Release With C-Sharp Logic|Any CPU
+		{9B0E5008-F7C6-4F01-864F-466B2E3766F1}.Release With C-Sharp Logic|Any CPU.Build.0 = Release With C-Sharp Logic|Any CPU
+		{9B0E5008-F7C6-4F01-864F-466B2E3766F1}.Release With VB Logic|Any CPU.ActiveCfg = Release With VB Logic|Any CPU
+		{9B0E5008-F7C6-4F01-864F-466B2E3766F1}.Release With VB Logic|Any CPU.Build.0 = Release With VB Logic|Any CPU
+		{86D5BA6C-82E4-4D10-A145-70EFC1F13B0A}.Debug With C-Sharp Logic|Any CPU.ActiveCfg = Debug With C-Sharp Logic|Any CPU
+		{86D5BA6C-82E4-4D10-A145-70EFC1F13B0A}.Debug With C-Sharp Logic|Any CPU.Build.0 = Debug With C-Sharp Logic|Any CPU
+		{86D5BA6C-82E4-4D10-A145-70EFC1F13B0A}.Debug With VB Logic|Any CPU.ActiveCfg = Debug With VB Logic|Any CPU
+		{86D5BA6C-82E4-4D10-A145-70EFC1F13B0A}.Debug With VB Logic|Any CPU.Build.0 = Debug With VB Logic|Any CPU
+		{86D5BA6C-82E4-4D10-A145-70EFC1F13B0A}.Release With C-Sharp Logic|Any CPU.ActiveCfg = Release With C-Sharp Logic|Any CPU
+		{86D5BA6C-82E4-4D10-A145-70EFC1F13B0A}.Release With C-Sharp Logic|Any CPU.Build.0 = Release With C-Sharp Logic|Any CPU
+		{86D5BA6C-82E4-4D10-A145-70EFC1F13B0A}.Release With VB Logic|Any CPU.ActiveCfg = Release With VB Logic|Any CPU
+		{86D5BA6C-82E4-4D10-A145-70EFC1F13B0A}.Release With VB Logic|Any CPU.Build.0 = Release With VB Logic|Any CPU
+		{1C81336A-A857-4A74-9276-3E9F77E862BD}.Debug With C-Sharp Logic|Any CPU.ActiveCfg = Debug With C-Sharp Logic|Any CPU
+		{1C81336A-A857-4A74-9276-3E9F77E862BD}.Debug With C-Sharp Logic|Any CPU.Build.0 = Debug With C-Sharp Logic|Any CPU
+		{1C81336A-A857-4A74-9276-3E9F77E862BD}.Debug With VB Logic|Any CPU.ActiveCfg = Debug With VB Logic|Any CPU
+		{1C81336A-A857-4A74-9276-3E9F77E862BD}.Debug With VB Logic|Any CPU.Build.0 = Debug With VB Logic|Any CPU
+		{1C81336A-A857-4A74-9276-3E9F77E862BD}.Release With C-Sharp Logic|Any CPU.ActiveCfg = Release With C-Sharp Logic|Any CPU
+		{1C81336A-A857-4A74-9276-3E9F77E862BD}.Release With C-Sharp Logic|Any CPU.Build.0 = Release With C-Sharp Logic|Any CPU
+		{1C81336A-A857-4A74-9276-3E9F77E862BD}.Release With VB Logic|Any CPU.ActiveCfg = Release With VB Logic|Any CPU
+		{1C81336A-A857-4A74-9276-3E9F77E862BD}.Release With VB Logic|Any CPU.Build.0 = Release With VB Logic|Any CPU
+		{BDDF39B2-D81D-4589-A9B0-FA8509945BC8}.Debug With C-Sharp Logic|Any CPU.ActiveCfg = Debug With C-Sharp Logic|Any CPU
+		{BDDF39B2-D81D-4589-A9B0-FA8509945BC8}.Debug With C-Sharp Logic|Any CPU.Build.0 = Debug With C-Sharp Logic|Any CPU
+		{BDDF39B2-D81D-4589-A9B0-FA8509945BC8}.Debug With VB Logic|Any CPU.ActiveCfg = Debug With VB Logic|Any CPU
+		{BDDF39B2-D81D-4589-A9B0-FA8509945BC8}.Debug With VB Logic|Any CPU.Build.0 = Debug With VB Logic|Any CPU
+		{BDDF39B2-D81D-4589-A9B0-FA8509945BC8}.Release With C-Sharp Logic|Any CPU.ActiveCfg = Release With C-Sharp Logic|Any CPU
+		{BDDF39B2-D81D-4589-A9B0-FA8509945BC8}.Release With C-Sharp Logic|Any CPU.Build.0 = Release With C-Sharp Logic|Any CPU
+		{BDDF39B2-D81D-4589-A9B0-FA8509945BC8}.Release With VB Logic|Any CPU.ActiveCfg = Release With VB Logic|Any CPU
+		{BDDF39B2-D81D-4589-A9B0-FA8509945BC8}.Release With VB Logic|Any CPU.Build.0 = Release With VB Logic|Any CPU
+		{7CE62732-46DE-47A6-8CC7-53E989225C90}.Debug With C-Sharp Logic|Any CPU.ActiveCfg = Debug With C-Sharp Logic|Any CPU
+		{7CE62732-46DE-47A6-8CC7-53E989225C90}.Debug With C-Sharp Logic|Any CPU.Build.0 = Debug With C-Sharp Logic|Any CPU
+		{7CE62732-46DE-47A6-8CC7-53E989225C90}.Debug With VB Logic|Any CPU.ActiveCfg = Debug With VB Logic|Any CPU
+		{7CE62732-46DE-47A6-8CC7-53E989225C90}.Debug With VB Logic|Any CPU.Build.0 = Debug With VB Logic|Any CPU
+		{7CE62732-46DE-47A6-8CC7-53E989225C90}.Release With C-Sharp Logic|Any CPU.ActiveCfg = Release With C-Sharp Logic|Any CPU
+		{7CE62732-46DE-47A6-8CC7-53E989225C90}.Release With C-Sharp Logic|Any CPU.Build.0 = Release With C-Sharp Logic|Any CPU
+		{7CE62732-46DE-47A6-8CC7-53E989225C90}.Release With VB Logic|Any CPU.ActiveCfg = Release With VB Logic|Any CPU
+		{7CE62732-46DE-47A6-8CC7-53E989225C90}.Release With VB Logic|Any CPU.Build.0 = Release With VB Logic|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{38F1DAD2-E6BD-42E4-A13D-DBEBCCD398C1} = {68049F07-2162-46BD-9F49-8780D2374E37}
+		{2A28A2A5-6CD4-435A-B4AF-C614DAA17DA0} = {68049F07-2162-46BD-9F49-8780D2374E37}
+		{9B0E5008-F7C6-4F01-864F-466B2E3766F1} = {DDD095E6-954F-498F-8492-7F7D7175E114}
+		{86D5BA6C-82E4-4D10-A145-70EFC1F13B0A} = {DDD095E6-954F-498F-8492-7F7D7175E114}
+		{1C81336A-A857-4A74-9276-3E9F77E862BD} = {DDD095E6-954F-498F-8492-7F7D7175E114}
+		{BDDF39B2-D81D-4589-A9B0-FA8509945BC8} = {DDD095E6-954F-498F-8492-7F7D7175E114}
+		{7CE62732-46DE-47A6-8CC7-53E989225C90} = {930501CF-DCC6-4BDC-8A14-E2FE1467941E}
+	EndGlobalSection
+EndGlobal
