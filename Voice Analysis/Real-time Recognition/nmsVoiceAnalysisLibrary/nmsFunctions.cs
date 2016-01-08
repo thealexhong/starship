@@ -81,6 +81,9 @@ namespace nmsVoiceAnalysisLibrary
         private StreamWriter HA;
         private StreamWriter tw;
         private StreamWriter arff;
+        private StreamWriter voiceOutput;
+        private double valence;
+        private double arousal;
         
         /* Main Variables and Parameters */
         private DateTime gamestart = DateTime.Now;
@@ -416,6 +419,9 @@ namespace nmsVoiceAnalysisLibrary
             arff.WriteLine("@attribute emotion {neutral, happy, sadness, angry}\n");
             arff.WriteLine("@data\n");
             arff.Close();
+
+            voiceOutput = File.CreateText("..\\..\\voiceOutput.txt");
+            voiceOutput.Close();
             Console.WriteLine("Recording...");
         }
 
@@ -503,27 +509,36 @@ namespace nmsVoiceAnalysisLibrary
                 if (output.Contains("angry"))
                 {
                     Console.WriteLine("Angry");
-                    Console.WriteLine("Valence: -0.40");
-                    Console.WriteLine("Arousal: 0.79");
+                    valence = -0.40;
+                    arousal = 0.79;
                 }
                 else if (output.Contains("neutral"))
                 {
                     Console.WriteLine("Neutral");
-                    Console.WriteLine("Valence: 0.0");
-                    Console.WriteLine("Arousal: 0.0");
+                    valence = 0.0;
+                    arousal = 0.0;
                 }
                 else if (output.Contains("sadness"))
                 {
                     Console.WriteLine("Sad");
-                    Console.WriteLine("Valence: -0.81");
-                    Console.WriteLine("Arousal: -0.40");
+                    valence = -0.81;
+                    arousal = -0.40;
                 }
                 else if (output.Contains("happy"))
                 {
                     Console.WriteLine("Happy");
-                    Console.WriteLine("Valence: 0.89");
-                    Console.WriteLine("Arousal: 0.17");
+                    valence = 0.89;
+                    arousal = 0.17;
                 }
+                Console.WriteLine("Valence1: " + valence);
+                Console.WriteLine("Arousal: " + arousal);
+                //string[] lines2 = System.IO.File.ReadAllLines("..\\..\\voiceOutput.txt");
+                //lines2[0] = valence.ToString();
+                //lines2[1] = arousal.ToString();
+                //System.IO.File.WriteAllLines("..\\..\\voiceOutput.txt", lines);
+                voiceOutput = File.AppendText("..\\..\\voiceOutput.txt");
+                voiceOutput.WriteLine(valence.ToString() + "," + arousal.ToString());
+                voiceOutput.Close();
 
                 tw = File.AppendText("VoiceAnalysisResults.txt");
                 tw.WriteLine("---------- Start Segment ----------");
