@@ -59,8 +59,8 @@ void NuiMClassificationViewer::SetAffectReadings(FLOAT mmvalence, FLOAT mmarousa
 	// Fuck this doesn't scale... whatever
 	CompareUpdateValue(mmvalence, m_mmvalence, m_hWnd, IDC_MVALENCE_READING, L"%.2f");
 	CompareUpdateValue(mmarousal, m_mmarousal, m_hWnd, IDC_MAROUSAL_READING, L"%.2f");
-	CompareUpdateValue(blvalence, m_mmvalence, m_hWnd, IDC_BLVALENCE_READING, L"%.2f");
-	CompareUpdateValue(blarousal, m_mmarousal, m_hWnd, IDC_BLAROUSAL_READING, L"%.2f");
-	CompareUpdateValue(vvalence, m_mmvalence, m_hWnd, IDC_VVALENCE_READING, L"%.2f");
-	CompareUpdateValue(varousal, m_mmarousal, m_hWnd, IDC_VAROUSAL_READING, L"%.2f");
+	CompareUpdateValue(blvalence, m_blvalence, m_hWnd, IDC_BLVALENCE_READING, L"%.2f");
+	CompareUpdateValue(blarousal, m_blarousal, m_hWnd, IDC_BLAROUSAL_READING, L"%.2f");
+	CompareUpdateValue(vvalence, m_vvalence, m_hWnd, IDC_VVALENCE_READING, L"%.2f");
+	CompareUpdateValue(varousal, m_varousal, m_hWnd, IDC_VAROUSAL_READING, L"%.2f");
 }
