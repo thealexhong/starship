@@ -515,7 +515,7 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 
 
 			// Display!
-			m_pMClassificationViewer->SetAffectReadings(mmvalence, mmarousal, vvalence, varousal, vvalence, varousal);
+			m_pMClassificationViewer->SetAffectReadings(mmvalence, mmarousal, blvalence, blarousal, vvalence, varousal);
 
 			// log everything!
 			std::ofstream myfile;
