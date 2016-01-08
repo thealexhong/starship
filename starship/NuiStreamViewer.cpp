@@ -417,7 +417,19 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			FLOAT vvalence = 0;
 			FLOAT varousal = 0;
 
+			std::vector<FLOAT> vvalencevalues;
+			std::vector<FLOAT> varousalvalues;
 
+			std::string line;
+			std::ifstream myfile("..\\VoiceAnalysis\\voiceOutput.txt");
+			
+			if (myfile.is_open())
+			{
+				getline(myfile, line, ',');
+
+				
+				myfile.close();
+			}
 
 
 			/* 
