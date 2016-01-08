@@ -425,12 +425,15 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			std::string path_to_voicefile ="..\\Voice Analysis\\voiceOutput.txt";
 			std::ifstream voicefile(path_to_voicefile);
 			
+			// Open voice file
 			if (voicefile.is_open())
 			{
 				while(getline(voicefile, line)){
+					// replace , with space
 					line.replace(line.find(","), 1, " ");
 					std::istringstream in(line);
-					float tmp_valence, tmp_arousal;
+					FLOAT tmp_valence, tmp_arousal;
+					// read
 					in >> tmp_valence >> tmp_arousal;
 					vvalencevalues.push_back(tmp_valence);
 					varousalvalues.push_back(tmp_arousal);
@@ -438,24 +441,24 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 				voicefile.close();
 			}
 
-			FLOAT averageVvalence = 0;
-			FLOAT averageVarousal = 0;
+			FLOAT averageVvalence = 0.0;
+			FLOAT averageVarousal = 0.0;
 
+			// check if empty, then calculate averages
 			if (!vvalencevalues.empty()) {
-			for (int i = 0; i < vvalencevalues.size(); i++)
-			{
-				averageVvalence += vvalencevalues[i];
-				averageVarousal += varousalvalues[i];
+				for (int i = 0; i < vvalencevalues.size(); i++)
+				{
+					averageVvalence += vvalencevalues[i];
+					averageVarousal += varousalvalues[i];
+				}
+				averageVvalence /= (FLOAT)vvalencevalues.size();
+				averageVarousal /= (FLOAT)varousalvalues.size();
 			}
-			averageVvalence /= (float)vvalencevalues.size();
-			averageVarousal /= (float)varousalvalues.size();
-			}
+
 			vvalence = averageVvalence;
 			varousal = averageVarousal;
 
-			//std::ofstream clearfile;
-			//clearfile.open(path_to_voicefile);
-			//clearfile << "";
+			// delete file, so yuma writes to it again lol
 			remove(path_to_voicefile.c_str());
 			/* 
 			       +--------------------------------------------+
