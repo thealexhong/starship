@@ -329,10 +329,24 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 		m_pSkeletonPointsViewer->SetSkeletonPointsReadings(skeletonData);
 		m_skeletonData.push_back(skeletonData);
 		m_frameTracker++;
-		int frames = 5 * m_fps;
-		if ((int)m_frameTracker >= frames) // after 5 secs?
+		
+
+		// Frequency of classification
+		int time = 5;
+		int frames = time * m_fps;
+
+		// When starting, somethimes m_fps = 1.. This avoids lag issues when Kinect is connected
+		if (m_fps < 10)
+			frames = time * 30;
+
+		if ((int)m_frameTracker >= frames)
 		{
+
 			m_frameTracker = 0;
+
+			/*
+			   Calculate Body Language
+			*/
 			
 			BLFeatureCalculator * myBLFeatures = new BLFeatureCalculator(m_skeletonData, frames, m_fps, m_seated);
 
@@ -379,15 +393,15 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			/*****************************************************************************************************************************************************************************/
 			/*****************************************************************************************************************************************************************************/
 			/*
+			// Personal Workstation
 			std::string path_to_local_dir = "C:\\Users\\Alex\\Desktop\\starship\\starship\\";
 			std::string path_to_java = "C:\\Program Files\\Java\\jdk1.8.0_05\\bin\\java.exe";
 			std::string path_to_weka = "C:\\Program Files (x86)\\Weka-3-6\\weka.jar";
 			*/
+			// Workstation that powers Brian. ASBlab.
 			std::string path_to_local_dir = "C:\\Users\\ASB Workstation\\Desktop\\starship\\starship\\";
-			//std::string path_to_java = "C:\\Program Files\\Java\\jdk1.8.0_05\\bin\\java.exe";
 			std::string path_to_java = "C:\\Program Files (x86)\\Java\\jre7\\bin\\java.exe";
 			std::string path_to_weka = "C:\\Program Files\\Weka-3-6\\weka.jar";
-			//std::string path_to_weka = "C:\\Program Files (x86)\\Weka-3-6\\weka.jar";
 			/*****************************************************************************************************************************************************************************/
 			/*****************************************************************************************************************************************************************************/
 
@@ -403,6 +417,9 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			std::string path_to_BLoutArousal = path_to_local_dir + "wekaOutputFiles\\bloutArousal.txt";
 			std::string path_to_BLoutValence = path_to_local_dir + "wekaOutputFiles\\bloutValence.txt";
 
+			/*
+			 This is a hack to use Weka with C++. Weka comes with command line functionality. We'll write a .bat file and execute that, then read it's output.
+			*/
 			createBatWekaFile(path_to_BLvalenceBat, path_to_java, path_to_weka, blvalence_classifier, path_to_BLValenceTrainingModel, path_to_BLValenceTestData, path_to_BLoutValence);
 			createBatWekaFile(path_to_BLarousalBat, path_to_java, path_to_weka, blarousal_classifier, path_to_BLArousalTrainingModel, path_to_BLArousalTestData, path_to_BLoutArousal);
 			
@@ -415,6 +432,8 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 
 			// Voice retrieval from Yuma's code
 			// TODO: Open TCP/IP socket is better than writing and reading to a file... but we're short on time :P
+			// This should be in a method......................... But I hope you follow along.
+
 			FLOAT vvalence = 0;
 			FLOAT varousal = 0;
 
@@ -441,35 +460,37 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 				voicefile.close();
 			}
 
-			FLOAT averageVvalence = 0.0;
-			FLOAT averageVarousal = 0.0;
-
 			// check if empty, then calculate averages
 			if (!vvalencevalues.empty()) {
 				for (int i = 0; i < vvalencevalues.size(); i++)
 				{
-					averageVvalence += vvalencevalues[i];
-					averageVarousal += varousalvalues[i];
+					vvalence += vvalencevalues[i];
+					varousal += varousalvalues[i];
 				}
-				averageVvalence /= (FLOAT)vvalencevalues.size();
-				averageVarousal /= (FLOAT)varousalvalues.size();
+				vvalence /= (FLOAT)vvalencevalues.size();
+				varousal /= (FLOAT)varousalvalues.size();
 			}
 
-			vvalence = averageVvalence;
-			varousal = averageVarousal;
-
-			// delete file, so yuma writes to it again lol
+			/* 
+			 Delete file, so voice writes to it again. A very poor program design decision was made due to lack of time. This is a hack, but it works.
+			 The voice program will write to a file, and I'll attempt to read it. If there's something there, I'll take the average of all the values for
+			 valence and arousal. After I do that, I delete the file. The reason why you can't overwrite is because there is conflict as the other program
+			 is also writing to the file. Deleting the file clears the values (but make sure it's logged elsewhere) for the next classification step. Again,
+			 the correct way to do this is through TCP/IP socket communication
+			*/ 
 			remove(path_to_voicefile.c_str());
+
+
 			/* 
 			       +--------------------------------------------+
 				   |          Multimodal Calculation            |
 				   +--------------------------------------------+
+				   This should be inside another method. Short on time, so bad organization here.
 		     */
 
 
 			// Normalization: Scale: [-1, 1]
-			
-
+			// insert normalization here
 
 
 			// Decision-level fusion
@@ -517,7 +538,7 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			// Display!
 			m_pMClassificationViewer->SetAffectReadings(mmvalence, mmarousal, blvalence, blarousal, vvalence, varousal);
 
-			// log everything!
+			// log everything! Put this in another method
 			std::ofstream myfile;
 			myfile.open(".\\logs\\log.csv", std::ios::app);
 			myfile << myBLFeatures->expand_body() << ","
