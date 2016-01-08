@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <fstream>
 
 #include "NuiStreamViewer.h"
@@ -421,17 +422,41 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			std::vector<FLOAT> varousalvalues;
 
 			std::string line;
-			std::ifstream myfile("..\\VoiceAnalysis\\voiceOutput.txt");
+			std::string path_to_voicefile ="..\\Voice Analysis\\voiceOutput.txt";
+			std::ifstream voicefile(path_to_voicefile);
 			
-			if (myfile.is_open())
+			if (voicefile.is_open())
 			{
-				getline(myfile, line, ',');
-
-				
-				myfile.close();
+				while(getline(voicefile, line)){
+					line.replace(line.find(","), 1, " ");
+					std::istringstream in(line);
+					float tmp_valence, tmp_arousal;
+					in >> tmp_valence >> tmp_arousal;
+					vvalencevalues.push_back(tmp_valence);
+					varousalvalues.push_back(tmp_arousal);
+				}
+				voicefile.close();
 			}
 
+			FLOAT averageVvalence = 0;
+			FLOAT averageVarousal = 0;
 
+			if (!vvalencevalues.empty()) {
+			for (int i = 0; i < vvalencevalues.size(); i++)
+			{
+				averageVvalence += vvalencevalues[i];
+				averageVarousal += varousalvalues[i];
+			}
+			averageVvalence /= (float)vvalencevalues.size();
+			averageVarousal /= (float)varousalvalues.size();
+			}
+			vvalence = averageVvalence;
+			varousal = averageVarousal;
+
+			//std::ofstream clearfile;
+			//clearfile.open(path_to_voicefile);
+			//clearfile << "";
+			remove(path_to_voicefile.c_str());
 			/* 
 			       +--------------------------------------------+
 				   |          Multimodal Calculation            |
@@ -487,7 +512,7 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 
 
 			// Display!
-			m_pMClassificationViewer->SetAffectReadings(mmvalence, mmarousal, blvalence, blarousal, vvalence, varousal);
+			m_pMClassificationViewer->SetAffectReadings(mmvalence, mmarousal, vvalence, varousal, vvalence, varousal);
 
 			// log everything!
 			std::ofstream myfile;
