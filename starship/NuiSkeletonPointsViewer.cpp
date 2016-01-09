@@ -70,6 +70,14 @@ UINT NuiSkeletonPointsViewer::GetDlgId()
 
 void NuiSkeletonPointsViewer::SetSkeletonPointsReadings(const NUI_SKELETON_DATA& skeletonData)
 {
+	/*
+	Vector4 headSkeletonPosition = skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_HEAD];
+	LONG x = 0, y = 0;
+	USHORT depthValue = 0;
+	NuiTransformSkeletonToDepthImage(headSkeletonPosition, &x, &y, &depthValue, NUI_IMAGE_RESOLUTION_640x480);
+	Vector4 test = NuiTransformDepthImageToSkeleton(x, y, depthValue << 3, NUI_IMAGE_RESOLUTION_640x480);
+	*/
+
 	SetSkeletonPointsReadings(skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_HEAD].x,
 	                          skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_HEAD].y,
 							  skeletonData.SkeletonPositions[NUI_SKELETON_POSITION_HEAD].z,
