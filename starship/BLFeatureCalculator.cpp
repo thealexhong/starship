@@ -59,12 +59,12 @@ FLOAT BLFeatureCalculator::open_close_arms()
 			m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HIP_LEFT].z,
 			m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HIP_RIGHT].z);
 
-		FLOAT xleft = m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_LEFT].x - xtrunkcenter;
-		FLOAT yleft = m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_LEFT].y - ytrunkcenter;
-		FLOAT zleft = m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_LEFT].z - ztrunkcenter;
-		FLOAT xright = m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].x - xtrunkcenter;
-		FLOAT yright = m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].y - ytrunkcenter;
-		FLOAT zright = m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].z - ztrunkcenter;
+		FLOAT xleft = (m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_LEFT].x - xtrunkcenter);
+		FLOAT yleft = (m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_LEFT].y - ytrunkcenter);
+		FLOAT zleft = (m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_LEFT].z - ztrunkcenter);
+		FLOAT xright = (m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].x - xtrunkcenter);
+		FLOAT yright = (m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].y - ytrunkcenter);
+		FLOAT zright = (m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].z - ztrunkcenter);
 		result += 0.5f * norm(xleft, yleft, zleft) + 0.5f * norm(xright, yright, zright);
 	}
 	result /= ((float)m_frames);
@@ -76,7 +76,7 @@ FLOAT BLFeatureCalculator::vert_head()
 	FLOAT result = 0;
 	for (int i = 0; i < m_frames; i++)
 	{
-		result += m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HEAD].y - m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_SHOULDER_CENTER].y; // shoulder center = neck
+		result += (m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HEAD].y - m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_SHOULDER_CENTER].y); // shoulder center = neck
 	}
 
 	result /= ((float)m_frames);
@@ -88,7 +88,7 @@ FLOAT BLFeatureCalculator::fwd_bwd_head()
 	FLOAT result = 0;
 	for (int i = 0; i < m_frames; i++)
 	{
-		result += m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HEAD].z - m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_SHOULDER_CENTER].z; // shoulder center = neck
+		result += (m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HEAD].z - m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_SHOULDER_CENTER].z); // shoulder center = neck
 	}
 
 	result /= ((float)m_frames);
@@ -105,9 +105,9 @@ FLOAT BLFeatureCalculator::vert_motion_body()
 		int n = ((m_seated) ? NUI_SKELETON_POSITION_COUNT / 2 : NUI_SKELETON_POSITION_COUNT);
 		for (int j = 0; j < n; j++)
 		{
-			result += m_skeletonData[i + 1].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].y - m_skeletonData[i].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].y;
+			result += (m_skeletonData[i + 1].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].y - m_skeletonData[i].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].y);
 		}
-		result += 1 / ((float)(n));
+		result /= ((float)(n));
 	}
 	result /= ((float)(m_frames - 1));
 	return result;
@@ -123,9 +123,9 @@ FLOAT BLFeatureCalculator::fwd_bwd_motion_body()
 		int n = ((m_seated) ? NUI_SKELETON_POSITION_COUNT / 2 : NUI_SKELETON_POSITION_COUNT);
 		for (int j = 0; j < n; j++)
 		{
-			result += m_skeletonData[i + 1].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].z - m_skeletonData[i].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].z;
+			result += (m_skeletonData[i + 1].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].z - m_skeletonData[i].SkeletonPositions[(NUI_SKELETON_POSITION_INDEX)j].z);
 		}
-		result += 1 / ((float)(n));
+		result /= ((float)(n));
 	}
 	result /= ((float)(m_frames - 1));
 	return result;
@@ -176,7 +176,7 @@ FLOAT BLFeatureCalculator::spd_body()
 			int timeDiff = m_frames * m_fps;
 			result += (norm(x, y, z) / ((float)(timeDiff)));
 		}
-		result += 1 / ((float)(n));
+		result /= ((float)(n));
 	}
 	result /= ((float)(m_frames - 1));
 	return result;
