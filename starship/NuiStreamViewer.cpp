@@ -191,6 +191,9 @@ void NuiStreamViewer::DrawSkeletons(const D2D1_RECT_F& imageRect)
     }
 }
 
+/*
+ * Create ARFF file for body language (Derek's format)
+ */
 void createBLTestData(std::string filename, std::string response, std::string nomAttribute,
 	float volume, float speed, float armopen,
 	float headfb, float headud, float trunkangle,
@@ -234,6 +237,9 @@ void createBLTestData(std::string filename, std::string response, std::string no
 	*/
 }
 
+/*
+ * Create a batch file for running weka
+ */
 void createBatWekaFile(std::string filename, std::string path_to_java,
                                              std::string path_to_weka,
                                              std::string weka_classifier,
@@ -255,7 +261,9 @@ void createBatWekaFile(std::string filename, std::string path_to_java,
 	*/
 }
 
-// get predicted value from weka
+/*
+ * Get predicted value from Weka
+ */
 FLOAT getWekaResult(std::string execFile, std::string outFilename) {
 	system(("\"" + execFile + "\"").c_str());
 	// parse outFilename for results
@@ -392,16 +400,16 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			// ATTENTION: Change these variables when using another computer, you can make code better by changing to local directory by copying .exe,.jar file locally
 			/*****************************************************************************************************************************************************************************/
 			/*****************************************************************************************************************************************************************************/
-			/*
 			// Personal Workstation
 			std::string path_to_local_dir = "C:\\Users\\Alex\\Desktop\\starship\\starship\\";
 			std::string path_to_java = "C:\\Program Files\\Java\\jdk1.8.0_05\\bin\\java.exe";
 			std::string path_to_weka = "C:\\Program Files (x86)\\Weka-3-6\\weka.jar";
-			*/
+			/*
 			// Workstation that powers Brian. ASBlab.
 			std::string path_to_local_dir = "C:\\Users\\ASB Workstation\\Desktop\\starship\\starship\\";
 			std::string path_to_java = "C:\\Program Files (x86)\\Java\\jre7\\bin\\java.exe";
 			std::string path_to_weka = "C:\\Program Files\\Weka-3-6\\weka.jar";
+			*/
 			/*****************************************************************************************************************************************************************************/
 			/*****************************************************************************************************************************************************************************/
 
@@ -434,6 +442,7 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			// TODO: Open TCP/IP socket is better than writing and reading to a file... but we're short on time :P
 			// This should be in a method......................... But I hope you follow along.
 
+			// calculate average voice affect over time
 			FLOAT vvalence = 0;
 			FLOAT varousal = 0;
 
@@ -486,6 +495,7 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 				   |          Multimodal Calculation            |
 				   +--------------------------------------------+
 				   This should be inside another method. Short on time, so bad organization here.
+				   TODO: modular code, same code as BL, make it more modular, no time....
 		     */
 
 
@@ -497,7 +507,7 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			FLOAT mmvalence = 0;
 			FLOAT mmarousal = 0;
 
-			/* Average */
+			/* Average: Naive Approach */
 			/*
 			FLOAT nu = 0.5f;
 			FLOAT mu = 0.5f; 
@@ -537,7 +547,6 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 
 			// Display!
 			m_pMClassificationViewer->SetAffectReadings(mmvalence, mmarousal, blvalence, blarousal, vvalence, varousal);
-
 			// log everything! Put this in another method
 			std::ofstream myfile;
 			myfile.open(".\\logs\\log.csv", std::ios::app);
