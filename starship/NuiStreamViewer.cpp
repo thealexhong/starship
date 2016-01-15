@@ -567,6 +567,21 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 				   << mmarousal << "\n";
 			myfile.close();
 
+			std::ofstream testfile;
+			myfile.open(".\\logs\\weka_training.csv", std::ios::app);
+			myfile << myBLFeatures->expand_body() << ","
+				<< myBLFeatures->spd_body() << ","
+				<< myBLFeatures->open_close_arms() << ","
+				<< myBLFeatures->fwd_bwd_head() << ","
+				<< myBLFeatures->vert_head() << ","
+				<< myBLFeatures->bow_stretch_trunk() << ","
+				<< 0 << ","
+				<< myBLFeatures->vert_motion_body() << ","
+				<< myBLFeatures->fwd_bwd_motion_body() << ","
+				<< "1" << ","
+				<< "2" << "\n";
+			myfile.close();
+
 
 			// Clean up
 			SafeDelete(myBLFeatures);
