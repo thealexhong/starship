@@ -567,6 +567,16 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 				   << mmarousal << "\n";
 			myfile.close();
 
+			 
+			/*
+			 For training: same output in ARFF format
+			 For future people: Seated and standing interactions are very different. You need training models for both of them. Check the variable m_seated for seated mode.
+			 User in seated mode requires a seated training model. Create a condition statement to check if m_seated is true or false, and use the appropriate training model.
+			 In order to generate training, act out the body language (read papers on what dynamic body language feature to display) and interact with the Kinect. The below code
+			 records the data for you. Truncate the first few and last few data because they may be garbage data (before and after your interactions). Put this training data
+			 into Weka, and generate a training model (look up online on how to do this). Use this model in the ~/TrainingData/ folder.
+			*/
+			/*
 			std::ofstream testfile;
 			myfile.open(".\\logs\\weka_training.csv", std::ios::app);
 			myfile << myBLFeatures->expand_body() << ","
@@ -578,9 +588,32 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 				<< 0 << ","
 				<< myBLFeatures->vert_motion_body() << ","
 				<< myBLFeatures->fwd_bwd_motion_body() << ","
-				<< "1" << ","
-				<< "2" << "\n";
+				<< "99" << ","
+				<< "99" << "\n";
 			myfile.close();
+			*/
+
+			// put this in another method. This just creates a timestamp
+			SYSTEMTIME st;
+			GetSystemTime(&st);
+			std::string strTime;
+			char buffer[256];
+			sprintf_s(buffer,
+				"%d-%02d-%02d %02d:%02d:%02d.%03d",
+				st.wYear,
+				st.wMonth,
+				st.wDay,
+				st.wHour,
+				st.wMinute,
+				st.wSecond,
+				st.wMilliseconds);
+			strTime = buffer;
+
+			// Outputs multimodal valence + arousal for HRI integration
+			std::ofstream emotionmodelfile;
+			emotionmodelfile.open(".\\logs\\out_emotionmodelJSON.txt", std::ios::app);
+			emotionmodelfile << "{\"valence\":" << mmvalence << ", \"arousal\":" << mmarousal << ",\"timeStamp\":" << strTime << "}\n";
+			emotionmodelfile.close();
 
 
 			// Clean up
