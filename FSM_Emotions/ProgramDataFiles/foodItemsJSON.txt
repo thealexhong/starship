@@ -1,0 +1,8 @@
+{"id":1, "name":"Sliced turkey sandwich on whole wheat bread with lettuce and tomatoes", "hasPoultry":true, "hasGluten": true, "calories":600, "buyFrom":"Subway just across College Street", "mealType":"lunch", "hasFish":false}
+{"id":2, "name":"Chicken on brown rice, with vegetables", "hasPoultry":true, "hasGluten": false, "calories":650, "buyFrom":"Salad King, over on Younge Street", "mealType":"lunch", "hasFish":false}
+{"id":3, "name":"Whole wheat chickpea wrap with beans and tomatoes", "hasPoultry":false, "hasGluten": true, "calories":650, "buyFrom":"Vegetarian Heaven, over on Baldwin Street", "mealType":"lunch", "hasFish":false}
+{"id":4, "name":"Tofu on brown rice, with vegetables", "hasPoultry":false, "hasGluten": false, "calories":600, "buyFrom":"Vegetarian Heaven, over on Baldwin Street", "mealType":"dinner", "hasFish":false}
+{"id":5, "name":"An apple and two slices of toast with strawberry jam", "hasPoultry":false, "hasGluten": true, "calories":350, "buyFrom":"", "mealType":"breakfast", "hasFish":false}
+{"id":6, "name":"An apple and a cup of gluten free granola", "hasPoultry":false, "hasGluten": false, "calories":350, "buyFrom":"", "mealType":"breakfast", "hasFish":false}
+{"id":7, "name":"12 pieces of assorted sushi with miso soup and seaweed salad", "hasPoultry":false, "hasGluten": false, "calories":800, "buyFrom":"Ematei, over on Queen Street West", "mealType":"dinner", "hasFish":true}
+{"id":8, "name":"Cooked vegetables with steamed rice, similar to Vegetable Biryani", "hasPoultry":false, "hasGluten": false, "calories":700, "buyFrom":"Kothur, over on Yonge Street West", "mealType":"lunch", "hasFish":false}
