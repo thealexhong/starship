@@ -96,8 +96,8 @@ class FSMBeginDayStates:
     # ===================================================================
 
     def morningIntro(self):
-        sayText = "Hello " + self.userName
-        sayText += " my name is " + self.robotName + " and I am going to be your diet and fitness companion"
+        sayText = "Hello " + self.userName + ". "
+        sayText += "My name is " + self.robotName + " and I am going to be your diet and fitness companion"
         self.FSMBody.sayWithEmotion(sayText)
 
         sayText = "How has your morning been so far?"
@@ -164,7 +164,7 @@ class FSMBeginDayStates:
         return appraiseState
 
     def askWeatherGood(self):
-        sayText = "Awesome, maybe you should spend some time out their today."
+        sayText = "Awesome, maybe you should spend some time outside today."
         self.FSMBody.sayWithEmotion(sayText)
 
         if not self.hasTalkedJapan:
@@ -176,7 +176,7 @@ class FSMBeginDayStates:
 
     def askWeatherGoodJapan(self):
         self.hasTalkedJapan = True
-        sayText = "That reminds me of Tokyo, Japan. It is my favourite place to visit. "
+        sayText = "That reminds me of Tokyo Japan. It is my favourite place to visit. "
         sayText += "They have the best sushi restaurants in the world! Yummy!"
         self.FSMBody.sayWithEmotion(sayText)
 
@@ -203,7 +203,7 @@ class FSMBeginDayStates:
 
     def askWeatherGoodYesTravel(self):
         sayText = "Amazing, I love traveling. I am a bit fragile though, so I require my own foam bed "
-        sayText += "during transportation. Lucky for me I am not the big so my bed can easily fit on a plane."
+        sayText += "during transportation. Lucky for me I am not that big so my bed can easily fit on a plane."
         self.FSMBody.sayWithEmotion(sayText)
 
         self.FSMBody.setFSMState(self.FSMBody.state+1+7)
@@ -232,8 +232,8 @@ class FSMBeginDayStates:
 
     def askWeatherBadParis(self):
         self.hasTalkedParis = True
-        sayText = "That reminds me of Paris, France. It's where I'm from. It's often rainy there. "
-        sayText += "On days like these, I like to go to the Louvre. It carries some of the best collection of historic "
+        sayText = "That reminds me of Paris France where I'm from. It's often rainy there. "
+        sayText += "On days like these, I like to go to the Louvre. It has some of the best collections of historic "
         sayText += "items in the world."
         self.FSMBody.sayWithEmotion(sayText)
 
@@ -300,7 +300,7 @@ class FSMBeginDayStates:
         return appraiseState
 
     def askWeatherBadDiffHomeNoTake(self):
-        sayText = "I'll just have to go on my own sometime then; I've been meaning to visit there"
+        sayText = "I'll just have to go on my own sometime then; I've been meaning to visit there."
         self.FSMBody.sayWithEmotion(sayText)
 
         self.FSMBody.setFSMState(self.FSMBody.state+1)
@@ -308,7 +308,7 @@ class FSMBeginDayStates:
         return appraiseState
 
     def askBreakfast(self):
-        sayText = "Let's start planning your diet for tomorrow."
+        sayText = "Let's start planning your, diet for today."
         self.FSMBody.sayWithEmotion(sayText)
 
         sayText = "Have you had breakfast yet this morning?"
@@ -400,7 +400,7 @@ class FSMBeginDayStates:
         self.meal1Suggested = useMeal['name']
         print useMeal
 
-        sayText = "For breakfast, I suggest " # the now part???????????????????????????????????????????????????
+        sayText = "For breakfast, I suggest "
         sayText += useMeal['name'] + "."
         self.FSMBody.sayWithEmotion(sayText)
 
@@ -450,7 +450,7 @@ class FSMBeginDayStates:
         return appraiseState
 
     def askDietPoultryNoEat(self):
-        sayText = "Thanks, for letting me know I'll remember that"
+        sayText = "Thanks for letting me know, I'll remember that"
         self.FSMBody.sayWithEmotion(sayText)
 
         if self.hasAskedBreakfast:
@@ -616,7 +616,7 @@ class FSMBeginDayStates:
         sayText += useMeal['calories'] + " calories."
         self.FSMBody.sayWithEmotion(sayText)
 
-        sayText = "You can buy something like this from "
+        sayText = "You can get something like this from "
         sayText += useMeal['buyFrom'] + "."
         self.FSMBody.sayWithEmotion(sayText)
 
@@ -647,7 +647,7 @@ class FSMBeginDayStates:
         return appraiseState
 
     def meal3FeedbackYesGood(self):
-        sayText = "Great, I look forward to hearning how it was."
+        sayText = "Great, I look forward to hearing how it was."
         self.FSMBody.sayWithEmotion(sayText)
 
         self.FSMBody.setFSMState(self.FSMBody.state+1+2)
@@ -655,7 +655,7 @@ class FSMBeginDayStates:
         return appraiseState
 
     def meal3FeedbackNoGood(self):
-        sayText = "Well let's see if there is anything else I can suggest."
+        sayText = "Let's see if there is anything else I can suggest."
         self.FSMBody.sayWithEmotion(sayText)
 
         if self.meal3Options > 0:
@@ -741,7 +741,7 @@ class FSMBeginDayStates:
         return appraiseState
 
     def exerciseFeedbackGood(self):
-        sayText = "Great, I hope you enjoy it, it will put you well on your way to a healthy lifestyle."
+        sayText = "Great, I hope you enjoy it. It will put you well on your way to a healthy lifestyle."
         self.FSMBody.sayWithEmotion(sayText)
 
         self.FSMBody.setFSMState(self.FSMBody.state+1+2)
@@ -749,7 +749,7 @@ class FSMBeginDayStates:
         return appraiseState
 
     def exerciseFeedbackBad(self):
-        sayText = "Ok, just for today I'll reduce your exercise, how about you "
+        sayText = "Okay. Just for today I'll reduce your exercise, how about you "
         self.exerciseSets -= 1
         sayText += self.exerciseSuggested + " " + str(self.exerciseSets) + " times instead."
         self.FSMBody.sayWithEmotion(sayText)
@@ -759,7 +759,7 @@ class FSMBeginDayStates:
         return appraiseState
 
     def exerciseFeedbackEasy(self):
-        sayText = "I see, in that case for today you should try to "
+        sayText = "I see, in that case, for today, you should try to "
         self.exerciseSets += 1
         sayText +=  self.exerciseSuggested + " " + str(self.exerciseSets) + " times instead."
         self.FSMBody.sayWithEmotion(sayText)

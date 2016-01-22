@@ -43,7 +43,7 @@ def readLinesToJSON(textFile):
 
 	linesJson = []
 	for line in fileLines:
-		print "Line: ", line
+		# print "Line: ", line
 		if not (line == "" or line == "\n"):
 			jsLine = json.loads(line)
 			linesJson.append(jsLine)

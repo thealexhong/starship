@@ -183,11 +183,11 @@ class FSMEndDayStates:
             urLikeli = self.FSMBody.drives.askedUser(True)
             if textInput.lower() == "1":
                 upbLikeli = self.FSMBody.drives.gotNewBranch(True)
-                udsmLikeli = self.FSMBody.drives.checkinMeal(True)
+                udsmLikeli = self.FSMBody.drives.checkinMeal(1, True)
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
             else:
                 upbLikeli = self.FSMBody.drives.gotNewBranch(False)
-                udsmLikeli = self.FSMBody.drives.checkinMeal(False)
+                udsmLikeli = self.FSMBody.drives.checkinMeal(1, False)
                 self.FSMBody.setFSMState(self.FSMBody.state+1 + 3)
         else:
             urLikeli = self.FSMBody.drives.askedUser(False)
@@ -297,11 +297,11 @@ class FSMEndDayStates:
             urLikeli = self.FSMBody.drives.askedUser(True)
             if textInput.lower() == "1":
                 upbLikeli = self.FSMBody.drives.gotNewBranch(True)
-                udsmLikeli = self.FSMBody.drives.checkinMeal(True)
+                udsmLikeli = self.FSMBody.drives.checkinMeal(2, True)
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
             else:
                 upbLikeli = self.FSMBody.drives.gotNewBranch(False)
-                udsmLikeli = self.FSMBody.drives.checkinMeal(False)
+                udsmLikeli = self.FSMBody.drives.checkinMeal(2, False)
                 self.FSMBody.setFSMState(self.FSMBody.state+1 + 3)
         else:
             urLikeli = self.FSMBody.drives.askedUser(False)
@@ -440,11 +440,9 @@ class FSMEndDayStates:
             urLikeli = self.FSMBody.drives.askedUser(True)
             if textInput.lower() == "1":
                 upbLikeli = self.FSMBody.drives.gotNewBranch(True)
-                udsmLikeli = self.FSMBody.drives.checkinMeal(True)
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
             else:
                 upbLikeli = self.FSMBody.drives.gotNewBranch(False)
-                udsmLikeli = self.FSMBody.drives.checkinMeal(False)
                 self.FSMBody.setFSMState(self.FSMBody.state+1 + 8)
         else:
             urLikeli = self.FSMBody.drives.askedUser(False)
@@ -465,9 +463,11 @@ class FSMEndDayStates:
             urLikeli = self.FSMBody.drives.askedUser(True)
             if textInput.lower() == "1":
                 upbLikeli = self.FSMBody.drives.gotNewBranch(True)
+                udsmLikeli = self.FSMBody.drives.checkinMeal(3, True)
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
             else:
                 upbLikeli = self.FSMBody.drives.gotNewBranch(False)
+                udsmLikeli = self.FSMBody.drives.checkinMeal(3, False)
                 self.FSMBody.setFSMState(self.FSMBody.state+1 + 3)
         else:
             urLikeli = self.FSMBody.drives.askedUser(False)
@@ -506,7 +506,7 @@ class FSMEndDayStates:
         sayText = "That's great, I haven't had a chance to try it myself, so that's good to hear."
         self.FSMBody.sayWithEmotion(sayText)
 
-        self.FSMBody.setFSMState(self.FSMBody.state+1 +7)
+        self.FSMBody.setFSMState(self.FSMBody.state+1 +6)
         appraiseState = False
         return appraiseState
 
@@ -514,7 +514,7 @@ class FSMEndDayStates:
         sayText = "I'll look for a new meal to suggest to you tomorrow."
         self.FSMBody.sayWithEmotion(sayText)
 
-        self.FSMBody.setFSMState(self.FSMBody.state+1 +6)
+        self.FSMBody.setFSMState(self.FSMBody.state+1 +5)
         appraiseState = False
         return appraiseState
 
@@ -675,10 +675,10 @@ class FSMEndDayStates:
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
             elif textInput.lower() == "2":
                 upbLikeli = self.FSMBody.drives.gotNewBranch(False)
-                self.FSMBody.setFSMState(self.FSMBody.state+1+1)
+                self.FSMBody.setFSMState(self.FSMBody.state+1+2)
             else:
                 upbLikeli = self.FSMBody.drives.gotNewBranch(False)
-                self.FSMBody.setFSMState(self.FSMBody.state+1 +2)
+                self.FSMBody.setFSMState(self.FSMBody.state+1 +5)
         else:
             urLikeli = self.FSMBody.drives.askedUser(False)
             self.FSMBody.setFSMState(self.FSMBody.state)

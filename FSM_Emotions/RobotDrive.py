@@ -141,7 +141,9 @@ class DriveUserPositive(RobotDrive):
 		
 	def determineLikelihood(self, userValance, userArousal):
 		np.set_printoptions(precision=4)
-		happyVA = np.array([0.85, 0.63]) # coordinates of happiness on the affective space
+		########################## need to update here - 0.89, 0.17 - Seeing Stars of Valence and Arousal in Blog Posts
+		happyVA = np.array([0.89, 0.17])
+		# happyVA = np.array([0.85, 0.63]) # coordinates of happiness on the affective space
 		newlikelihood = 1 - LA.norm(happyVA - np.array([userValance, userArousal])) / math.sqrt(4+4) # normalize by the longest distance in the affective space
 		self.setDriveLikelihood(newlikelihood)
 		print "UPositiveLikeli", self.likelihood, " Appraised: ", self.appraiseEmotions()
@@ -207,11 +209,14 @@ class RobotDriveCollection:
 		self.driveUserPositiveBranches = DriveUserPositiveBranches()
 		self.numPosBranches = 0
 		self.numBranches = 0
-		self.driveUserDidSuggestionMeal = DriveUserDidSuggestionMeal()
+		self.driveUserDidSuggestionMeal1 = DriveUserDidSuggestionMeal()
+		self.driveUserDidSuggestionMeal2 = DriveUserDidSuggestionMeal()
+		self.driveUserDidSuggestionMeal3 = DriveUserDidSuggestionMeal()
 
 		self.drivesCollection = [self.driveHealthyDiet, self.driveHealthyFitness, self.driveUserResponses,
 								 self.driveUserPositive, self.driveUserPositiveOnRecomendation,
-								 self.driveUserPositiveBranches, self.driveUserDidSuggestionMeal]
+								 self.driveUserPositiveBranches, self.driveUserDidSuggestionMeal1,
+								  self.driveUserDidSuggestionMeal2,  self.driveUserDidSuggestionMeal3]
 				
 	def mealCalorieInput(self, userCal, regularMeal=True):
 		self.driveHealthyDiet.determineLikelihood(userCal, regularMeal)
@@ -242,13 +247,16 @@ class RobotDriveCollection:
 		self.driveUserPositiveOnRecomendation.determineLikelihood(userValance, userArousal)
 		return self.driveUserPositiveOnRecomendation.appraiseEmotions()
 
-	def checkinMeal(self, userAteSuggestion):
-		self.driveUserDidSuggestionMeal.determineLikelihood(userAteSuggestion)
-		# if userAteSuggestion:
-		# 	self.driveUserDidSuggestionMeal.setDriveStatus(2)
-		# else:
-		# 	self.driveUserDidSuggestionMeal.setDriveStatus(3)
-		return self.driveUserDidSuggestionMeal.appraiseEmotions()
+	def checkinMeal(self, mealNum, userAteSuggestion):
+		if mealNum == 1:
+			self.driveUserDidSuggestionMeal1.determineLikelihood(userAteSuggestion)
+			return self.driveUserDidSuggestionMeal1.appraiseEmotions()
+		elif mealNum == 2:
+			self.driveUserDidSuggestionMeal2.determineLikelihood(userAteSuggestion)
+			return self.driveUserDidSuggestionMeal2.appraiseEmotions()
+		else:
+			self.driveUserDidSuggestionMeal3.determineLikelihood(userAteSuggestion)
+			return self.driveUserDidSuggestionMeal3.appraiseEmotions()
 
 	def gotNewBranch(self, positiveBranch):
 		if positiveBranch:
@@ -264,7 +272,9 @@ class RobotDriveCollection:
 		userPositiveEV = self.driveUserPositive.appraiseEmotions()
 		userPositiveOnRecEV = self.driveUserPositiveOnRecomendation.appraiseEmotions()
 		userPosBranchEV = self.driveUserPositiveBranches.appraiseEmotions()
-		userDidSugMealEV =  self.driveUserDidSuggestionMeal.appraiseEmotions()
+		userDidSugMeal1EV =  self.driveUserDidSuggestionMeal1.appraiseEmotions()
+		userDidSugMeal2EV =  self.driveUserDidSuggestionMeal2.appraiseEmotions()
+		userDidSugMeal3EV =  self.driveUserDidSuggestionMeal3.appraiseEmotions()
 
 		# print "Component EVs"
 		# print healthyDietEV
@@ -273,11 +283,13 @@ class RobotDriveCollection:
 		# print userPositiveEV
 		# print userPositiveOnRecEV
 		# print userPosBranchEV
-		# print userDidSugMealEV
-		
+		# print userDidSugMeal1EV
+		# print userDidSugMeal2EV
+		# print userDidSugMeal3EV
+
 		overallEV = healthyDietEV + healthyFitnessEV + userResponsesEV
 		overallEV += userPositiveEV + userPositiveOnRecEV + userPosBranchEV
-		overallEV += userDidSugMealEV
+		overallEV += userDidSugMeal1EV + userDidSugMeal2EV + userDidSugMeal3EV
 		# sumOverallEV = sum(overallEV)
 		# if sumOverallEV <= 0:
 		# 	sumOverallEV = 1

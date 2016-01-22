@@ -25,8 +25,8 @@ class UserAffectGenerator(threading.Thread):
     def thread_main(self):
 
         numWriten = 0
-        happyValance = 0.85
-        happyArousal = 0.63
+        happyValance = 0.89
+        happyArousal = 0.17
         while self.continueLoop:
             ranValance = self.getRandAffect(happyValance, 1)
             ranArousal = self.getRandAffect(happyArousal, 1)
@@ -42,13 +42,14 @@ class UserAffectGenerator(threading.Thread):
             randAffect = np.random.normal(mean, std, 1)[0]
         return randAffect
 
-    def writeAffect(self, valance, arousal):
-        fileName = "ProgramDataFiles\userEmotionTextDump.txt"
+    def writeAffect(self, valence, arousal):
+        # fileName = "ProgramDataFiles\userEmotionTextDump.txt"
+        fileName = "..\\Data_Files\\out_emotionmodelJSON_test.txt"
 
         ts = self.genUtil.getTimeStamp()
         jsonData = {"timeStamp":ts}
         jsonData["dateTime"] = self.genUtil.getDateTimeFromTime(ts)
-        jsonData["valance"] = valance
+        jsonData["valence"] = valence
         jsonData["arousal"] = arousal
         jsonDataStr = json.dumps(jsonData)
 
