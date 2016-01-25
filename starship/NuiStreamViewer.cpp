@@ -400,13 +400,10 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			// ATTENTION: Change these variables when using another computer, you can make code better by changing to local directory by copying .exe,.jar file locally
 			/*****************************************************************************************************************************************************************************/
 			/*****************************************************************************************************************************************************************************/
-<<<<<<< HEAD
-=======
 			// Nolan's Workstation
 			std::string path_to_local_dir = "C:\\Users\\Calvin\\Box Sync\\NL UToronto\\NAO Robot\\NAO Programs\\starship\\starship\\";
 			std::string path_to_java = "C:\\Program Files\\Java\\jre1.8.0_72\\bin\\java.exe";
 			std::string path_to_weka = "C:\\Program Files (x86)\\Weka-3-6\\weka.jar";
->>>>>>> 0c5b1b7031527f4a0bd65525d282bceb7f1d883b
 			/*
 			// Personal Workstation
 			std::string path_to_local_dir = "C:\\Users\\Alex\\Desktop\\starship\\starship\\";
@@ -419,10 +416,12 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			std::string path_to_java = "C:\\Program Files (x86)\\Java\\jre7\\bin\\java.exe";
 			std::string path_to_weka = "C:\\Program Files\\Weka-3-6\\weka.jar";
 			*/
+			/*
 			// Yuma's workstation
 			std::string path_to_local_dir = "C:\\Users\\Yuma\\Desktop\\starship\\starship\\";
 			std::string path_to_java = "C:\\Program Files\\Java\\jdk1.7.0_80\\bin\\java.exe";
 			std::string path_to_weka = "C:\\Program Files\\Weka-3-6\\weka.jar";
+			*/
 			/*****************************************************************************************************************************************************************************/
 			/*****************************************************************************************************************************************************************************/
 
