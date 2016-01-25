@@ -400,10 +400,16 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			// ATTENTION: Change these variables when using another computer, you can make code better by changing to local directory by copying .exe,.jar file locally
 			/*****************************************************************************************************************************************************************************/
 			/*****************************************************************************************************************************************************************************/
+			// Nolan's Workstation
+			std::string path_to_local_dir = "C:\\Users\\Calvin\\Box Sync\\NL UToronto\\NAO Robot\\NAO Programs\\starship\\starship\\";
+			std::string path_to_java = "C:\\Program Files\\Java\\jre1.8.0_72\\bin\\java.exe";
+			std::string path_to_weka = "C:\\Program Files (x86)\\Weka-3-6\\weka.jar";
+			/*
 			// Personal Workstation
 			std::string path_to_local_dir = "C:\\Users\\Alex\\Desktop\\starship\\starship\\";
 			std::string path_to_java = "C:\\Program Files\\Java\\jdk1.8.0_05\\bin\\java.exe";
 			std::string path_to_weka = "C:\\Program Files (x86)\\Weka-3-6\\weka.jar";
+			*/
 			/*
 			// Workstation that powers Brian. ASBlab.
 			std::string path_to_local_dir = "C:\\Users\\ASB Workstation\\Desktop\\starship\\starship\\";
@@ -611,7 +617,7 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 
 			// Outputs multimodal valence + arousal for HRI integration
 			std::ofstream emotionmodelfile;
-			emotionmodelfile.open(".\\logs\\out_emotionmodelJSON.txt", std::ios::app);
+			emotionmodelfile.open("..\\Data_Files\\out_emotionmodelJSON.txt", std::ios::app);
 			emotionmodelfile << "{\"valence\":" << mmvalence << ", \"arousal\":" << mmarousal << ",\"timeStamp\":" << strTime << "}\n";
 			emotionmodelfile.close();
 
