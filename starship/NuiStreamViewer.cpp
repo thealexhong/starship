@@ -400,16 +400,22 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			// ATTENTION: Change these variables when using another computer, you can make code better by changing to local directory by copying .exe,.jar file locally
 			/*****************************************************************************************************************************************************************************/
 			/*****************************************************************************************************************************************************************************/
+			/*
 			// Personal Workstation
 			std::string path_to_local_dir = "C:\\Users\\Alex\\Desktop\\starship\\starship\\";
 			std::string path_to_java = "C:\\Program Files\\Java\\jdk1.8.0_05\\bin\\java.exe";
 			std::string path_to_weka = "C:\\Program Files (x86)\\Weka-3-6\\weka.jar";
+			*/
 			/*
 			// Workstation that powers Brian. ASBlab.
 			std::string path_to_local_dir = "C:\\Users\\ASB Workstation\\Desktop\\starship\\starship\\";
 			std::string path_to_java = "C:\\Program Files (x86)\\Java\\jre7\\bin\\java.exe";
 			std::string path_to_weka = "C:\\Program Files\\Weka-3-6\\weka.jar";
 			*/
+			// Yuma's workstation
+			std::string path_to_local_dir = "C:\\Users\\Yuma\\Desktop\\starship\\starship\\";
+			std::string path_to_java = "C:\\Program Files\\Java\\jdk1.7.0_80\\bin\\java.exe";
+			std::string path_to_weka = "C:\\Program Files\\Weka-3-6\\weka.jar";
 			/*****************************************************************************************************************************************************************************/
 			/*****************************************************************************************************************************************************************************/
 
@@ -544,6 +550,21 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			mmvalence = getWekaResult(path_to_MvalenceBat, path_to_MoutValence);
 			*/
 
+			// put this in another method. This just creates a timestamp
+			SYSTEMTIME st;
+			GetSystemTime(&st);
+			std::string strTime;
+			char buffer[256];
+			sprintf_s(buffer,
+				"%d-%02d-%02d %02d:%02d:%02d.%03d",
+				st.wYear,
+				st.wMonth,
+				st.wDay,
+				st.wHour,
+				st.wMinute,
+				st.wSecond,
+				st.wMilliseconds);
+			strTime = buffer;
 
 			// Display!
 			m_pMClassificationViewer->SetAffectReadings(mmvalence, mmarousal, blvalence, blarousal, vvalence, varousal);
@@ -564,7 +585,7 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 				   << vvalence << ","
 				   << varousal << ","
 				   << mmvalence << ","
-				   << mmarousal << "\n";
+				   << mmarousal << "," << strTime << "\n";
 			myfile.close();
 
 			 
@@ -593,21 +614,7 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			myfile.close();
 			*/
 
-			// put this in another method. This just creates a timestamp
-			SYSTEMTIME st;
-			GetSystemTime(&st);
-			std::string strTime;
-			char buffer[256];
-			sprintf_s(buffer,
-				"%d-%02d-%02d %02d:%02d:%02d.%03d",
-				st.wYear,
-				st.wMonth,
-				st.wDay,
-				st.wHour,
-				st.wMinute,
-				st.wSecond,
-				st.wMilliseconds);
-			strTime = buffer;
+
 
 			// Outputs multimodal valence + arousal for HRI integration
 			std::ofstream emotionmodelfile;
