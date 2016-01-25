@@ -7,6 +7,8 @@ class BasicMotions:
         self.NAOip = ip
         self.NAOport = port
 
+        self.logPrint = True
+
     def StiffnessOn(self, proxy):
         pNames = "Body"
         pStiffnessLists = 1.0
@@ -32,8 +34,17 @@ class BasicMotions:
     def naoSay(self, text):
         speechProxy = self.connectToProxy("ALTextToSpeech")
 
-        speechProxy.say(str(text))
+        moveID = speechProxy.post.say(str(text))
         print("------> Said something: " + text)
+        return moveID
+
+    def naoSayWait(self, text, waitTime):
+        speechProxy = self.connectToProxy("ALTextToSpeech")
+
+        moveID = speechProxy.post.say(str(text))
+        print("------> Said something: " + text)
+        speechProxy.wait(moveID, 0)
+        time.sleep(waitTime)
 
     def naoSit(self):
         motionProxy = self.connectToProxy("ALMotion")
@@ -130,20 +141,23 @@ class BasicMotions:
 
         # resets the angle of the motions (angle in radians)
         moveID = motionProxy.post.angleInterpolation(motionNames, [0.0,0.0], times, True)
-        motionProxy.wait(moveID, 0)
-        self.naoSay(sayText)
 
-        # shakes the head 3 times, back and forths
-        for i in range(3):
-            moveID = motionProxy.post.angleInterpolation(motionNames, [1.0, 0.0], times, True)
-            # motionProxy.wait(moveID, 0)
-            moveID = motionProxy.post.angleInterpolation(motionNames, [-1.0, 0.0], times, True)
-            motionProxy.wait(moveID, 0)
-            print "move head"
-        moveID = motionProxy.post.angleInterpolation(motionNames, [0.0,0.0], times, True)
+        sayID = self.naoSay(sayText)
         motionProxy.wait(moveID, 0)
 
-        print("------> Nodded")
+        # shakes the head 3 times, back and forth
+        for i in range(2):
+            motionProxy.angleInterpolation(motionNames, [1.0, 0.0], times, True)
+
+            motionProxy.angleInterpolation(motionNames, [-1.0, 0.0], times, True)
+
+        motionProxy.angleInterpolation(motionNames, [0.0,0.0], times, True)
+        # motionProxy.wait(sayID, 0)
+        if self.logPrint:
+            print "Moved head, now waiting"
+        time.sleep(0.5)
+
+        print("------> Shook Head")
         self.StiffnessOff(motionProxy)
 
     def naoWaveRight(self, movePercent = 1.0, numWaves = 3):

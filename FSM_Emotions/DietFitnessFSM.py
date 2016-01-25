@@ -28,6 +28,8 @@ class DietFitnessFSM:
 		self.oeHMM = ObservableExpression()
 		self.appraiseState = True
 
+		self.testState = initialState
+
 		self.stateTimeStamp = []
 		self.stateDateTime = []
 		self.reHist = []
@@ -97,6 +99,10 @@ class DietFitnessFSM:
 	def activityFSM(self):
 		# stateMachineInUse = self.stateMethodNames[self.activityType]
 		s = self.state
+		###### for testing all states
+		s = self.testState
+		self.testState += 1
+		######
 
 		if not self.genUtil.checkSafety():
 			s = self.FSMInUse.getNumMethods() + 1 # index past methods -> reactive method
@@ -641,16 +647,17 @@ class DietFitnessFSM:
 	# ======================= Other functions
 	def sendUserEmotion(self):
 		print "Sending user emotion"
-		userEmotionFileName = "ProgramDataFiles\userEmotionTextDump.txt"
+		# userEmotionFileName = "ProgramDataFiles\userEmotionTextDump.txt"
+		userEmotionFileName = "..\\Data_Files\\out_emotionmodelJSON_test.txt"
 
 		ueFileLines = FileUtilitiy.readTextLines(userEmotionFileName)
 		ueJson = json.loads(ueFileLines[-1])
 
-		ueValance = ueJson["valance"]
+		ueValence = ueJson["valence"]
 		ueArousal = ueJson["arousal"]
-		print "Valance: ", ueValance, ", Arousal: ", ueArousal
+		print "Valence: ", ueValence, ", Arousal: ", ueArousal
 
-		return self.drives.currentUserEmotionInput(ueValance, ueArousal)
+		return self.drives.currentUserEmotionInput(ueValence, ueArousal)
 
 	def sayWithEmotion(self, sayText):
 		self.genUtil.naoEmotionalSay(sayText, self.getOENumber())

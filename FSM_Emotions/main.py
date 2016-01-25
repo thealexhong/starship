@@ -19,6 +19,7 @@ def main(NAOip, NAOport):
     thread1 = ThreadedChecker(1, "Main Checker #1", genUtil)
     thread2 = UserAffectGenerator(2, "User Affect Generator #1", 3, genUtil)
 
+    # select your activity to run
     activityConsultant = "Consultant By Appointment"
     # Daily Companion
     activityDayCompMorning = "Daily Companion Morning"
@@ -27,11 +28,11 @@ def main(NAOip, NAOport):
     userName = "Test User"
     userNumber = "1"
     dateTime = genUtil.getDateTime()
-    activityInteractionType = activityDayCompDayEnd
+    activityInteractionType = activityDayCompMorning
     userInfo = initiateUserInfo(userName, userNumber, activityInteractionType, dateTime)
 
     # naoMotions.naoSit()
-    naoMotions.naoStand()
+    # naoMotions.naoStand()
     # naoMotions.naoWaveBoth()
 
     # ============================================================= Start Functionality
@@ -125,11 +126,11 @@ def connectToProxy(NAOip, NAOport, proxyName):
         return proxy
 
 if __name__ == '__main__':
-    simulated = True
+    simulated = False
     if simulated:
         #simulated NAO
         NAOIP = "127.0.0.1"
-        NAOPort = 53137
+        NAOPort = 63899
     else:
         #real NAO
         NAOIP = "luke.local"

@@ -400,6 +400,13 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			// ATTENTION: Change these variables when using another computer, you can make code better by changing to local directory by copying .exe,.jar file locally
 			/*****************************************************************************************************************************************************************************/
 			/*****************************************************************************************************************************************************************************/
+<<<<<<< HEAD
+=======
+			// Nolan's Workstation
+			std::string path_to_local_dir = "C:\\Users\\Calvin\\Box Sync\\NL UToronto\\NAO Robot\\NAO Programs\\starship\\starship\\";
+			std::string path_to_java = "C:\\Program Files\\Java\\jre1.8.0_72\\bin\\java.exe";
+			std::string path_to_weka = "C:\\Program Files (x86)\\Weka-3-6\\weka.jar";
+>>>>>>> 0c5b1b7031527f4a0bd65525d282bceb7f1d883b
 			/*
 			// Personal Workstation
 			std::string path_to_local_dir = "C:\\Users\\Alex\\Desktop\\starship\\starship\\";
@@ -431,6 +438,9 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			std::string path_to_BLoutArousal = path_to_local_dir + "wekaOutputFiles\\bloutArousal.txt";
 			std::string path_to_BLoutValence = path_to_local_dir + "wekaOutputFiles\\bloutValence.txt";
 
+			std::string path_to_BLarousalVBS = path_to_local_dir + "batFiles\\vbsArousal.vbs";
+			std::string path_to_BLvalenceVBS = path_to_local_dir + "batFiles\\vbsValence.vbs";
+
 			/*
 			 This is a hack to use Weka with C++. Weka comes with command line functionality. We'll write a .bat file and execute that, then read it's output.
 			*/
@@ -438,8 +448,8 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			createBatWekaFile(path_to_BLarousalBat, path_to_java, path_to_weka, blarousal_classifier, path_to_BLArousalTrainingModel, path_to_BLArousalTestData, path_to_BLoutArousal);
 			
 			// execute batch file and read the output
-			FLOAT blvalence = getWekaResult(path_to_BLvalenceBat, path_to_BLoutValence);
-			FLOAT blarousal = getWekaResult(path_to_BLarousalBat, path_to_BLoutArousal);
+			FLOAT blvalence = getWekaResult(path_to_BLarousalVBS, path_to_BLoutValence);
+			FLOAT blarousal = getWekaResult(path_to_BLvalenceVBS, path_to_BLoutArousal);
 			
 			m_pBLClassificationViewer->SetAffectReadings(blvalence,blarousal); // display it on GUI
 
@@ -618,8 +628,8 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 
 			// Outputs multimodal valence + arousal for HRI integration
 			std::ofstream emotionmodelfile;
-			emotionmodelfile.open(".\\logs\\out_emotionmodelJSON.txt", std::ios::app);
-			emotionmodelfile << "{\"valence\":" << mmvalence << ", \"arousal\":" << mmarousal << ",\"timeStamp\":" << strTime << "}\n";
+			emotionmodelfile.open("..\\Data_Files\\out_emotionmodelJSON.txt", std::ios::app);
+			emotionmodelfile << "{\"valence\":" << mmvalence << ", \"arousal\":" << mmarousal << ",\"timeStamp\":\"" << strTime << "\"}\n";
 			emotionmodelfile.close();
 
 
