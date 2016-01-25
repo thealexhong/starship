@@ -431,6 +431,9 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			std::string path_to_BLoutArousal = path_to_local_dir + "wekaOutputFiles\\bloutArousal.txt";
 			std::string path_to_BLoutValence = path_to_local_dir + "wekaOutputFiles\\bloutValence.txt";
 
+			std::string path_to_BLarousalVBS = path_to_local_dir + "batFiles\\vbsArousal.vbs";
+			std::string path_to_BLvalenceVBS = path_to_local_dir + "batFiles\\vbsValence.vbs";
+
 			/*
 			 This is a hack to use Weka with C++. Weka comes with command line functionality. We'll write a .bat file and execute that, then read it's output.
 			*/
@@ -438,8 +441,8 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			createBatWekaFile(path_to_BLarousalBat, path_to_java, path_to_weka, blarousal_classifier, path_to_BLArousalTrainingModel, path_to_BLArousalTestData, path_to_BLoutArousal);
 			
 			// execute batch file and read the output
-			FLOAT blvalence = getWekaResult(path_to_BLvalenceBat, path_to_BLoutValence);
-			FLOAT blarousal = getWekaResult(path_to_BLarousalBat, path_to_BLoutArousal);
+			FLOAT blvalence = getWekaResult(path_to_BLarousalVBS, path_to_BLoutValence);
+			FLOAT blarousal = getWekaResult(path_to_BLvalenceVBS, path_to_BLoutArousal);
 			
 			m_pBLClassificationViewer->SetAffectReadings(blvalence,blarousal); // display it on GUI
 
@@ -618,7 +621,7 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			// Outputs multimodal valence + arousal for HRI integration
 			std::ofstream emotionmodelfile;
 			emotionmodelfile.open("..\\Data_Files\\out_emotionmodelJSON.txt", std::ios::app);
-			emotionmodelfile << "{\"valence\":" << mmvalence << ", \"arousal\":" << mmarousal << ",\"timeStamp\":" << strTime << "}\n";
+			emotionmodelfile << "{\"valence\":" << mmvalence << ", \"arousal\":" << mmarousal << ",\"timeStamp\":\"" << strTime << "\"}\n";
 			emotionmodelfile.close();
 
 
