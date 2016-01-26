@@ -5,7 +5,7 @@ import FileUtilitiy
 from BasicMotions import BasicMotions
 from DietFitnessFSM import DietFitnessFSM
 from GenUtil import GenUtil
-from NAOTouchChecker import NAOTouchChecker
+import NAOTouchChecker
 from ThreadedCheckers import ThreadedChecker
 from UserAffectGenerator import UserAffectGenerator
 
@@ -18,7 +18,7 @@ def main(NAOip, NAOport):
 
     myBroker = ALBroker("myBroker", "0.0.0.0", 0, NAOip, NAOport)
     global naoTouchChecker
-    naoTouchChecker = NAOTouchChecker(genUtil, NAOip, NAOport)
+    naoTouchChecker = NAOTouchChecker.NAOTouchChecker(genUtil, NAOip, NAOport)
 
     thread1 = ThreadedChecker(1, "Main Checker #1", genUtil)
     thread2 = UserAffectGenerator(2, "User Affect Generator #1", 3, genUtil)
@@ -32,7 +32,7 @@ def main(NAOip, NAOport):
     userName = "Test User"
     userNumber = "1"
     dateTime = genUtil.getDateTime()
-    activityInteractionType = activityDayCompMorning
+    activityInteractionType = activityDayCompDayEnd
     userInfo = initiateUserInfo(userName, userNumber, activityInteractionType, dateTime)
 
     genUtil.showHappyEyes()

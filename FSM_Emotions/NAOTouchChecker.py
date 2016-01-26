@@ -12,6 +12,9 @@ class NAOTouchChecker(ALModule):
         ALModule.__init__(self, self.name)
         
         self.genUtil = genUtil
+
+        global subscribed
+        subscribed = False
         
         global memory
         memory = ALProxy("ALMemory")
@@ -27,25 +30,33 @@ class NAOTouchChecker(ALModule):
         print s
         self.genUtil.naoEmotionalVoiceSay(s)
         SubscribeAllTouchEvent()
-        
+
 def SubscribeAllTouchEvent():
-    print "Subcribe Touch Events"
-    name = "naoTouchChecker"
-    onTouch = "onTouched"
-    sensors = ["RightBumperPressed", "LeftBumperPressed", "FrontTactilTouched", "MiddleTactilTouched",
-               "RearTactilTouched", "HandRightBackTouched", "HandRightLeftTouched", "HandRightRightTouched",
-               "HandLeftBackTouched", "HandLeftLeftTouched", "HandLeftRightTouched"]
-    for sensor in sensors:
-        memory.subscribeToEvent(sensor, name, onTouch)
+    global subscribed
+    if not subscribed:
+        print "Subcribe Touch Events"
+        name = "naoTouchChecker"
+        onTouch = "onTouched"
+        sensors = [#"RightBumperPressed", "LeftBumperPressed",
+                   "FrontTactilTouched", "MiddleTactilTouched",
+                   "RearTactilTouched", "HandRightBackTouched", "HandRightLeftTouched", "HandRightRightTouched",
+                   "HandLeftBackTouched", "HandLeftLeftTouched", "HandLeftRightTouched"]
+        for sensor in sensors:
+            memory.subscribeToEvent(sensor, name, onTouch)
+        subscribed = True
 
 def UnsubscribeAllTouchEvent():
-    print "Unsubcribe Touch Events"
-    name = "naoTouchChecker"
-    sensors = ["RightBumperPressed", "LeftBumperPressed", "FrontTactilTouched", "MiddleTactilTouched",
-               "RearTactilTouched", "HandRightBackTouched", "HandRightLeftTouched", "HandRightRightTouched",
-               "HandLeftBackTouched", "HandLeftLeftTouched", "HandLeftRightTouched"]
-    for sensor in sensors:
-        memory.unsubscribeToEvent(sensor, name)
+    global subscribed
+    if subscribed:
+        name = "naoTouchChecker"
+        sensors = [#"RightBumperPressed", "LeftBumperPressed",
+                   "FrontTactilTouched", "MiddleTactilTouched",
+                   "RearTactilTouched", "HandRightBackTouched", "HandRightLeftTouched", "HandRightRightTouched",
+                   "HandLeftBackTouched", "HandLeftLeftTouched", "HandLeftRightTouched"]
+        for sensor in sensors:
+            memory.unsubscribeToEvent(sensor, name)
+        print "Unsubcribe Touch Events"
+        subscribed = False
 
 
 # NAOip = "luke.local"

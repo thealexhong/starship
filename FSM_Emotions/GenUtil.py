@@ -93,7 +93,7 @@ class GenUtil:
             self.naoMotions.naoSayWait(sayText, 0.5)
 
     def naoEmotionalVoiceSay(self, sayText, sayEmotionExpres = -1):
-        self.naoMotions.naoSay(sayText)
+        self.naoMotions.naoSayWait(sayText, 0.5)
 
 ################################################ Eyes
     def showHappyEyes(self):

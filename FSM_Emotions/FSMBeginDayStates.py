@@ -171,13 +171,13 @@ class FSMBeginDayStates:
         if textInput != "" and (textInput == "1" or textInput == "2"):
             urLikeli = self.FSMBody.drives.askedUser(True)
             if textInput == "1":
-                upbLikeli = self.FSMBody.drives.gotNewBranch(True) ######## does it matter?
+                upbLikeli = self.FSMBody.drives.gotNewBranch(True)
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
                 self.weatherIsNice = True
             # elif textInput == "dono" or textInput == "don't know":
 
             else:
-                upbLikeli = self.FSMBody.drives.gotNewBranch(False)
+                upbLikeli = self.FSMBody.drives.gotNewBranch(True)
                 self.FSMBody.setFSMState(self.FSMBody.state+1+4)
                 self.weatherIsNice = False
         else:
@@ -216,7 +216,7 @@ class FSMBeginDayStates:
                 upbLikeli = self.FSMBody.drives.gotNewBranch(True)
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
             else:
-                upbLikeli = self.FSMBody.drives.gotNewBranch(False)
+                upbLikeli = self.FSMBody.drives.gotNewBranch(True)
                 self.FSMBody.setFSMState(self.FSMBody.state+2)
         else:
             urLikeli = self.FSMBody.drives.askedUser(False)
@@ -273,7 +273,7 @@ class FSMBeginDayStates:
                 upbLikeli = self.FSMBody.drives.gotNewBranch(True)
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
             else:
-                # upbLikeli = self.FSMBody.drives.gotNewBranch(True) # not really a change
+                upbLikeli = self.FSMBody.drives.gotNewBranch(True)
                 self.FSMBody.setFSMState(self.FSMBody.state+2)
         else:
             urLikeli = self.FSMBody.drives.askedUser(False)
@@ -344,10 +344,8 @@ class FSMBeginDayStates:
         if textInput != "" and (textInput == "1" or textInput == "2"):
             urLikeli = self.FSMBody.drives.askedUser(True)
             if textInput == "1":
-                upbLikeli = self.FSMBody.drives.gotNewBranch(True)
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
             else:
-                upbLikeli = self.FSMBody.drives.gotNewBranch(True) # not really a change
                 self.hasAskedBreakfast = True
                 if not self.hasAskedGluten:
                     self.FSMBody.setFSMState(self.FSMBody.state+1+1)
@@ -753,7 +751,7 @@ class FSMBeginDayStates:
                 upbLikeli = self.FSMBody.drives.gotNewBranch(True)
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
             elif textInput == "2":
-                # upbLikeli = self.FSMBody.drives.gotNewBranch(True) # not really bad?
+                upbLikeli = self.FSMBody.drives.gotNewBranch(False) # not really bad?
                 self.FSMBody.setFSMState(self.FSMBody.state+1+1)
             else: # easy
                 upbLikeli = self.FSMBody.drives.gotNewBranch(True)
