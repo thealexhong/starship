@@ -25,7 +25,7 @@ BLFeatureCalculator::~BLFeatureCalculator()
 FLOAT BLFeatureCalculator::bow_stretch_trunk()
 {
 	FLOAT result = 0;
-	for (int i = 0; i < m_frames; i++)
+	for (int i = 0; i < (int)m_frames; i++)
 	{
 		FLOAT yshoulder = average(m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_SHOULDER_LEFT].y,
 			                     m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_SHOULDER_RIGHT].y);
@@ -44,7 +44,7 @@ FLOAT BLFeatureCalculator::bow_stretch_trunk()
 FLOAT BLFeatureCalculator::open_close_arms()
 {
 	FLOAT result = 0;
-	for (int i = 0; i < m_frames; i++)
+	for (int i = 0; i < (int)m_frames; i++)
 	{
 		FLOAT xtrunkcenter = average(m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_SHOULDER_LEFT].x,
 			m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_SHOULDER_RIGHT].x,
@@ -74,7 +74,7 @@ FLOAT BLFeatureCalculator::open_close_arms()
 FLOAT BLFeatureCalculator::vert_head()
 {
 	FLOAT result = 0;
-	for (int i = 0; i < m_frames; i++)
+	for (int i = 0; i < (int)m_frames; i++)
 	{
 		//result += (m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HEAD].y - m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_SHOULDER_CENTER].y); // shoulder center = neck
 
@@ -90,7 +90,7 @@ FLOAT BLFeatureCalculator::vert_head()
 FLOAT BLFeatureCalculator::fwd_bwd_head()
 {
 	FLOAT result = 0;
-	for (int i = 0; i < m_frames; i++)
+	for (int i = 0; i < (int)m_frames; i++)
 	{
 		result += (m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HEAD].z - m_skeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_SHOULDER_CENTER].z); // shoulder center = neck
 	}
@@ -103,7 +103,7 @@ FLOAT BLFeatureCalculator::vert_motion_body()
 {
 	FLOAT result = 0;
 	int n = ((m_seated) ? NUI_SKELETON_POSITION_COUNT / 2 : NUI_SKELETON_POSITION_COUNT);
-	for (int i = 0; i < m_frames - 1; i++)
+	for (int i = 0; i < (int)m_frames - 1; i++)
 	{
 		for (int j = 0; j < n; j++)
 		{
@@ -120,7 +120,7 @@ FLOAT BLFeatureCalculator::fwd_bwd_motion_body()
 {
 	FLOAT result = 0;
 	int n = ((m_seated) ? NUI_SKELETON_POSITION_COUNT / 2 : NUI_SKELETON_POSITION_COUNT);
-	for (int i = 0; i < m_frames - 1; i++)
+	for (int i = 0; i < (int)m_frames - 1; i++)
 	{
 		for (int j = 0; j < n; j++)
 		{
@@ -135,7 +135,7 @@ FLOAT BLFeatureCalculator::fwd_bwd_motion_body()
 FLOAT BLFeatureCalculator::expand_body()
 {
 	FLOAT result = 0;
-	for (int i = 0; i < m_frames; i++)
+	for (int i = 0; i < (int)m_frames; i++)
 	{
 		FLOAT xmax = -1, xmin = FLT_MAX,
 			  ymax = -1, ymin = FLT_MAX,
@@ -165,7 +165,7 @@ FLOAT BLFeatureCalculator::spd_body()
 {
 	FLOAT result = 0;
 	int n = ((m_seated) ? NUI_SKELETON_POSITION_COUNT / 2 : NUI_SKELETON_POSITION_COUNT);
-	for (int i = 0; i < m_frames - 1; i++)
+	for (int i = 0; i < (int)m_frames - 1; i++)
 	{
 		for (int j = 0; j < n; j++)
 		{

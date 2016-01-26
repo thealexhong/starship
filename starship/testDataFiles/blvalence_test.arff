@@ -6,10 +6,9 @@
 @attribute headfb real
 @attribute headud real
 @attribute trunkangle real
-@attribute freq real
 @attribute deltay real
 @attribute deltaz real
 @attribute valence {-2,-1,0,1,2}
 
 @data
-0.351621,2.42512,0.440547,-0.156991,0.055532,-0.987514,0,-0.743536,-3.72298,?
+0.386789,3.84134,0.442712,-0.0741402,0.259437,-0.43082,0.250503,-10.9188,?

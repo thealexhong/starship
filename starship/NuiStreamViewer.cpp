@@ -196,8 +196,7 @@ void NuiStreamViewer::DrawSkeletons(const D2D1_RECT_F& imageRect)
  */
 void createBLTestData(std::string filename, std::string response, std::string nomAttribute,
 	float volume, float speed, float armopen,
-	float headfb, float headud, float trunkangle,
-	float freq, float deltay, float deltaz) {
+	float headfb, float headud, float trunkangle, float deltay, float deltaz) {
 	std::ofstream myfile;
 	myfile.open(filename);
 	myfile << "@relation " << response.c_str() << "\n\n"
@@ -207,7 +206,6 @@ void createBLTestData(std::string filename, std::string response, std::string no
 		<< "@attribute headfb real\n"
 		<< "@attribute headud real\n"
 		<< "@attribute trunkangle real\n"
-		<< "@attribute freq real\n"
 		<< "@attribute deltay real\n"
 		<< "@attribute deltaz real\n"
 		<< "@attribute " << nomAttribute.c_str() << "\n\n"
@@ -215,7 +213,7 @@ void createBLTestData(std::string filename, std::string response, std::string no
 		<< "@data\n"
 		<< volume << "," << speed << "," << armopen << ","
 		<< headfb << "," << headud << "," << trunkangle << ","
-		<< freq << "," << deltay << "," << deltaz << ",?";
+		<< deltay << "," << deltaz << ",?";
 	myfile.close();
 
 	/* Sample output
@@ -227,7 +225,6 @@ void createBLTestData(std::string filename, std::string response, std::string no
 	@attribute headfb real
 	@attribute headud real
 	@attribute trunkangle real
-	@attribute freq real
 	@attribute deltay real
 	@attribute deltaz real
 	@attribute arousal {0,1,2,3,4}
@@ -388,10 +385,10 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			
 			createBLTestData(path_to_blvalenceTest, "BLValenceResponse", "valence {-2,-1,0,1,2}", myBLFeatures->expand_body(),
 				myBLFeatures->spd_body(), myBLFeatures->open_close_arms(), myBLFeatures->fwd_bwd_head(), myBLFeatures->vert_head(),
-				myBLFeatures->bow_stretch_trunk(), 0, myBLFeatures->vert_motion_body(), myBLFeatures->fwd_bwd_motion_body());
-			createBLTestData(path_to_blarousalTest, "BLArousalResponse", "arousal {0,1,2,3,4}", myBLFeatures->expand_body(),
+				myBLFeatures->bow_stretch_trunk(), myBLFeatures->vert_motion_body(), myBLFeatures->fwd_bwd_motion_body());
+			createBLTestData(path_to_blarousalTest, "BLArousalResponse", "arousal {-2,-1,0,1,2}", myBLFeatures->expand_body(),
 				myBLFeatures->spd_body(), myBLFeatures->open_close_arms(), myBLFeatures->fwd_bwd_head(), myBLFeatures->vert_head(),
-				myBLFeatures->bow_stretch_trunk(), 0, myBLFeatures->vert_motion_body(), myBLFeatures->fwd_bwd_motion_body());
+				myBLFeatures->bow_stretch_trunk(), myBLFeatures->vert_motion_body(), myBLFeatures->fwd_bwd_motion_body());
 
 			// create batch file with classifier
 			// TODO: change these to relative directories and use environment variables instead
@@ -400,16 +397,18 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			// ATTENTION: Change these variables when using another computer, you can make code better by changing to local directory by copying .exe,.jar file locally
 			/*****************************************************************************************************************************************************************************/
 			/*****************************************************************************************************************************************************************************/
+			/*
 			// Nolan's Workstation
 			std::string path_to_local_dir = "C:\\Users\\Calvin\\Box Sync\\NL UToronto\\NAO Robot\\NAO Programs\\starship\\starship\\";
 			std::string path_to_java = "C:\\Program Files\\Java\\jre1.8.0_72\\bin\\java.exe";
 			std::string path_to_weka = "C:\\Program Files (x86)\\Weka-3-6\\weka.jar";
-			/*
+			*/
+			
 			// Personal Workstation
 			std::string path_to_local_dir = "C:\\Users\\Alex\\Desktop\\starship\\starship\\";
 			std::string path_to_java = "C:\\Program Files\\Java\\jdk1.8.0_05\\bin\\java.exe";
 			std::string path_to_weka = "C:\\Program Files (x86)\\Weka-3-6\\weka.jar";
-			*/
+			
 			/*
 			// Workstation that powers Brian. ASBlab.
 			std::string path_to_local_dir = "C:\\Users\\ASB Workstation\\Desktop\\starship\\starship\\";
@@ -425,7 +424,7 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			/*****************************************************************************************************************************************************************************/
 			/*****************************************************************************************************************************************************************************/
 
-			std::string blvalence_classifier = "weka.classifiers.functions.RBFNetwork";
+			std::string blvalence_classifier = "weka.classifiers.trees.RandomForest";
 			std::string blarousal_classifier = "weka.classifiers.trees.RandomForest";
 			
 			std::string path_to_BLArousalTrainingModel = path_to_local_dir + "TrainingData\\BLArousalTrain.model";
@@ -447,8 +446,8 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			createBatWekaFile(path_to_BLarousalBat, path_to_java, path_to_weka, blarousal_classifier, path_to_BLArousalTrainingModel, path_to_BLArousalTestData, path_to_BLoutArousal);
 			
 			// execute batch file and read the output
-			FLOAT blvalence = getWekaResult(path_to_BLarousalVBS, path_to_BLoutValence);
-			FLOAT blarousal = getWekaResult(path_to_BLvalenceVBS, path_to_BLoutArousal);
+			FLOAT blvalence = getWekaResult(path_to_BLvalenceVBS, path_to_BLoutValence);
+			FLOAT blarousal = getWekaResult(path_to_BLarousalVBS, path_to_BLoutArousal);
 			
 			m_pBLClassificationViewer->SetAffectReadings(blvalence,blarousal); // display it on GUI
 
@@ -486,7 +485,7 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 
 			// check if empty, then calculate averages
 			if (!vvalencevalues.empty()) {
-				for (int i = 0; i < vvalencevalues.size(); i++)
+				for (int i = 0; i < (int)vvalencevalues.size(); i++)
 				{
 					vvalence += vvalencevalues[i];
 					varousal += varousalvalues[i];
@@ -586,7 +585,6 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 				   << myBLFeatures->fwd_bwd_head() << ","
 				   << myBLFeatures->vert_head() << ","
 				   << myBLFeatures->bow_stretch_trunk() << ","
-				   << 0 << ","
 				   << myBLFeatures->vert_motion_body() << ","
 				   << myBLFeatures->fwd_bwd_motion_body() << ","
 				   << blvalence << ","
@@ -615,7 +613,6 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 				<< myBLFeatures->fwd_bwd_head() << ","
 				<< myBLFeatures->vert_head() << ","
 				<< myBLFeatures->bow_stretch_trunk() << ","
-				<< 0 << ","
 				<< myBLFeatures->vert_motion_body() << ","
 				<< myBLFeatures->fwd_bwd_motion_body() << ","
 				<< "99" << ","
