@@ -37,7 +37,7 @@ def main(NAOip, NAOport):
 
     genUtil.showHappyEyes()
     # naoMotions.naoSit()
-    naoMotions.naoStand()
+    naoMotions.naoStand(0.2)
     # naoMotions.naoWaveBoth()
     naoMotions.naoBreathON()
 
@@ -142,8 +142,12 @@ if __name__ == '__main__':
         NAOIP = "127.0.0.1"
         NAOPort = 52030
     else:
+        useLuke = False
         #real NAO
-        NAOIP = "luke.local"
+        if useLuke:
+            NAOIP = "luke.local"
+        else:
+            NAOIP = "leia.local"
         NAOPort = 9559
 
     print("Initiated Values")

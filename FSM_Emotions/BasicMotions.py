@@ -27,7 +27,6 @@ class BasicMotions:
                        'fear': "EyeBottom",
                        'hope': "EyeTop",
                        'anger': "EyeTopBottom"}
-        self.bScared = False
 
     def preMotion(self):
         NAOTouchChecker.UnsubscribeAllTouchEvent()
@@ -102,14 +101,14 @@ class BasicMotions:
         self.StiffnessOff(motionProxy)
         self.postMotion()
 
-    def naoStand(self):
+    def naoStand(self, speed = 0.5):
         self.preMotion()
         motionProxy = self.connectToProxy("ALMotion")
         postureProxy = self.connectToProxy("ALRobotPosture")
 
         motionProxy.wakeUp()
         self.StiffnessOn(motionProxy)
-        standResult = postureProxy.goToPosture("Stand", 0.5)
+        standResult = postureProxy.goToPosture("Stand", speed)
         if (standResult):
             print("------> Stood Up")
         else:
@@ -353,8 +352,8 @@ class BasicMotions:
         accu=0;
         rgbList=[]
         timeList=[]
-        #Reset eye color to black
-        self.setEyeColor(0x00000000,"LedEye")
+        #Reset eye color to white
+        self.initEyes(color)
         self.setEyeColor(color,"LedEyeCorner")
         if configuration == "EyeTop":
             self.setEyeColor(color, "LedEyeTop")
@@ -392,10 +391,18 @@ class BasicMotions:
         except BaseException, err:
             print err
 
+    def initEyes(self, emotion = "Happy"):
+        ledProxy = self.connectToProxy("ALLeds")
+        if ("sad" != emotion and emotion != 0x00600088 and
+            "scared1" != emotion and emotion != "scared2" and emotion != 0x00000060):
+            ledProxy.fade("FaceLeds", 1, 0.1)
+        else:
+            ledProxy.fade("FaceLeds", 0, 0.1)
+
     def setEyeEmotion(self,emotion):
         configuration = self.eyeShape[emotion]
         color = self.eyeColor[emotion]
-        self.setEyeColor(0x00000000,"LedEye")
+        self.initEyes(emotion)
         self.setEyeColor(color,"LedEyeCorner")
         if configuration == "EyeTop":
             self.setEyeColor(color, "LedEyeTop")
@@ -420,6 +427,7 @@ class BasicMotions:
                 # print 'Tasklist: ', motionProxy.getTaskList();
                 time.sleep(max(max(times))+0.5)
             except BaseException, err:
+                print "***********************Did not show Emotion"
                 print err
         else:
             print("------> Did NOT Stand Up...")
@@ -429,7 +437,6 @@ class BasicMotions:
         names = list()
         times = list()
         keys = list()
-        self.bScared = False
         names.append("HeadPitch")
         times.append([0.8, 1.56, 2.12, 2.72])
         keys.append([-0.0138481, -0.0138481, -0.50933, 0.00762796])
@@ -540,7 +547,6 @@ class BasicMotions:
         names = list()
         times = list()
         keys = list()
-        self.bScared = False
         names.append("HeadPitch")
         times.append([0.8, 1.36])
         keys.append([-0.0107799, 0.500042])
@@ -755,9 +761,8 @@ class BasicMotions:
         names.append("RWristYaw")
         times.append([0.8, 2.36])
         keys.append([0.0168321, -1.21037])
-        if self.bScared == False:
-            self.updateWithBlink(names, keys, times, self.eyeColor['scared1'], self.eyeShape['scared1'])
-            self.bScared = True
+
+        self.updateWithBlink(names, keys, times, self.eyeColor['scared1'], self.eyeShape['scared1'])
 
         #self.updateWithBlink(names, keys, times, 0x00000060,"EyeNone")
 
@@ -880,7 +885,6 @@ class BasicMotions:
         names = list()
         times = list()
         keys = list()
-        self.bScared = False
         names.append("HeadPitch")
         times.append([0.8, 2.2, 2.48, 2.72, 2.96, 3.2])
         keys.append([-0.0123138, 0.50311, 0.421347, 0.46597, 0.449239, 0.50311])
@@ -992,7 +996,7 @@ class BasicMotions:
         names = list()
         times = list()
         keys = list()
-        self.bScared = False
+
         names.append("HeadPitch")
         times.append([0.8, 1.6, 2, 2.2, 2.4, 2.6, 2.8])
         keys.append([0.00762796, -0.158044, -0.6704, -0.667332, -0.6704, -0.667332, -0.6704])
@@ -1103,7 +1107,7 @@ class BasicMotions:
         names = list()
         times = list()
         keys = list()
-        self.bScared = False
+
         names.append("HeadPitch")
         times.append([0.8, 2.12, 2.36, 2.56, 2.76, 2.96])
         keys.append([-0.0153821, -0.073674, -0.046062, -0.046062, -0.046062, -0.046062])

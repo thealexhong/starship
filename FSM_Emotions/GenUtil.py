@@ -54,7 +54,7 @@ class GenUtil:
                 self.showScaredEyes()
 
             if not self.wasJustScared:
-                self.naoMotions.naoStand()
+                self.naoMotions.naoStand(0.2)
                 self.naoMotions.naoBreathOFF()
 
             if oe == "Happy2":

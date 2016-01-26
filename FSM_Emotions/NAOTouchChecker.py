@@ -37,7 +37,7 @@ def SubscribeAllTouchEvent():
         print "Subcribe Touch Events"
         name = "naoTouchChecker"
         onTouch = "onTouched"
-        sensors = [#"RightBumperPressed", "LeftBumperPressed",
+        sensors = ["RightBumperPressed", "LeftBumperPressed",
                    "FrontTactilTouched", "MiddleTactilTouched",
                    "RearTactilTouched", "HandRightBackTouched", "HandRightLeftTouched", "HandRightRightTouched",
                    "HandLeftBackTouched", "HandLeftLeftTouched", "HandLeftRightTouched"]
@@ -48,15 +48,15 @@ def SubscribeAllTouchEvent():
 def UnsubscribeAllTouchEvent():
     global subscribed
     if subscribed:
+        subscribed = False
         name = "naoTouchChecker"
-        sensors = [#"RightBumperPressed", "LeftBumperPressed",
+        sensors = ["RightBumperPressed", "LeftBumperPressed",
                    "FrontTactilTouched", "MiddleTactilTouched",
                    "RearTactilTouched", "HandRightBackTouched", "HandRightLeftTouched", "HandRightRightTouched",
                    "HandLeftBackTouched", "HandLeftLeftTouched", "HandLeftRightTouched"]
         for sensor in sensors:
             memory.unsubscribeToEvent(sensor, name)
         print "Unsubcribe Touch Events"
-        subscribed = False
 
 
 # NAOip = "luke.local"

@@ -94,7 +94,7 @@ class FSMEndDayStates:
     def dayEndIntro(self):
         self.getUserFSMVariables()
 
-        sayText = "Hello again " + self.userName + ", how was the rest of your day?"
+        sayText = "Hello again " + self.userName + ", how was the rest of your, day?"
         self.FSMBody.sayWithEmotion(sayText)
 
         writeText = "How was their day? (1) Good, (2) Bad, ('') No Response"
@@ -125,7 +125,7 @@ class FSMEndDayStates:
         return appraiseState
 
     def dayEndBad(self):
-        sayText = "Oh, I'm sorry to hear that. there is always tomorrow to look forward to."
+        sayText = "Oh, I'm sorry to hear that, there is always tomorrow to look forward to."
         self.FSMBody.sayWithEmotion(sayText)
 
         self.FSMBody.setFSMState(self.FSMBody.state+1)
