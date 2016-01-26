@@ -1,20 +1,22 @@
 # utility functions
-import time
 import datetime
-from NAO_Util.BasicMotions import BasicMotions
-from FoodDBManager import FoodDBManager
 import random
+import time
+
+from FoodDBManager import FoodDBManager
+
 
 class GenUtil:
-    def __init__(self, naoMotions = BasicMotions()):
+    def __init__(self, naoMotions):
         # no inits
         self.emotionExpressionDict = ["Happy", "Sad", "Fearful", "Angry", "Surprised", "Hopeful",
                                       "Happy2", "Sad2", "Fearful2", "Angry2", "Surprised2",
-                                      "Scared", "Hopeful2"]
+                                      "Scared2", "Hopeful2"]
                                     
         self.numOE = len(self.emotionExpressionDict)
         self.naoMotions = naoMotions
         self.naoIsSafe = True
+        self.wasJustScared = False
         self.fDB = FoodDBManager()
 		
     def toNum(self, numAsString):
@@ -32,7 +34,7 @@ class GenUtil:
         # expresses NAOs emotion through what ever was picked as the observable expression
         if obserExpresNum == -1:
             print "Neutral ", "Face"
-            self.naoEmotionalVoiceSay("I am " + "Neutral", obserExpresNum)
+            # self.naoEmotionalVoiceSay("I am " + "Neutral", obserExpresNum)
         else:
             oe = self.emotionExpressionDict[obserExpresNum]
             print oe, "Face"
@@ -50,7 +52,10 @@ class GenUtil:
                 self.showHopeEyes()
             elif "Scared" in oe:
                 self.showScaredEyes()
-                
+
+            if not self.wasJustScared:
+                self.naoMotions.naoStand()
+
             if oe == "Happy2":
                 self.showHappyBody()
             elif oe == "Sad2":
@@ -61,8 +66,13 @@ class GenUtil:
                 self.showAngryBody()
             elif oe == "Hopeful2":
                 self.showHopeBody()
-            elif oe == "Scared2":
+            elif oe == "Scared2" and not self.wasJustScared:
                 self.showScaredBody()
+                self.wasJustScared = True
+
+            if oe != "Scared2":
+                self.naoMotions.naoStand()
+                self.wasJustScared = False
             
 
     def naoEmotionalSay(self, sayText, sayEmotionExpres = -1, moveIterations=1):
@@ -85,40 +95,52 @@ class GenUtil:
 
 ################################################ Eyes
     def showHappyEyes(self):
+        self.naoMotions.setEyeEmotion('happy')
         print "My eyes are Happy"
        
     def showSadEyes(self):
+        self.naoMotions.setEyeEmotion('sad')
         print "My eyes are Sad"
         
     def showFearEyes(self):
+        self.naoMotions.setEyeEmotion('fear')
         print "My eyes are Fear"
             
     def showAngryEyes(self):
+        self.naoMotions.setEyeEmotion('anger')
         print "My eyes are Angry"
 
     def showHopeEyes(self):
+        self.naoMotions.setEyeEmotion('hope')
         print "My eyes are Hopeful"
      
     def showScaredEyes(self):
+        self.naoMotions.setEyeEmotion('scared1')
         print "My eyes are Scared"
 
 ################################################# Body
     def showHappyBody(self):
+        self.naoMotions.happyEmotion()
         print "My body is Happy"
        
     def showSadBody(self):
+        self.naoMotions.sadEmotion()
         print "My body is Sad"
         
     def showFearBody(self):
+        self.naoMotions.fearEmotion()
         print "My body is Fear"
             
     def showAngryBody(self):
+        self.naoMotions.angerEmotion()
         print "My body is Angry"
 
     def showHopeBody(self):
+        self.naoMotions.hopeEmotion()
         print "My body is Hopeful"
      
     def showScaredBody(self):
+        self.naoMotions.scaredEmotion1()
         print "My body is Scared"
 
 

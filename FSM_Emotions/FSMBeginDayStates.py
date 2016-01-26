@@ -72,7 +72,7 @@ class FSMBeginDayStates:
                 self.hasAskedBreakfast, self.hasTalkedJapan, self.hasTalkedParis]
 
     def writeUserFSMVariables(self):
-        fileName = "ProgramDataFiles\\" + str(self.userNumber) + self.userName + "_morningVars.txt"
+        fileName = "ProgramDataFiles\\" + str(self.userNumber) + self.userName + "_Vars.txt"
         varNames = ["weatherIsNice", "canEatPoultry", "canEatGluten", "canEatFish",
                     "exerciseSets", "exerciseSuggested",
                     "meal1Suggested", "meal2Suggested", "meal3Suggested",
@@ -89,6 +89,28 @@ class FSMBeginDayStates:
         jsonRow = json.dumps(jsonRow)
         print jsonRow
         FileUtilitiy.writeTextLine(fileName, jsonRow)
+        print "Wrote users VARS to file"
+
+    def getUserFSMVars(self):
+        fileName = "ProgramDataFiles\\" + str(self.userNumber) + self.userName + "_Vars.txt"
+        if FileUtilitiy.checkFileExists(fileName):
+            jsonVars = FileUtilitiy.readLinesToJSON(fileName)
+            jsonVars = jsonVars[-1]
+            
+            print "Loaded old VARS"
+            print jsonVars
+            print
+            
+            self.canEatPoultry = jsonVars['canEatPoultry']
+            self.canEatGluten = jsonVars['canEatGluten']
+            self.canEatFish = jsonVars['canEatFish']
+            self.hasTalkedJapan = jsonVars['hasTalkedJapan']
+            self.hasTalkedParis = jsonVars['hasTalkedParis']
+            self.exerciseSets = jsonVars['exerciseSets']
+        else:
+            # keep own files
+            print "Didn't need to grab VARS"
+            pass
 
 
     # ===================================================================
@@ -96,8 +118,10 @@ class FSMBeginDayStates:
     # ===================================================================
 
     def morningIntro(self):
+        self.getUserFSMVars()
+
         sayText = "Hello " + self.userName + ". "
-        sayText += "My name is " + self.robotName + " and I am going to be your diet and fitness companion"
+        # sayText += "My name is " + self.robotName + " and I am going to be your diet and fitness companion"
         self.FSMBody.sayWithEmotion(sayText)
 
         sayText = "How has your morning been so far?"
@@ -170,7 +194,7 @@ class FSMBeginDayStates:
         if not self.hasTalkedJapan:
             self.FSMBody.setFSMState(self.FSMBody.state+1)
         else:
-            self.FSMBody.setFSMState(self.FSMBody.state+1+6)
+            self.FSMBody.setFSMState(self.FSMBody.state+1+9)
         appraiseState = False
         return appraiseState
 
@@ -590,8 +614,9 @@ class FSMBeginDayStates:
     def meal3DecideDinner(self):
         # self.genUtil.showFoodDB()
         strictIngredients = True
-        if len(self.meal2Tried) > 0:
+        if len(self.meal3Tried) > 0:
             strictIngredients = False
+        print "strictIngredients: ", 
         possibleMeals = self.genUtil.foodDBSelectWhere("dinner", self.canEatPoultry, self.canEatGluten,
                                                        self.canEatFish, strictIngredients)
         print possibleMeals
@@ -693,7 +718,7 @@ class FSMBeginDayStates:
         sayText += self.exerciseSuggested + "."
         self.FSMBody.sayWithEmotion(sayText)
 
-        self.exerciseSets = 5
+#        self.exerciseSets = 5
         sayText = "Lets say do " + str(self.exerciseSets) + " blocks."
         self.FSMBody.sayWithEmotion(sayText)
 
@@ -707,7 +732,7 @@ class FSMBeginDayStates:
         sayText += self.exerciseSuggested + "."
         self.FSMBody.sayWithEmotion(sayText)
 
-        self.exerciseSets = 5
+#        self.exerciseSets = 5
         sayText = "Let's do " + str(self.exerciseSets) + " sets of climbing a floor up and down."
         self.FSMBody.sayWithEmotion(sayText)
 
@@ -744,6 +769,8 @@ class FSMBeginDayStates:
         sayText = "Great, I hope you enjoy it. It will put you well on your way to a healthy lifestyle."
         self.FSMBody.sayWithEmotion(sayText)
 
+        self.FSMBody.drives.finishContinueousDrives()
+
         self.FSMBody.setFSMState(self.FSMBody.state+1+2)
         appraiseState = False
         return appraiseState
@@ -754,6 +781,8 @@ class FSMBeginDayStates:
         sayText += self.exerciseSuggested + " " + str(self.exerciseSets) + " times instead."
         self.FSMBody.sayWithEmotion(sayText)
 
+        self.FSMBody.drives.finishContinueousDrives()
+
         self.FSMBody.setFSMState(self.FSMBody.state+1+1)
         appraiseState = False
         return appraiseState
@@ -763,6 +792,8 @@ class FSMBeginDayStates:
         self.exerciseSets += 1
         sayText +=  self.exerciseSuggested + " " + str(self.exerciseSets) + " times instead."
         self.FSMBody.sayWithEmotion(sayText)
+
+        self.FSMBody.drives.finishContinueousDrives()
 
         self.FSMBody.setFSMState(self.FSMBody.state+1)
         appraiseState = False

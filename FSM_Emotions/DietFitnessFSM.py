@@ -100,8 +100,8 @@ class DietFitnessFSM:
 		# stateMachineInUse = self.stateMethodNames[self.activityType]
 		s = self.state
 		###### for testing all states
-		s = self.testState
-		self.testState += 1
+#		s = self.testState
+#		self.testState += 1
 		######
 
 		if not self.genUtil.checkSafety():
@@ -617,7 +617,7 @@ class DietFitnessFSM:
 		# self.setFSMState(self.state)
 		time.sleep(1)
 
-		appraiseState = False
+		appraiseState = True
 		return appraiseState
 
 	# ======================= Setters and Getters
@@ -648,9 +648,12 @@ class DietFitnessFSM:
 	def sendUserEmotion(self):
 		print "Sending user emotion"
 		# userEmotionFileName = "ProgramDataFiles\userEmotionTextDump.txt"
-		userEmotionFileName = "..\\Data_Files\\out_emotionmodelJSON_test.txt"
+		# userEmotionFileName = "..\\Data_Files\\out_emotionmodelJSON_test.txt"
+		userEmotionFileName = "..\\Data_Files\\out_emotionmodelJSON.txt"
 
 		ueFileLines = FileUtilitiy.readTextLines(userEmotionFileName)
+		# print "********************************************"
+		# print ueFileLines
 		ueJson = json.loads(ueFileLines[-1])
 
 		ueValence = ueJson["valence"]

@@ -52,18 +52,13 @@ class FoodDBManager:
                       strictIngredients = False):
         sqlStr = "SELECT * FROM " + self.dbName + " "
         sqlStr += "WHERE mealType='" + mealType + "' "
-        if (not canEatPoultry) or (not canEatGluten) or (not canEatFish) or strictIngredients:
-            sqlStr += "AND "
-        if (not canEatPoultry) or strictIngredients:
-            sqlStr += "hasPoultry='" + str(canEatPoultry) + "' "
-            if (not canEatGluten) or (not canEatFish) or strictIngredients:
-                sqlStr += "AND "
-        if (not canEatGluten) or strictIngredients:
-            sqlStr += "hasGluten='" + str(canEatGluten) + "' "
-            if (not canEatFish) or strictIngredients:
-                sqlStr += "AND "
-        if (not canEatFish) or strictIngredients:
-            sqlStr += "hasFish='" + str(canEatFish) + "' "
+
+        if (not canEatGluten) or (strictIngredients and (mealType == "breakfast" or mealType == "lunch")):
+            sqlStr += "AND hasGluten='" + str(canEatGluten) + "' "
+        if (not canEatPoultry) or (strictIngredients and mealType == "lunch"):
+            sqlStr += "AND hasPoultry='" + str(canEatPoultry) + "' "
+        if (not canEatFish) or (strictIngredients and mealType == "dinner"):
+            sqlStr += "AND hasFish='" + str(canEatFish) + "' "
 
         print sqlStr
         self.c.execute(sqlStr)

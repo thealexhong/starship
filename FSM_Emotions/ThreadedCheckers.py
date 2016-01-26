@@ -44,6 +44,7 @@ class ThreadedChecker(threading.Thread):
         print "MUCH BETTER"
         # tkMessageBox.showinfo("Freaking Out", "HOLY CRAP")
         self.genUtil.naoIsSafe = True
+        # self.genUtil.naoStand()
 
     def quit(self):
         self.root.quit()

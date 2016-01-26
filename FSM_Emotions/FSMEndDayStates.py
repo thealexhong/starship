@@ -1,6 +1,7 @@
 import GenUtil
 import random
 import FileUtilitiy
+import json
 
 class FSMEndDayStates:
     def __init__(self, genUtil, FSMBody, userName = "Human", userNumber = 1, robotName = "NAO"):
@@ -60,7 +61,8 @@ class FSMEndDayStates:
                 self.meal1Suggested, self.meal2Suggested, self.meal3Suggested]
 
     def getUserFSMVariables(self):
-        fileName = "ProgramDataFiles\\" + str(self.userNumber) + self.userName + "_morningVars.txt"
+        fileName = "ProgramDataFiles\\" + str(self.userNumber) + self.userName + "_Vars.txt"
+        print fileName
         jsonVars = FileUtilitiy.readLinesToJSON(fileName)
         jsonVars = jsonVars[-1]
         print jsonVars
@@ -74,6 +76,16 @@ class FSMEndDayStates:
         self.meal2Suggested = jsonVars['meal2Suggested']
         self.meal3Suggested = jsonVars['meal3Suggested']
 
+    def updateUserFSMVariables(self):
+        fileName = "ProgramDataFiles\\" + str(self.userNumber) + self.userName + "_Vars.txt"
+        jsonVars = FileUtilitiy.readLinesToJSON(fileName)
+        jsonVars = jsonVars[-1]
+        print jsonVars
+        jsonVars['exerciseSets'] = self.exerciseSets
+
+        jsonRow = json.dumps(jsonVars)
+        print jsonRow
+        FileUtilitiy.writeTextLine(fileName, jsonRow)
 
     # ===================================================================
     # ========================== End of Day Methods =====================
@@ -369,10 +381,10 @@ class FSMEndDayStates:
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
             elif textInput.lower() == "2":
                 upbLikeli = self.FSMBody.drives.gotNewBranch(False)
-                self.FSMBody.setFSMState(self.FSMBody.state+3)
+                self.FSMBody.setFSMState(self.FSMBody.state+1+3)
             else:
                 upbLikeli = self.FSMBody.drives.gotNewBranch(False)
-                self.FSMBody.setFSMState(self.FSMBody.state+2)
+                self.FSMBody.setFSMState(self.FSMBody.state+1+2)
         else:
             urLikeli = self.FSMBody.drives.askedUser(False)
             self.FSMBody.setFSMState(self.FSMBody.state)
@@ -572,7 +584,7 @@ class FSMEndDayStates:
         return appraiseState
 
     def meal3CheckinNoHad(self):
-        sayText = "In that case, be sure to have the " + self.meal3Suggested + " when it comes time for dinner tomorrow."
+        sayText = "In that case, be sure to have the " + self.meal3Suggested + " when it comes time for dinner today."
         self.FSMBody.sayWithEmotion(sayText)
 
         self.FSMBody.setFSMState(self.FSMBody.state+1)
@@ -591,9 +603,11 @@ class FSMEndDayStates:
             urLikeli = self.FSMBody.drives.askedUser(True)
             if textInput.lower() == "1":
                 upbLikeli = self.FSMBody.drives.gotNewBranch(True)
+                udseLikeli = self.FSMBody.drives.checkinExercise(True)
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
             else:
                 upbLikeli = self.FSMBody.drives.gotNewBranch(False)
+                udseLikeli = self.FSMBody.drives.checkinExercise(False)
                 self.FSMBody.setFSMState(self.FSMBody.state+1 +4)
         else:
             urLikeli = self.FSMBody.drives.askedUser(False)
@@ -637,6 +651,8 @@ class FSMEndDayStates:
         sayText += str(self.exerciseSets) + " of them."
         self.FSMBody.sayWithEmotion(sayText)
 
+        self.FSMBody.drives.finishContinueousDrives()
+
         self.FSMBody.setFSMState(self.FSMBody.state+1 +9)
         appraiseState = False
         return appraiseState
@@ -646,6 +662,8 @@ class FSMEndDayStates:
         sayText += "Try going for the same number of sets again tomorrow."
         self.FSMBody.sayWithEmotion(sayText)
 
+        self.FSMBody.drives.finishContinueousDrives()
+
         self.FSMBody.setFSMState(self.FSMBody.state+1 +8)
         appraiseState = False
         return appraiseState
@@ -653,8 +671,10 @@ class FSMEndDayStates:
     def exerciseCheckinYesDidEasyDiff(self):
         sayText = "I see, sounds like I went to easy on you, tomorrow you should go "
         self.exerciseSets += 2
-        sayText += self.exerciseSuggested + " " + str(self.exerciseSets) + "."
+        sayText += self.exerciseSuggested + " " + str(self.exerciseSets) + " times."
         self.FSMBody.sayWithEmotion(sayText)
+
+        self.FSMBody.drives.finishContinueousDrives()
 
         self.FSMBody.setFSMState(self.FSMBody.state+1 +7)
         appraiseState = False
@@ -712,6 +732,8 @@ class FSMEndDayStates:
         sayText = "Interesting, I'll keep that in mind. I'm glad to see you are being creative with your exercise routines."
         self.FSMBody.sayWithEmotion(sayText)
 
+        self.FSMBody.drives.finishContinueousDrives()
+
         self.FSMBody.setFSMState(self.FSMBody.state+1 +4)
         appraiseState = False
         return appraiseState
@@ -745,6 +767,8 @@ class FSMEndDayStates:
         sayText += "Exercise can be benificial for your blood pressure, help with weight loss and even improve your mood."
         self.FSMBody.sayWithEmotion(sayText)
 
+        self.FSMBody.drives.finishContinueousDrives()
+
         self.FSMBody.setFSMState(self.FSMBody.state+1 +2)
         appraiseState = False
         return appraiseState
@@ -755,14 +779,18 @@ class FSMEndDayStates:
         sayText += "It can be beneficial for your blood pressure, help with weight loss and even improve your mood."
         self.FSMBody.sayWithEmotion(sayText)
 
+        self.FSMBody.drives.finishContinueousDrives()
+
         self.FSMBody.setFSMState(self.FSMBody.state+1 +1)
         appraiseState = False
         return appraiseState
 
     def exerciseCheckinDontknowDid(self):
         sayText = "Its likely that if you did another exercises, it wasn't quite as beneficial. "
-        sayText += "Tomorrow you should try to do the " + self.exerciseSuggested + "."
+        sayText += "Tomorrow you should try to " + self.exerciseSuggested + "."
         self.FSMBody.sayWithEmotion(sayText)
+
+        self.FSMBody.drives.finishContinueousDrives()
 
         self.FSMBody.setFSMState(self.FSMBody.state+1)
         appraiseState = False
@@ -779,6 +807,8 @@ class FSMEndDayStates:
 
         sayText = "Bye for now."
         self.FSMBody.sayWithEmotion(sayText)
+        
+        self.updateUserFSMVariables()
 
         self.FSMBody.setFSMState(0)
         appraiseState = False

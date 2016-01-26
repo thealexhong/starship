@@ -1,20 +1,24 @@
-from NAO_Util.BasicMotions import BasicMotions
+from naoqi import ALBroker
 from naoqi import ALProxy
 
-import sys
-import time
-import NAO_Util.fileUtilitiy
+import FileUtilitiy
+from BasicMotions import BasicMotions
 from DietFitnessFSM import DietFitnessFSM
 from GenUtil import GenUtil
-import FileUtilitiy
+from NAOTouchChecker import NAOTouchChecker
 from ThreadedCheckers import ThreadedChecker
 from UserAffectGenerator import UserAffectGenerator
+
 
 def main(NAOip, NAOport):
     naoMotions = BasicMotions(NAOip, NAOport)
     robotName = "Luke"
     genUtil = GenUtil(naoMotions)
     genUtil.showFoodDB()
+
+    myBroker = ALBroker("myBroker", "0.0.0.0", 0, NAOip, NAOport)
+    global naoTouchChecker
+    naoTouchChecker = NAOTouchChecker(genUtil, NAOip, NAOport)
 
     thread1 = ThreadedChecker(1, "Main Checker #1", genUtil)
     thread2 = UserAffectGenerator(2, "User Affect Generator #1", 3, genUtil)
@@ -32,7 +36,7 @@ def main(NAOip, NAOport):
     userInfo = initiateUserInfo(userName, userNumber, activityInteractionType, dateTime)
 
     # naoMotions.naoSit()
-    # naoMotions.naoStand()
+    naoMotions.naoStand()
     # naoMotions.naoWaveBoth()
 
     # ============================================================= Start Functionality
@@ -40,7 +44,7 @@ def main(NAOip, NAOport):
     print
     print
     thread1.start()
-    thread2.start()
+    # thread2.start()
 
     dietFitnessFSM = DietFitnessFSM(genUtil, robotName, userName, userNumber, activityInteractionType)
     [currentState, robotEmotionNum, obserExpresNum] = dietFitnessFSM.getFSMState()
@@ -55,9 +59,10 @@ def main(NAOip, NAOport):
 
         [currentState, robotEmotionNum, obserExpresNum, appraiseState] = dietFitnessFSM.activityFSM()
     thread1.quit()
-    thread2.quit()
-
+    # thread2.quit()
     naoMotions.naoSit()
+    myBroker.shutdown()
+
     print
     [stateTimeStamp, stateDateTime, fsmStateHist,
      reHist, oeHist, driveStatHist, fsmStateNameHist] = dietFitnessFSM.getHistories()
@@ -101,9 +106,10 @@ def testNaoConnection(NAOip, NAOport):
     try:
         naoBehavior = connectToProxy(NAOip, NAOport, "ALBehaviorManager")
         names = naoBehavior.getInstalledBehaviors()
-        print names
+        print "Names: ", names
     
         naoMotions = BasicMotions(NAOip, NAOport)
+        print "Made Basic Motions"
         naoMotions.naoSay("Connected!")
         # naoMotions.naoSit()
         # naoMotions.naoShadeHeadSay("Hello, the connection worked!")
@@ -126,11 +132,11 @@ def connectToProxy(NAOip, NAOport, proxyName):
         return proxy
 
 if __name__ == '__main__':
-    simulated = False
+    simulated = True
     if simulated:
         #simulated NAO
         NAOIP = "127.0.0.1"
-        NAOPort = 63899
+        NAOPort = 52030
     else:
         #real NAO
         NAOIP = "luke.local"

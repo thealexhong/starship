@@ -49,3 +49,8 @@ def readLinesToJSON(textFile):
 			linesJson.append(jsLine)
 
 	return linesJson
+
+def checkFileExists(fileName):
+	fWin = fileName
+	funi = fileName.replace('\\', '/')
+	return (os.path.isfile(fWin) or os.path.isfile(funi))
