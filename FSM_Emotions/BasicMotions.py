@@ -64,6 +64,14 @@ class BasicMotions:
         print("------> Said something: " + text)
         return moveID
 
+    def naoBreathON(self):
+        motionProxy = self.connectToProxy("ALMotion")
+        motionProxy.setBreathEnabled('Body', True)
+
+    def naoBreathOFF(self):
+        motionProxy = self.connectToProxy("ALMotion")
+        motionProxy.setBreathEnabled('Body', False)
+
     def naoSayWait(self, text, waitTime):
         speechProxy = self.connectToProxy("ALTextToSpeech")
 

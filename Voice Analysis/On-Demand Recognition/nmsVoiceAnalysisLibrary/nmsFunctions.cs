@@ -759,8 +759,8 @@ namespace nmsVoiceAnalysisLibrary
             //resultsPath = @"C:\Users\ASB Workstation\Desktop\emoDB\wav\results_500ms_8bit_5_11025hz.csv";
             //string path = @"C:\Users\ASB Workstation\Desktop\emoDB\wav\emoDB_content_angry";
             //resultsPath = @"C:\Users\ASB Workstation\Desktop\emoDB\wav\results_content_angry_files_only.csv";
-            string path = @"C:\Users\ASB Workstation\Desktop\Yuma\semaine_additional_12102015\sad_16bit_11025hz";
-            resultsPath = @"C:\Users\ASB Workstation\Desktop\Yuma\semaine_additional_12102015\sad_16bit_11025hz_1s.csv";
+            string path = @"C:\Users\Yuma\Desktop\20150120\16bit_1s";
+            resultsPath = @"C:\Users\Yuma\Desktop\20150120\16bit_1s\features_16bit_1s.csv";
 
             pathName = path;
             

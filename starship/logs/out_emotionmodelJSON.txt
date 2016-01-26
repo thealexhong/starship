@@ -1,5 +1,0 @@
-{"valence":0, "arousal":0,"timeStamp":2016-01-19 22:24:24.607}
-{"valence":0, "arousal":0,"timeStamp":2016-01-19 22:24:27.581}
-{"valence":0, "arousal":0,"timeStamp":2016-01-19 22:24:30.650}
-{"valence":0, "arousal":0,"timeStamp":2016-01-19 22:24:33.626}
-{"valence":0, "arousal":0,"timeStamp":2016-01-19 22:24:36.605}

@@ -35,9 +35,11 @@ def main(NAOip, NAOport):
     activityInteractionType = activityDayCompMorning
     userInfo = initiateUserInfo(userName, userNumber, activityInteractionType, dateTime)
 
+    genUtil.showHappyEyes()
     # naoMotions.naoSit()
     naoMotions.naoStand()
     # naoMotions.naoWaveBoth()
+    naoMotions.naoBreathON()
 
     # ============================================================= Start Functionality
     print("State Machine Started")
@@ -60,7 +62,9 @@ def main(NAOip, NAOport):
         [currentState, robotEmotionNum, obserExpresNum, appraiseState] = dietFitnessFSM.activityFSM()
     thread1.quit()
     # thread2.quit()
+    naoMotions.naoBreathOFF()
     naoMotions.naoSit()
+    NAOTouchChecker.UnsubscribeAllTouchEvent()
     myBroker.shutdown()
 
     print
@@ -132,7 +136,7 @@ def connectToProxy(NAOip, NAOport, proxyName):
         return proxy
 
 if __name__ == '__main__':
-    simulated = True
+    simulated = False
     if simulated:
         #simulated NAO
         NAOIP = "127.0.0.1"

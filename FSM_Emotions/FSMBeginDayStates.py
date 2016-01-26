@@ -261,7 +261,7 @@ class FSMBeginDayStates:
         sayText += "items in the world."
         self.FSMBody.sayWithEmotion(sayText)
 
-        sayText = "Where are you from, what's your home town?"
+        sayText = "Where are you from, what's your hometown?"
         self.FSMBody.sayWithEmotion(sayText)
         writeText = "Was their hometown the same? (1) Yes, (2) No, ('') No Response"
         textInput = self.FSMBody.getUserInput(writeText).lower()

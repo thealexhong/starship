@@ -80,6 +80,7 @@ namespace nmsVoiceAnalysisLibrary
         /* Historic .txt declaration */
         private StreamWriter HA;
         private StreamWriter tw;
+        private StreamWriter log;
         private StreamWriter arff;
         private StreamWriter voiceOutput;
         private double valence;
@@ -273,11 +274,11 @@ namespace nmsVoiceAnalysisLibrary
         {
             int nmsConfigTestDataResult;
             short lengthOfSegmentInSeconds;
-            short calibrationType = 2;
+            short calibrationType = 5;
             /* Configure the background noise. Default 1000 */
             short backgroundLevel = 1000;
             waveOutSamplesPerSecond = 11025;
-            lengthOfSegmentInSeconds = 2;
+            lengthOfSegmentInSeconds = 1;
             nmsConfigTestDataResult = nmsCOMcallee.nmsConfigTestData(ref waveOutSamplesPerSecond,
                                                                      ref backgroundLevel,
                                                                      ref lengthOfSegmentInSeconds,
@@ -395,6 +396,8 @@ namespace nmsVoiceAnalysisLibrary
             Console.WriteLine();
             tw = File.CreateText("VoiceAnalysisResults.txt");
             tw.Close();
+            log = File.CreateText("LogFeatureVector.txt");
+            log.Close();
             arff = File.CreateText("FeatureVector.arff");
             arff.WriteLine("@relation newfeaturevector\n");
 
@@ -475,6 +478,8 @@ namespace nmsVoiceAnalysisLibrary
 
             cEndPosSec += 2;
             /* If Analysis is ready */
+            Console.WriteLine("Sound captured and processed");
+            Console.WriteLine(processBufferResult);
             if (processBufferResult == NMS_PROCESS_ANALYSISREADY)
             {
                 silenceCount = 0;        
@@ -482,6 +487,10 @@ namespace nmsVoiceAnalysisLibrary
                 String fvStr = CopyValuesFromEmoArrayIntoString(emoValsArray, aIres);
                 Console.WriteLine("Features extracted!");
                 Console.WriteLine(fvStr);
+
+                log = File.AppendText("LogFeatureVector.txt");
+                log.WriteLine(fvStr);
+                log.Close();
 
                 string[] lines = System.IO.File.ReadAllLines("FeatureVector.arff");
                 Console.WriteLine(lines.Length);
@@ -532,6 +541,7 @@ namespace nmsVoiceAnalysisLibrary
                 }
                 Console.WriteLine("Valence1: " + valence);
                 Console.WriteLine("Arousal: " + arousal);
+                Console.WriteLine("YEAHHHHHHHHHHHH");
                 //string[] lines2 = System.IO.File.ReadAllLines("..\\..\\voiceOutput.txt");
                 //lines2[0] = valence.ToString();
                 //lines2[1] = arousal.ToString();

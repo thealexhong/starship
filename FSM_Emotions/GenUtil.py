@@ -55,6 +55,7 @@ class GenUtil:
 
             if not self.wasJustScared:
                 self.naoMotions.naoStand()
+                self.naoMotions.naoBreathOFF()
 
             if oe == "Happy2":
                 self.showHappyBody()
@@ -72,6 +73,7 @@ class GenUtil:
 
             if oe != "Scared2":
                 self.naoMotions.naoStand()
+                self.naoMotions.naoBreathON()
                 self.wasJustScared = False
             
 

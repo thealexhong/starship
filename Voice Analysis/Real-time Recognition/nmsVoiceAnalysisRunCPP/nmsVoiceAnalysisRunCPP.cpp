@@ -2,7 +2,7 @@
 #include <iostream>
 
 //Import the type library
-#import "..\nmsVoiceAnalysisLibrary\bin\Debug\nmsVoiceAnalysisLibrary.tlb" raw_interfaces_only
+#import "..\nmsVoiceAnalysisLibrary\bin\Release\nmsVoiceAnalysisLibrary.tlb" raw_interfaces_only
 using namespace nmsVoiceAnalysisLibrary;
 using namespace System;
 using namespace std;
