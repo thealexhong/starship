@@ -211,3 +211,12 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 starship/starship.vcxproj
+KinectDevSamples/KinectExplorer-D2D/KinectExplorer-D2D.vcxproj
+KinectDevSamples/KinectExplorer-D2D/KinectExplorer-D2D.vcxproj
+starship/batFiles/blvalence.bat
+starship/logs/log.csv
+starship/testDataFiles/blarousal_test.arff
+starship/testDataFiles/blvalence_test.arff
+starship/starship.vcxproj
+starship/batFiles/blarousal.bat
+starship/logs/out_emotionmodelJSON.txt
