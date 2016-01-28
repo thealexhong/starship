@@ -1,0 +1,10 @@
+@relation MArousalResponse
+
+@attribute blvalence real
+@attribute blarousal real
+@attribute vvalence real
+@attribute varousal real
+@attribute arousal {-2,-1,0,1,2}
+
+@data
+-2,-1,0,0,?
