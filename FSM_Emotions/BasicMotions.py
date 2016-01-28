@@ -33,7 +33,7 @@ class BasicMotions:
         tts.setParameter("doubleVoice", 0)
         tts.setParameter("doubleVoiceLevel", 0)
         audioProxy = self.connectToProxy("ALAudioDevice")
-        audioProxy.setOutputVolume(100/2)
+        audioProxy.setOutputVolume(100)
         #Valid Value:50 to 200
         self.ttsPitch={      'default':   100, # \\vct=value\\
                              'happy':     120,
@@ -51,13 +51,14 @@ class BasicMotions:
                              'hope':      "\\rspd=100\\",
                              'anger':     "\\rspd=110\\"}
         #Valid Value: 0 to 100
-        self.ttsVolume={     'default':   "\\vol=050\\",
-                             'happy':     "\\vol=060\\",
-                             'sad':       "\\vol=035\\",
-                             'scared':    "\\vol=060\\",
-                             'fear':      "\\vol=050\\",
-                             'hope':      "\\vol=050\\",
-                             'anger':     "\\vol=060\\"}
+        default = 50+15
+        self.ttsVolume={     'default':   "\\vol=0" + str(default) + "\\",
+                             'happy':     "\\vol=0" + str(default+10) + "\\",
+                             'sad':       "\\vol=0" + str(default-15) + "\\",
+                             'scared':    "\\vol=0" + str(default+10) + "\\",
+                             'fear':      "\\vol=0" + str(default) + "\\",
+                             'hope':      "\\vol=0" + str(default) + "\\",
+                             'anger':     "\\vol=0" + str(default+10) + "\\"}
 
     def preMotion(self):
         NAOReactionChecker.UnsubscribeAllEvents()

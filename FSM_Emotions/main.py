@@ -32,7 +32,7 @@ def main(NAOip, NAOport, name):
     userName = "Test User"
     userNumber = "1"
     dateTime = genUtil.getDateTime()
-    activityInteractionType = activityDayCompMorning
+    activityInteractionType = activityDayCompDayEnd
     userInfo = initiateUserInfo(userName, userNumber, activityInteractionType, dateTime)
 
     # runSomeTest(genUtil)
@@ -74,7 +74,7 @@ def main(NAOip, NAOport, name):
     # thread2.quit()
     genUtil.showHappyEyes()
     naoMotions.naoAliveOff()
-    naoMotions.naoSit()
+    # naoMotions.naoSit()
     NAOReactionChecker.UnsubscribeAllEvents()
     myBroker.shutdown()
 
@@ -161,7 +161,7 @@ if __name__ == '__main__':
         NAOIP = "127.0.0.1"
         NAOPort = 52030
     else:
-        useLuke = True
+        useLuke = False
         #real NAO
         if useLuke:
             NAOIP = "luke.local"

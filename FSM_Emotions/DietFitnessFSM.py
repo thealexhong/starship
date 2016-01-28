@@ -697,10 +697,14 @@ class DietFitnessFSM:
 		ueFileLines = FileUtilitiy.readTextLines(userEmotionFileName)
 		# print "********************************************"
 		# print ueFileLines
-		ueJson = json.loads(ueFileLines[-1])
+		ueJsonLines = ueFileLines[-3:]
+		ueValence = 0
+		ueArousal = 0
+		for row in ueJsonLines:
+			ueJson = json.loads(row)
+			ueValence += ueJson["valence"] / 3.0
+			ueArousal += ueJson["arousal"] / 3.0
 
-		ueValence = ueJson["valence"]
-		ueArousal = ueJson["arousal"]
 		print "Valence: ", ueValence, ", Arousal: ", ueArousal
 
 		return self.drives.currentUserEmotionInput(ueValence, ueArousal)

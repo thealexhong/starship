@@ -421,24 +421,24 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			std::string path_to_java = "C:\\Program Files\\Java\\jre1.8.0_72\\bin\\java.exe";
 			std::string path_to_weka = "C:\\Program Files (x86)\\Weka-3-6\\weka.jar";
 			*/
-			
+			/*
 			// Personal Workstation
 			std::string path_to_local_dir = "C:\\Users\\Alex\\Desktop\\starship\\starship\\";
 			std::string path_to_java = "C:\\Program Files\\Java\\jdk1.8.0_05\\bin\\java.exe";
 			std::string path_to_weka = "C:\\Program Files (x86)\\Weka-3-6\\weka.jar";
-			
+			*/
 			/*
 			// Workstation that powers Brian. ASBlab.
 			std::string path_to_local_dir = "C:\\Users\\ASB Workstation\\Desktop\\starship\\starship\\";
 			std::string path_to_java = "C:\\Program Files (x86)\\Java\\jre7\\bin\\java.exe";
 			std::string path_to_weka = "C:\\Program Files\\Weka-3-6\\weka.jar";
 			*/
-			/*
+			
 			// Yuma's workstation
 			std::string path_to_local_dir = "C:\\Users\\Yuma\\Desktop\\starship\\starship\\";
 			std::string path_to_java = "C:\\Program Files\\Java\\jdk1.7.0_80\\bin\\java.exe";
 			std::string path_to_weka = "C:\\Program Files\\Weka-3-6\\weka.jar";
-			*/
+			
 			/*****************************************************************************************************************************************************************************/
 			/*****************************************************************************************************************************************************************************/
 

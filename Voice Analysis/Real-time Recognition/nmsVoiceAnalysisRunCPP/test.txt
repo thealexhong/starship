@@ -1,0 +1,14 @@
+
+
+=== Predictions on test data ===
+
+ inst#     actual  predicted error prediction
+     1        1:?    2:happy       0.994 
+
+
+
+=== Predictions on test data ===
+
+ inst#     actual  predicted error prediction
+     1        1:?        5:2       0.5 
+

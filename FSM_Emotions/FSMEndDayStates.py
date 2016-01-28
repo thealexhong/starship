@@ -417,7 +417,7 @@ class FSMEndDayStates:
         sayText = "Interesting, that sounds really delicious, I'll keep that in mind as a future recommendation."
         self.FSMBody.sayWithEmotion(sayText)
 
-        self.FSMBody.setFSMState(self.FSMBody.state+1 +3)
+        self.FSMBody.setFSMState(self.FSMBody.state+1 +2)
         appraiseState = False
         return appraiseState
 

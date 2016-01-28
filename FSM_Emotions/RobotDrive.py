@@ -278,6 +278,8 @@ class RobotDriveCollection:
 		return self.driveUserResponses.appraiseEmotions()
 		
 	def currentUserEmotionInput(self, userValance, userArousal):
+		userValance /= 2
+		userArousal /= 2
 		self.sumArou += userArousal
 		self.sumVal += userValance
 		self.numAffect += 1

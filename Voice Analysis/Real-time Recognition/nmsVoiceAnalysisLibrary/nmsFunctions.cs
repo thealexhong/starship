@@ -87,8 +87,8 @@ namespace nmsVoiceAnalysisLibrary
         private StreamWriter v_arff;
         private StreamWriter a_arff;
         private StreamWriter voiceOutput;
-        private string valence;
-        private string arousal;
+        private string valence = "-3";
+        private string arousal = "-3";
         
         /* Main Variables and Parameters */
         private DateTime gamestart = DateTime.Now;
