@@ -272,8 +272,9 @@ class GenUtil:
             ranIndex = self.dbRowToDict(mealPos[ranMeal])['id']
             # print mealPos
             # print "ranMeal: ", ranMeal, " ranIndex: ", ranIndex, " mealsTries: ", mealsTries
-
             keepLooping = (ranIndex) in mealsTries
 
-
         return ranMeal
+
+    def naoTurnOffEyes(self):
+        self.naoMotions.naoTurnOffEyes()

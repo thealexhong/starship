@@ -72,10 +72,10 @@ def main(NAOip, NAOport, name):
         [currentState, robotEmotionNum, obserExpresNum, appraiseState] = dietFitnessFSM.activityFSM()
     thread1.quit()
     # thread2.quit()
-    genUtil.showHappyEyes()
+    genUtil.naoTurnOffEyes()
     naoMotions.naoAliveOff()
     # naoMotions.naoSit()
-    NAOReactionChecker.UnsubscribeAllEvents()
+    NAOReactionChecker.ActuallyUnsubscribeAllEvents()
     myBroker.shutdown()
 
     print
@@ -161,7 +161,7 @@ if __name__ == '__main__':
         NAOIP = "127.0.0.1"
         NAOPort = 52030
     else:
-        useLuke = False
+        useLuke = True
         #real NAO
         if useLuke:
             NAOIP = "luke.local"

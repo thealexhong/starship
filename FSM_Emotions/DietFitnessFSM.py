@@ -22,6 +22,7 @@ class DietFitnessFSM:
 		self.userNumber = userNumber
 		initialState = 1
 		self.state = initialState
+		self.s = initialState
 		self.dayCALS = 0
 		self.weekActiveMin = 0
 		
@@ -100,7 +101,7 @@ class DietFitnessFSM:
 		
 	def activityFSM(self):
 		# stateMachineInUse = self.stateMethodNames[self.activityType]
-		s = self.state
+		self.s = self.state
 		###### for testing all states
 #		s = self.testState
 #		self.testState += 1
@@ -108,54 +109,54 @@ class DietFitnessFSM:
 
 		if not self.genUtil.checkSafety():
 			if self.genUtil.naoIsTouched:
-				s = self.FSMInUse.getNumMethods() + 1 # index past methods -> reactive method
+				self.s = self.FSMInUse.getNumMethods() + 1 # index past methods -> reactive method
 			elif self.genUtil.naoIsPickedUp:
-				s = self.FSMInUse.getNumMethods() + 2 # index past methods -> reactive method
-			print "Reaction ", s
+				self.s = self.FSMInUse.getNumMethods() + 2 # index past methods -> reactive method
+			print "Reaction ", self.s
 
 		ts = self.genUtil.getTimeStamp()
 		self.stateTimeStamp.append(ts)
 		self.stateDateTime.append(self.genUtil.getDateTimeFromTime(ts))
-		self.fsmStateHist.append(s)
+		self.fsmStateHist.append(self.s)
 		self.reHist.append(self.getRENumber())
 		self.oeHist.append(self.oeHMM.getObservableExpressionNumber())
 		self.driveStatHist.append(self.drives.getDriveStatuses().tolist())
 
-		if s < len(self.FSMStateNames):
-			stateMethod_name = self.FSMStateNames[s]
+		if self.s < len(self.FSMStateNames):
+			stateMethod_name = self.FSMStateNames[self.s]
 		else:
 			stateMethod_name = "There is no state of that #"
 		self.fsmStateNameHist.append(stateMethod_name)
-		print "State: " + str(s) + " " + stateMethod_name
+		print "State: " + str(self.s) + " " + stateMethod_name
 
 		try:
 			# get the method for the current state and run it if it exisits
 
-			if 0 < s <= self.FSMInUse.getNumMethods():
+			if 0 < self.s <= self.FSMInUse.getNumMethods():
 				stateMethod = getattr(self.FSMInUse, stateMethod_name)
 			else:
 				stateMethod = getattr(self, stateMethod_name)
 			
 			# the method exists, how we can run it - runs the state method here
 			print "State ",
-			self.drives.setCurrentFSMState(s)
+			self.drives.setCurrentFSMState(self.s)
 			self.appraiseState = stateMethod()
 
 			# functions for after the state has run
-			if self.appraiseState and self.genUtil.checkSafety() and s <= self.FSMInUse.getNumMethods() :
+			if self.appraiseState and self.genUtil.checkSafety() and self.s <= self.FSMInUse.getNumMethods() :
 				# determine the emotions of the robot after this event
 				np.set_printoptions(precision=4)
 				driveStatuses = self.drives.getDriveStatuses()
 				U_in = self.drives.appraiseEmotions()
-				print "Overall U input: ", U_in
+				self.showData("Overall U input: " +  str(U_in))
 				U_feedback = self.oeHMM.getEmotionAssociation()
-				print "U Feedback: ", U_feedback
+				self.showData("U Feedback: " +  str(U_feedback))
 				newA = self.reMM.applyInputInfluence(U_in, U_feedback)
-				print newA
+				self.showData("\n" + str(newA))
 				vre = self.reMM.incrementRobotEmotion()
-				print "New RE: ", vre
+				self.showData( "New RE: " +  str(vre))
 				voe = self.oeHMM.determineObservableExpression(vre)
-				print "New OE: ", voe
+				self.showData( "New OE: " +  str(voe))
 			elif not self.genUtil.checkSafety():
 				# reactive emotion taking place
 				if self.genUtil.naoIsTouched:
@@ -163,11 +164,12 @@ class DietFitnessFSM:
 				elif self.genUtil.naoIsPickedUp:
 					self.reMM.setCurrentEmotionByNumber(5)
 				vre = self.reMM.getRobotEmotionVector()
-				print "New RE: ", vre
+				self.showData( "New RE: " +  str(vre))
 				voe = self.oeHMM.determineObservableExpression(vre)
-				print "New OE: ", voe
+				self.showData( "New OE: " +  str(voe))
+			self.showData("")
 
-			if self.genUtil.checkSafety() and s > self.FSMInUse.getNumMethods():
+			if self.genUtil.checkSafety() and self.s > self.FSMInUse.getNumMethods():
 				sitTest = False
 
 				if not sitTest:
@@ -177,8 +179,8 @@ class DietFitnessFSM:
 			# print e
 			print "An unknown FSM State Occured: ", self.getFSMState()
 			print "What happened?: " + e.message
-			s = self.FSMInUse.getNumMethods() + 1 # index past methods -> reactive method
-			self.setFSMState(s)
+			self.s = self.FSMInUse.getNumMethods() + 1 # index past methods -> reactive method
+			self.setFSMState(self.s)
 		# except Exception as e:
 		# 	print "What happened?: " + e.message
 		# 	self.setFSMState(0)
@@ -711,4 +713,13 @@ class DietFitnessFSM:
 
 	def sayWithEmotion(self, sayText):
 		self.genUtil.naoEmotionalSay(sayText, self.getOENumber())
+
+	def showData(self, showText):
+		fileName = "ProgramDataFiles\\" + str(self.userNumber) + "_" + self.usersName + "\\" + str(self.userNumber)  + "_" + self.usersName +"_Appraisals.txt"
+		if showText != "":
+			print showText
+		writeText =  "currentFSMState: " + str(self.s) + " "
+		writeText += showText
+		FileUtilitiy.writeTextLine(fileName, writeText)
+
 

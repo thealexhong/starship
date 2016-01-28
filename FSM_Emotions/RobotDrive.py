@@ -364,7 +364,7 @@ class RobotDriveCollection:
 		overallEV += userDidSugMeal1EV + userDidSugMeal2EV + userDidSugMeal3EV
 		overallEV += userDidSugExerEV
 		self.showAppraisal(overallEV, "OverallEV")
-		self.showAppraisal("")
+		# self.showAppraisal("")
 
 		return overallEV
 

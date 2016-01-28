@@ -18,40 +18,53 @@ class NAOReactionChecker(ALModule):
         
         global memory
         memory = ALProxy("ALMemory")
-        SubscribeAllEvents()
+        ActuallySubscribeAllEvents()
         
     def __del__(self):
-        UnsubscribeAllEvents()
+        print "Quitting Reaction Checker"
+        ActuallyUnsubscribeAllEvents()
         self.exit()
         
     def onTouched(self, strVarName, value):
-        if self.genUtil.naoIsSafe:
-            UnsubscribeAllEvents()
-            self.genUtil.naoWasTouched(strVarName)
-            SubscribeAllEvents()
-        else:
-            print "NAO is already scared"
+        global subscribed
+        if subscribed:
+            if self.genUtil.naoIsSafe:
+                UnsubscribeAllEvents()
+                self.genUtil.naoWasTouched(strVarName)
+                SubscribeAllEvents()
+            else:
+                print "NAO is already scared"
 
     def onPickUp(self, strVarName, value, subscriberIdentifier):
-        if self.genUtil.naoIsSafe:
-            UnsubscribeAllEvents()
-            print("Pick Up event detected:",  value)
-            if value == False:
-                self.genUtil.naoWasPickedUp()
+        global subscribed
+        if subscribed:
+            if self.genUtil.naoIsSafe:
+                UnsubscribeAllEvents()
+                print("Pick Up event detected:",  value)
+                if value == False:
+                    self.genUtil.naoWasPickedUp()
+                else:
+                    self.naoSayHappy("Thank you.")
+                SubscribeAllEvents()
             else:
-                self.naoSayHappy("Thank you.")
-            SubscribeAllEvents()
-        else:
-            print "NAO is already scared"
+                print "NAO is already scared"
 
 def SubscribeAllEvents():
+    global subscribed
+    subscribed = True
+
+def UnsubscribeAllEvents():
+    global subscribed
+    subscribed = False
+
+def ActuallySubscribeAllEvents():
     global subscribed
     if not subscribed:
         SubscribeAllTouchEvent()
         SubscribePickUpEvent()
         subscribed = True
 
-def UnsubscribeAllEvents():
+def ActuallyUnsubscribeAllEvents():
     global subscribed
     if subscribed:
         subscribed = False

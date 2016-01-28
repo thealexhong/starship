@@ -33,7 +33,7 @@ class BasicMotions:
         tts.setParameter("doubleVoice", 0)
         tts.setParameter("doubleVoiceLevel", 0)
         audioProxy = self.connectToProxy("ALAudioDevice")
-        audioProxy.setOutputVolume(100)
+        audioProxy.setOutputVolume(100/2)
         #Valid Value:50 to 200
         self.ttsPitch={      'default':   100, # \\vct=value\\
                              'happy':     120,
@@ -94,10 +94,12 @@ class BasicMotions:
         return moveID
 
     def naoAliveON(self):
+        print "Breathing and watching"
         self.naoBreathON()
         self.faceTrackingON()
 
     def naoAliveOff(self):
+        print "No more breathing and watching"
         self.naoBreathOFF()
         self.faceTrackingOFF()
 
@@ -118,7 +120,6 @@ class BasicMotions:
         tracker.unregisterAllTargets()
 
     def naoBreathON(self):
-        print "Breathing and watching"
         motionProxy = self.connectToProxy("ALMotion")
         motionProxy.setBreathEnabled('Body', True)
 
@@ -386,7 +387,8 @@ class BasicMotions:
         speechProxy.stopAll()
         print("------> Stopped All Actions")
 
-
+    def naoTurnOffEyes(self):
+        self.initEyes("sad")
 
 
 
