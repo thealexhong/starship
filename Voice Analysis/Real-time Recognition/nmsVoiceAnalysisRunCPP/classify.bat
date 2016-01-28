@@ -1,1 +1,2 @@
-java -cp weka.jar weka.classifiers.functions.Logistic -T FeatureVector.arff -l logistic_dmd.model -p 0
+java -cp weka.jar weka.classifiers.trees.RandomForest -T FeatureVectorValence.arff -l model_v_16bit_2s_type0.model -p 0
+java -cp weka.jar weka.classifiers.trees.RandomForest -T FeatureVectorArousal.arff -l model_a_16bit_2s_type0.model -p 0

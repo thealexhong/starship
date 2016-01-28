@@ -70,6 +70,11 @@ namespace nmsVoiceAnalysisLibrary
         private WaveLib.WaveInRecorder m_Recorder;
         private WaveLib.FifoStream A_Fifo = new WaveLib.FifoStream();
         private WaveLib.FifoStream m_Fifo = new WaveLib.FifoStream();
+        private int newRecordedTime = 0;
+        private int oldRecordedTime = 0;
+        private int sampleRate = 11025;
+        private int definition = 16;
+        private int segmentLength = 2;
         
         /* Buffer and Process Control variables declaration*/
         private int cStartPosSec = 0;
@@ -78,13 +83,12 @@ namespace nmsVoiceAnalysisLibrary
         private Array inpBuf;
 
         /* Historic .txt declaration */
-        private StreamWriter HA;
-        private StreamWriter tw;
         private StreamWriter log;
-        private StreamWriter arff;
+        private StreamWriter v_arff;
+        private StreamWriter a_arff;
         private StreamWriter voiceOutput;
-        private double valence;
-        private double arousal;
+        private string valence;
+        private string arousal;
         
         /* Main Variables and Parameters */
         private DateTime gamestart = DateTime.Now;
@@ -104,8 +108,6 @@ namespace nmsVoiceAnalysisLibrary
         /* Counters */
         private int silenceCount = 0;
         private int shortTermCount = 0;
-
-        public Logistic Model = new Logistic();
 
         /* Read the initial time. */
         TimeSpan ProcDuration = TimeSpan.Zero;
@@ -278,7 +280,7 @@ namespace nmsVoiceAnalysisLibrary
             /* Configure the background noise. Default 1000 */
             short backgroundLevel = 1000;
             waveOutSamplesPerSecond = 11025;
-            lengthOfSegmentInSeconds = 1;
+            lengthOfSegmentInSeconds = 2;
             nmsConfigTestDataResult = nmsCOMcallee.nmsConfigTestData(ref waveOutSamplesPerSecond,
                                                                      ref backgroundLevel,
                                                                      ref lengthOfSegmentInSeconds,
@@ -384,47 +386,67 @@ namespace nmsVoiceAnalysisLibrary
         /// Initialize Functions Above, Start Functions Below
         /// </summary>
 
-        public void Start() //int *R, int* H //jc
+        public void Start()
         {
-            /* Creates Logistic model */
-            Model.setMaxIts(2000);
-            Model.buildClassifier();
             Console.ForegroundColor = ConsoleColor.White;
-            WaveLib.WaveFormat fmt = new WaveLib.WaveFormat(11025, 16, 1);
-            //m_Player = new WaveLib.WaveOutPlayer(-1, fmt, 11025, 1, new WaveLib.BufferFillEventHandler(Filler));
-            m_Recorder = new WaveLib.WaveInRecorder(-1, fmt, 11025, 1, new WaveLib.BufferDoneEventHandler(DataArrived));
-            Console.WriteLine();
-            tw = File.CreateText("VoiceAnalysisResults.txt");
-            tw.Close();
+
+            WaveLib.WaveFormat fmt = new WaveLib.WaveFormat(sampleRate, definition, 1);
+            m_Recorder = new WaveLib.WaveInRecorder(-1, fmt, sampleRate*segmentLength*(definition/8), 1, new WaveLib.BufferDoneEventHandler(DataArrived));
+            
             log = File.CreateText("LogFeatureVector.txt");
             log.Close();
-            arff = File.CreateText("FeatureVector.arff");
-            arff.WriteLine("@relation newfeaturevector\n");
 
-            arff.WriteLine("@attribute Angry numeric");
-            arff.WriteLine("@attribute ConcentrationLevel numeric");
-            arff.WriteLine("@attribute Embarrassment numeric");
-            arff.WriteLine("@attribute Excitement numeric");
-            arff.WriteLine("@attribute Hesitation numeric");
-            arff.WriteLine("@attribute ImaginationActivity numeric");
-            arff.WriteLine("@attribute IntensiveThinking numeric");
-            arff.WriteLine("@attribute Content numeric");
-            arff.WriteLine("@attribute SAF numeric");
-            arff.WriteLine("@attribute Upset numeric");
-            arff.WriteLine("@attribute ExtremeState numeric");
-            arff.WriteLine("@attribute Stress numeric");
-            arff.WriteLine("@attribute Uncertainty numeric");
-            arff.WriteLine("@attribute Energy numeric");
-            arff.WriteLine("@attribute BrainPower numeric");
-            arff.WriteLine("@attribute EmoCogRatio numeric");
-            arff.WriteLine("@attribute MaxAmpVol numeric");
-            arff.WriteLine("@attribute VoiceEnergy numeric");
-            arff.WriteLine("@attribute emotion {neutral, happy, sadness, angry}\n");
-            arff.WriteLine("@data\n");
-            arff.Close();
+            v_arff = File.CreateText("FeatureVectorValence.arff");
+            v_arff.WriteLine("@relation valence\n");
+            v_arff.WriteLine("@attribute Angry numeric");
+            v_arff.WriteLine("@attribute ConcentrationLevel numeric");
+            v_arff.WriteLine("@attribute Embarrassment numeric");
+            v_arff.WriteLine("@attribute Excitement numeric");
+            v_arff.WriteLine("@attribute Hesitation numeric");
+            v_arff.WriteLine("@attribute ImaginationActivity numeric");
+            v_arff.WriteLine("@attribute IntensiveThinking numeric");
+            v_arff.WriteLine("@attribute Content numeric");
+            v_arff.WriteLine("@attribute SAF numeric");
+            v_arff.WriteLine("@attribute Upset numeric");
+            v_arff.WriteLine("@attribute ExtremeState numeric");
+            v_arff.WriteLine("@attribute Stress numeric");
+            v_arff.WriteLine("@attribute Uncertainty numeric");
+            v_arff.WriteLine("@attribute Energy numeric");
+            v_arff.WriteLine("@attribute BrainPower numeric");
+            v_arff.WriteLine("@attribute EmoCogRatio numeric");
+            v_arff.WriteLine("@attribute MaxAmpVol numeric");
+            v_arff.WriteLine("@attribute VoiceEnergy numeric");
+            v_arff.WriteLine("@attribute valence {-2, -1, 0, 1, 2}\n");
+            v_arff.WriteLine("@data\n");
+            v_arff.Close();
+
+            a_arff = File.CreateText("FeatureVectorArousal.arff");
+            a_arff.WriteLine("@relation arousal\n");
+            a_arff.WriteLine("@attribute Angry numeric");
+            a_arff.WriteLine("@attribute ConcentrationLevel numeric");
+            a_arff.WriteLine("@attribute Embarrassment numeric");
+            a_arff.WriteLine("@attribute Excitement numeric");
+            a_arff.WriteLine("@attribute Hesitation numeric");
+            a_arff.WriteLine("@attribute ImaginationActivity numeric");
+            a_arff.WriteLine("@attribute IntensiveThinking numeric");
+            a_arff.WriteLine("@attribute Content numeric");
+            a_arff.WriteLine("@attribute SAF numeric");
+            a_arff.WriteLine("@attribute Upset numeric");
+            a_arff.WriteLine("@attribute ExtremeState numeric");
+            a_arff.WriteLine("@attribute Stress numeric");
+            a_arff.WriteLine("@attribute Uncertainty numeric");
+            a_arff.WriteLine("@attribute Energy numeric");
+            a_arff.WriteLine("@attribute BrainPower numeric");
+            a_arff.WriteLine("@attribute EmoCogRatio numeric");
+            a_arff.WriteLine("@attribute MaxAmpVol numeric");
+            a_arff.WriteLine("@attribute VoiceEnergy numeric");
+            a_arff.WriteLine("@attribute arousal {-2, -1, 0, 1, 2}\n");
+            a_arff.WriteLine("@data\n");
+            a_arff.Close();
 
             voiceOutput = File.CreateText("..\\..\\voiceOutput.txt");
             voiceOutput.Close();
+
             Console.WriteLine("Recording...");
         }
 
@@ -442,21 +464,50 @@ namespace nmsVoiceAnalysisLibrary
      
         private void DataArrived(IntPtr data, int size)
         {
+            oldRecordedTime = newRecordedTime;
+            newRecordedTime = Int32.Parse(DateTime.Now.ToString("HHmmssfff"));
+            Console.WriteLine("Time Elapsed: " + (newRecordedTime - oldRecordedTime).ToString());
+            
             if (m_RecBuffer == null || m_RecBuffer.Length < size)
             {
-                inpBuf = new short[size];
+                inpBuf = new short[sampleRate*segmentLength];
                 m_RecBuffer = new byte[size];
-
             }
             System.Runtime.InteropServices.Marshal.Copy(data, m_RecBuffer, 0, size);
             m_Fifo.Write(m_RecBuffer, 0, m_RecBuffer.Length);
             /* Converts bytes array do short array */
             MiniRead(m_RecBuffer, (short[])inpBuf, size);
-            bufferSize = (short)size;
+            bufferSize = (short) (sampleRate*segmentLength);
             /* Buffer Analyser */
             ProcessBuffer(ref inpBuf, ref segmentID, ref cEndPosSec, ref cStartPosSec);
-
         }
+
+        private short bytesToShort(byte firstByte, byte secondByte)
+        {
+            int s = ((secondByte << 8) | firstByte);
+            // This implicit conversion occurs fine since the int variable only has two bytes occupied.
+            return (short)s;
+        }
+
+        private void MiniRead(byte[] m_RecBuf, short[] soundBuf, int size1)
+        {
+            if (definition == 8)
+            {
+                for (int i = 0; i < size1; i++)
+                    soundBuf[i] = (short)((m_RecBuf[i] - 127) * 127);
+            }
+            else if (definition == 16)
+            {
+                int i = 0;
+                int j = 0;
+                while (i < size1)
+                {
+                    soundBuf[j] = bytesToShort(m_RecBuf[i], m_RecBuf[i + 1]);
+                    i += 2;
+                    j++;
+                }
+            }
+        }  
 
         private void ProcessBuffer(ref Array inpBuf,
                                    ref int segmentID,
@@ -466,7 +517,9 @@ namespace nmsVoiceAnalysisLibrary
             /* Read the initial time. */
             startTime = DateTime.Now;
             
-            bufSize = (short)(bufferSize - 1);
+            //bufSize = (short)(bufferSize - 1);
+            bufSize = bufferSize;
+            Console.WriteLine("Size of the buffer is: " + bufSize.ToString());
             processBufferResult = nmsCOMcallee.nmsProcessBuffer(ref inpBuf,
                                                                     ref bufSize,
                                                                     ref emoValsArray,
@@ -488,19 +541,16 @@ namespace nmsVoiceAnalysisLibrary
                 Console.WriteLine("Features extracted!");
                 Console.WriteLine(fvStr);
 
-                log = File.AppendText("LogFeatureVector.txt");
-                log.WriteLine(fvStr);
-                log.Close();
-
-                string[] lines = System.IO.File.ReadAllLines("FeatureVector.arff");
-                Console.WriteLine(lines.Length);
+                string[] lines = System.IO.File.ReadAllLines("FeatureVectorValence.arff");
                 lines[23] = fvStr;
-                System.IO.File.WriteAllLines("FeatureVector.arff", lines);
+                System.IO.File.WriteAllLines("FeatureVectorValence.arff", lines);
+                lines = System.IO.File.ReadAllLines("FeatureVectorArousal.arff");
+                lines[23] = fvStr;
+                System.IO.File.WriteAllLines("FeatureVectorArousal.arff", lines);
+
+
 
                 //Run command prompt command
-                //string strCmdText;
-                //strCmdText = "/C java -cp weka.jar weka.classifiers.functions.Logistic -T FeatureVector.arff -l logistic_dmd.model -p 0";
-                //System.Diagnostics.Process.Start(@"C:\Windows\System32\cmd.exe", strCmdText);
                 // Start the child process.
                 System.Diagnostics.Process p = new System.Diagnostics.Process();
                 // Redirect the output stream of the child process.
@@ -514,84 +564,34 @@ namespace nmsVoiceAnalysisLibrary
                 // Read the output stream first and then wait.
                 string output = p.StandardOutput.ReadToEnd();
                 p.WaitForExit();
-                System.Console.WriteLine(output);
-                if (output.Contains("angry"))
-                {
-                    Console.WriteLine("Angry");
-                    valence = -0.40;
-                    arousal = 0.79;
-                }
-                else if (output.Contains("neutral"))
-                {
-                    Console.WriteLine("Neutral");
-                    valence = 0.0;
-                    arousal = 0.0;
-                }
-                else if (output.Contains("sadness"))
-                {
-                    Console.WriteLine("Sad");
-                    valence = -0.81;
-                    arousal = -0.40;
-                }
-                else if (output.Contains("happy"))
-                {
-                    Console.WriteLine("Happy");
-                    valence = 0.89;
-                    arousal = 0.17;
-                }
-                Console.WriteLine("Valence1: " + valence);
+                //System.Console.WriteLine(output);
+                string[] tokens = output.Split(':');
+                //for(int i=0; i<tokens.Length; i++)
+                //{
+                //    Console.WriteLine("#"+i+"-"+tokens[i]);
+                //}
+
+                //Parse out the valence and arousal
+                if(tokens[3][0] == '-')
+                    valence = "-" + tokens[3][1].ToString();
+                else
+                    valence = tokens[3][0].ToString();
+                if (tokens[6][0] == '-')
+                    arousal = "-" + tokens[6][1].ToString();
+                else
+                    arousal = tokens[6][0].ToString();
+                
+                Console.WriteLine("Valence: " + valence);
                 Console.WriteLine("Arousal: " + arousal);
-                Console.WriteLine("YEAHHHHHHHHHHHH");
-                //string[] lines2 = System.IO.File.ReadAllLines("..\\..\\voiceOutput.txt");
-                //lines2[0] = valence.ToString();
-                //lines2[1] = arousal.ToString();
-                //System.IO.File.WriteAllLines("..\\..\\voiceOutput.txt", lines);
+
+                log = File.AppendText("LogFeatureVector.txt");
+                log.WriteLine(newRecordedTime + "\t" + fvStr + "\t" + valence + "\t" + arousal + "\t");
+                log.Close();
+                
                 voiceOutput = File.AppendText("..\\..\\voiceOutput.txt");
                 voiceOutput.WriteLine(valence.ToString() + "," + arousal.ToString());
                 voiceOutput.Close();
 
-                tw = File.AppendText("VoiceAnalysisResults.txt");
-                tw.WriteLine("---------- Start Segment ----------");
-                tw.Write("Energy                ");
-                tw.WriteLine(emoVals.Energy);
-                tw.Write("Content               ");
-                tw.WriteLine(emoVals.content);
-                tw.Write("Upset                 ");
-                tw.WriteLine(emoVals.upset);
-                tw.Write("Angry                 ");
-                tw.WriteLine(emoVals.angry);
-                tw.Write("Stress                ");
-                tw.WriteLine(emoVals.stress);
-                tw.Write("Concentration         ");
-                tw.WriteLine(emoVals.concentration_level);
-                tw.Write("Intensive Thinking    ");
-                tw.WriteLine(emoVals.intensive_thinking);
-                tw.Write("SAF                   ");
-                tw.WriteLine(emoVals.saf);
-                tw.Write("Excitement            ");
-                tw.WriteLine(emoVals.excitement);
-                tw.Write("Atmosphere            ");
-                tw.WriteLine(emoVals.Atmos);
-                tw.Write("EmoCog Ratio          ");
-                tw.WriteLine(emoVals.EmoCogRatio);
-                tw.Write("Embarrassment         ");
-                tw.WriteLine(emoVals.embarrassment);
-                tw.Write("Hesitation            ");
-                tw.WriteLine(emoVals.hesitation);
-                tw.Write("Imagination           ");
-                tw.WriteLine(emoVals.imagination_activity);
-                tw.Write("Extreme State         ");
-                tw.WriteLine(emoVals.extremeState);
-                tw.Write("Uncertainty           ");
-                tw.WriteLine(emoVals.uncertainty);
-                tw.Write("Brain Power           ");
-                tw.WriteLine(emoVals.BrainPower);
-                tw.Write("Max Volume            ");
-                tw.WriteLine(emoVals.maxAmpVol);
-                tw.Write("Voice Energy          ");
-                tw.WriteLine(emoVals.VoiceEnergy);
-                tw.WriteLine("---------- End Segment ----------");
-                tw.Close();
                 nmsCOMcallee.nmsQA_CollectAgentScoreData();
 
                 if (segmentID >= lioNetResultsCache.Count)
@@ -644,7 +644,7 @@ namespace nmsVoiceAnalysisLibrary
                 
             }
             /* If Program is running with determined time */
-            if ((count == countNum))
+            if (count == countNum)
             {
                 cEndPosSec = 0;
                 cStartPosSec = 0;
@@ -658,7 +658,6 @@ namespace nmsVoiceAnalysisLibrary
                     {
                         m_Player = null;
                     }
-
                 /* Stop audio input */
                 if ((m_Recorder != null))
                     try
@@ -669,14 +668,11 @@ namespace nmsVoiceAnalysisLibrary
                     {
                         m_Recorder = null;
                     }
-
                 /* Clear All Pending Data */
                 m_Fifo.Flush(); 
             }
-
             /* Running during defined time*/
             count++;
-
         }       
         
         /* Copy values to Emotion Structure */
@@ -748,12 +744,6 @@ namespace nmsVoiceAnalysisLibrary
             oneLine.Append(EmoArr.GetValue(18)); //VoiceEnergy
             oneLine.Append(",?");
             return oneLine.ToString();
-        }
-
-        private void MiniRead(byte[] m_RecBuf, short[] soundBuf, int size1)
-        {
-            for (int i = 0; i < size1; i++)
-                soundBuf[i] = (short)((m_RecBuf[i] - 127) * 127);
-        }
+        }         
     }
 }
