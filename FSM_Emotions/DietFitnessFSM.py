@@ -7,9 +7,11 @@ from ObservableExpression import ObservableExpression
 import RobotDrive
 import FileUtilitiy
 import json
+import sys
 import time
 from FSMBeginDayStates import FSMBeginDayStates
 from FSMEndDayStates import FSMEndDayStates
+
 
 class DietFitnessFSM:
 	
@@ -23,7 +25,7 @@ class DietFitnessFSM:
 		self.dayCALS = 0
 		self.weekActiveMin = 0
 		
-		self.drives = RobotDrive.RobotDriveCollection()
+		self.drives = RobotDrive.RobotDriveCollection(userName, userNumber)
 		self.reMM = EmotionMM()
 		self.oeHMM = ObservableExpression()
 		self.appraiseState = True
@@ -89,7 +91,7 @@ class DietFitnessFSM:
 				self.FSMInUse = fsmStates[i]
 		self.FSMStateNames = self.FSMInUse.getMethodNames()
 
-		self.ReactiveStateNames = ["reactionScaredFalling"]
+		self.ReactiveStateNames = ["reactionScaredTouch", "reactionScaredPickedUp"]
 		self.TerminateStateNames = ["activityFSMState_Terminate"]
 		self.FSMStateNames = self.TerminateStateNames + self.FSMStateNames + self.ReactiveStateNames
 
@@ -105,7 +107,10 @@ class DietFitnessFSM:
 		######
 
 		if not self.genUtil.checkSafety():
-			s = self.FSMInUse.getNumMethods() + 1 # index past methods -> reactive method
+			if self.genUtil.naoIsTouched:
+				s = self.FSMInUse.getNumMethods() + 1 # index past methods -> reactive method
+			elif self.genUtil.naoIsPickedUp:
+				s = self.FSMInUse.getNumMethods() + 2 # index past methods -> reactive method
 			print "Reaction ", s
 
 		ts = self.genUtil.getTimeStamp()
@@ -137,7 +142,7 @@ class DietFitnessFSM:
 			self.appraiseState = stateMethod()
 
 			# functions for after the state has run
-			if self.appraiseState and self.genUtil.checkSafety():
+			if self.appraiseState and self.genUtil.checkSafety() and s <= self.FSMInUse.getNumMethods() :
 				# determine the emotions of the robot after this event
 				np.set_printoptions(precision=4)
 				driveStatuses = self.drives.getDriveStatuses()
@@ -153,11 +158,20 @@ class DietFitnessFSM:
 				print "New OE: ", voe
 			elif not self.genUtil.checkSafety():
 				# reactive emotion taking place
-				self.reMM.setCurrentEmotionByNumber(5) # robot is now scared
+				if self.genUtil.naoIsTouched:
+					self.reMM.setCurrentEmotionByNumber(6) # robot is now scared
+				elif self.genUtil.naoIsPickedUp:
+					self.reMM.setCurrentEmotionByNumber(5)
 				vre = self.reMM.getRobotEmotionVector()
 				print "New RE: ", vre
 				voe = self.oeHMM.determineObservableExpression(vre)
 				print "New OE: ", voe
+
+			if self.genUtil.checkSafety() and s > self.FSMInUse.getNumMethods():
+				sitTest = False
+
+				if not sitTest:
+					self.genUtil.naoMotions.naoStand(0.5)
 
 		except AttributeError as e:
 			# print e
@@ -610,11 +624,30 @@ class DietFitnessFSM:
 
 	# ======================= Reactive State
 
-	def reactionScaredFalling(self):
-		sayText = "AAAHAHAHAHAHAHAH"
-		self.genUtil.naoEmotionalVoiceSay(sayText, self.getRENumber())
-		self.reMM.setCurrentEmotionByNumber(5) # make scared
-		# self.setFSMState(self.state)
+	def becomeScared(self):
+		# reactive emotion taking place
+		if self.genUtil.naoIsTouched:
+			self.reMM.setCurrentEmotionByNumber(6) # robot is now scared
+		elif self.genUtil.naoIsPickedUp:
+			self.reMM.setCurrentEmotionByNumber(5)
+		vre = self.reMM.getRobotEmotionVector()
+		print "New RE: ", vre
+		voe = self.oeHMM.determineObservableExpression(vre)
+		print "New OE: ", voe
+
+	def reactionScaredTouch(self):
+		sayText = "Ouch Ouch Ouch"
+		self.becomeScared()
+		self.sayWithEmotion(sayText)
+		time.sleep(1)
+
+		appraiseState = True
+		return appraiseState
+
+	def reactionScaredPickedUp(self):
+		sayText = "Put me down Put me down Put me down"
+		self.becomeScared()
+		self.sayWithEmotion(sayText)
 		time.sleep(1)
 
 		appraiseState = True
@@ -639,6 +672,16 @@ class DietFitnessFSM:
 				self.reHist, self.oeHist, self.driveStatHist, self.fsmStateNameHist]
 
 	def getUserInput(self, writeText):
+		try:
+			import msvcrt
+			sys.stdout.flush()
+			while msvcrt.kbhit():
+				msvcrt.getch()
+
+		except Exception as e:
+			print "Couldn't flush the input"
+			print e
+
 		print writeText + ": ",
 		textInput = raw_input()
 

@@ -3,11 +3,14 @@
 import numpy as np
 import math
 from numpy import linalg as LA
+import FileUtilitiy
 
 class RobotDrive: # parent class of all drives
 	
-	def __init__(self, desireability):
+	def __init__(self, desireability, userName, userNumber):
 		self.desireability = desireability
+		self.userName = userName
+		self.userNumber = userNumber
 		self.likelihood = 0.5
 		self.pastLikelihood = 0.5
 		self.status = 0 # 0 = inactive, 1 = active, 2 = succeeded, 3 = failed
@@ -33,6 +36,13 @@ class RobotDrive: # parent class of all drives
 	def getStatus(self):
 		return self.status
 
+	def showDriveAppraisal(self, appraisal, driveName = "", likelihood = ""):
+		showText = driveName + ": " + str(likelihood) + " Appraised: " + str(appraisal)
+		print showText
+
+		fileName = "ProgramDataFiles\\" + str(self.userNumber) + "_" + self.userName + "\\" + str(self.userNumber)  + "_" + self.userName +"_Appraisals.txt"
+		FileUtilitiy.writeTextLine(fileName, "currentFSMState: " + str(self.currentFSMState) + " " + showText)
+
 	def setCurrentFSMState(self, state):
 		self.currentFSMState = state
 
@@ -53,8 +63,8 @@ class RobotDrive: # parent class of all drives
 		eFear = 0.0
 		eHope = 0.0
 		eAnger = 0.0
-		eSurprise = 0.0
-		eScared = 0.0
+		eScared1 = 0.0
+		eScared2 = 0.0
 		if self.getStatus() == 1:
 			if self.currentFSMState == self.statusChangeState:
 				eHappy = self.getDesireability() * self.getLikelihoodSuccessChange()
@@ -73,7 +83,7 @@ class RobotDrive: # parent class of all drives
 			eAnger = 1.0*self.getDesireability()
 			# print "eAnger: ", eAnger
 
-		eV = np.array([eHappy, eSad, eFear, eAnger, eSurprise, eScared, eHope])
+		eV = np.array([eHappy, eHope, eSad, eFear, eAnger, eScared1, eScared2])
 		# remove negative influences and set them to 0 chance
 		for i in range(len(eV)):
 			if eV[i] < 0 or self.getStatus() == 0: #
@@ -86,8 +96,8 @@ class RobotDrive: # parent class of all drives
 # To be told of a healthy diet by the user
 class DriveHealthyDiet(RobotDrive):
 	
-	def __init__(self):
-		RobotDrive.__init__(self, 1)
+	def __init__(self, userName, userNumber):
+		RobotDrive.__init__(self, 1, userName, userNumber)
 		self.userTotalCAL = 0
 	
 	def determineLikelihood(self, userCal, regularMeal = True):
@@ -99,7 +109,8 @@ class DriveHealthyDiet(RobotDrive):
 		self.userTotalCAL += userCal
 		newlikelihood = 1 - 1.0*abs(userCal - healthyCal)/healthyCal
 		self.setDriveLikelihood(newlikelihood)
-		print "DietLikeli: ", newlikelihood, " Appraised: ", self.appraiseEmotions()
+		# print "DietLikeli: ", newlikelihood, " Appraised: ", self.appraiseEmotions()
+		self.showDriveAppraisal(self.appraiseEmotions(), "DietLikeli", str(newlikelihood))
 		return self.getLikelihoodSuccess()
 
 	def getUserTotalCAL(self):
@@ -108,36 +119,38 @@ class DriveHealthyDiet(RobotDrive):
 # To be told of an active life style by the user
 class DriveHealthyFitness(RobotDrive):
 	
-	def __init__(self):
-		RobotDrive.__init__(self, 1)
+	def __init__(self, userName, userNumber):
+		RobotDrive.__init__(self, 1, userName, userNumber)
 		
 	def determineLikelihood(self, userActiveMin):
 		np.set_printoptions(precision=4)
 		healthyActiveMin = 150.0/7 # healthy number of active minutes (daily amount)
 		newlikelihood = 1 - 1.0*(healthyActiveMin - userActiveMin)/healthyActiveMin
 		self.setDriveLikelihood(newlikelihood)
-		print "FitLikeli: ", newlikelihood, " Appraised: ", self.appraiseEmotions()
+		# print "FitLikeli: ", newlikelihood, " Appraised: ", self.appraiseEmotions()
+		self.showDriveAppraisal(self.appraiseEmotions(), "FitLikeli", str(newlikelihood))
 		return self.getLikelihoodSuccess()
 
 # To receive responses from the user
 class DriveUserResponses(RobotDrive):
 	
-	def __init__(self):
-		RobotDrive.__init__(self, 1)
+	def __init__(self, userName, userNumber):
+		RobotDrive.__init__(self, 1, userName, userNumber)
 		
 	def determineLikelihood(self, numResponses, numAsked):
 		np.set_printoptions(precision=4)
 		# stops being happy when the user always responds and doesn't change behaviour (no delta)
 		newlikelihood = 1.0*numResponses/numAsked
 		self.setDriveLikelihood(newlikelihood)
-		print "UResponsesLikeli: ", newlikelihood, " Appraised: ", self.appraiseEmotions()
+		# print "UResponsesLikeli: ", newlikelihood, " Appraised: ", self.appraiseEmotions()
+		self.showDriveAppraisal(self.appraiseEmotions(), "UResponsesLikeli", str(newlikelihood))
 		return self.getLikelihoodSuccess()
 		
 # To main positive emotions from the user
 class DriveUserPositive(RobotDrive):
 	
-	def __init__(self):
-		RobotDrive.__init__(self, 2)
+	def __init__(self, userName, userNumber):
+		RobotDrive.__init__(self, 2, userName, userNumber)
 		
 	def determineLikelihood(self, userValance, userArousal):
 		np.set_printoptions(precision=4)
@@ -146,13 +159,14 @@ class DriveUserPositive(RobotDrive):
 		# happyVA = np.array([0.85, 0.63]) # coordinates of happiness on the affective space
 		newlikelihood = 1 - LA.norm(happyVA - np.array([userValance, userArousal])) / math.sqrt(4+4) # normalize by the longest distance in the affective space
 		self.setDriveLikelihood(newlikelihood)
-		print "UPositiveLikeli", self.likelihood, " Appraised: ", self.appraiseEmotions()
+		# print "UPositiveLikeli", self.likelihood, " Appraised: ", self.appraiseEmotions()
+		self.showDriveAppraisal(self.appraiseEmotions(), "UPositiveLikeli", str(newlikelihood))
 		return self.getLikelihoodSuccess()
 
 # To receive positive feelings upon providing recommendations
 class DriveUserPositiveOnRecomendation(RobotDrive):
-	def __init__(self):
-		RobotDrive.__init__(self, 2)
+	def __init__(self, userName, userNumber):
+		RobotDrive.__init__(self, 2, userName, userNumber)
 			
 	def determineLikelihood(self, userValance, userArousal):
 		np.set_printoptions(precision=4)
@@ -161,13 +175,14 @@ class DriveUserPositiveOnRecomendation(RobotDrive):
 		else:
 			newlikelihood = 0
 		self.setDriveLikelihood(newlikelihood)
-		print "UPonRecLikeli: ", newlikelihood, " Appraised: ", self.appraiseEmotions()
+		# print "UPonRecLikeli: ", newlikelihood, " Appraised: ", self.appraiseEmotions()
+		self.showDriveAppraisal(self.appraiseEmotions(), "UPonRecLikeli", str(newlikelihood))
 		return self.getLikelihoodSuccess()
 
 # To receive positive branches in the FSM
 class DriveUserPositiveBranches(RobotDrive):
-	def __init__(self):
-		RobotDrive.__init__(self, 2)
+	def __init__(self, userName, userNumber):
+		RobotDrive.__init__(self, 2, userName, userNumber)
 
 	def determineLikelihood(self, numPosBranches, numBranches):
 		np.set_printoptions(precision=4)
@@ -175,12 +190,13 @@ class DriveUserPositiveBranches(RobotDrive):
 		newlikelihood = 1.0*numPosBranches/numBranches
 
 		self.setDriveLikelihood(newlikelihood)
-		print "UPosBranchesLikeli: ", newlikelihood, " Appraised: ", self.appraiseEmotions()
+		# print "UPosBranchesLikeli: ", newlikelihood, " Appraised: ", self.appraiseEmotions()
+		self.showDriveAppraisal(self.appraiseEmotions(), "UPosBranchesLikeli", str(newlikelihood))
 		return self.getLikelihoodSuccess()
 
 class DriveUserDidSuggestion(RobotDrive):
-	def __init__(self):
-		RobotDrive.__init__(self, 3)
+	def __init__(self, userName, userNumber):
+		RobotDrive.__init__(self, 3, userName, userNumber)
 
 	def determineLikelihood(self, succeded):
 		if succeded:
@@ -192,38 +208,45 @@ class DriveUserDidSuggestion(RobotDrive):
 			self.setDriveStatus(2)
 		else:
 			self.setDriveStatus(3)
-		print "UDidSuggLikeli: ", newLikelihood, " Appraised: ", self.appraiseEmotions()
+		# print "UDidSuggLikeli: ", newLikelihood, " Appraised: ", self.appraiseEmotions()
+		self.showDriveAppraisal(self.appraiseEmotions(), "UDidSuggLikeli", str(newLikelihood))
 
 class RobotDriveCollection:
 	
-	def __init__(self):
+	def __init__(self, userName, userNumber):
 		self.currentFSMState = 0
+		self.userName = userName
+		self.userNumber = userNumber
 
 		#### not needed
-		self.driveHealthyDiet = DriveHealthyDiet()
-		self.driveHealthyFitness = DriveHealthyFitness()
-		self.driveUserPositiveOnRecomendation = DriveUserPositiveOnRecomendation()
+		self.driveHealthyDiet = DriveHealthyDiet(userName, userNumber)
+		self.driveHealthyFitness = DriveHealthyFitness(userName, userNumber)
+		self.driveUserPositiveOnRecomendation = DriveUserPositiveOnRecomendation(userName, userNumber)
 		####
 
-		self.driveUserResponses = DriveUserResponses()
+		self.driveUserResponses = DriveUserResponses(userName, userNumber)
 		self.numResponses = 0
 		self.numAsked = 0
-		self.driveUserPositive = DriveUserPositive()
+		self.driveUserPositive = DriveUserPositive(userName, userNumber)
 		self.sumVal = 0.0
 		self.sumArou = 0.0
 		self.numAffect = 0
-		self.driveUserPositiveBranches = DriveUserPositiveBranches()
+		self.driveUserPositiveBranches = DriveUserPositiveBranches(userName, userNumber)
 		self.numPosBranches = 0
 		self.numBranches = 0
-		self.driveUserDidSuggestionMeal1 = DriveUserDidSuggestion()
-		self.driveUserDidSuggestionMeal2 = DriveUserDidSuggestion()
-		self.driveUserDidSuggestionMeal3 = DriveUserDidSuggestion()
-		self.driveUserDidSuggestionExercise = DriveUserDidSuggestion()
+		self.driveUserDidSuggestionMeal1 = DriveUserDidSuggestion(userName, userNumber)
+		self.driveUserDidSuggestionMeal2 = DriveUserDidSuggestion(userName, userNumber)
+		self.driveUserDidSuggestionMeal3 = DriveUserDidSuggestion(userName, userNumber)
+		self.driveUserDidSuggestionExercise = DriveUserDidSuggestion(userName, userNumber)
 
 		self.drivesCollection = [#self.driveHealthyDiet, self.driveHealthyFitness, self.driveUserPositiveOnRecomendation,
 								 self.driveUserResponses, self.driveUserPositive, self.driveUserPositiveBranches,
 								 self.driveUserDidSuggestionMeal1, self.driveUserDidSuggestionMeal2,
 								 self.driveUserDidSuggestionMeal3, self.driveUserDidSuggestionExercise]
+
+		self.showAppraisal("")
+		self.showAppraisal("")
+		self.showAppraisal("")
 				
 	def mealCalorieInput(self, userCal, regularMeal=True):
 		self.driveHealthyDiet.determineLikelihood(userCal, regularMeal)
@@ -310,7 +333,7 @@ class RobotDriveCollection:
 		self.finishedUserResponses()
 		self.finishUserPositive()
 		
-	def appraiseEmotions(self, ):
+	def appraiseEmotions(self):
 		# healthyDietEV = self.driveHealthyDiet.appraiseEmotions()
 		# healthyFitnessEV = self.driveHealthyFitness.appraiseEmotions()
 		# userPositiveOnRecEV = self.driveUserPositiveOnRecomendation.appraiseEmotions()
@@ -326,22 +349,21 @@ class RobotDriveCollection:
 		# print healthyDietEV
 		# print healthyFitnessEV
 		# print userPositiveOnRecEV
-		print userResponsesEV
-		print userPositiveEV
-		print userPosBranchEV
-		print userDidSugMeal1EV
-		print userDidSugMeal2EV
-		print userDidSugMeal3EV
-		print userDidSugExerEV
+		self.showAppraisal(userResponsesEV)
+		self.showAppraisal(userPositiveEV)
+		self.showAppraisal(userPosBranchEV)
+		self.showAppraisal(userDidSugMeal1EV)
+		self.showAppraisal(userDidSugMeal2EV)
+		self.showAppraisal(userDidSugMeal3EV)
+		self.showAppraisal(userDidSugExerEV)
 
 		overallEV = 0.0 #+ healthyDietEV + healthyFitnessEV + userPositiveOnRecEV
 		overallEV += userPositiveEV + userResponsesEV + userPosBranchEV
 		overallEV += userDidSugMeal1EV + userDidSugMeal2EV + userDidSugMeal3EV
 		overallEV += userDidSugExerEV
-		# sumOverallEV = sum(overallEV)
-		# if sumOverallEV <= 0:
-		# 	sumOverallEV = 1
-		# overallEV = overallEV / sumOverallEV
+		self.showAppraisal(overallEV, "OverallEV")
+		self.showAppraisal("")
+
 		return overallEV
 
 	# ======== getting drive values
@@ -360,6 +382,14 @@ class RobotDriveCollection:
 		self.currentFSMState = state
 		for i in range (len(self.drivesCollection)):
 			self.drivesCollection[i].setCurrentFSMState(state)
+
+	def showAppraisal(self, EV, name = ""):
+		showText = str(EV)
+		if showText != "":
+			print showText
+		fileName = "ProgramDataFiles\\" + str(self.userNumber) + "_" + self.userName + "\\" + str(self.userNumber)  + "_" + self.userName +"_Appraisals.txt"
+		FileUtilitiy.writeTextLine(fileName, "currentFSMState: " + str(self.currentFSMState) + " " + name + " " + showText)
+
 
 
 

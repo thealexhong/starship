@@ -72,7 +72,7 @@ class FSMBeginDayStates:
                 self.hasAskedBreakfast, self.hasTalkedJapan, self.hasTalkedParis]
 
     def writeUserFSMVariables(self):
-        fileName = "ProgramDataFiles\\" + str(self.userNumber) + self.userName + "_Vars.txt"
+        fileName = "ProgramDataFiles\\" + str(self.userNumber) + "_" + self.userName + "\\" + str(self.userNumber)  + "_" + self.userName +"_Vars.txt"
         varNames = ["weatherIsNice", "canEatPoultry", "canEatGluten", "canEatFish",
                     "exerciseSets", "exerciseSuggested",
                     "meal1Suggested", "meal2Suggested", "meal3Suggested",
@@ -92,7 +92,7 @@ class FSMBeginDayStates:
         print "Wrote users VARS to file"
 
     def getUserFSMVars(self):
-        fileName = "ProgramDataFiles\\" + str(self.userNumber) + self.userName + "_Vars.txt"
+        fileName = "ProgramDataFiles\\" + str(self.userNumber) + "_" + self.userName + "\\" + str(self.userNumber)  + "_" + self.userName +"_Vars.txt"
         if FileUtilitiy.checkFileExists(fileName):
             jsonVars = FileUtilitiy.readLinesToJSON(fileName)
             jsonVars = jsonVars[-1]
@@ -799,7 +799,7 @@ class FSMBeginDayStates:
 
     def morningEnd(self):
         sayText = "I'm looking forward to hearing about how everything goes today, "
-        sayText += "I'll check in with you later on in the day."
+        sayText += "I'll check in with you later on."
         self.FSMBody.sayWithEmotion(sayText)
 
         sayText = "Have a nice day"

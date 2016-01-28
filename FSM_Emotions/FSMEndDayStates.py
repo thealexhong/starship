@@ -61,7 +61,7 @@ class FSMEndDayStates:
                 self.meal1Suggested, self.meal2Suggested, self.meal3Suggested]
 
     def getUserFSMVariables(self):
-        fileName = "ProgramDataFiles\\" + str(self.userNumber) + self.userName + "_Vars.txt"
+        fileName = "ProgramDataFiles\\" + str(self.userNumber) + "_" + self.userName + "\\" + str(self.userNumber)  + "_" + self.userName +"_Vars.txt"
         print fileName
         jsonVars = FileUtilitiy.readLinesToJSON(fileName)
         jsonVars = jsonVars[-1]
@@ -77,7 +77,7 @@ class FSMEndDayStates:
         self.meal3Suggested = jsonVars['meal3Suggested']
 
     def updateUserFSMVariables(self):
-        fileName = "ProgramDataFiles\\" + str(self.userNumber) + self.userName + "_Vars.txt"
+        fileName = "ProgramDataFiles\\" + str(self.userNumber) + "_" + self.userName + "\\" + str(self.userNumber)  + "_" + self.userName +"_Vars.txt"
         jsonVars = FileUtilitiy.readLinesToJSON(fileName)
         jsonVars = jsonVars[-1]
         print jsonVars
@@ -94,7 +94,7 @@ class FSMEndDayStates:
     def dayEndIntro(self):
         self.getUserFSMVariables()
 
-        sayText = "Hello again " + self.userName + ", how was the rest of your, day?"
+        sayText = "Hello again " + self.userName + ", how was the rest, of your day?"
         self.FSMBody.sayWithEmotion(sayText)
 
         writeText = "How was their day? (1) Good, (2) Bad, ('') No Response"
@@ -209,14 +209,14 @@ class FSMEndDayStates:
         return appraiseState
 
     def meal1CheckinYesAte(self):
-        sayText = "That's great, you should always start off your day right, "
-        sayText += "and breakfast is the most important meal of the day after all."
+        sayText = "That's great, break is the most important meal of the day. "
+        sayText += "Having a healthy breakfast in the morning can help you to fight viruses and reduce your risk of disease."
         self.FSMBody.sayWithEmotion(sayText)
 
         sayText = "Do you think you could have this regularly for breakfast?"
         self.FSMBody.sayWithEmotion(sayText)
 
-        writeText = "Could the have it regularly? (1) Yes, (2) No, ('') No Response"
+        writeText = "Could they have it regularly? (1) Yes, (2) No, ('') No Response"
         textInput = self.FSMBody.getUserInput(writeText)
 
         upLikeli = self.FSMBody.sendUserEmotion()
@@ -246,8 +246,8 @@ class FSMEndDayStates:
 
     def meal1CheckinYesAteNoReg(self):
         sayText = "I see, I will try to come up with other healthy options that you may prefer more. "
-        sayText += "A consistent healthy breakfast is really the way to go, "
-        sayText += "it can improve your energy and reduce hunger throughout the day. "
+        sayText += "A consistent healthy breakfast can improve cognitive functions such as memory and concentration "
+        sayText += "throughout the day. "
         self.FSMBody.sayWithEmotion(sayText)
 
         self.FSMBody.setFSMState(self.FSMBody.state+1 +3)
@@ -279,8 +279,7 @@ class FSMEndDayStates:
 
     def meal1CheckinNoAteYesHad(self):
         sayText = "That's good at least, but I would recommend you have the " + self.meal1Suggested + " "
-        sayText += "whenever possible. That way I'll know for sure that you are having a balanced breakfast, "
-        sayText += "and I can help keep track of your lifestyle."
+        sayText += "whenever possible. That way you can ensure you are always getting a healthy start to your day."
         self.FSMBody.sayWithEmotion(sayText)
 
         self.FSMBody.setFSMState(self.FSMBody.state+1 +1)
@@ -323,7 +322,7 @@ class FSMEndDayStates:
         return appraiseState
 
     def meal2CheckinYesAte(self):
-        sayText = "Fantastic, you are well on your way to a healthier diet."
+        sayText = "Fantastic, you are well on your way to a healthier die it."
         self.FSMBody.sayWithEmotion(sayText)
 
         sayText = "How did it taste?"
@@ -367,7 +366,7 @@ class FSMEndDayStates:
         return appraiseState
 
     def meal2CheckinNoAte(self):
-        sayText = "Well did you at least have something comparably healthy instead?"
+        sayText = "Did you at least have something comparably healthy instead?"
         self.FSMBody.sayWithEmotion(sayText)
 
         writeText = "Did they have a comparably healthy lunch instead? (1) Yes, (2) No, (3) Don't know, ('') No Response"
@@ -393,7 +392,7 @@ class FSMEndDayStates:
         return appraiseState
 
     def meal2CheckinNoAteYesComp(self):
-        sayText = "Works for me, you are well on your way to a healthier diet."
+        sayText = "Works for me, you are well on your way to a healthier die it."
         self.FSMBody.sayWithEmotion(sayText)
 
         sayText = "What did you eat instead?"
@@ -433,7 +432,7 @@ class FSMEndDayStates:
 
     def meal2CheckinNoAteNoComp(self):
         sayText = "You should try to have the " + self.meal2Suggested + " tomorrow, "
-        sayText += "it will put you on the right track to a healthier diet."
+        sayText += "it will put you on the right track to a healthier die it."
         self.FSMBody.sayWithEmotion(sayText)
 
         self.FSMBody.setFSMState(self.FSMBody.state+1)
@@ -489,7 +488,8 @@ class FSMEndDayStates:
         return appraiseState
 
     def meal3CheckinYesAte(self):
-        sayText = "Great, small changes to your diet can do wonders for your health."
+        sayText = "Great, keeping a healthy diet is important for you health. In the long run, it can reduce "
+        sayText += "the risk of diabetes, obesity and heart disease."
         self.FSMBody.sayWithEmotion(sayText)
 
         sayText = "How was it?"
@@ -574,7 +574,7 @@ class FSMEndDayStates:
         return appraiseState
 
     def meal3CheckinNoAteNoComp(self):
-        sayText = "Being knowledgeable of the food you are putting in your stomach is a very "
+        sayText = "Being knowledgeable of the food you are eating is a very "
         sayText += "important aspect of healthy eating. If you are unsure about whether your meals are healthy or not,"
         sayText += " try looking into it."
         self.FSMBody.sayWithEmotion(sayText)
@@ -592,7 +592,7 @@ class FSMEndDayStates:
         return appraiseState
 
     def exerciseCheckin(self):
-        sayText = "Did you get a chance to do the " + self.exerciseSuggested + " today?"
+        sayText = "Did you get a chance to " + self.exerciseSuggested + " today?"
         self.FSMBody.sayWithEmotion(sayText)
 
         writeText = "Did they do the suggested exercise? (1) Yes, (2) No, ('') No Response"
@@ -659,7 +659,7 @@ class FSMEndDayStates:
 
     def exerciseCheckinYesDidHardDiff(self):
         sayText = "I see, well with some steady progress it will become easier over time. "
-        sayText += "Try going for the same number of sets again tomorrow."
+        sayText += "Try going for the same number of sets again tomorrow. I know you can do it."
         self.FSMBody.sayWithEmotion(sayText)
 
         self.FSMBody.drives.finishContinueousDrives()
@@ -669,7 +669,7 @@ class FSMEndDayStates:
         return appraiseState
 
     def exerciseCheckinYesDidEasyDiff(self):
-        sayText = "I see, sounds like I went to easy on you, tomorrow you should go "
+        sayText = "I see, sounds like I went too easy on you, tomorrow I suggest you go "
         self.exerciseSets += 2
         sayText += self.exerciseSuggested + " " + str(self.exerciseSets) + " times."
         self.FSMBody.sayWithEmotion(sayText)
@@ -764,7 +764,7 @@ class FSMEndDayStates:
     def exerciseCheckinNoDidNoCompCouldnt(self):
         sayText = "I see, you should try to get to it tomorrow then. "
         sayText += "Prioritizing exercise is a key component of a healthy lifestyle. "
-        sayText += "Exercise can be benificial for your blood pressure, help with weight loss and even improve your mood."
+        sayText += "Exercise can be benificial for your blood pressure, and even improve your mood."
         self.FSMBody.sayWithEmotion(sayText)
 
         self.FSMBody.drives.finishContinueousDrives()
@@ -776,7 +776,7 @@ class FSMEndDayStates:
     def exerciseCheckinNoDidNoCompDidntWant(self):
         sayText = "I see, but prioritizing is a key component of a healthy lifestyle. "
         sayText += "You should really try to implement more exercise into your daily routine. "
-        sayText += "It can be beneficial for your blood pressure, help with weight loss and even improve your mood."
+        sayText += "Exercising can help you maintina a sharp mind."
         self.FSMBody.sayWithEmotion(sayText)
 
         self.FSMBody.drives.finishContinueousDrives()
@@ -786,8 +786,8 @@ class FSMEndDayStates:
         return appraiseState
 
     def exerciseCheckinDontknowDid(self):
-        sayText = "Its likely that if you did another exercises, it wasn't quite as beneficial. "
-        sayText += "Tomorrow you should try to " + self.exerciseSuggested + "."
+        sayText = "Its likely that if you did another exercises that you are unsure of, it wasn't quite as beneficial. "
+        sayText += "Tomorrow please try to " + self.exerciseSuggested + "."
         self.FSMBody.sayWithEmotion(sayText)
 
         self.FSMBody.drives.finishContinueousDrives()
@@ -798,6 +798,7 @@ class FSMEndDayStates:
 
     def dayEndEnd(self):
         sayText = "Thanks for interacting with me today. "
+
         lastInteraction = True
         if lastInteraction:
             sayText += "See you tomorrow. "

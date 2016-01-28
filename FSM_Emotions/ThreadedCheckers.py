@@ -33,18 +33,10 @@ class ThreadedChecker(threading.Thread):
         self.root.mainloop()
 
     def freakOutClicked(self):
-        print
-        print "HOOOOOOLLLLLYYYYYY CRRRRAAAAAAAP"
-        print
-        # tkMessageBox.showinfo("Freaking Out", "HOLY CRAP")
-        self.genUtil.naoIsSafe = False
-        self.genUtil.stopNAOActions()
+        self.genUtil.naoWasTouched()
 
     def freakOutEndClicked(self):
-        print "MUCH BETTER"
-        # tkMessageBox.showinfo("Freaking Out", "HOLY CRAP")
-        self.genUtil.naoIsSafe = True
-        # self.genUtil.naoStand()
+        self.genUtil.naoIsSafeAgain()
 
     def quit(self):
         self.root.quit()

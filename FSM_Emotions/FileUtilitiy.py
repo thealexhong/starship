@@ -1,6 +1,7 @@
 # FileUtility.py
 import os.path
 import json
+import subprocess
 
 # fileLines = fileUtilitiy.readTextLines('inputText.txt')
 def readTextLines(textFile):
@@ -54,3 +55,20 @@ def checkFileExists(fileName):
 	fWin = fileName
 	funi = fileName.replace('\\', '/')
 	return (os.path.isfile(fWin) or os.path.isfile(funi))
+
+def makeFolder(folderName):
+	if not checkFileExists(folderName):
+		try:
+			os.makedirs(folderName)
+		except:
+			pass
+			# file exisits?
+
+
+def hitEnterOnConsole():
+	fileName = "ScriptFiles\HitEnter.vbs"
+	if checkFileExists(fileName):
+		print "Hitting Enter"
+		subprocess.call("cscript " + fileName)
+	else:
+		print "Did not hit enter"

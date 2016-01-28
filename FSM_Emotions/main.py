@@ -5,26 +5,26 @@ import FileUtilitiy
 from BasicMotions import BasicMotions
 from DietFitnessFSM import DietFitnessFSM
 from GenUtil import GenUtil
-import NAOTouchChecker
+import NAOReactionChecker
 from ThreadedCheckers import ThreadedChecker
 from UserAffectGenerator import UserAffectGenerator
 
 
-def main(NAOip, NAOport):
+def main(NAOip, NAOport, name):
     naoMotions = BasicMotions(NAOip, NAOport)
-    robotName = "Luke"
+    robotName = name
     genUtil = GenUtil(naoMotions)
     genUtil.showFoodDB()
 
     myBroker = ALBroker("myBroker", "0.0.0.0", 0, NAOip, NAOport)
-    global naoTouchChecker
-    naoTouchChecker = NAOTouchChecker.NAOTouchChecker(genUtil, NAOip, NAOport)
+    global naoReactionChecker
+    naoReactionChecker = NAOReactionChecker.NAOReactionChecker(genUtil, NAOip, NAOport)
 
     thread1 = ThreadedChecker(1, "Main Checker #1", genUtil)
     thread2 = UserAffectGenerator(2, "User Affect Generator #1", 3, genUtil)
 
     # select your activity to run
-    activityConsultant = "Consultant By Appointment"
+    # activityConsultant = "Consultant By Appointment"
     # Daily Companion
     activityDayCompMorning = "Daily Companion Morning"
     activityDayCompDayEnd = "Daily Companion End of Day"
@@ -32,14 +32,24 @@ def main(NAOip, NAOport):
     userName = "Test User"
     userNumber = "1"
     dateTime = genUtil.getDateTime()
-    activityInteractionType = activityDayCompDayEnd
+    activityInteractionType = activityDayCompMorning
     userInfo = initiateUserInfo(userName, userNumber, activityInteractionType, dateTime)
+
+    # runSomeTest(genUtil)
 
     genUtil.showHappyEyes()
     # naoMotions.naoSit()
-    naoMotions.naoStand(0.2)
+    print "NAO is currently: ", naoMotions.getPostureFamily()
+    speed = 0.2
+    if naoMotions.getPostureFamily() == "Sitting":
+        speed = 0.7
+
+    global sitTest
+    sitTest = False
+    if not sitTest:
+        naoMotions.naoStand(speed)
     # naoMotions.naoWaveBoth()
-    naoMotions.naoBreathON()
+    naoMotions.naoAliveON()
 
     # ============================================================= Start Functionality
     print("State Machine Started")
@@ -62,9 +72,10 @@ def main(NAOip, NAOport):
         [currentState, robotEmotionNum, obserExpresNum, appraiseState] = dietFitnessFSM.activityFSM()
     thread1.quit()
     # thread2.quit()
-    naoMotions.naoBreathOFF()
+    genUtil.showHappyEyes()
+    naoMotions.naoAliveOff()
     naoMotions.naoSit()
-    NAOTouchChecker.UnsubscribeAllTouchEvent()
+    NAOReactionChecker.UnsubscribeAllEvents()
     myBroker.shutdown()
 
     print
@@ -88,11 +99,13 @@ def initiateUserInfo(userName, userNumber, activityType, dateTime):
     fileName = "ProgramDataFiles\userInfo.csv"
     writeLine = userName + ", " + str(userNumber) + ", " + activityType + ", " +dateTime
     FileUtilitiy.writeTextLine(fileName, writeLine)
+    FileUtilitiy.makeFolder("ProgramDataFiles\\" + str(userNumber) + "_" + userName)
+
     return writeLine
 
 def writeUserHistories(userName, userNumber, userInfo,
                        stateTimeStamp, stateDateTime, fsmStateHist, reHist, oeHist, driveStatHist, fsmStateNameHist):
-    fileName = "ProgramDataFiles\\" + userNumber + "_" + userName + ".csv"
+    fileName = "ProgramDataFiles\\" + str(userNumber) + "_" + userName + "\\" + str(userNumber)  + "_" + userName +"_Flow.csv"
     FileUtilitiy.writeTextLine(fileName, userInfo + " \n")
     writeLine = "State Time Stamp, State Date Time, FSM State, FSM State Name, Robot Emotion, Observable Expression, Drive Statuses"
     FileUtilitiy.writeTextLine(fileName, writeLine + " \n")
@@ -104,6 +117,10 @@ def writeUserHistories(userName, userNumber, userInfo,
 # def writeConsole(userName, userNumber, dateTime):
 #     fileName = "ProgramDataFiles\ConsoleOutput\\" + userNumber + "_" + userName + "_" + dateTime + ".txt"
 #     sys.stdout = open(fileName, 'w')
+
+def runSomeTest(genUtil):
+    s = "Did you have the An apple and two slices of toast with strawberry jam for breakfast this morning?"
+    genUtil.showFearVoice(s)
 
 def testNaoConnection(NAOip, NAOport):
     worked = False
@@ -118,8 +135,9 @@ def testNaoConnection(NAOip, NAOport):
         # naoMotions.naoSit()
         # naoMotions.naoShadeHeadSay("Hello, the connection worked!")
         worked = True
-    except:
+    except Exception as e:
         print "Connection Failed, maybe wrong IP and/or Port"
+        print e
         
     print "Connection Test Finished"
     return worked
@@ -137,17 +155,21 @@ def connectToProxy(NAOip, NAOport, proxyName):
 
 if __name__ == '__main__':
     simulated = False
+    name = "NAO"
     if simulated:
         #simulated NAO
         NAOIP = "127.0.0.1"
         NAOPort = 52030
     else:
-        useLuke = False
+        useLuke = True
         #real NAO
         if useLuke:
             NAOIP = "luke.local"
+            NAOIP = "192.168.1.135"
+            name = "Luke"
         else:
             NAOIP = "leia.local"
+            name = "Leia"
         NAOPort = 9559
 
     print("Initiated Values")
@@ -155,7 +177,7 @@ if __name__ == '__main__':
     connWorks = testNaoConnection(NAOIP, NAOPort)
     print connWorks
     if connWorks:
-        main(NAOIP, NAOPort)
+        main(NAOIP, NAOPort, name)
 
 
 

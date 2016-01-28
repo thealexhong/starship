@@ -1,17 +1,21 @@
 from naoqi import ALProxy
 from naoqi import ALModule
-from naoqi import ALBroker
 import math
 import time
 import random
-import NAOReactionChecker
 
-class BasicMotions:
-    def __init__(self, ip = 'luke.local', port = 9559):
+class BasicMotions(ALModule):
+    def __init__(self, ip, port, _myBroker):
         self.NAOip = ip
         self.NAOport = port
-        self.logPrint = True
-
+        #========SETUP FOR MOTION=============
+        ALModule.__init__(self, "BasicMotions")
+        self.myBroker=_myBroker
+        bModulePresent = self.myBroker.isModulePresent("BasicMotions")
+        print("BasicMotions module status:", bModulePresent)
+        global memory
+        memory = ALProxy("ALMemory")
+        self.SubscribeAllTouchEvent()
         self.createEyeGroup()
         self.eyeColor={'happy': 0x0000FF00,
                        'sad': 0x00600088,
@@ -27,21 +31,19 @@ class BasicMotions:
                        'fear': "EyeBottom",
                        'hope': "EyeTop",
                        'anger': "EyeTopBottom"}
+        self.bScared = False
         #=========SETUP FOR VOICE================
-        tts = self.connectToProxy("ALTextToSpeech")
-        tts.setParameter("pitchShift", 0)
-        tts.setParameter("doubleVoice", 0)
-        tts.setParameter("doubleVoiceLevel", 0)
-        audioProxy = self.connectToProxy("ALAudioDevice")
-        audioProxy.setOutputVolume(100/2)
+        self.tts = ALProxy("ALTextToSpeech")
+        audioProxy = ALProxy("ALAudioDevice")
+        audioProxy.setOutputVolume(50)
         #Valid Value:50 to 200
-        self.ttsPitch={      'default':   100, # \\vct=value\\
-                             'happy':     120,
-                             'sad':       50,
-                             'scared':    150,
-                             'fear':      60,
-                             'hope':      100,
-                             'anger':     60}
+        self.ttsPitch={      'default':   "\\vct=100\\",
+                             'happy':     "\\vct=120\\",
+                             'sad':       "\\vct=50\\",
+                             'scared':    "\\vct=150\\",
+                             'fear':      "\\vct=60\\",
+                             'hope':      "\\vct=100\\",
+                             'anger':     "\\vct=60\\"}
         #Valid Value: 50 to 400"\\
         self.ttsSpeed={      'default':   "\\rspd=100\\",
                              'happy':     "\\rspd=100\\",
@@ -58,127 +60,62 @@ class BasicMotions:
                              'fear':      "\\vol=050\\",
                              'hope':      "\\vol=050\\",
                              'anger':     "\\vol=060\\"}
+        #============SETUP FOR PICKUP DETECTION====================
+        self.SubscribePickUpEvent()
+        #============You don't need this====================
+        self.createDialog()
 
-    def preMotion(self):
-        NAOReactionChecker.UnsubscribeAllEvents()
-
-    def postMotion(self):
-        NAOReactionChecker.SubscribeAllEvents()
-
-    def StiffnessOn(self, proxy, pNames = "Body"):
+    def StiffnessOn(self, proxy):
+        pNames = "Body"
         pStiffnessLists = 1.0
-        pTimeLists = 1.0
-        proxy.stiffnessInterpolation(pNames, pStiffnessLists, pTimeLists)
-
-    def StiffnessOff(self, proxy, pNames = "Body"):
-        pStiffnessLists = 0.0
-        pTimeLists = 1.0
+        pTimeLists = 0.05
         proxy.stiffnessInterpolation(pNames, pStiffnessLists, pTimeLists)
 
     def connectToProxy(self, proxyName):
-        # proxy = []
         try:
             proxy = ALProxy(proxyName, self.NAOip, self.NAOport)
         except Exception, e:
             print "Could not create Proxy to ", proxyName
             print "Error was: ", e
-
         return proxy
 
     def naoSay(self, text):
         speechProxy = self.connectToProxy("ALTextToSpeech")
 
-        moveID = speechProxy.post.say(str(text))
-        print("------> Said something: " + text)
-        return moveID
-
-    def naoAliveON(self):
-        self.naoBreathON()
-        self.faceTrackingON()
-
-    def naoAliveOff(self):
-        self.naoBreathOFF()
-        self.faceTrackingOFF()
-
-    def faceTrackingON(self):
-        motionProxy = self.connectToProxy("ALMotion")
-        # faceProxy = self.connectToProxy("ALFaceDetection")
-        self.StiffnessOn(motionProxy, "Head")
-        # faceProxy.setTrackingEnabled(True)
-        tracker = self.connectToProxy("ALTracker")
-        targetName = "Face"
-        faceWidth = 0.1
-        tracker.registerTarget(targetName, faceWidth)
-        tracker.track(targetName)
-
-    def faceTrackingOFF(self):
-        tracker = self.connectToProxy("ALTracker")
-        tracker.stopTracker()
-        tracker.unregisterAllTargets()
-
-    def naoBreathON(self):
-        print "Breathing and watching"
-        motionProxy = self.connectToProxy("ALMotion")
-        motionProxy.setBreathEnabled('Body', True)
-
-    def naoBreathOFF(self):
-        motionProxy = self.connectToProxy("ALMotion")
-        motionProxy.setBreathEnabled('Body', False)
-
-    def naoSayWait(self, text, waitTime):
-        speechProxy = self.connectToProxy("ALTextToSpeech")
-
-        moveID = speechProxy.post.say(str(text))
-        print("------> Said something: " + text)
-        speechProxy.wait(moveID, 0)
-        time.sleep(waitTime)
-
-    def getPostureFamily(self):
-        postureProxy = self.connectToProxy("ALRobotPosture")
-        return postureProxy.getPostureFamily()
+        speechProxy.say(text)
+        print("------> Said something")
 
     def naoSit(self):
-        self.preMotion()
+        self.UnsubscribeAllTouchEvent()
         motionProxy = self.connectToProxy("ALMotion")
         postureProxy = self.connectToProxy("ALRobotPosture")
-
+        self.bScared = False
         motionProxy.wakeUp()
         self.StiffnessOn(motionProxy)
-
-        if self.NAOip != "127.0.0.1":
-            try:
-                motionProxy.setFallManagerEnabled(False)
-            except:
-                print "Couldn't turn off Fall manager"
-
         sitResult = postureProxy.goToPosture("Sit", 0.5)
         if (sitResult):
             print("------> Sat Down")
         else:
             print("------> Did NOT Sit Down...")
+        self.SubscribeAllTouchEvent()
 
-        if self.NAOip != "127.0.0.1":
-            motionProxy.setFallManagerEnabled(True)
-        self.StiffnessOff(motionProxy)
-        self.postMotion()
-
-    def naoStand(self, speed = 0.5):
-        self.preMotion()
+    def naoStand(self):
+        self.UnsubscribeAllTouchEvent()
         motionProxy = self.connectToProxy("ALMotion")
         postureProxy = self.connectToProxy("ALRobotPosture")
 
         motionProxy.wakeUp()
         self.StiffnessOn(motionProxy)
-        standResult = postureProxy.goToPosture("Stand", speed)
+        standResult = postureProxy.goToPosture("StandInit", 0.3)
         if (standResult):
+            self.bScared = False
             print("------> Stood Up")
         else:
             print("------> Did NOT Stand Up...")
-        # self.StiffnessOff(motionProxy)
-        self.postMotion()
+        self.SubscribeAllTouchEvent()
 
     def naoWalk(self, xpos, ypos):
-        self.preMotion()
+        self.UnsubscribeAllTouchEvent()
         motionProxy = self.connectToProxy("ALMotion")
         postureProxy = self.connectToProxy("ALRobotPosture")
 
@@ -186,45 +123,37 @@ class BasicMotions:
         standResult = postureProxy.goToPosture("StandInit", 0.5)
         motionProxy.setMoveArmsEnabled(True, True)
         motionProxy.setMotionConfig([["ENABLE_FOOT_CONTACT_PROTECTION", True]])
-
         turnAngle = math.atan2(ypos,xpos)
         walkDist = math.sqrt(xpos*xpos + ypos*ypos)
-
         try:
             motionProxy.walkTo(0.0,0.0, turnAngle)
             motionProxy.walkTo(walkDist,0.0,0.0)
+            self.bScared = False
         except Exception, e:
             print "The Robot could not walk to ", xpos, ", ", ypos
             print "Error was: ", e
-
         standResult = postureProxy.goToPosture("Stand", 0.5)
         print("------> Walked Somewhere")
-        self.postMotion()
+        self.SubscribeAllTouchEvent()
 
     def naoNodHead(self):
-        self.preMotion()
+        self.UnsubscribeAllTouchEvent()
         motionProxy = self.connectToProxy("ALMotion")
         motionNames = ['HeadYaw', "HeadPitch"]
         times = [[0.7], [0.7]]
-
         motionProxy.angleInterpolation(motionNames, [0.0,0.0], times, True)
         for i in range(3):
             motionProxy.angleInterpolation(motionNames, [0.0, 1.0], times, True)
             motionProxy.angleInterpolation(motionNames, [0.0, -1.0], times, True)
         motionProxy.angleInterpolation(motionNames, [0.0,0.0], times, True)
-
         print("------> Nodded")
-        self.postMotion()
+        self.SubscribeAllTouchEvent()
 
     def naoShadeHead(self):
-        self.preMotion()
+        self.UnsubscribeAllTouchEvent()
         motionProxy = self.connectToProxy("ALMotion")
-        motionProxy.wakeUp()
-        self.StiffnessOn(motionProxy)
-
         motionNames = ['HeadYaw', "HeadPitch"]
         times = [[0.7], [0.7]] # time to preform (s)
-
         # resets the angle of the motions (angle in radians)
         motionProxy.angleInterpolation(motionNames, [0.0,0.0], times, True)
         # shakes the head 3 times, back and forths
@@ -232,80 +161,38 @@ class BasicMotions:
             motionProxy.angleInterpolation(motionNames, [1.0, 0.0], times, True)
             motionProxy.angleInterpolation(motionNames, [-1.0, 0.0], times, True)
         motionProxy.angleInterpolation(motionNames, [0.0,0.0], times, True)
-
         print("------> Nodded")
-        # self.StiffnessOff(motionProxy)
-        self.postMotion()
+        self.SubscribeAllTouchEvent()
 
-    def naoShadeHeadSay(self, sayText = "Hi"):
-        self.preMotion()
+    def naoWaveRight(self):
+        self.UnsubscribeAllTouchEvent()
         motionProxy = self.connectToProxy("ALMotion")
-#        motionProxy.wakeUp()
-
-        motionNames = ['HeadYaw', "HeadPitch"]
-        times = [[0.7], [0.7]] # time to preform (s)
-
-        # resets the angle of the motions (angle in radians)
-        moveID = motionProxy.post.angleInterpolation(motionNames, [0.0,0.0], times, True)
-
-        sayID = self.naoSay(sayText)
-        motionProxy.wait(moveID, 0)
-
-        # shakes the head 3 times, back and forth
-        for i in range(2):
-            motionProxy.angleInterpolation(motionNames, [1.0, 0.0], times, True)
-
-            motionProxy.angleInterpolation(motionNames, [-1.0, 0.0], times, True)
-
-        motionProxy.angleInterpolation(motionNames, [0.0,0.0], times, True)
-        # motionProxy.wait(sayID, 0)
-        if self.logPrint:
-            print "Moved head, now waiting"
-        time.sleep(0.5)
-
-        print("------> Shook Head")
-        # self.StiffnessOff(motionProxy)
-        self.postMotion()
-
-    def naoWaveRight(self, movePercent = 1.0, numWaves = 3):
-        self.preMotion()
-        motionProxy = self.connectToProxy("ALMotion")
-
-        if movePercent > 1:
-            movePercent = 1.0
-        elif movePercent < 0:
-            movePercent = 0.0
-        if numWaves > 3:
-            numWaves = 3
-        elif numWaves < 0:
-            numWaves = 0
-
         rArmNames = motionProxy.getBodyNames("RArm")
+        print rArmNames
         # set arm to the initial position
         rArmDefaultAngles = [math.radians(84.6), math.radians(-10.7),
                              math.radians(68.2), math.radians(23.3),
                              math.radians(5.8), 0.3]
         defaultTimes = [2,2,2,2,2,2]
-        moveID = motionProxy.post.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
-
+        motionProxy.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
+        time.sleep(5)
         # wave setup
         waveNames = ["RShoulderPitch", "RShoulderRoll", "RHand"]
         waveTimes = [2, 2, 2]
         waveAngles = [math.radians(-11), math.radians(-40), 0.99]
-        moveID = motionProxy.post.angleInterpolation(waveNames, waveAngles, waveTimes, True)
+        motionProxy.angleInterpolation(waveNames, waveAngles, waveTimes, True)
+        time.sleep(5)
 
+        for i in range(3):
+            motionProxy.angleInterpolation(["RElbowRoll"],  math.radians(88.5), [1], True)
+            motionProxy.angleInterpolation(["RElbowRoll"],  math.radians(27), [1], True)
 
-        for i in range(numWaves):
-            moveID = motionProxy.post.angleInterpolation(["RElbowRoll"],  math.radians(88.5)*movePercent, [1], True)
-            moveID = motionProxy.post.angleInterpolation(["RElbowRoll"],  math.radians(27)*movePercent, [1], True)
-
-        moveID = motionProxy.post.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
-
+        motionProxy.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
         print("------> Waved Right")
-        self.postMotion()
+        self.SubscribeAllTouchEvent()
 
     def naoWaveBoth(self):
-        self.preMotion()
+        self.UnsubscribeAllTouchEvent()
         motionProxy = self.connectToProxy("ALMotion")
 
         rArmNames = motionProxy.getBodyNames("RArm")
@@ -336,140 +223,110 @@ class BasicMotions:
         motionProxy.angleInterpolation(rArmNames + lArmNames, rArmDefaultAngles + lArmDefaultAngles, defaultTimes + defaultTimes, True)
 
         print("------> Waved Both")
-        self.postMotion()
-
-    def naoWaveRightSay(self, sayText = "Hi", sayEmotion = -1, movePercent = 1.0, numWaves = 3):
-        self.preMotion()
-        motionProxy = self.connectToProxy("ALMotion")
-
-        if movePercent > 1:
-            movePercent = 1.0
-        elif movePercent < 0:
-            movePercent = 0.0
-        if numWaves > 3:
-            numWaves = 3
-        elif numWaves < 0:
-            numWaves = 0
-
-        rArmNames = motionProxy.getBodyNames("RArm")
-        # set arm to the initial position
-        rArmDefaultAngles = [math.radians(84.6), math.radians(-10.7),
-                             math.radians(68.2), math.radians(23.3),
-                             math.radians(5.8), 0.3]
-        defaultTimes = [2,2,2,2,2,2]
-        moveID = motionProxy.post.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
-        motionProxy.wait(moveID, 0)
-
-        # wave setup
-        waveNames = ["RShoulderPitch", "RShoulderRoll", "RHand"]
-        waveTimes = [2, 2, 2]
-        waveAngles = [math.radians(-11), math.radians(-40), 0.99]
-        moveID = motionProxy.post.angleInterpolation(waveNames, waveAngles, waveTimes, True)
-        self.naoSay(sayText)
-
-        for i in range(numWaves):
-            moveID = motionProxy.post.angleInterpolation(["RElbowRoll"],  math.radians(88.5)*movePercent, [1], True)
-            moveID = motionProxy.post.angleInterpolation(["RElbowRoll"],  math.radians(27)*movePercent, [1], True)
-
-        moveID = motionProxy.post.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
-        motionProxy.wait(moveID, 0)
-
-        print("------> Waved Right")
-        self.postMotion()
-
-    def stopNAOActions(self):
-        motionProxy = self.connectToProxy("ALMotion")
-        speechProxy = self.connectToProxy("ALTextToSpeech")
-
-        motionProxy.killAll()
-        speechProxy.stopAll()
-        print("------> Stopped All Actions")
-
-
-
-
-
-
+        self.SubscribeAllTouchEvent()
 
 
 ### ================================================================================== davids stuff
-    def naoSayHappy(self,sayText):
+    def SubscribePickUpEvent(self):
+        print("Subcribe Pick Up Events")
+        memory.subscribeToEvent("footContactChanged","BasicMotions","onPickUp")
+
+    def UnsubscribePickUpEvent(self):
+        print("Unsubcribe Pick Up Events")
+        memory.unsubscribeToEvent("footContactChanged", "BasicMotions")
+
+    def onPickUp(self, strVarName, value, subscriberIdentifier):
+        self.UnsubscribePickUpEvent()
+        print("Pick Up event detected:",  value)
+        if value == False:
+            self.naoSayScared("Put me down.")
+        else:
+            self.naoSayHappy("Thank you.")
+        self.SubscribePickUpEvent()
+
+    def naoSayHappy(self,str):
         emotion = 'happy'
-        sentence= "\\vct=" + str(self.ttsPitch[emotion]) + "\\"
-        sentence += self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
-        sentence+=sayText
-        # self.tts.say(sentence)
-        self.naoSayWait(sentence, 0.5)
+        sentence= self.ttsPitch[emotion]+  self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
+        sentence+=str
+        self.tts.say(sentence)
 
-    def naoSaySad(self,sayText):
+    def naoSaySad(self,str):
         emotion = 'sad'
-        sentence= "\\vct=" + str(self.ttsPitch[emotion]) + "\\"
-        sentence += self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
-        sentence+=sayText
-        # self.tts.say(sentence)
-        self.naoSayWait(sentence, 0.5)
+        sentence= self.ttsPitch[emotion]+  self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
+        sentence+=str
+        self.tts.say(sentence)
 
-    def naoSayScared(self,sayText):
+    def naoSayScared(self,str):
         emotion = 'scared'
-        sentence= "\\vct=" + str(self.ttsPitch[emotion]) + "\\"
-        sentence += self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
-        sentence+=sayText
-        # self.tts.say(sentence)
-        self.naoSayWait(sentence, 0.5)
+        sentence= self.ttsPitch[emotion]+  self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
+        sentence+=str
+        self.tts.say(sentence)
 
-    def naoSayFear(self,sayText):
+    def naoSayFear(self,str):
         emotion = 'fear'
-        sentence= "\\vct=" + str(self.ttsPitch[emotion]) + "\\"
-        sentence += self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
-        # newText = self.contourSpeechSlope(sayText, self.ttsPitch[emotion], 20)
-        sentence+= sayText
-        # self.tts.say(sentence)
-        self.naoSayWait(sentence, 0.5)
+        sentence= self.ttsPitch[emotion]+  self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
+        sentence+=str
+        self.tts.say(sentence)
 
-    def naoSayHope(self,sayText):
-        emotion = 'hope'
-        sentence= "\\vct=" + str(self.ttsPitch[emotion]) + "\\"
-        sentence += self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
-        sentence+=sayText
-        # self.tts.say(sentence)
-        self.naoSayWait(sentence, 0.5)
+    def naoSayHope(self,str):
+        emotion = 'fear'
+        sentence= self.ttsPitch[emotion]+  self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
+        sentence+=str
+        self.tts.say(sentence)
 
-    def naoSayAnger(self,sayText):
+    def naoSayAnger(self,str):
         emotion = 'anger'
-        sentence= "\\vct=" + str(self.ttsPitch[emotion]) + "\\"
-        sentence += self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
-        sentence+=sayText
-        # self.tts.say(sentence)
-        self.naoSayWait(sentence, 0.5)
+        sentence= self.ttsPitch[emotion]+  self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
+        sentence+=str
+        self.tts.say(sentence)
 
-    def contourSpeechSlope(self, sayText, mainPitch, slopeGain):
-        print sayText
-        sayText = " " + sayText
-        spaces = [pos for pos, char in enumerate(sayText) if char == ' ']
-        print "spaces: ", spaces
-        nSpace = len(spaces)
-        pitchStart = mainPitch - 1.0*slopeGain/2
-        print mainPitch
-        print pitchStart
-        print slopeGain
-        print nSpace
-        newText = ""
-        ns = 0
-        for c in sayText:
-            newText += c
-            if c == " ":
-                newPitch = self.getNewPitch(pitchStart, ns, slopeGain, nSpace)
-                newText += "\\vct=" + str(newPitch) + "\\ "
-                ns += 1
-        return newText
+    def __del__(self):
+        print("Quiting BasicMotions Module")
+        self.exit()
+        self.myBroker.shutdown();
 
-    def getNewPitch(self, pitchStart, numSpace, slope, nSpace):
-        newPitch = int(pitchStart + 1.0*numSpace*slope/nSpace)
-        if newPitch < 50:
-            newPitch = 50
-        if newPitch > 200:
-            newPitch = 200
-        return newPitch
+
+    def SubscribeAllTouchEvent(self):
+        print("Subcribe Touch Events")
+
+        memory.subscribeToEvent("RightBumperPressed", "BasicMotions", "onTouched")
+        memory.subscribeToEvent("LeftBumperPressed", "BasicMotions", "onTouched")
+
+        memory.subscribeToEvent("FrontTactilTouched", "BasicMotions", "onTouched")
+        memory.subscribeToEvent("MiddleTactilTouched", "BasicMotions", "onTouched")
+        memory.subscribeToEvent("RearTactilTouched", "BasicMotions", "onTouched")
+
+        memory.subscribeToEvent("HandRightBackTouched", "BasicMotions", "onTouched")
+        #memory.subscribeToEvent("HandRightLeftTouched", "BasicMotions", "onTouched")
+        #memory.subscribeToEvent("HandRightRightTouched", "BasicMotions", "onTouched")
+
+        memory.subscribeToEvent("HandLeftBackTouched", "BasicMotions", "onTouched")
+        #memory.subscribeToEvent("HandLeftLeftTouched", "BasicMotions", "onTouched")
+        #memory.subscribeToEvent("HandLeftRightTouched", "BasicMotions", "onTouched")
+
+    def UnsubscribeAllTouchEvent(self):
+        print("Unsubcribe Touch Events")
+
+        memory.unsubscribeToEvent("RightBumperPressed", "BasicMotions")
+        memory.unsubscribeToEvent("LeftBumperPressed", "BasicMotions")
+
+        memory.unsubscribeToEvent("FrontTactilTouched", "BasicMotions")
+        memory.unsubscribeToEvent("MiddleTactilTouched", "BasicMotions")
+        memory.unsubscribeToEvent("RearTactilTouched", "BasicMotions")
+
+        memory.unsubscribeToEvent("HandRightBackTouched", "BasicMotions")
+        #memory.unsubscribeToEvent("HandRightLeftTouched", "BasicMotions")
+        #memory.unsubscribeToEvent("HandRightRightTouched", "BasicMotions")
+
+        memory.unsubscribeToEvent("HandLeftBackTouched", "BasicMotions")
+        #memory.unsubscribeToEvent("HandLeftLeftTouched", "BasicMotions")
+        #memory.unsubscribeToEunvent("HandLeftRightTouched", "BasicMotions")
+
+    def onTouched(self, strVarName, value):
+        #self.UnsubscribeAllTouchEvent()
+        print("Touch event detected:",strVarName )
+        self.scaredEmotion1()
+        #self.SubscribeAllTouchEvent()
 
     def createEyeGroup(self):
         ledProxy = self.connectToProxy("ALLeds")
@@ -486,12 +343,12 @@ class BasicMotions:
         ledProxy.createGroup("LedEye",name1+name2+name3)
 
     def blinkEyes(self, color, duration, configuration):
-        bAnimation= True
-        accu=0
+        bAnimation= True;
+        accu=0;
         rgbList=[]
         timeList=[]
-        #Reset eye color to white
-        self.initEyes(color)
+        #Reset eye color to black
+        self.setEyeColor(0x00000000,"LedEye")
         self.setEyeColor(color,"LedEyeCorner")
         if configuration == "EyeTop":
             self.setEyeColor(color, "LedEyeTop")
@@ -529,18 +386,10 @@ class BasicMotions:
         except BaseException, err:
             print err
 
-    def initEyes(self, emotion = "Happy"):
-        ledProxy = self.connectToProxy("ALLeds")
-        if ("sad" != emotion and emotion != 0x00600088 and "fear" != emotion and
-            "scared1" != emotion and emotion != "scared2" and emotion != 0x00000060):
-            ledProxy.fade("FaceLeds", 1, 0.1)
-        else:
-            ledProxy.fade("FaceLeds", 0, 0.1)
-
     def setEyeEmotion(self,emotion):
         configuration = self.eyeShape[emotion]
         color = self.eyeColor[emotion]
-        self.initEyes(emotion)
+        self.setEyeColor(0x00000000,"LedEye")
         self.setEyeColor(color,"LedEyeCorner")
         if configuration == "EyeTop":
             self.setEyeColor(color, "LedEyeTop")
@@ -550,31 +399,31 @@ class BasicMotions:
             self.setEyeColor(color, "LedEyeTopBottom")
 
     def updateWithBlink(self, names, keys, times, color, configuration):
-        self.preMotion()
+        self.UnsubscribeAllTouchEvent()  #Already called in OnTouched
         postureProxy = self.connectToProxy("ALRobotPosture")
         standResult = postureProxy.goToPosture("StandInit", 0.3)
         if (standResult):
             print("------> Stood Up")
             try:
                 # uncomment the following line and modify the IP if you use this script outside Choregraphe.
-                # print("Time duration is ")
-                # print(max(max(times)))
+                print("Time duration is ")
+                print(max(max(times)))
                 self.blinkEyes(color,max(max(times))*3, configuration)
                 motionProxy = self.connectToProxy("ALMotion")
                 motionProxy.angleInterpolation(names, keys, times, True)
-                # print 'Tasklist: ', motionProxy.getTaskList();
+                print 'Tasklist: ', motionProxy.getTaskList();
                 time.sleep(max(max(times))+0.5)
             except BaseException, err:
-                print "***********************Did not show Emotion"
                 print err
         else:
             print("------> Did NOT Stand Up...")
-        self.postMotion()
+        self.SubscribeAllTouchEvent()
 
     def happyEmotion(self):
         names = list()
         times = list()
         keys = list()
+        self.bScared = False
         names.append("HeadPitch")
         times.append([0.8, 1.56, 2.12, 2.72])
         keys.append([-0.0138481, -0.0138481, -0.50933, 0.00762796])
@@ -678,7 +527,6 @@ class BasicMotions:
         names.append("RWristYaw")
         times.append([0.8, 1.56, 2.12, 2.72])
         keys.append([0.026036, 1.63213, 1.63213, 1.63213])
-
         self.updateWithBlink(names, keys, times, self.eyeColor['happy'], self.eyeShape['happy'])
         #self.updateWithBlink(names, keys, times, 0x0000FF00, "EyeTop")
 
@@ -686,6 +534,7 @@ class BasicMotions:
         names = list()
         times = list()
         keys = list()
+        self.bScared = False
         names.append("HeadPitch")
         times.append([0.8, 1.36])
         keys.append([-0.0107799, 0.500042])
@@ -789,7 +638,6 @@ class BasicMotions:
         names.append("RWristYaw")
         times.append([0.8, 1.36])
         keys.append([0.032172, -0.12583])
-
         self.updateWithBlink(names, keys, times, self.eyeColor['sad'], self.eyeShape['sad'])
         #self.updateWithBlink(names, keys, times, 0x00600088, "EyeBottom")
 
@@ -901,8 +749,9 @@ class BasicMotions:
         names.append("RWristYaw")
         times.append([0.8, 2.36])
         keys.append([0.0168321, -1.21037])
-
-        self.updateWithBlink(names, keys, times, self.eyeColor['scared1'], self.eyeShape['scared1'])
+        if self.bScared == False:
+            self.updateWithBlink(names, keys, times, self.eyeColor['scared1'], self.eyeShape['scared1'])
+            self.bScared = True
 
         #self.updateWithBlink(names, keys, times, 0x00000060,"EyeNone")
 
@@ -1017,16 +866,15 @@ class BasicMotions:
 
         self.updateWithBlink(names, keys, times, self.eyeColor['scared2'], self.eyeShape['scared2'])
 
-        #self.updateWithBlink(names, keys, times, 0x00000060, "EyeNone")
 
-    def scaredEmotion3(self):
-        postureProxy = self.connectToProxy("ALRobotPosture")
-        postureProxy.goToPosture("StandInit", 0.5)
+
+        #self.updateWithBlink(names, keys, times, 0x00000060, "EyeNone")
 
     def fearEmotion(self):
         names = list()
         times = list()
         keys = list()
+        self.bScared = False
         names.append("HeadPitch")
         times.append([0.8, 2.2, 2.48, 2.72, 2.96, 3.2])
         keys.append([-0.0123138, 0.50311, 0.421347, 0.46597, 0.449239, 0.50311])
@@ -1130,7 +978,6 @@ class BasicMotions:
         names.append("RWristYaw")
         times.append([0.8, 2.2, 2.48, 2.72, 2.96, 3.2])
         keys.append([0.0413762, 0.697927, 0.697927, 0.697927, 0.697927, 0.697927])
-
         self.updateWithBlink(names, keys, times, self.eyeColor['fear'], self.eyeShape['fear'])
         #self.updateWithBlink(names, keys, times, 0x00000060,"EyeTopBottom")
 
@@ -1139,7 +986,7 @@ class BasicMotions:
         names = list()
         times = list()
         keys = list()
-
+        self.bScared = False
         names.append("HeadPitch")
         times.append([0.8, 1.6, 2, 2.2, 2.4, 2.6, 2.8])
         keys.append([0.00762796, -0.158044, -0.6704, -0.667332, -0.6704, -0.667332, -0.6704])
@@ -1243,7 +1090,6 @@ class BasicMotions:
         names.append("RWristYaw")
         times.append([0.8, 1.6, 2, 2.2, 2.4, 2.6, 2.8])
         keys.append([0.033706, 0.621227, -0.145772, -0.121228, -0.145772, -0.121228, -0.145772])
-
         self.updateWithBlink(names, keys, times, self.eyeColor['hope'], self.eyeShape['hope'])
         #self.updateWithBlink(names, keys, times, 0x00FFB428, "EyeTop")
 
@@ -1251,7 +1097,7 @@ class BasicMotions:
         names = list()
         times = list()
         keys = list()
-
+        self.bScared = False
         names.append("HeadPitch")
         times.append([0.8, 2.12, 2.36, 2.56, 2.76, 2.96])
         keys.append([-0.0153821, -0.073674, -0.046062, -0.046062, -0.046062, -0.046062])
@@ -1355,8 +1201,25 @@ class BasicMotions:
         names.append("RWristYaw")
         times.append([0.8, 2.12, 2.36, 2.56, 2.76, 2.96])
         keys.append([0.030638, -4.19617e-05, 0.0106959, 0.0106959, 0.0106959, 0.0106959])
-
         self.updateWithBlink(names, keys, times, self.eyeColor['anger'], self.eyeShape['anger'])
         #self.updateWithBlink(names, keys, times, 0x00FF0000, "EyeTopBottom")
+
+
+    def createDialog(self):
+        self.HriDialogEOD={ '1'         : "Hello again Bob, how was the rest of your day?",
+                            '1good'     : "Awesome, I knew it would be a good day",
+                            '1bad'      : "Oh, I am sorry to hear that. There is always tomorrow to look forward to.",
+                            '2'         : "Do you have any big plans you are looking forward to later in the week or over the weekend?",
+                            '2yes'      : "That's great, that sounds like fun.",
+                            '2no'       : "It would be greate if you could plan something active.",
+                            '31'        : "Did you have the meal suggested for breakfast this morning?",
+                            '31yes'     : "That's great, break fast is the most important meal of the day. Having a healthy breakfast in the morning can help you to fight viruses and reduce your risk of disease. Do you think you could have this regularly for breakfast?",
+                            '31yesyes'  : "Wonderful, I will suggest this again to you. A consistent healthy breakfast can improve your energy levels and reduce hunger throughout the day.",
+                            '31no'      : "Did you at lest least have any breakfast this morning?",
+                            '31noyes'   : "That's good at least, but I would recommend you have the suggested meal whenever possible. That way you can ensure you are always getting a healthy start to your day.",
+                            '31nono'    : "Breakfast is the most important meal of the day. Skipping breakfast often leads to unhealthy habits and overeating later in the day. Please try to have at least something for breakfast in the future, and even better if you have something like the suggested meal"
+                            }
+
+
 
 
