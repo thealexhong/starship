@@ -1,2 +1,2 @@
-java -cp weka.jar weka.classifiers.trees.RandomForest -T FeatureVectorValence.arff -l model_v_16bit_2s_type0.model -p 0
-java -cp weka.jar weka.classifiers.trees.RandomForest -T FeatureVectorArousal.arff -l model_a_16bit_2s_type0.model -p 0
+java -cp weka.jar weka.classifiers.functions.MultilayerPerceptron -T FeatureVectorValence.arff -l MultiNN_v_2s_type0.model -p 0
+java -cp weka.jar weka.classifiers.functions.MultilayerPerceptron -T FeatureVectorArousal.arff -l MultiNN_a_2s_type0.model -p 0
