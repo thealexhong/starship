@@ -1,4 +1,4 @@
-{"id":1, "name":"Sliced turkey sandwich on whole wheat bread with lettuce and tomatoes", "hasPoultry":true, "hasGluten": true, "calories":600, "buyFrom":"Subway just across College Street", "mealType":"lunch", "hasFish":false}
+{"id":1, "name":"One sliced turkey sandwich on whole wheat bread with lettuce and tomatoes", "hasPoultry":true, "hasGluten": true, "calories":600, "buyFrom":"Subway just across College Street", "mealType":"lunch", "hasFish":false}
 {"id":2, "name":"Chicken on, brown rice with vegetables", "hasPoultry":true, "hasGluten": false, "calories":650, "buyFrom":"Salad King, over on Younge Street", "mealType":"lunch", "hasFish":false}
 {"id":3, "name":"Whole wheat chickpea wrap with beans and tomatoes", "hasPoultry":false, "hasGluten": true, "calories":650, "buyFrom":"Vegetarian Heaven, over on Baldwin Street", "mealType":"lunch", "hasFish":false}
 {"id":4, "name":"Tofu on, brown rice with vegetables", "hasPoultry":false, "hasGluten": false, "calories":600, "buyFrom":"Vegetarian Heaven, over on Baldwin Street", "mealType":"dinner", "hasFish":false}

@@ -51,6 +51,15 @@ def readLinesToJSON(textFile):
 
 	return linesJson
 
+def readFileToJSON(textFile):
+    jsInputLines = readTextLines(textFile)
+    jsInput = ""
+    for line in jsInputLines:
+        jsInput += line
+    # print jsInput
+    jsInput = json.loads(jsInput)
+    return jsInput
+
 def checkFileExists(fileName):
 	fWin = fileName
 	funi = fileName.replace('\\', '/')

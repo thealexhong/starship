@@ -32,8 +32,12 @@ class BasicMotions:
         tts.setParameter("pitchShift", 0)
         tts.setParameter("doubleVoice", 0)
         tts.setParameter("doubleVoiceLevel", 0)
-        audioProxy = self.connectToProxy("ALAudioDevice")
-        audioProxy.setOutputVolume(100/2)
+        try:
+            audioProxy = self.connectToProxy("ALAudioDevice")
+            audioProxy.setOutputVolume(100/2)
+        except Exception as e:
+            print "No Audio device found"
+            print e
         #Valid Value:50 to 200
         self.ttsPitch={      'default':   100, # \\vct=value\\
                              'happy':     120,
@@ -126,6 +130,7 @@ class BasicMotions:
     def naoBreathOFF(self):
         motionProxy = self.connectToProxy("ALMotion")
         motionProxy.setBreathEnabled('Body', False)
+        print "Stopped Breathing"
 
     def naoSayWait(self, text, waitTime):
         speechProxy = self.connectToProxy("ALTextToSpeech")

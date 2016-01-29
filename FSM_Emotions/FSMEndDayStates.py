@@ -4,13 +4,14 @@ import FileUtilitiy
 import json
 
 class FSMEndDayStates:
-    def __init__(self, genUtil, FSMBody, userName = "Human", userNumber = 1, robotName = "NAO"):
+    def __init__(self, genUtil, FSMBody, userName = "Human", userNumber = 1, robotName = "NAO", lastInteraction = False):
         self.genUtil = genUtil
         self.FSMBody = FSMBody
 
         self.robotName = robotName
         self.userName = userName
         self.userNumber = userNumber
+        self.lastInteraction = lastInteraction
 
         # self.weatherIsNice = weatherIsNice
         # self.canEatPoultry = canEatPoultry
@@ -209,7 +210,7 @@ class FSMEndDayStates:
         return appraiseState
 
     def meal1CheckinYesAte(self):
-        sayText = "That's great, break is the most important meal of the day. "
+        sayText = "That's great, breakfast is the most important meal of the day. "
         sayText += "Having a healthy breakfast in the morning can help you to fight viruses and reduce your risk of disease."
         self.FSMBody.sayWithEmotion(sayText)
 
@@ -799,8 +800,7 @@ class FSMEndDayStates:
     def dayEndEnd(self):
         sayText = "Thanks for interacting with me today. "
 
-        lastInteraction = True
-        if lastInteraction:
+        if not self.lastInteraction:
             sayText += "See you tomorrow. "
         else:
             sayText += "I wish you all the best with your diet and exercise plan. "

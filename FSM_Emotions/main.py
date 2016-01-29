@@ -8,92 +8,118 @@ from GenUtil import GenUtil
 import NAOReactionChecker
 from ThreadedCheckers import ThreadedChecker
 from UserAffectGenerator import UserAffectGenerator
-
+import json
+import atexit
 
 def main(NAOip, NAOport, name):
-    naoMotions = BasicMotions(NAOip, NAOport)
-    robotName = name
-    genUtil = GenUtil(naoMotions)
-    genUtil.showFoodDB()
 
-    myBroker = ALBroker("myBroker", "0.0.0.0", 0, NAOip, NAOport)
-    global naoReactionChecker
-    naoReactionChecker = NAOReactionChecker.NAOReactionChecker(genUtil, NAOip, NAOport)
+    print "***************************************************************************"
+    print "***************************************************************************"
+    print "Have You updated the _FSM_INPUT File for this interaction? (1) yes, (2) no: ",
+    textInput = str(raw_input()).lower()
+    print "***************************************************************************"
 
-    thread1 = ThreadedChecker(1, "Main Checker #1", genUtil)
-    thread2 = UserAffectGenerator(2, "User Affect Generator #1", 3, genUtil)
+    if textInput == "1":
+        naoMotions = BasicMotions(NAOip, NAOport)
+        robotName = name
+        genUtil = GenUtil(naoMotions)
+        genUtil.showFoodDB()
 
-    # select your activity to run
-    # activityConsultant = "Consultant By Appointment"
-    # Daily Companion
-    activityDayCompMorning = "Daily Companion Morning"
-    activityDayCompDayEnd = "Daily Companion End of Day"
+        myBroker = ALBroker("myBroker", "0.0.0.0", 0, NAOip, NAOport)
+        global naoReactionChecker
+        naoReactionChecker = NAOReactionChecker.NAOReactionChecker(genUtil, NAOip, NAOport)
 
-    userName = "Test User"
-    userNumber = "1"
-    dateTime = genUtil.getDateTime()
-    activityInteractionType = activityDayCompDayEnd
-    userInfo = initiateUserInfo(userName, userNumber, activityInteractionType, dateTime)
+        thread1 = ThreadedChecker(1, "Main Checker #1", genUtil)
+        thread2 = UserAffectGenerator(2, "User Affect Generator #1", 3, genUtil)
 
-    # runSomeTest(genUtil)
+        dateTime = genUtil.getDateTime()
+        [userName, userNumber, activityInteractionType, lastInteraction] = getFSMInputVars()
 
-    genUtil.showHappyEyes()
-    # naoMotions.naoSit()
-    print "NAO is currently: ", naoMotions.getPostureFamily()
-    speed = 0.2
-    if naoMotions.getPostureFamily() == "Sitting":
-        speed = 0.7
+        userInfo = initiateUserInfo(userName, userNumber, activityInteractionType, dateTime)
 
-    global sitTest
-    sitTest = False
-    if not sitTest:
-        naoMotions.naoStand(speed)
-    # naoMotions.naoWaveBoth()
-    naoMotions.naoAliveON()
+        # runSomeTest(genUtil)
 
-    # ============================================================= Start Functionality
-    print("State Machine Started")
-    print
-    print
-    thread1.start()
-    # thread2.start()
+        genUtil.showHappyEyes()
+        # naoMotions.naoSit()
+        print "NAO is currently: ", naoMotions.getPostureFamily()
+        speed = 0.2
+        if naoMotions.getPostureFamily() == "Sitting":
+            speed = 0.7
 
-    dietFitnessFSM = DietFitnessFSM(genUtil, robotName, userName, userNumber, activityInteractionType)
-    [currentState, robotEmotionNum, obserExpresNum] = dietFitnessFSM.getFSMState()
+        global sitTest
+        sitTest = False
+        if not sitTest:
+            naoMotions.naoStand(speed)
+        # naoMotions.naoWaveBoth()
+        naoMotions.naoAliveON()
 
-    appraiseState = False
-    user_input = "Start"
-    while currentState != 0:
-        print("=========================================================================================")
-        print "FSM Info: ", [currentState, robotEmotionNum, obserExpresNum]
-        if appraiseState:
-            genUtil.expressEmotion(obserExpresNum)
+        # ============================================================= Start Functionality
+        print("State Machine Started")
+        print
+        print
+        thread1.start()
+        # thread2.start()
 
-        [currentState, robotEmotionNum, obserExpresNum, appraiseState] = dietFitnessFSM.activityFSM()
-    thread1.quit()
-    # thread2.quit()
-    genUtil.naoTurnOffEyes()
-    naoMotions.naoAliveOff()
-    # naoMotions.naoSit()
-    NAOReactionChecker.ActuallyUnsubscribeAllEvents()
-    myBroker.shutdown()
+        dietFitnessFSM = DietFitnessFSM(genUtil, robotName, userName, userNumber, activityInteractionType, lastInteraction)
+        [currentState, robotEmotionNum, obserExpresNum] = dietFitnessFSM.getFSMState()
 
-    print
-    [stateTimeStamp, stateDateTime, fsmStateHist,
-     reHist, oeHist, driveStatHist, fsmStateNameHist] = dietFitnessFSM.getHistories()
-    print "History of TimeStamps: ", stateTimeStamp
-    print "History of DateTimes: ", stateDateTime
-    print "History of FSM States: ", fsmStateHist
-    print "History of FSM State Names: ", fsmStateNameHist
-    print "History of Robot Emotions: ", reHist
-    print "History of Observable Expressions: ", oeHist
-    print "History of Drive Statuses: ", driveStatHist
-    writeUserHistories(userName, userNumber, userInfo,
-                       stateTimeStamp, stateDateTime, fsmStateHist, reHist, oeHist, driveStatHist, fsmStateNameHist)
+        appraiseState = False
+        user_input = "Start"
+        while currentState != 0:
+            print("=========================================================================================")
+            print "FSM Info: ", [currentState, robotEmotionNum, obserExpresNum]
+            if appraiseState:
+                genUtil.expressEmotion(obserExpresNum)
 
+            [currentState, robotEmotionNum, obserExpresNum, appraiseState] = dietFitnessFSM.activityFSM()
+        thread1.quit()
+        # thread2.quit()
+        genUtil.naoTurnOffEyes()
+        naoMotions.naoAliveOff()
+        # naoMotions.naoSit()
+        NAOReactionChecker.ActuallyUnsubscribeAllEvents()
+        myBroker.shutdown()
+
+        print
+        [stateTimeStamp, stateDateTime, fsmStateHist,
+         reHist, oeHist, driveStatHist, fsmStateNameHist] = dietFitnessFSM.getHistories()
+        print "History of TimeStamps: ", stateTimeStamp
+        print "History of DateTimes: ", stateDateTime
+        print "History of FSM States: ", fsmStateHist
+        print "History of FSM State Names: ", fsmStateNameHist
+        print "History of Robot Emotions: ", reHist
+        print "History of Observable Expressions: ", oeHist
+        print "History of Drive Statuses: ", driveStatHist
+        writeUserHistories(userName, userNumber, userInfo,
+                           stateTimeStamp, stateDateTime, fsmStateHist, reHist, oeHist, driveStatHist, fsmStateNameHist)
+
+    else:
+        print "Go updated the input file for this interaction"
+        print "It can be found at: ProgramDataFiles\_FSM_INPUT.txt"
 
     print
     print("State Machine Finished")
+
+def getFSMInputVars():
+    fileName = "ProgramDataFiles\_FSM_INPUT.txt"
+    jsInput = FileUtilitiy.readFileToJSON(fileName)
+    # print jsInput
+    userName = jsInput['userName']
+    userNumber = jsInput['userNumber']
+    interactionType = jsInput['interactionType']
+    lastInteraction = jsInput['lastInteraction']
+    print
+    print "userName: ", userName, " | userNumber: ", userNumber, " | interactionType: ", interactionType, " | lastInteraction: ", lastInteraction
+    print
+    # select your activity to run
+    # activityConsultant = "Consultant By Appointment"
+    if 'morning' in interactionType.lower():
+        activityInteractionType = "Daily Companion Morning"
+    else:
+        activityInteractionType = "Daily Companion End of Day"
+
+    return [userName, userNumber, activityInteractionType, lastInteraction]
+
 
 def initiateUserInfo(userName, userNumber, activityType, dateTime):
     fileName = "ProgramDataFiles\userInfo.csv"
@@ -125,9 +151,10 @@ def runSomeTest(genUtil):
 def testNaoConnection(NAOip, NAOport):
     worked = False
     try:
-        naoBehavior = connectToProxy(NAOip, NAOport, "ALBehaviorManager")
-        names = naoBehavior.getInstalledBehaviors()
-        print "Names: ", names
+        print NAOip, NAOport
+        # naoBehavior = connectToProxy(NAOip, NAOport, "ALBehaviorManager")
+        # names = naoBehavior.getInstalledBehaviors()
+        # print "Names: ", names
     
         naoMotions = BasicMotions(NAOip, NAOport)
         print "Made Basic Motions"
@@ -153,13 +180,22 @@ def connectToProxy(NAOip, NAOport, proxyName):
 
         return proxy
 
+def getNAOIP():
+    fileName = "ProgramDataFiles\_FSM_INPUT.txt"
+    jsInput = FileUtilitiy.readFileToJSON(fileName)
+    naoIP = str(jsInput['naoIP'])
+    return naoIP
+
+def exitingProgram():
+    print "Program Exiting..."
+
 if __name__ == '__main__':
     simulated = False
     name = "NAO"
     if simulated:
         #simulated NAO
         NAOIP = "127.0.0.1"
-        NAOPort = 52030
+        NAOPort = 61699
     else:
         useLuke = True
         #real NAO
@@ -170,12 +206,14 @@ if __name__ == '__main__':
         else:
             NAOIP = "leia.local"
             name = "Leia"
+        NAOIP = getNAOIP()
         NAOPort = 9559
 
     print("Initiated Values")
 
     connWorks = testNaoConnection(NAOIP, NAOPort)
     print connWorks
+    atexit.register(exitingProgram)
     if connWorks:
         main(NAOIP, NAOPort, name)
 

@@ -1418,3 +1418,6 @@ currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
 currentFSMState: 47 
 currentFSMState: 47 
 currentFSMState: 46 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  

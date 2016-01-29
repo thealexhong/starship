@@ -16,7 +16,7 @@ from FSMEndDayStates import FSMEndDayStates
 class DietFitnessFSM:
 	
 	def __init__(self, genUtil, robotName = "NAO", userName = "User", userNumber = 1,
-				 activityInteractionType = "Daily Companion Morning"):
+				 activityInteractionType = "Daily Companion Morning", lastInteraction = False):
 		self.robotName = robotName
 		self.usersName = userName
 		self.userNumber = userNumber
@@ -84,7 +84,7 @@ class DietFitnessFSM:
 				break
 
 		beginDayStates = FSMBeginDayStates(genUtil, self, userName, userNumber, robotName)
-		endDayStates = FSMEndDayStates(genUtil, self, userName, userNumber, robotName)
+		endDayStates = FSMEndDayStates(genUtil, self, userName, userNumber, robotName, lastInteraction)
 		fsmStates = [beginDayStates, endDayStates]
 		self.FSMInUse = fsmStates[activityIndex]
 		for i in range(len(fsmStates)):
@@ -684,6 +684,7 @@ class DietFitnessFSM:
 			print "Couldn't flush the input"
 			print e
 
+		print "***************************************************************************"
 		print writeText + ": ",
 		textInput = raw_input()
 

@@ -250,7 +250,7 @@ class FSMBeginDayStates:
         if not self.hasTalkedParis:
             self.FSMBody.setFSMState(self.FSMBody.state+1)
         else:
-            self.FSMBody.setFSMState(self.FSMBody.state+1+3)
+            self.FSMBody.setFSMState(self.FSMBody.state+1+5)
         appraiseState = False
         return appraiseState
 
@@ -332,7 +332,7 @@ class FSMBeginDayStates:
         return appraiseState
 
     def askBreakfast(self):
-        sayText = "Let's start planning your, diet for today."
+        sayText = "Let's start planning your die it for today."
         self.FSMBody.sayWithEmotion(sayText)
 
         sayText = "Have you had breakfast yet this morning?"
