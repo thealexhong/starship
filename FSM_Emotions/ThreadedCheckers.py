@@ -29,6 +29,10 @@ class ThreadedChecker(threading.Thread):
         b.pack()
         b2 = tk.Button(self.root, text="Freak out Stop", command = self.freakOutEndClicked)
         b2.pack()
+        b3 = tk.Button(self.root, text="NAO sees he is high up", command = self.naoSeesHighClicked)
+        b3.pack()
+        b4 = tk.Button(self.root, text="NAO doesn't see he is high up", command = self.naoNotSeeHighClicked)
+        b4.pack()
 
         self.root.mainloop()
 
@@ -37,6 +41,12 @@ class ThreadedChecker(threading.Thread):
 
     def freakOutEndClicked(self):
         self.genUtil.naoIsSafeAgain()
+
+    def naoSeesHighClicked(self):
+        self.genUtil.naoSeesHigh = True
+
+    def naoNotSeeHighClicked(self):
+        self.genUtil.naoSeesHigh = False
 
     def quit(self):
         self.root.quit()

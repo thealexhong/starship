@@ -7,21 +7,22 @@ class EmotionMM:
 		# initial A
 		d = 10
 		self.Ainit = np.array([
-				# happy, hope, sad, fear, anger, scared 1 2
-				[5.0/d, 4.0/d, 2.0/d, 2.0/d, 2.0/d, 2.0/d, 2.0/d],
-				[2.0/d, 2.0/d, 1.0/d, 1.0/d, 1.0/d, 2.0/d, 2.0/d],
-				[1.0/d, 1.0/d, 2.0/d, 2.0/d, 2.0/d, 2.0/d, 2.0/d],
-				[1.0/d, 1.0/d, 2.0/d, 2.0/d, 2.0/d, 2.0/d, 2.0/d],
-				[1.0/d, 2.0/d, 3.0/d, 3.0/d, 3.0/d, 2.0/d, 2.0/d],
-				[0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000],
-				[0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000],
+				# happy, hope, sad, fear, anger, scared 1 2 3
+				[5.0/d, 4.0/d, 1.0/d, 2.0/d, 0.0/d, 2.0/d, 2.0/d, 2.0/d],
+				[3.0/d, 2.0/d, 2.0/d, 2.0/d, 2.0/d, 2.0/d, 2.0/d, 2.0/d],
+				[1.0/d, 1.0/d, 2.0/d, 2.0/d, 3.0/d, 2.0/d, 2.0/d, 2.0/d],
+				[1.0/d, 1.0/d, 2.0/d, 1.0/d, 2.0/d, 2.0/d, 2.0/d, 2.0/d],
+				[0.0/d, 2.0/d, 3.0/d, 3.0/d, 3.0/d, 2.0/d, 2.0/d, 2.0/d],
+				[0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000],
+				[0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000],
+				[0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000]
 				])
 		print(self.Ainit)
 		print
 
 		self.A = self.Ainit
 
-		#E0 = happy, E1 = Sad, E2 = Fear, E3 = Anger, E4 = Hope, e5 = Scared1 (Pickup), e6 = Scared2 (touch)
+		#E0 = happy, E1 = Sad, E2 = Fear, E3 = Anger, E4 = Hope, e5 = Scared1 (Pickup), e6 = Scared2 (touch), e7 = Scared3 (high)
 		[rows, self.NumE] = self.Ainit.shape
 		
 		# default initial emotion

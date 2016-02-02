@@ -92,7 +92,7 @@ class DietFitnessFSM:
 				self.FSMInUse = fsmStates[i]
 		self.FSMStateNames = self.FSMInUse.getMethodNames()
 
-		self.ReactiveStateNames = ["reactionScaredTouch", "reactionScaredPickedUp"]
+		self.ReactiveStateNames = ["reactionScaredTouch", "reactionScaredPickedUp", "reactionScaredHighEdge"]
 		self.TerminateStateNames = ["activityFSMState_Terminate"]
 		self.FSMStateNames = self.TerminateStateNames + self.FSMStateNames + self.ReactiveStateNames
 
@@ -112,6 +112,8 @@ class DietFitnessFSM:
 				self.s = self.FSMInUse.getNumMethods() + 1 # index past methods -> reactive method
 			elif self.genUtil.naoIsPickedUp:
 				self.s = self.FSMInUse.getNumMethods() + 2 # index past methods -> reactive method
+			elif self.genUtil.naoIsHighEdge:
+				self.s = self.FSMInUse.getNumMethods() + 3 # index past methods -> reactive method
 			print "Reaction ", self.s
 
 		ts = self.genUtil.getTimeStamp()
@@ -122,6 +124,7 @@ class DietFitnessFSM:
 		self.oeHist.append(self.oeHMM.getObservableExpressionNumber())
 		self.driveStatHist.append(self.drives.getDriveStatuses().tolist())
 
+		# check state is legit
 		if self.s < len(self.FSMStateNames):
 			stateMethod_name = self.FSMStateNames[self.s]
 		else:
@@ -163,6 +166,8 @@ class DietFitnessFSM:
 					self.reMM.setCurrentEmotionByNumber(6) # robot is now scared
 				elif self.genUtil.naoIsPickedUp:
 					self.reMM.setCurrentEmotionByNumber(5)
+				elif self.genUtil.naoIsHighEdge:
+					self.reMM.setCurrentEmotionByNumber(7)
 				vre = self.reMM.getRobotEmotionVector()
 				self.showData( "New RE: " +  str(vre))
 				voe = self.oeHMM.determineObservableExpression(vre)
@@ -632,6 +637,9 @@ class DietFitnessFSM:
 			self.reMM.setCurrentEmotionByNumber(6) # robot is now scared
 		elif self.genUtil.naoIsPickedUp:
 			self.reMM.setCurrentEmotionByNumber(5)
+		elif self.genUtil.naoIsHighEdge:
+			self.reMM.setCurrentEmotionByNumber(7)
+
 		vre = self.reMM.getRobotEmotionVector()
 		print "New RE: ", vre
 		voe = self.oeHMM.determineObservableExpression(vre)
@@ -648,6 +656,15 @@ class DietFitnessFSM:
 
 	def reactionScaredPickedUp(self):
 		sayText = "Put me down Put me down Put me down"
+		self.becomeScared()
+		self.sayWithEmotion(sayText)
+		time.sleep(1)
+
+		appraiseState = True
+		return appraiseState
+
+	def reactionScaredHighEdge(self):
+		sayText = "I'm so high up, move me away from the edge"
 		self.becomeScared()
 		self.sayWithEmotion(sayText)
 		time.sleep(1)

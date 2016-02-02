@@ -35,7 +35,7 @@ def main(NAOip, NAOport):
         elif user_input == "nod":
             BasicMotions.naoNodHead()
         elif user_input == "shake head":
-            BasicMotions.naoShadeHead()
+            BasicMotions.naoShakeHead()
         elif user_input == "wave right":
             BasicMotions.naoWaveRight()
         elif user_input == "wave both":

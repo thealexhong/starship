@@ -223,7 +223,7 @@ class BasicMotions:
         print("------> Nodded")
         self.postMotion()
 
-    def naoShadeHead(self):
+    def naoShakeHead(self):
         self.preMotion()
         motionProxy = self.connectToProxy("ALMotion")
         motionProxy.wakeUp()
@@ -372,11 +372,14 @@ class BasicMotions:
         waveTimes = [2, 2, 2]
         waveAngles = [math.radians(-11), math.radians(-40), 0.99]
         moveID = motionProxy.post.angleInterpolation(waveNames, waveAngles, waveTimes, True)
+        motionProxy.wait(moveID, 0)
         self.naoSay(sayText)
 
         for i in range(numWaves):
             moveID = motionProxy.post.angleInterpolation(["RElbowRoll"],  math.radians(88.5)*movePercent, [1], True)
+            motionProxy.wait(moveID, 0)
             moveID = motionProxy.post.angleInterpolation(["RElbowRoll"],  math.radians(27)*movePercent, [1], True)
+            motionProxy.wait(moveID, 0)
 
         moveID = motionProxy.post.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
         motionProxy.wait(moveID, 0)
@@ -421,7 +424,7 @@ class BasicMotions:
         emotion = 'scared'
         sentence= "\\vct=" + str(self.ttsPitch[emotion]) + "\\"
         sentence += self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
-        sentence+=sayText
+        sentence+= str(sayText).replace(" ", "! ")
         # self.tts.say(sentence)
         self.naoSayWait(sentence, 0.5)
 
@@ -430,7 +433,7 @@ class BasicMotions:
         sentence= "\\vct=" + str(self.ttsPitch[emotion]) + "\\"
         sentence += self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
         # newText = self.contourSpeechSlope(sayText, self.ttsPitch[emotion], 20)
-        sentence+= sayText
+        sentence+= str(sayText).replace(" ", ". ")
         # self.tts.say(sentence)
         self.naoSayWait(sentence, 0.5)
 

@@ -12,13 +12,16 @@ class GenUtil:
         # no inits
         self.emotionExpressionDict = ["Happy", "Hopeful", "Sad", "Fearful", "Angry",
                                       "Happy2", "Hopeful2", "Sad2", "Fearful2", "Angry2",
-                                      "Scared1", "Scared2"] #(pickup, touch)
+                                      "Scared1", "Scared2", "Scared3"] #(pickup, touch, high)
                                     
         self.numOE = len(self.emotionExpressionDict)
         self.naoMotions = naoMotions
         self.naoIsSafe = True
         self.naoIsTouched = False
         self.naoIsPickedUp = False
+        self.naoIsHighEdge = False
+
+        self.naoSeesHigh = False
 
         self.wasJustScared = False
         self.fDB = FoodDBManager()
@@ -73,11 +76,14 @@ class GenUtil:
                     self.showAngryBody()
                 elif oe == "Hopeful2":
                     self.showHopeBody()
-                elif oe == "Scared1" and not self.wasJustScared: #touched
+                elif oe == "Scared1" and not self.wasJustScared: #pickup
                     self.showScared1Body()
                     self.wasJustScared = True
-                elif oe == "Scared2" and not self.wasJustScared: #touched
+                elif oe == "Scared2" and not self.wasJustScared: #touch
                     self.showScared2Body()
+                    self.wasJustScared = True
+                elif oe == "Scared3" and not self.wasJustScared: #high
+                    self.showScared3Body()
                     self.wasJustScared = True
 
                 if "Scared" not in oe:
@@ -173,6 +179,9 @@ class GenUtil:
     def showScared2Body(self):
         self.naoMotions.scaredEmotion1()
         print "My body is Scared2"
+    def showScared3Body(self):
+        self.naoMotions.scaredEmotion1()
+        print "My body is Scared2"
 
 ################################################# Body
     def showHappyVoice(self, sayText):
@@ -230,6 +239,19 @@ class GenUtil:
         else:
             print " ********************************** I was already picked up"
 
+    def naoSeesHighEdge(self):
+        if not self.naoIsHighEdge:
+            print "**********************************"
+            print "I was PICKED UP !!"
+            print "**********************************"
+            self.naoIsSafe = False
+            self.naoIsHighEdge = True
+            self.stopNAOActions()
+            self.showScaredEyes()
+            self.showScaredVoice("I'm so high up!")
+        else:
+            print " ********************************** I already see I'm high up"
+
     def naoIsSafeAgain(self):
         print "**********************************"
         print "Much Better"
@@ -237,6 +259,7 @@ class GenUtil:
         self.naoIsSafe = True
         self.naoIsTouched = False
         self.naoIsPickedUp = False
+        self.naoIsHighEdge = False
 
     def getTimeStamp(self):
         return time.time()
@@ -278,3 +301,15 @@ class GenUtil:
 
     def naoTurnOffEyes(self):
         self.naoMotions.naoTurnOffEyes()
+
+    def naoWave(self):
+        self.naoMotions.naoWaveRight()
+
+    def checkEdgeSafety(self):
+        # check if NAO is fat enough away from the edge
+        self.naoMotions.naoShakeHead()
+
+        if self.naoSeesHigh:
+            self.naoSeesHighEdge()
+
+        return self.naoSeesHigh

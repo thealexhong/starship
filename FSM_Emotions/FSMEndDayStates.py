@@ -32,6 +32,7 @@ class FSMEndDayStates:
             "meal1CheckinBreakfast",
             "meal1CheckinYesAte", "meal1CheckinYesAteYesReg", "meal1CheckinYesAteNoReg",
             "meal1CheckinNoAte", "meal1CheckinNoAteYesHad", "meal1CheckinNoAteNoHad",
+            "checkEdgeSafety1",
             "meal2CheckinLunch",
             "meal2CheckinYesAte", "meal2CheckinYesAteGood", "meal2CheckinYesAteBad",
             "meal2CheckinNoAte", "meal2CheckinNoAteYesComp", "meal2CheckinNoAteYesCompYesResp",
@@ -39,6 +40,7 @@ class FSMEndDayStates:
             "meal3CheckinDinner", "meal3CheckinYesHad", "meal3CheckinYesAte", "meal3CheckinYesAteGood",
             "meal3CheckinYesAteBad", "meal3CheckinNoAte", "meal3CheckinNoAteYesComp", "meal3CheckinNoAteDontknowComp",
             "meal3CheckinNoAteNoComp", "meal3CheckinNoHad",
+            "checkEdgeSafety2",
             "exerciseCheckin",
             "exerciseCheckinYesDid", "exerciseCheckinYesDidGoodDiff", "exerciseCheckinYesDidHardDiff",
             "exerciseCheckinYesDidEasyDiff", "exerciseCheckinNoDid", "exerciseCheckinNoDidYesComp",
@@ -200,7 +202,6 @@ class FSMEndDayStates:
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
             else:
                 upbLikeli = self.FSMBody.drives.gotNewBranch(False)
-                udsmLikeli = self.FSMBody.drives.checkinMeal(1, False)
                 self.FSMBody.setFSMState(self.FSMBody.state+1 + 3)
         else:
             urLikeli = self.FSMBody.drives.askedUser(False)
@@ -267,9 +268,11 @@ class FSMEndDayStates:
             urLikeli = self.FSMBody.drives.askedUser(True)
             if textInput.lower() == "1":
                 upbLikeli = self.FSMBody.drives.gotNewBranch(True)
+                udsmLikeli = self.FSMBody.drives.checkinMeal(1, True)
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
             else:
                 upbLikeli = self.FSMBody.drives.gotNewBranch(False)
+                udsmLikeli = self.FSMBody.drives.checkinMeal(1, False)
                 self.FSMBody.setFSMState(self.FSMBody.state+2)
         else:
             urLikeli = self.FSMBody.drives.askedUser(False)
@@ -297,6 +300,13 @@ class FSMEndDayStates:
         appraiseState = False
         return appraiseState
 
+    def checkEdgeSafety1(self):
+        seesHigh = self.genUtil.checkEdgeSafety()
+        if not seesHigh:
+            self.FSMBody.setFSMState(self.FSMBody.state+1)
+        appraiseState = False
+        return appraiseState
+
     def meal2CheckinLunch(self):
         sayText = "Did you get a chance to have the " + self.meal2Suggested + " for lunch today?"
         self.FSMBody.sayWithEmotion(sayText)
@@ -313,7 +323,6 @@ class FSMEndDayStates:
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
             else:
                 upbLikeli = self.FSMBody.drives.gotNewBranch(False)
-                udsmLikeli = self.FSMBody.drives.checkinMeal(2, False)
                 self.FSMBody.setFSMState(self.FSMBody.state+1 + 3)
         else:
             urLikeli = self.FSMBody.drives.askedUser(False)
@@ -378,12 +387,15 @@ class FSMEndDayStates:
             urLikeli = self.FSMBody.drives.askedUser(True)
             if textInput.lower() == "1":
                 upbLikeli = self.FSMBody.drives.gotNewBranch(True)
+                udsmLikeli = self.FSMBody.drives.checkinMeal(2, True)
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
             elif textInput.lower() == "2":
                 upbLikeli = self.FSMBody.drives.gotNewBranch(False)
+                udsmLikeli = self.FSMBody.drives.checkinMeal(2, False)
                 self.FSMBody.setFSMState(self.FSMBody.state+1+3)
             else:
                 upbLikeli = self.FSMBody.drives.gotNewBranch(False)
+                udsmLikeli = self.FSMBody.drives.checkinMeal(2, False)
                 self.FSMBody.setFSMState(self.FSMBody.state+1+2)
         else:
             urLikeli = self.FSMBody.drives.askedUser(False)
@@ -479,7 +491,6 @@ class FSMEndDayStates:
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
             else:
                 upbLikeli = self.FSMBody.drives.gotNewBranch(False)
-                udsmLikeli = self.FSMBody.drives.checkinMeal(3, False)
                 self.FSMBody.setFSMState(self.FSMBody.state+1 + 3)
         else:
             urLikeli = self.FSMBody.drives.askedUser(False)
@@ -543,12 +554,15 @@ class FSMEndDayStates:
             urLikeli = self.FSMBody.drives.askedUser(True)
             if textInput.lower() == "1":
                 upbLikeli = self.FSMBody.drives.gotNewBranch(True)
+                udsmLikeli = self.FSMBody.drives.checkinMeal(3, True)
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
             elif textInput.lower() == "2":
                 upbLikeli = self.FSMBody.drives.gotNewBranch(False)
+                udsmLikeli = self.FSMBody.drives.checkinMeal(3, False)
                 self.FSMBody.setFSMState(self.FSMBody.state+2)
             else:
                 upbLikeli = self.FSMBody.drives.gotNewBranch(False)
+                udsmLikeli = self.FSMBody.drives.checkinMeal(3, False)
                 self.FSMBody.setFSMState(self.FSMBody.state+3)
         else:
             urLikeli = self.FSMBody.drives.askedUser(False)
@@ -592,6 +606,13 @@ class FSMEndDayStates:
         appraiseState = False
         return appraiseState
 
+    def checkEdgeSafety2(self):
+        seesHigh = self.genUtil.checkEdgeSafety()
+        if not seesHigh:
+            self.FSMBody.setFSMState(self.FSMBody.state+1)
+        appraiseState = False
+        return appraiseState
+
     def exerciseCheckin(self):
         sayText = "Did you get a chance to " + self.exerciseSuggested + " today?"
         self.FSMBody.sayWithEmotion(sayText)
@@ -608,7 +629,6 @@ class FSMEndDayStates:
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
             else:
                 upbLikeli = self.FSMBody.drives.gotNewBranch(False)
-                udseLikeli = self.FSMBody.drives.checkinExercise(False)
                 self.FSMBody.setFSMState(self.FSMBody.state+1 +4)
         else:
             urLikeli = self.FSMBody.drives.askedUser(False)
@@ -693,12 +713,15 @@ class FSMEndDayStates:
             urLikeli = self.FSMBody.drives.askedUser(True)
             if textInput.lower() == "1":
                 upbLikeli = self.FSMBody.drives.gotNewBranch(True)
+                udseLikeli = self.FSMBody.drives.checkinExercise(True)
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
             elif textInput.lower() == "2":
                 upbLikeli = self.FSMBody.drives.gotNewBranch(False)
+                udseLikeli = self.FSMBody.drives.checkinExercise(False)
                 self.FSMBody.setFSMState(self.FSMBody.state+1+2)
             else:
                 upbLikeli = self.FSMBody.drives.gotNewBranch(False)
+                udseLikeli = self.FSMBody.drives.checkinExercise(False)
                 self.FSMBody.setFSMState(self.FSMBody.state+1 +5)
         else:
             urLikeli = self.FSMBody.drives.askedUser(False)
@@ -808,7 +831,9 @@ class FSMEndDayStates:
 
         sayText = "Bye for now."
         self.FSMBody.sayWithEmotion(sayText)
-        
+
+        self.genUtil.naoWave()
+
         self.updateUserFSMVariables()
 
         self.FSMBody.setFSMState(0)

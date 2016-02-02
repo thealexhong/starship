@@ -65,6 +65,7 @@ class RobotDrive: # parent class of all drives
 		eAnger = 0.0
 		eScared1 = 0.0
 		eScared2 = 0.0
+		eScared3 = 0.0
 		if self.getStatus() == 1:
 			if self.currentFSMState == self.statusChangeState:
 				eHappy = self.getDesireability() * self.getLikelihoodSuccessChange()
@@ -83,7 +84,7 @@ class RobotDrive: # parent class of all drives
 			eAnger = 1.0*self.getDesireability()
 			# print "eAnger: ", eAnger
 
-		eV = np.array([eHappy, eHope, eSad, eFear, eAnger, eScared1, eScared2])
+		eV = np.array([eHappy, eHope, eSad, eFear, eAnger, eScared1, eScared2, eScared3])
 		# remove negative influences and set them to 0 chance
 		for i in range(len(eV)):
 			if eV[i] < 0 or self.getStatus() == 0: #

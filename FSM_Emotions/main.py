@@ -95,13 +95,13 @@ def main(NAOip, NAOport, name):
 
     else:
         print "Go updated the input file for this interaction"
-        print "It can be found at: ProgramDataFiles\_FSM_INPUT.txt"
+        print "It can be found at: ProgramDataFiles\_FSM_INPUT.json"
 
     print
     print("State Machine Finished")
 
 def getFSMInputVars():
-    fileName = "ProgramDataFiles\_FSM_INPUT.txt"
+    fileName = "ProgramDataFiles\_FSM_INPUT.json"
     jsInput = FileUtilitiy.readFileToJSON(fileName)
     # print jsInput
     userName = jsInput['userName']
@@ -181,7 +181,7 @@ def connectToProxy(NAOip, NAOport, proxyName):
         return proxy
 
 def getNAOIP():
-    fileName = "ProgramDataFiles\_FSM_INPUT.txt"
+    fileName = "ProgramDataFiles\_FSM_INPUT.json"
     jsInput = FileUtilitiy.readFileToJSON(fileName)
     naoIP = str(jsInput['naoIP'])
     return naoIP
@@ -190,12 +190,12 @@ def exitingProgram():
     print "Program Exiting..."
 
 if __name__ == '__main__':
-    simulated = False
+    simulated = True
     name = "NAO"
     if simulated:
         #simulated NAO
         NAOIP = "127.0.0.1"
-        NAOPort = 61699
+        NAOPort = 62975
     else:
         useLuke = True
         #real NAO

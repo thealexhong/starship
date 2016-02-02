@@ -16,7 +16,7 @@ class FSMBeginDayStates:
         self.canEatPoultry = False
         self.canEatGluten = False
         self.canEatFish = False
-        self.exerciseSets = 5
+        self.exerciseSets = 10
         self.exerciseSuggested = "Laps around your Workplace Building"
         self.meal1Suggested = "No Suggestion 1"
         self.meal2Suggested = "No Suggestion 2"
@@ -39,6 +39,7 @@ class FSMBeginDayStates:
             "askWeatherGood", "askWeatherGoodJapan", "askWeatherGoodYesTravel", "askWeatherGoodNoTravel",
             "askWeatherBad", "askWeatherBadParis", "askWeatherBadSameHome", "askWeatherBadDiffHome",
             "askWeatherBadDiffHomeYesTake", "askWeatherBadDiffHomeNoTake",
+            "checkEdgeSafety1",
             "askBreakfast", "askBreakfastAte",
             "askDietGluten",
             "askDietGlutenYesEat", "askDietGlutenNoEat",
@@ -48,6 +49,7 @@ class FSMBeginDayStates:
             "meal2DecideLunch",
             "mealFeedbackLunch", "meal2FeedbackYesDelici", "meal2FeedbackNoDelici", "meal2FeedbackNoOptions",
             "askDietFish", "askDietFishYesEat", "askDietFishNoEat",
+            "checkEdgeSafety2",
             "meal3DecideDinner",
             "meal3FeedbackDinner", "meal3FeedbackYesGood", "meal3FeedbackNoGood", "meal3FeedbackNoOptions",
             "exerciseDecide",
@@ -331,6 +333,13 @@ class FSMBeginDayStates:
         appraiseState = False
         return appraiseState
 
+    def checkEdgeSafety1(self):
+        seesHigh = self.genUtil.checkEdgeSafety()
+        if not seesHigh:
+            self.FSMBody.setFSMState(self.FSMBody.state+1)
+        appraiseState = False
+        return appraiseState
+
     def askBreakfast(self):
         sayText = "Let's start planning your die it for today."
         self.FSMBody.sayWithEmotion(sayText)
@@ -609,6 +618,13 @@ class FSMBeginDayStates:
         appraiseState = False
         return appraiseState
 
+    def checkEdgeSafety2(self):
+        seesHigh = self.genUtil.checkEdgeSafety()
+        if not seesHigh:
+            self.FSMBody.setFSMState(self.FSMBody.state+1)
+        appraiseState = False
+        return appraiseState
+
     def meal3DecideDinner(self):
         # self.genUtil.showFoodDB()
         strictIngredients = True
@@ -804,6 +820,8 @@ class FSMBeginDayStates:
 
         sayText = "Have a nice day"
         self.FSMBody.sayWithEmotion(sayText)
+
+        self.genUtil.naoWave()
 
         self.writeUserFSMVariables()
 
