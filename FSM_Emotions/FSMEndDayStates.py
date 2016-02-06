@@ -146,10 +146,10 @@ class FSMEndDayStates:
         if textInput != "" and (textInput == "1" or textInput == "2"):
             urLikeli = self.FSMBody.drives.askedUser(True)
             if textInput.lower() == "1":
-                upbLikeli = self.FSMBody.drives.gotNewBranch(True)
+                # upbLikeli = self.FSMBody.drives.gotNewBranch(True)
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
             else:
-                upbLikeli = self.FSMBody.drives.gotNewBranch(False)
+                # upbLikeli = self.FSMBody.drives.gotNewBranch(False)
                 self.FSMBody.setFSMState(self.FSMBody.state+2)
         else:
             urLikeli = self.FSMBody.drives.askedUser(False)

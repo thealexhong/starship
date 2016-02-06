@@ -60,6 +60,17 @@ class EmotionMM:
 		if np.sum(U_feed) <= 0:
 			U_feed = np.ones(self.NumE)
 		A = np.transpose(np.transpose(self.Ainit) * U_in * U_feed)
+
+		# only use probabilities >15%
+		probThres = False
+		if probThres:
+			thres = 0.15
+			for i in range(self.NumE):
+				for j in range(self.NumE):
+					if A[i, j] < thres and A[i, j] != 0:
+						print "Old Val: ", A[i, j], " i=", i, " j=", j
+						A[i, j] = 0
+
 		colsum = np.sum(A, axis = 0)
 		# print "colsum", colsum
 		for i in range(len(colsum)):

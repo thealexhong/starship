@@ -1,53 +1,52 @@
 from naoqi import ALProxy
 from naoqi import ALModule
-from naoqi import ALBroker
+import vision_definitions
+import cv2
+import numpy as np
 import math
 import time
 import random
-import NAOReactionChecker
 
-class BasicMotions:
-    def __init__(self, ip = 'luke.local', port = 9559):
+class BasicMotions(ALModule):
+    def __init__(self, ip, port, _myBroker):
         self.NAOip = ip
         self.NAOport = port
-        self.logPrint = True
-
+        #========SETUP FOR MOTION=============
+        ALModule.__init__(self, "BasicMotions")
+        self.myBroker=_myBroker
+        bModulePresent = self.myBroker.isModulePresent("BasicMotions")
+        print("BasicMotions module status:", bModulePresent)
+        global memory
+        memory = ALProxy("ALMemory")
+        self.SubscribeAllTouchEvent()
         self.createEyeGroup()
-        self.eyeColor={'happy': 0x0000FF00,
-                       'sad': 0x00000060,
-                       'scared1': 0x00600088,
-                       'scared2': 0x00600088,
-                       'scared3': 0x00600088,
-                       'fear': 0x00600088,
-                       'hope': 0x00FFB428,
-                       'anger': 0x00FF0000}
+        self.eyeColor={'happy':     0x0000FF00,
+                       'sad':       0x00000060,
+                       'scared1':   0x00600088,
+                       'scared2':   0x00600088,
+                       'fear':      0x00600088,
+                       'hope':      0x00FFB428,
+                       'anger':     0x00FF0000}
         self.eyeShape={'happy': "EyeTop",
                        'sad': "EyeBottom",
                        'scared1': "EyeNone",
                        'scared2': "EyeNone",
-                       'scared3': "EyeNone",
                        'fear': "EyeBottom",
                        'hope': "EyeTop",
                        'anger': "EyeTopBottom"}
+        self.bScared = False
         #=========SETUP FOR VOICE================
-        tts = self.connectToProxy("ALTextToSpeech")
-        tts.setParameter("pitchShift", 0)
-        tts.setParameter("doubleVoice", 0)
-        tts.setParameter("doubleVoiceLevel", 0)
-        try:
-            audioProxy = self.connectToProxy("ALAudioDevice")
-            audioProxy.setOutputVolume(100/2)
-        except Exception as e:
-            print "No Audio device found"
-            print e
+        self.tts = ALProxy("ALTextToSpeech")
+        audioProxy = ALProxy("ALAudioDevice")
+        audioProxy.setOutputVolume(100)
         #Valid Value:50 to 200
-        self.ttsPitch={      'default':   100, # \\vct=value\\
-                             'happy':     120,
-                             'sad':       50,
-                             'scared':    150,
-                             'fear':      65,
-                             'hope':      100,
-                             'anger':     55}
+        self.ttsPitch={      'default':   "\\vct=100\\",
+                             'happy':     "\\vct=120\\",
+                             'sad':       "\\vct=50\\",
+                             'scared':    "\\vct=150\\",
+                             'fear':      "\\vct=65\\",
+                             'hope':      "\\vct=100\\",
+                             'anger':     "\\vct=55\\"}
         #Valid Value: 50 to 400"\\
         self.ttsSpeed={      'default':   "\\rspd=100\\",
                              'happy':     "\\rspd=100\\",
@@ -57,139 +56,78 @@ class BasicMotions:
                              'hope':      "\\rspd=100\\",
                              'anger':     "\\rspd=110\\"}
         #Valid Value: 0 to 100
-        default = 50#+15
-        self.ttsVolume={     'default':   "\\vol=0" + str(default) + "\\",
-                             'happy':     "\\vol=0" + str(default+10) + "\\",
-                             'sad':       "\\vol=0" + str(default-15) + "\\",
-                             'scared':    "\\vol=0" + str(default+20) + "\\",
-                             'fear':      "\\vol=0" + str(default) + "\\",
-                             'hope':      "\\vol=0" + str(default) + "\\",
-                             'anger':     "\\vol=0" + str(default+10) + "\\"}
-    def getConnectInfo(self):
-        return [self.NAOip, self.NAOport]
+        self.ttsVolume={     'default':   "\\vol=050\\",
+                             'happy':     "\\vol=060\\",
+                             'sad':       "\\vol=035\\",
+                             'scared':    "\\vol=070\\",
+                             'fear':      "\\vol=050\\",
+                             'hope':      "\\vol=050\\",
+                             'anger':     "\\vol=060\\"}
+        #============SETUP FOR PICKUP DETECTION====================
+        self.SubscribePickUpEvent()
+        #============SETUP FOR VIDEO====================
+        self.camProxy = ALProxy("ALVideoDevice", self.NAOip, self.NAOport)
+        self.resolution = vision_definitions.kQVGA
+        self.colorSpace = vision_definitions.kBGRColorSpace
+        self.fps = 10
+        self.cameraId = self.camProxy.subscribe("python_GVM", self.resolution, self.colorSpace, self.fps)
+        print "The camera ID is", self.cameraId
+        self.camProxy.setActiveCamera(self.cameraId, vision_definitions.kBottomCamera)
+        self.voteHoughLines=40
+        #============You don't need this====================
+        self.createDialog()
 
-    def preMotion(self):
-        NAOReactionChecker.UnsubscribeAllEvents()
-
-    def postMotion(self):
-        NAOReactionChecker.SubscribeAllEvents()
-
-    def StiffnessOn(self, proxy, pNames = "Body"):
+    def StiffnessOn(self, proxy):
+        pNames = "Body"
         pStiffnessLists = 1.0
-        pTimeLists = 1.0
-        proxy.stiffnessInterpolation(pNames, pStiffnessLists, pTimeLists)
-
-    def StiffnessOff(self, proxy, pNames = "Body"):
-        pStiffnessLists = 0.0
-        pTimeLists = 1.0
+        pTimeLists = 0.05
         proxy.stiffnessInterpolation(pNames, pStiffnessLists, pTimeLists)
 
     def connectToProxy(self, proxyName):
-        # proxy = []
         try:
             proxy = ALProxy(proxyName, self.NAOip, self.NAOport)
         except Exception, e:
             print "Could not create Proxy to ", proxyName
             print "Error was: ", e
-
         return proxy
 
     def naoSay(self, text):
         speechProxy = self.connectToProxy("ALTextToSpeech")
 
-        moveID = speechProxy.post.say(str(text))
-        print("------> Said something: " + text)
-        return moveID
-
-    def naoAliveON(self):
-        print "Breathing and watching"
-        self.naoBreathON()
-        self.faceTrackingON()
-
-    def naoAliveOff(self):
-        print "No more breathing and watching"
-        self.naoBreathOFF()
-        self.faceTrackingOFF()
-
-    def faceTrackingON(self):
-        motionProxy = self.connectToProxy("ALMotion")
-        # faceProxy = self.connectToProxy("ALFaceDetection")
-        self.StiffnessOn(motionProxy, "Head")
-        # faceProxy.setTrackingEnabled(True)
-        tracker = self.connectToProxy("ALTracker")
-        targetName = "Face"
-        faceWidth = 0.1
-        tracker.registerTarget(targetName, faceWidth)
-        tracker.track(targetName)
-
-    def faceTrackingOFF(self):
-        tracker = self.connectToProxy("ALTracker")
-        tracker.stopTracker()
-        tracker.unregisterAllTargets()
-
-    def naoBreathON(self):
-        motionProxy = self.connectToProxy("ALMotion")
-        motionProxy.setBreathEnabled('Body', True)
-
-    def naoBreathOFF(self):
-        motionProxy = self.connectToProxy("ALMotion")
-        motionProxy.setBreathEnabled('Body', False)
-        print "Stopped Breathing"
-
-    def naoSayWait(self, text, waitTime):
-        speechProxy = self.connectToProxy("ALTextToSpeech")
-
-        moveID = speechProxy.post.say(str(text))
-        print("------> Said something: " + text)
-        speechProxy.wait(moveID, 0)
-        time.sleep(waitTime)
-
-    def getPostureFamily(self):
-        postureProxy = self.connectToProxy("ALRobotPosture")
-        return postureProxy.getPostureFamily()
+        speechProxy.say(text)
+        print("------> Said something")
 
     def naoSit(self):
-        self.preMotion()
+        self.UnsubscribeAllTouchEvent()
         motionProxy = self.connectToProxy("ALMotion")
         postureProxy = self.connectToProxy("ALRobotPosture")
-
+        self.bScared = False
         motionProxy.wakeUp()
         self.StiffnessOn(motionProxy)
-
-        if self.NAOip != "127.0.0.1":
-            try:
-                motionProxy.setFallManagerEnabled(False)
-            except:
-                print "Couldn't turn off Fall manager"
-
         sitResult = postureProxy.goToPosture("Sit", 0.5)
         if (sitResult):
             print("------> Sat Down")
         else:
             print("------> Did NOT Sit Down...")
+        self.SubscribeAllTouchEvent()
 
-        if self.NAOip != "127.0.0.1":
-            motionProxy.setFallManagerEnabled(True)
-        self.StiffnessOff(motionProxy)
-        self.postMotion()
-
-    def naoStand(self, speed = 0.5):
-        self.preMotion()
+    def naoStand(self):
+        self.UnsubscribeAllTouchEvent()
         motionProxy = self.connectToProxy("ALMotion")
         postureProxy = self.connectToProxy("ALRobotPosture")
 
         motionProxy.wakeUp()
         self.StiffnessOn(motionProxy)
-        standResult = postureProxy.goToPosture("Stand", speed)
+        standResult = postureProxy.goToPosture("StandInit", 0.3)
         if (standResult):
+            self.bScared = False
             print("------> Stood Up")
         else:
             print("------> Did NOT Stand Up...")
-        # self.StiffnessOff(motionProxy)
-        self.postMotion()
+        self.SubscribeAllTouchEvent()
 
     def naoWalk(self, xpos, ypos):
-        self.preMotion()
+        self.UnsubscribeAllTouchEvent()
         motionProxy = self.connectToProxy("ALMotion")
         postureProxy = self.connectToProxy("ALRobotPosture")
 
@@ -197,45 +135,37 @@ class BasicMotions:
         standResult = postureProxy.goToPosture("StandInit", 0.5)
         motionProxy.setMoveArmsEnabled(True, True)
         motionProxy.setMotionConfig([["ENABLE_FOOT_CONTACT_PROTECTION", True]])
-
         turnAngle = math.atan2(ypos,xpos)
         walkDist = math.sqrt(xpos*xpos + ypos*ypos)
-
         try:
             motionProxy.walkTo(0.0,0.0, turnAngle)
             motionProxy.walkTo(walkDist,0.0,0.0)
+            self.bScared = False
         except Exception, e:
             print "The Robot could not walk to ", xpos, ", ", ypos
             print "Error was: ", e
-
         standResult = postureProxy.goToPosture("Stand", 0.5)
         print("------> Walked Somewhere")
-        self.postMotion()
+        self.SubscribeAllTouchEvent()
 
     def naoNodHead(self):
-        self.preMotion()
+        self.UnsubscribeAllTouchEvent()
         motionProxy = self.connectToProxy("ALMotion")
         motionNames = ['HeadYaw', "HeadPitch"]
         times = [[0.7], [0.7]]
-
         motionProxy.angleInterpolation(motionNames, [0.0,0.0], times, True)
         for i in range(3):
             motionProxy.angleInterpolation(motionNames, [0.0, 1.0], times, True)
             motionProxy.angleInterpolation(motionNames, [0.0, -1.0], times, True)
         motionProxy.angleInterpolation(motionNames, [0.0,0.0], times, True)
-
         print("------> Nodded")
-        self.postMotion()
+        self.SubscribeAllTouchEvent()
 
-    def naoShakeHead(self):
-        self.preMotion()
+    def naoShadeHead(self):
+        self.UnsubscribeAllTouchEvent()
         motionProxy = self.connectToProxy("ALMotion")
-        motionProxy.wakeUp()
-        self.StiffnessOn(motionProxy)
-
         motionNames = ['HeadYaw', "HeadPitch"]
         times = [[0.7], [0.7]] # time to preform (s)
-
         # resets the angle of the motions (angle in radians)
         motionProxy.angleInterpolation(motionNames, [0.0,0.0], times, True)
         # shakes the head 3 times, back and forths
@@ -243,80 +173,38 @@ class BasicMotions:
             motionProxy.angleInterpolation(motionNames, [1.0, 0.0], times, True)
             motionProxy.angleInterpolation(motionNames, [-1.0, 0.0], times, True)
         motionProxy.angleInterpolation(motionNames, [0.0,0.0], times, True)
-
         print("------> Nodded")
-        # self.StiffnessOff(motionProxy)
-        self.postMotion()
+        self.SubscribeAllTouchEvent()
 
-    def naoShadeHeadSay(self, sayText = "Hi"):
-        self.preMotion()
+    def naoWaveRight(self):
+        self.UnsubscribeAllTouchEvent()
         motionProxy = self.connectToProxy("ALMotion")
-#        motionProxy.wakeUp()
-
-        motionNames = ['HeadYaw', "HeadPitch"]
-        times = [[0.7], [0.7]] # time to preform (s)
-
-        # resets the angle of the motions (angle in radians)
-        moveID = motionProxy.post.angleInterpolation(motionNames, [0.0,0.0], times, True)
-
-        sayID = self.naoSay(sayText)
-        motionProxy.wait(moveID, 0)
-
-        # shakes the head 3 times, back and forth
-        for i in range(2):
-            motionProxy.angleInterpolation(motionNames, [1.0, 0.0], times, True)
-
-            motionProxy.angleInterpolation(motionNames, [-1.0, 0.0], times, True)
-
-        motionProxy.angleInterpolation(motionNames, [0.0,0.0], times, True)
-        # motionProxy.wait(sayID, 0)
-        if self.logPrint:
-            print "Moved head, now waiting"
-        time.sleep(0.5)
-
-        print("------> Shook Head")
-        # self.StiffnessOff(motionProxy)
-        self.postMotion()
-
-    def naoWaveRight(self, movePercent = 1.0, numWaves = 3):
-        self.preMotion()
-        motionProxy = self.connectToProxy("ALMotion")
-
-        if movePercent > 1:
-            movePercent = 1.0
-        elif movePercent < 0:
-            movePercent = 0.0
-        if numWaves > 3:
-            numWaves = 3
-        elif numWaves < 0:
-            numWaves = 0
-
         rArmNames = motionProxy.getBodyNames("RArm")
+        print rArmNames
         # set arm to the initial position
         rArmDefaultAngles = [math.radians(84.6), math.radians(-10.7),
                              math.radians(68.2), math.radians(23.3),
                              math.radians(5.8), 0.3]
         defaultTimes = [2,2,2,2,2,2]
-        moveID = motionProxy.post.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
-
+        motionProxy.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
+        time.sleep(5)
         # wave setup
         waveNames = ["RShoulderPitch", "RShoulderRoll", "RHand"]
         waveTimes = [2, 2, 2]
         waveAngles = [math.radians(-11), math.radians(-40), 0.99]
-        moveID = motionProxy.post.angleInterpolation(waveNames, waveAngles, waveTimes, True)
+        motionProxy.angleInterpolation(waveNames, waveAngles, waveTimes, True)
+        time.sleep(5)
 
+        for i in range(3):
+            motionProxy.angleInterpolation(["RElbowRoll"],  math.radians(88.5), [1], True)
+            motionProxy.angleInterpolation(["RElbowRoll"],  math.radians(27), [1], True)
 
-        for i in range(numWaves):
-            moveID = motionProxy.post.angleInterpolation(["RElbowRoll"],  math.radians(88.5)*movePercent, [1], True)
-            moveID = motionProxy.post.angleInterpolation(["RElbowRoll"],  math.radians(27)*movePercent, [1], True)
-
-        moveID = motionProxy.post.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
-
+        motionProxy.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
         print("------> Waved Right")
-        self.postMotion()
+        self.SubscribeAllTouchEvent()
 
     def naoWaveBoth(self):
-        self.preMotion()
+        self.UnsubscribeAllTouchEvent()
         motionProxy = self.connectToProxy("ALMotion")
 
         rArmNames = motionProxy.getBodyNames("RArm")
@@ -347,144 +235,122 @@ class BasicMotions:
         motionProxy.angleInterpolation(rArmNames + lArmNames, rArmDefaultAngles + lArmDefaultAngles, defaultTimes + defaultTimes, True)
 
         print("------> Waved Both")
-        self.postMotion()
-
-    def naoWaveRightSay(self, sayText = "Hi", sayEmotion = -1, movePercent = 1.0, numWaves = 3):
-        self.preMotion()
-        motionProxy = self.connectToProxy("ALMotion")
-
-        if movePercent > 1:
-            movePercent = 1.0
-        elif movePercent < 0:
-            movePercent = 0.0
-        if numWaves > 3:
-            numWaves = 3
-        elif numWaves < 0:
-            numWaves = 0
-
-        rArmNames = motionProxy.getBodyNames("RArm")
-        # set arm to the initial position
-        rArmDefaultAngles = [math.radians(84.6), math.radians(-10.7),
-                             math.radians(68.2), math.radians(23.3),
-                             math.radians(5.8), 0.3]
-        defaultTimes = [2,2,2,2,2,2]
-        moveID = motionProxy.post.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
-        motionProxy.wait(moveID, 0)
-
-        # wave setup
-        waveNames = ["RShoulderPitch", "RShoulderRoll", "RHand"]
-        waveTimes = [2, 2, 2]
-        waveAngles = [math.radians(-11), math.radians(-40), 0.99]
-        moveID = motionProxy.post.angleInterpolation(waveNames, waveAngles, waveTimes, True)
-        motionProxy.wait(moveID, 0)
-        self.naoSay(sayText)
-
-        for i in range(numWaves):
-            moveID = motionProxy.post.angleInterpolation(["RElbowRoll"],  math.radians(88.5)*movePercent, [1], True)
-            motionProxy.wait(moveID, 0)
-            moveID = motionProxy.post.angleInterpolation(["RElbowRoll"],  math.radians(27)*movePercent, [1], True)
-            motionProxy.wait(moveID, 0)
-
-        moveID = motionProxy.post.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
-        motionProxy.wait(moveID, 0)
-
-        print("------> Waved Right")
-        self.postMotion()
-
-    def stopNAOActions(self):
-        motionProxy = self.connectToProxy("ALMotion")
-        speechProxy = self.connectToProxy("ALTextToSpeech")
-
-        motionProxy.killAll()
-        speechProxy.stopAll()
-        print("------> Stopped All Actions")
-
-    def naoTurnOffEyes(self):
-        self.initEyes("sad")
-
-
-
-
+        self.SubscribeAllTouchEvent()
 
 
 ### ================================================================================== davids stuff
-    def naoSayHappy(self,sayText):
+
+
+
+
+    def naoRest(self):
+        motionProxy = self.connectToProxy("ALMotion")
+        motionProxy.rest()
+        motionProxy.getSummary()
+
+    def SubscribePickUpEvent(self):
+        print("Subcribe Pick Up Events")
+        memory.subscribeToEvent("footContactChanged","BasicMotions","onPickUp")
+
+    def UnsubscribePickUpEvent(self):
+        print("Unsubcribe Pick Up Events")
+        memory.unsubscribeToEvent("footContactChanged", "BasicMotions")
+
+    def onPickUp(self, strVarName, value, subscriberIdentifier):
+        self.UnsubscribePickUpEvent()
+        print("Pick Up event detected:",  value)
+        if value == False:
+            self.naoSayScared("Put me down.")
+        else:
+            self.naoSayHappy("Thank you.")
+        self.SubscribePickUpEvent()
+
+    def naoSayHappy(self,str):
         emotion = 'happy'
-        sentence= "\\vct=" + str(self.ttsPitch[emotion]) + "\\"
-        sentence += self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
-        sentence+=sayText
-        # self.tts.say(sentence)
-        self.naoSayWait(sentence, 0.5)
+        sentence= self.ttsPitch[emotion]+  self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
+        sentence+=str
+        self.tts.post.say(sentence)
 
-    def naoSaySad(self,sayText):
+    def naoSaySad(self,str):
         emotion = 'sad'
-        sentence= "\\vct=" + str(self.ttsPitch[emotion]) + "\\"
-        sentence += self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
-        sentence+=sayText
-        # self.tts.say(sentence)
-        self.naoSayWait(sentence, 0.5)
+        sentence= self.ttsPitch[emotion]+  self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
+        sentence+=str
+        self.tts.post.say(sentence)
 
-    def naoSayScared(self,sayText):
+    def naoSayScared(self,str):
         emotion = 'scared'
-        sentence= "\\vct=" + str(self.ttsPitch[emotion]) + "\\"
-        sentence += self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
-        sentence+= str(sayText).replace(" ", "! ")
-        # self.tts.say(sentence)
-        self.naoSayWait(sentence, 0.5)
+        sentence= self.ttsPitch[emotion]+  self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
+        sentence+=str
+        self.tts.post.say(sentence)
 
-    def naoSayFear(self,sayText):
+    def naoSayFear(self,str):
         emotion = 'fear'
-        sentence= "\\vct=" + str(self.ttsPitch[emotion]) + "\\"
-        sentence += self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
-        # newText = self.contourSpeechSlope(sayText, self.ttsPitch[emotion], 20)
-        sentence+= str(sayText).replace(" ", ". ")
-        # self.tts.say(sentence)
-        self.naoSayWait(sentence, 0.5)
+        sentence= self.ttsPitch[emotion]+  self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
+        sentence+=str
+        self.tts.post.say(sentence)
 
-    def naoSayHope(self,sayText):
-        emotion = 'hope'
-        sentence= "\\vct=" + str(self.ttsPitch[emotion]) + "\\"
-        sentence += self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
-        sentence+=sayText
-        # self.tts.say(sentence)
-        self.naoSayWait(sentence, 0.5)
+    def naoSayHope(self,str):
+        emotion = 'fear'
+        sentence= self.ttsPitch[emotion]+  self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
+        sentence+=str
+        self.tts.post.say(sentence)
 
-    def naoSayAnger(self,sayText):
+    def naoSayAnger(self,str):
         emotion = 'anger'
-        sentence= "\\vct=" + str(self.ttsPitch[emotion]) + "\\"
-        sentence += self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
-        sentence+=sayText
-        # self.tts.say(sentence)
-        self.naoSayWait(sentence, 0.5)
+        sentence= self.ttsPitch[emotion]+  self.ttsVolume[emotion] +  self.ttsSpeed[emotion]
+        sentence+=str
+        self.tts.post.say(sentence)
 
-    def contourSpeechSlope(self, sayText, mainPitch, slopeGain):
-        print sayText
-        sayText = " " + sayText
-        spaces = [pos for pos, char in enumerate(sayText) if char == ' ']
-        print "spaces: ", spaces
-        nSpace = len(spaces)
-        pitchStart = mainPitch - 1.0*slopeGain/2
-        print mainPitch
-        print pitchStart
-        print slopeGain
-        print nSpace
-        newText = ""
-        ns = 0
-        for c in sayText:
-            newText += c
-            if c == " ":
-                newPitch = self.getNewPitch(pitchStart, ns, slopeGain, nSpace)
-                newText += "\\vct=" + str(newPitch) + "\\ "
-                ns += 1
-        return newText
+    def __del__(self):
+        print("Quiting BasicMotions Module")
+        self.camProxy.unsubscribe(self.cameraId)
+        self.exit()
+        self.myBroker.shutdown();
 
-    def getNewPitch(self, pitchStart, numSpace, slope, nSpace):
-        newPitch = int(pitchStart + 1.0*numSpace*slope/nSpace)
-        if newPitch < 50:
-            newPitch = 50
-        if newPitch > 200:
-            newPitch = 200
-        return newPitch
+
+    def SubscribeAllTouchEvent(self):
+        print("Subcribe Touch Events")
+        '''
+        memory.subscribeToEvent("RightBumperPressed", "BasicMotions", "onTouched")
+        memory.subscribeToEvent("LeftBumperPressed", "BasicMotions", "onTouched")
+
+        memory.subscribeToEvent("FrontTactilTouched", "BasicMotions", "onTouched")
+        memory.subscribeToEvent("MiddleTactilTouched", "BasicMotions", "onTouched")
+        memory.subscribeToEvent("RearTactilTouched", "BasicMotions", "onTouched")
+
+        memory.subscribeToEvent("HandRightBackTouched", "BasicMotions", "onTouched")
+        #memory.subscribeToEvent("HandRightLeftTouched", "BasicMotions", "onTouched")
+        #memory.subscribeToEvent("HandRightRightTouched", "BasicMotions", "onTouched")
+
+        memory.subscribeToEvent("HandLeftBackTouched", "BasicMotions", "onTouched")
+        #memory.subscribeToEvent("HandLeftLeftTouched", "BasicMotions", "onTouched")
+        #memory.subscribeToEvent("HandLeftRightTouched", "BasicMotions", "onTouched")
+        '''
+
+    def UnsubscribeAllTouchEvent(self):
+        print("Unsubcribe Touch Events")
+        '''
+        memory.unsubscribeToEvent("RightBumperPressed", "BasicMotions")
+        memory.unsubscribeToEvent("LeftBumperPressed", "BasicMotions")
+
+        memory.unsubscribeToEvent("FrontTactilTouched", "BasicMotions")
+        memory.unsubscribeToEvent("MiddleTactilTouched", "BasicMotions")
+        memory.unsubscribeToEvent("RearTactilTouched", "BasicMotions")
+
+        memory.unsubscribeToEvent("HandRightBackTouched", "BasicMotions")
+        #memory.unsubscribeToEvent("HandRightLeftTouched", "BasicMotions")
+        #memory.unsubscribeToEvent("HandRightRightTouched", "BasicMotions")
+
+        memory.unsubscribeToEvent("HandLeftBackTouched", "BasicMotions")
+        #memory.unsubscribeToEvent("HandLeftLeftTouched", "BasicMotions")
+        #memory.unsubscribeToEunvent("HandLeftRightTouched", "BasicMotions")
+        '''
+
+    def onTouched(self, strVarName, value):
+        #self.UnsubscribeAllTouchEvent()
+        print("Touch event detected:",strVarName )
+        #self.scaredEmotion1()
+        #self.SubscribeAllTouchEvent()
 
     def createEyeGroup(self):
         ledProxy = self.connectToProxy("ALLeds")
@@ -501,12 +367,12 @@ class BasicMotions:
         ledProxy.createGroup("LedEye",name1+name2+name3)
 
     def blinkEyes(self, color, duration, configuration):
-        bAnimation= True
-        accu=0
+        bAnimation= True;
+        accu=0;
         rgbList=[]
         timeList=[]
-        #Reset eye color to white
-        self.initEyes(color)
+        #Reset eye color to black
+        self.setEyeColor(0x00000000,"LedEye")
         self.setEyeColor(color,"LedEyeCorner")
         if configuration == "EyeTop":
             self.setEyeColor(color, "LedEyeTop")
@@ -516,6 +382,7 @@ class BasicMotions:
             self.setEyeColor(color, "LedEyeTopBottom")
         else:
             bAnimation = False
+
         if bAnimation == True:
             while(accu<duration):
                 newTimeList=[0.05,random.uniform(0.2, 1.0),0.1,0.05]
@@ -544,18 +411,10 @@ class BasicMotions:
         except BaseException, err:
             print err
 
-    def initEyes(self, emotion = "Happy"):
-        ledProxy = self.connectToProxy("ALLeds")
-        if ("sad" != emotion and emotion != 0x00600088 and "fear" != emotion and
-            "scared1" != emotion and emotion != "scared2" and emotion != 0x00000060):
-            ledProxy.fade("FaceLeds", 1, 0.1)
-        else:
-            ledProxy.fade("FaceLeds", 0, 0.1)
-
     def setEyeEmotion(self,emotion):
         configuration = self.eyeShape[emotion]
         color = self.eyeColor[emotion]
-        self.initEyes(emotion)
+        self.setEyeColor(0x00000000,"LedEye")
         self.setEyeColor(color,"LedEyeCorner")
         if configuration == "EyeTop":
             self.setEyeColor(color, "LedEyeTop")
@@ -563,37 +422,35 @@ class BasicMotions:
             self.setEyeColor(color, "LedEyeBottom")
         elif configuration == "EyeTopBottom":
             self.setEyeColor(color, "LedEyeTopBottom")
+        #self.setEyeColor(0x00111111, "LedEyeBottom")
 
-    def updateWithBlink(self, names, keys, times, color, configuration, bStand=None, bDisableEye=None):
-        self.preMotion()
+
+    def updateWithBlink(self, names, keys, times, color, configuration):
+        self.UnsubscribeAllTouchEvent()  #Already called in OnTouched
         postureProxy = self.connectToProxy("ALRobotPosture")
-        if bStand is None:
-            standResult = postureProxy.goToPosture("StandInit", 0.3)
-        elif bStand==True:
-            standResult = postureProxy.goToPosture("Stand", 0.3)
+        standResult = postureProxy.goToPosture("StandInit", 0.3)
         if (standResult):
             print("------> Stood Up")
             try:
                 # uncomment the following line and modify the IP if you use this script outside Choregraphe.
-                # print("Time duration is ")
-                # print(max(max(times)))
-                if bDisableEye is None:
-                    self.blinkEyes(color,max(max(times))*3, configuration)
+                print("Time duration is ")
+                print(max(max(times)))
+                self.blinkEyes(color,max(max(times))*3, configuration)
                 motionProxy = self.connectToProxy("ALMotion")
                 motionProxy.angleInterpolation(names, keys, times, True)
-                # print 'Tasklist: ', motionProxy.getTaskList();
+                print 'Tasklist: ', motionProxy.getTaskList();
                 time.sleep(max(max(times))+0.5)
             except BaseException, err:
-                print "***********************Did not show Emotion"
                 print err
         else:
             print("------> Did NOT Stand Up...")
-        self.postMotion()
+        self.SubscribeAllTouchEvent()
 
     def happyEmotion(self):
         names = list()
         times = list()
         keys = list()
+        self.bScared = False
         names.append("HeadPitch")
         times.append([0.8, 1.56, 2.12, 2.72])
         keys.append([-0.0138481, -0.0138481, -0.50933, 0.00762796])
@@ -697,7 +554,6 @@ class BasicMotions:
         names.append("RWristYaw")
         times.append([0.8, 1.56, 2.12, 2.72])
         keys.append([0.026036, 1.63213, 1.63213, 1.63213])
-
         self.updateWithBlink(names, keys, times, self.eyeColor['happy'], self.eyeShape['happy'])
         #self.updateWithBlink(names, keys, times, 0x0000FF00, "EyeTop")
 
@@ -705,6 +561,7 @@ class BasicMotions:
         names = list()
         times = list()
         keys = list()
+        self.bScared = False
         names.append("HeadPitch")
         times.append([0.8, 1.36])
         keys.append([-0.0107799, 0.500042])
@@ -808,7 +665,6 @@ class BasicMotions:
         names.append("RWristYaw")
         times.append([0.8, 1.36])
         keys.append([0.032172, -0.12583])
-
         self.updateWithBlink(names, keys, times, self.eyeColor['sad'], self.eyeShape['sad'])
         #self.updateWithBlink(names, keys, times, 0x00600088, "EyeBottom")
 
@@ -920,8 +776,9 @@ class BasicMotions:
         names.append("RWristYaw")
         times.append([0.8, 2.36])
         keys.append([0.0168321, -1.21037])
-
-        self.updateWithBlink(names, keys, times, self.eyeColor['scared1'], self.eyeShape['scared1'])
+        if self.bScared == False:
+            self.updateWithBlink(names, keys, times, self.eyeColor['scared1'], self.eyeShape['scared1'])
+            self.bScared = True
 
         #self.updateWithBlink(names, keys, times, 0x00000060,"EyeNone")
 
@@ -1036,16 +893,15 @@ class BasicMotions:
 
         self.updateWithBlink(names, keys, times, self.eyeColor['scared2'], self.eyeShape['scared2'])
 
+
+
         #self.updateWithBlink(names, keys, times, 0x00000060, "EyeNone")
 
-    def scaredEmotion3(self):
-        postureProxy = self.connectToProxy("ALRobotPosture")
-        postureProxy.goToPosture("StandInit", 0.5)
-
-    def fearEmotion(self):
+    def fear1Emotion(self):
         names = list()
         times = list()
         keys = list()
+        self.bScared = False
         names.append("HeadPitch")
         times.append([0.8, 2.2, 2.48, 2.72, 2.96, 3.2])
         keys.append([-0.0123138, 0.50311, 0.421347, 0.46597, 0.449239, 0.50311])
@@ -1149,7 +1005,6 @@ class BasicMotions:
         names.append("RWristYaw")
         times.append([0.8, 2.2, 2.48, 2.72, 2.96, 3.2])
         keys.append([0.0413762, 0.697927, 0.697927, 0.697927, 0.697927, 0.697927])
-
         self.updateWithBlink(names, keys, times, self.eyeColor['fear'], self.eyeShape['fear'])
         #self.updateWithBlink(names, keys, times, 0x00000060,"EyeTopBottom")
 
@@ -1168,14 +1023,110 @@ class BasicMotions:
         times.append([0.8, 1.28, 1.76, 2.28, 2.8, 3.32])
         keys.append([-0.0107799, -0.372804, 0.363516, -0.372804, 0.363515, -0.0107799])
 
+        names.append("LAnklePitch")
+        times.append([0.8, 3.32])
+        keys.append([-0.351328, -0.351328])
 
-        self.updateWithBlink(names, keys, times, self.eyeColor['fear'], self.eyeShape['fear'],True)
+        names.append("LAnkleRoll")
+        times.append([0.8, 3.32])
+        keys.append([-0.00916195, -0.00916195])
 
-    def hopeEmotion(self):
+        names.append("LElbowRoll")
+        times.append([0.8, 3.32])
+        keys.append([-0.98632, -0.98632])
+
+        names.append("LElbowYaw")
+        times.append([0.8, 3.32])
+        keys.append([-1.37297, -1.37297])
+
+        names.append("LHand")
+        times.append([0.8, 3.32])
+        keys.append([0.2616, 0.2616])
+
+        names.append("LHipPitch")
+        times.append([0.8, 3.32])
+        keys.append([-0.450954, -0.450955])
+
+        names.append("LHipRoll")
+        times.append([0.8, 3.32])
+        keys.append([0.016916, 0.016916])
+
+        names.append("LHipYawPitch")
+        times.append([0.8, 3.32])
+        keys.append([-0.00455999, -0.00455999])
+
+        names.append("LKneePitch")
+        times.append([0.8, 3.32])
+        keys.append([0.705598, 0.705598])
+
+        names.append("LShoulderPitch")
+        times.append([0.8, 3.32])
+        keys.append([1.42658, 1.42658])
+
+        names.append("LShoulderRoll")
+        times.append([0.8, 3.32])
+        keys.append([0.269942, 0.269941])
+
+        names.append("LWristYaw")
+        times.append([0.8, 3.32])
+        keys.append([0.0168321, 0.0168321])
+
+        names.append("RAnklePitch")
+        times.append([0.8, 3.32])
+        keys.append([-0.361982, -0.361981])
+
+        names.append("RAnkleRoll")
+        times.append([0.8, 3.32])
+        keys.append([0.00771189, 0.00771189])
+
+        names.append("RElbowRoll")
+        times.append([0.8, 3.32])
+        keys.append([0.963394, 0.963394])
+
+        names.append("RElbowYaw")
+        times.append([0.8, 3.32])
+        keys.append([1.37289, 1.37289])
+
+        names.append("RHand")
+        times.append([0.8, 3.32])
+        keys.append([0.2648, 0.2648])
+
+        names.append("RHipPitch")
+        times.append([0.8, 3.32])
+        keys.append([-0.458708, -0.458707])
+
+        names.append("RHipRoll")
+        times.append([0.8, 3.32])
+        keys.append([-0.029104, -0.0291041])
+
+        names.append("RHipYawPitch")
+        times.append([0.8, 3.32])
+        keys.append([-0.00455999, -0.00455999])
+
+        names.append("RKneePitch")
+        times.append([0.8, 3.32])
+        keys.append([0.70108, 0.70108])
+
+        names.append("RShoulderPitch")
+        times.append([0.8, 3.32])
+        keys.append([1.42666, 1.42666])
+
+        names.append("RShoulderRoll")
+        times.append([0.8, 3.32])
+        keys.append([-0.262356, -0.262356])
+
+        names.append("RWristYaw")
+        times.append([0.8, 3.32])
+        keys.append([0.0383081, 0.0383082])
+
+        self.updateWithBlink(names, keys, times, self.eyeColor['fear'], self.eyeShape['fear'])
+
+
+    def hope1Emotion(self):
         names = list()
         times = list()
         keys = list()
-
+        self.bScared = False
         names.append("HeadPitch")
         times.append([0.8, 1.6, 2, 2.2, 2.4, 2.6, 2.8])
         keys.append([0.00762796, -0.158044, -0.6704, -0.667332, -0.6704, -0.667332, -0.6704])
@@ -1279,7 +1230,6 @@ class BasicMotions:
         names.append("RWristYaw")
         times.append([0.8, 1.6, 2, 2.2, 2.4, 2.6, 2.8])
         keys.append([0.033706, 0.621227, -0.145772, -0.121228, -0.145772, -0.121228, -0.145772])
-
         self.updateWithBlink(names, keys, times, self.eyeColor['hope'], self.eyeShape['hope'])
         #self.updateWithBlink(names, keys, times, 0x00FFB428, "EyeTop")
 
@@ -1298,13 +1248,108 @@ class BasicMotions:
         times.append([1, 1.6, 2.2, 2.8, 3.36, 3.92])
         keys.append([0.00455999, -0.023052, -0.0337899, -0.023052, -0.0337899, 0.00455999])
 
-        self.updateWithBlink(names, keys, times, self.eyeColor['hope'], self.eyeShape['hope'],True)
+        names.append("LAnklePitch")
+        times.append([1, 3.92])
+        keys.append([-0.352862, -0.352862])
+
+        names.append("LAnkleRoll")
+        times.append([1, 3.92])
+        keys.append([-0.00609397, -0.00609397])
+
+        names.append("LElbowRoll")
+        times.append([1, 3.92])
+        keys.append([-0.983252, -0.983252])
+
+        names.append("LElbowYaw")
+        times.append([1, 3.92])
+        keys.append([-1.3699, -1.3699])
+
+        names.append("LHand")
+        times.append([1, 3.92])
+        keys.append([0.2596, 0.2596])
+
+        names.append("LHipPitch")
+        times.append([1, 3.92])
+        keys.append([-0.450955, -0.450955])
+
+        names.append("LHipRoll")
+        times.append([1, 3.92])
+        keys.append([0.019984, 0.019984])
+
+        names.append("LHipYawPitch")
+        times.append([1, 3.92])
+        keys.append([-0.00149202, -0.00149202])
+
+        names.append("LKneePitch")
+        times.append([1, 3.92])
+        keys.append([0.713267, 0.713267])
+
+        names.append("LShoulderPitch")
+        times.append([1, 3.92])
+        keys.append([1.43118, 1.43118])
+
+        names.append("LShoulderRoll")
+        times.append([1, 3.92])
+        keys.append([0.271475, 0.271475])
+
+        names.append("LWristYaw")
+        times.append([1, 3.92])
+        keys.append([0.0168321, 0.0168321])
+
+        names.append("RAnklePitch")
+        times.append([1, 3.92])
+        keys.append([-0.361981, -0.361981])
+
+        names.append("RAnkleRoll")
+        times.append([1, 3.92])
+        keys.append([0.00310993, 0.00310993])
+
+        names.append("RElbowRoll")
+        times.append([1, 3.92])
+        keys.append([0.96953, 0.96953])
+
+        names.append("RElbowYaw")
+        times.append([1, 3.92])
+        keys.append([1.36829, 1.36829])
+
+        names.append("RHand")
+        times.append([1, 3.92])
+        keys.append([0.2608, 0.2608])
+
+        names.append("RHipPitch")
+        times.append([1, 3.92])
+        keys.append([-0.44797, -0.44797])
+
+        names.append("RHipRoll")
+        times.append([1, 3.92])
+        keys.append([-0.032172, -0.032172])
+
+        names.append("RHipYawPitch")
+        times.append([1, 3.92])
+        keys.append([-0.00149202, -0.00149202])
+
+        names.append("RKneePitch")
+        times.append([1, 3.92])
+        keys.append([0.699545, 0.699545])
+
+        names.append("RShoulderPitch")
+        times.append([1, 3.92])
+        keys.append([1.4282, 1.4282])
+
+        names.append("RShoulderRoll")
+        times.append([1, 3.92])
+        keys.append([-0.260822, -0.260822])
+
+        names.append("RWristYaw")
+        times.append([1, 3.92])
+        keys.append([0.032172, 0.032172])
+        self.updateWithBlink(names, keys, times, self.eyeColor['hope'], self.eyeShape['hope'])
 
     def angerEmotion(self):
         names = list()
         times = list()
         keys = list()
-
+        self.bScared = False
         names.append("HeadPitch")
         times.append([0.8, 2.12, 2.36, 2.56, 2.76, 2.96])
         keys.append([-0.0153821, -0.073674, -0.046062, -0.046062, -0.046062, -0.046062])
@@ -1408,235 +1453,366 @@ class BasicMotions:
         names.append("RWristYaw")
         times.append([0.8, 2.12, 2.36, 2.56, 2.76, 2.96])
         keys.append([0.030638, -4.19617e-05, 0.0106959, 0.0106959, 0.0106959, 0.0106959])
-
         self.updateWithBlink(names, keys, times, self.eyeColor['anger'], self.eyeShape['anger'])
         #self.updateWithBlink(names, keys, times, 0x00FF0000, "EyeTopBottom")
 
-    def LookAtEdgeMotion(self):
-        names = list()
-        times = list()
-        keys = list()
-        self.bScared = False
-        names.append("HeadPitch")
-        times.append([1, 1.88])
-        keys.append([-0.145772, 0.248466])
 
-        names.append("HeadYaw")
-        times.append([1, 1.88])
-        keys.append([0.0106959, -0.00771189])
+    def createDialog(self):
+        self.HriDialogEOD={ '1'         : "Hello again Bob, how was the rest of your day?",
+                            '1good'     : "Awesome, I knew it would be a good day",
+                            '1bad'      : "Oh, I am sorry to hear that. There is always tomorrow to look forward to.",
+                            '2'         : "Do! you! have! any! big! plans! you! are! looking! forward! to! later! during! the! week! or! over! the! weekend?",
+                            '2yes'      : "That's great, that sounds like fun.",
+                            '2no'       : "It. would. be. greate. if. you. could. plan. something. active.",
+                            '31'        : "Did you have the meal suggested for breakfast this morning?",
+                            '31yes'     : "That's great, break fast is the most important meal of the day. Having a healthy breakfast in the morning can help you to fight viruses and reduce your risk of disease. Do you think you could have this regularly for breakfast?",
+                            '31yesyes'  : "Wonderful, I will suggest this again to you. A consistent healthy breakfast can improve your energy levels and reduce hunger throughout the day.",
+                            '31no'      : "Did you at lest least have any breakfast this morning?",
+                            '31noyes'   : "That's good at least, but I would recommend you have the suggested meal whenever possible. That way you can ensure you are always getting a healthy start to your day.",
+                            '31nono'    : "Breakfast is the most important meal of the day. Skipping breakfast often leads to unhealthy habits and overeating later in the day. Please try to have at least something for breakfast in the future, and even better if you have something like the suggested meal"
+                            }
 
-        names.append("LAnklePitch")
-        times.append([1, 1.88])
-        keys.append([0.0873961, 0.0873961])
+    def EdgeDistance2D(self, x1, y1, x2, y2, centerX, centerY):
+        a=y1-y2
+        b=x2-x1
+        c=y2*(x1-x2)-x2*(y1-y2)
+        return (abs(a*centerX+b*centerY+c)/math.sqrt(a*a+b*b))
 
-        names.append("LAnkleRoll")
-        times.append([1, 1.88])
-        keys.append([-0.13495, -0.13495])
+    def EdgeDistance3D(self, dist2d,maxX,maxY):
+        height = 45.19+102.9+100+85+165.5+17.74
+        viewAngle=np.radians(90-39.7)
+        hfov=np.radians(60.9)
+        vfov=np.radians(47.6)
+        distFeetToCenter=292.1
+        dist3d=distFeetToCenter/(maxY/2)*dist2d
+        return dist3d
 
-        names.append("LElbowRoll")
-        times.append([1, 1.88])
-        keys.append([-0.404934, -0.404934])
+    def ShortestIntersection(self, x1,y1,x2,y2, centerX, centerY):
+        a=y1-y2
+        b=x2-x1
+        c=y2*(x1-x2)-x2*(y1-y2)
+        m=a*centerY-b*centerX
+        den=a*a+b*b
+        x=(-b*m-c*a)/den
+        y=(a*m-b*c)/den
+        return x,y
 
-        names.append("LElbowYaw")
-        times.append([1, 1.88])
-        keys.append([-1.17509, -1.17509])
+    def RhoThetaToBoundary(self, rho, theta, maxX, maxY):
+        xTop = -1
+        yLeft = -1
+        xBottom = -1
+        yRight = -1
+        if math.sin(theta)<0.001:
+            if rho>0:
+                yLeft = rho
+                yRight = rho
+            elif rho<0:
+                print "Error 07: Unexpected Line! Press any key to continue"
+                cv2.waitKey(0)
+        elif theta<(np.pi/2):
+            if rho>0:
+                yLeft=rho/math.sin(theta)
+                if yLeft <= maxY:
+                    xBottom = -1
+                else:
+                    xBottom= (yLeft-maxY)*math.tan(theta)
+                    yLeft = -1
+                xTop = rho/math.cos(theta)
+                if xTop < maxX:
+                    yRight = -1
+                else:
+                    yRight = (xTop-maxX)/math.tan(theta)
+                    xTop = -1
+            elif rho < 0:
+                    print "Error 01: Unexpected Line! Press any key to continue"
+                    cv2.waitKey(0)
+            else:
+                    print "Error 02: Impossible case. Not implemented!"
+                    cv2.waitKey(0)
+        elif theta>(np.pi/2) and theta<(np.pi):
+            if rho>0:
+                yLeft=rho/math.cos(theta-np.pi/2)
+                if yLeft > maxY:
+                    yLeft = -1
+                    print "Error 03: Unexpected Line! Press any key to continue"
+                    cv2.waitKey(0)
+                else:
+                    xBottom = (maxY - yLeft)/math.tan(theta-np.pi/2)
+                    if xBottom > maxX:
+                        yRight = maxY - (xBottom-maxX)*math.tan(theta-np.pi/2)
+                        xBottom= - 1
+            elif rho < 0:
+                xTop = -rho/math.sin(theta-np.pi/2)
+                if xTop > maxX:
+                    print "Error 04: Unexpected Line! Press any key to continue"
+                    cv2.waitKey(0)
+                else:
+                    yRight=(maxX-xTop)*math.tan(theta-np.pi/2)
+                    if yRight > maxY:
+                        xBottom=maxX - (yRight-maxY)/math.tan(theta-np.pi/2)
+                        yRight=-1
+        elif theta>np.pi:
+            print "Error 05: Unexpected Angle! Press any key to continue"
+            cv2.waitKey(0)
+        if xTop>maxX or xBottom > maxX or yLeft> maxY or yRight> maxY:
+            print "Error 06: Out of Range! Press any key to continue"
+            print rho,theta
+            print xTop, yLeft, xBottom, yRight
+            cv2.waitKey(0)
+        return xTop,yLeft,xBottom,yRight
 
-        names.append("LHand")
-        times.append([1, 1.88])
-        keys.append([0.29, 0.29])
+    def RhoThetaX1Y1X2Y2(self, rho,theta):
+        a = np.cos(theta)
+        b = np.sin(theta)
+        x0 = a*rho
+        y0 = b*rho
+        x1 = int(x0 + 1000*(-b))
+        y1 = int(y0 + 1000*(a))
+        x2 = int(x0 - 1000*(-b))
+        y2 = int(y0 - 1000*(a))
+        return x1,y1,x2,y2
 
-        names.append("LHipPitch")
-        times.append([1, 1.88])
-        keys.append([0.12583, 0.12583])
+    def dotProduct(self,x1,y1,x2,y2,X1,Y1,X2,Y2):
+        return (x2-x1)*(X2-X1)+(y2-y1)*(Y2-Y1)
 
-        names.append("LHipRoll")
-        times.append([1, 1.88])
-        keys.append([0.105888, 0.105888])
+    def measureDistance(self, resX, resY, originalFrame):
+        maxX = resX #320
+        maxY = resY #240
+        seedX = resX/2
+        seedY = resY*7/8
+        centerX = resX/2
+        centerY = resY
 
-        names.append("LHipYawPitch")
-        times.append([1, 1.88])
-        keys.append([-0.16563, -0.16563])
+        kernel = np.ones((5,5),np.uint8)
+        blur_bgr = cv2.bilateralFilter(originalFrame, 9, 75, 75)
+        cv2.circle(originalFrame, (seedX, seedY), 5, (0, 0, 0xFF), -1)
+        edge_bgr = cv2.Canny(blur_bgr, 10, 220, True)
+        closing = cv2.morphologyEx(edge_bgr, cv2.MORPH_CLOSE, kernel)
+        replicate_bgr = cv2.copyMakeBorder(closing,1,1,1,1,cv2.BORDER_REPLICATE)
+        cv2.floodFill(blur_bgr,replicate_bgr,(seedX,seedY),(0,0xFF,0), (5,10,10), (5,10,10), 8 | ( 125 << 8 ) | cv2.FLOODFILL_MASK_ONLY )
+        FloodFill = cv2.inRange(replicate_bgr,125,125)
+        TableRegion = cv2.dilate(FloodFill,kernel,iterations=1)
+        TableEdges = cv2.Canny(TableRegion, 1, 255, apertureSize=5)
+        houghImage = np.zeros((maxY, maxX, 3), np.uint8)
+        lines = cv2.HoughLines(TableEdges,1,np.pi/180,self.voteHoughLines)
+        numberOfLines = 0
+        Rho1=0
+        Theta1=0
+        Rho2=1
+        Theta2=1
+        if lines is None:
+            self.voteHoughLines-=1;
+            if self.voteHoughLines<=0:
+                self.voteHoughLines=1
+        else:
 
-        names.append("LKneePitch")
-        times.append([1, 1.88])
-        keys.append([-0.090548, -0.090548])
+            for rho,theta in lines[0]:
+                x1,y1,x2,y2 = self.RhoThetaX1Y1X2Y2(rho, theta)
+                cv2.line(houghImage, (x1, y1), (x2, y2), (0, 0, 0xFF), 2)
 
-        names.append("LShoulderPitch")
-        times.append([1, 1.88])
-        keys.append([1.48027, 1.48027])
+            lineArrayDimension = lines.shape
+            if lineArrayDimension[1]>2:
+                if lineArrayDimension[1]>4:
+                    self.voteHoughLines+=1;
+                criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 5, 1.0)
+                flags = cv2.KMEANS_RANDOM_CENTERS
+                compactness,labels,centers = cv2.kmeans(lines,2,criteria,10,flags)
+                Diff=abs(centers[0][1]-centers[1][1])
+                if Diff>np.pi/4:
+                    Rho1=centers[0][0]
+                    Theta1=centers[0][1]
+                    Rho2=centers[1][0]
+                    Theta2=centers[1][1]
+                    numberOfLines=2
+                else:
+                    Rho1=(lines[0][0][0]+lines[0][1][0])*0.5
+                    Theta1=(lines[0][0][1]+lines[0][1][1])*0.5
+                    numberOfLines=1
+            elif lineArrayDimension[1] == 2:
+                Diff=abs(lines[0][0][1]-lines[0][1][1])
+                if Diff > np.pi/4:
+                    Rho1=lines[0][0][0]
+                    Theta1=lines[0][0][1]
+                    Rho2=lines[0][1][0]
+                    Theta2=lines[0][1][1]
+                    numberOfLines=2
+                else:
+                    Rho1=(lines[0][0][0]+lines[0][1][0])*0.5
+                    Theta1=(lines[0][0][1]+lines[0][1][1])*0.5
+                    numberOfLines=1
+            elif lineArrayDimension[1] == 1:
+                Rho1=lines[0][0][0]
+                Theta1=lines[0][0][1]
+                numberOfLines=1
 
-        names.append("LShoulderRoll")
-        times.append([1, 1.88])
-        keys.append([0.16563, 0.16563])
+        distance3D=-1
 
-        names.append("LWristYaw")
-        times.append([1, 1.88])
-        keys.append([0.08126, 0.08126])
+        if numberOfLines==1:
+            xTop,yLeft,xBottom,yRight = self.RhoThetaToBoundary(Rho1, Theta1,maxX,maxY)
+            x1,y1,x2,y2=self.RhoThetaX1Y1X2Y2(Rho1, Theta1)
+            x,y=self.ShortestIntersection(float(x1),float(y1),float(x2),float(y2), centerX, centerY)
+            distance=self.EdgeDistance2D(x1, y1, x2, y2, centerX, centerY)
+            distance3D=self.EdgeDistance3D(distance,maxX,maxY)
+            cv2.circle(originalFrame, (int(x), int(y)), 5, (0xFF, 0, 0), -1)
+            cv2.line(originalFrame, (x1, y1), (x2, y2), (0, 0xFF, 0), 2)
+            cv2.line(originalFrame, (int(x), int(y)), (int(centerX), int(centerY)), (0, 0, 0xFF), 1)
+            if xTop >= 0:
+                cv2.circle(originalFrame, (int(xTop), 0), 5, (0xFF, 0, 0), -1)
+            if yLeft >= 0:
+                cv2.circle(originalFrame, (0, int(yLeft)), 5, (0xFF, 0, 0), -1)
+            if xBottom >= 0:
+                cv2.circle(originalFrame, (int(xBottom), maxY), 5, (0xFF, 0, 0), -1)
+            if yRight >= 0:
+                cv2.circle(originalFrame, (maxX, int(yRight)), 5, (0xFF, 0, 0), -1)
+        elif numberOfLines==2:
+            line1Pt=[]
+            line2Pt=[]
 
-        names.append("RAnklePitch")
-        times.append([1, 1.88])
-        keys.append([0.09515, 0.09515])
+            xTop1, yLeft1, xBottom1, yRight1 = self.RhoThetaToBoundary(Rho1, Theta1, maxX, maxY)
+            xTop2, yLeft2, xBottom2, yRight2 = self.RhoThetaToBoundary(Rho2, Theta2, maxX, maxY)
 
-        names.append("RAnkleRoll")
-        times.append([1, 1.88])
-        keys.append([0.135034, 0.135034])
+            if xTop1>=0:
+                line1Pt.append([xTop1, 0])
+            if xTop2>=0:
+                line2Pt.append([xTop2, 0])
+            if yLeft1 >= 0:
+                line1Pt.append([0, yLeft1])
+            if yLeft2 >= 0:
+                line2Pt.append([0, yLeft2])
+            if xBottom1 >= 0:
+                line1Pt.append([xBottom1, maxY])
+            if xBottom2 >= 0:
+                line2Pt.append([xBottom2, maxY])
+            if yRight1 >= 0:
+                line1Pt.append([maxX, yRight1])
+            if yRight2 >= 0:
+                line2Pt.append([maxX, yRight2])
 
-        names.append("RElbowRoll")
-        times.append([1, 1.88])
-        keys.append([0.431096, 0.431096])
+            xIntersectNum = -line2Pt[1][0]*line2Pt[0][1]*line1Pt[0][0]\
+                            +line2Pt[1][0]*line2Pt[0][1]*line1Pt[1][0]\
+                            +line2Pt[0][0]*line1Pt[1][0]*line1Pt[0][1]\
+                            -line2Pt[1][0]*line1Pt[1][0]*line1Pt[0][1]\
+                            +line2Pt[1][0]*line1Pt[1][1]*line1Pt[0][0]\
+                            -line2Pt[0][0]*line2Pt[1][1]*line1Pt[1][0]\
+                            +line2Pt[0][0]*line2Pt[1][1]*line1Pt[0][0]\
+                            -line2Pt[0][0]*line1Pt[1][1]*line1Pt[0][0]
 
-        names.append("RElbowYaw")
-        times.append([1, 1.88])
-        keys.append([1.17807, 1.17807])
+            Denum = -line2Pt[0][1]*line1Pt[0][0]\
+                    +line2Pt[0][1]*line1Pt[1][0]\
+                    +line2Pt[1][1]*line1Pt[0][0]\
+                    -line2Pt[1][1]*line1Pt[1][0]\
+                    +line1Pt[0][1]*line2Pt[0][0]\
+                    -line1Pt[0][1]*line2Pt[1][0]\
+                    -line1Pt[1][1]*line2Pt[0][0]\
+                    +line1Pt[1][1]*line2Pt[1][0]
 
-        names.append("RHand")
-        times.append([1, 1.88])
-        keys.append([0.2868, 0.2868])
+            yIntersectNum = -line1Pt[1][1]*line2Pt[1][1]*line2Pt[0][0]\
+                            -line2Pt[0][1]*line1Pt[1][1]*line1Pt[0][0]\
+                            +line2Pt[0][1]*line1Pt[1][0]*line1Pt[0][1]\
+                            +line2Pt[1][1]*line1Pt[1][1]*line1Pt[0][0]\
+                            -line2Pt[1][1]*line1Pt[1][0]*line1Pt[0][1]\
+                            +line1Pt[0][1]*line2Pt[1][1]*line2Pt[0][0]\
+                            -line1Pt[0][1]*line2Pt[1][0]*line2Pt[0][1]\
+                            +line1Pt[1][1]*line2Pt[1][0]*line2Pt[0][1]
 
-        names.append("RHipPitch")
-        times.append([1, 1.88])
-        keys.append([0.12728, 0.12728])
+            xIntersect = xIntersectNum/Denum
+            yIntersect = yIntersectNum/Denum
+            line1Pt=[]
+            line2Pt=[]
+            if xIntersect < maxX and xIntersect > 0 and yIntersect < maxY and yIntersect > 0:
+                if Theta1<np.pi/2:
+                    if yLeft1 >= 0:
+                        #print "case 1"
+                        line1Pt.append([0, yLeft1])
+                        cv2.line(originalFrame, (0, int(yLeft1)), (int(xIntersect), int(yIntersect)), (0, 255, 0), 2)
+                        cv2.circle(originalFrame, (0, int(yLeft1)), 5, (0xFF, 0, 0), -1)
+                    elif xBottom1 >= 0:
+                        #print "case 2"
+                        line1Pt.append([xBottom1, maxY])
+                        cv2.line(originalFrame, (int(xBottom1), int(maxY)), (int(xIntersect), int(yIntersect)), (0, 255, 0), 2)
+                        cv2.circle(originalFrame, (int(xBottom1), int(maxY)), 5, (0xFF, 0, 0), -1)
+                elif Theta1>np.pi/2:
+                    if yRight1 >= 0:
+                        #print "case 3"
+                        line1Pt.append([maxX, yRight1])
+                        cv2.line(originalFrame, (int(maxX), int(yRight1)), (int(xIntersect), int(yIntersect)), (0, 255, 0), 2)
+                        cv2.circle(originalFrame, (int(maxX), int(yRight1)), 5, (0xFF, 0, 0), -1)
+                    elif xBottom1 >= 0:
+                        #print "case 4"
+                        line1Pt.append([xBottom1, maxY])
+                        cv2.line(originalFrame, (int(xBottom1), int(maxY)), (int(xIntersect), int(yIntersect)), (0, 255, 0), 2)
+                        cv2.circle(originalFrame, (int(xBottom1), int(maxY)), 5, (0xFF, 0, 0), -1)
 
-        names.append("RHipRoll")
-        times.append([1, 1.88])
-        keys.append([-0.105804, -0.105804])
+                if Theta2<np.pi/2:
+                    if yLeft2 >= 0:
+                        #print "case 5"
+                        line2Pt.append([0,yLeft2])
+                        cv2.line(originalFrame, (0, int(yLeft2)), (int(xIntersect), int(yIntersect)), (0, 255, 0), 2)
+                        cv2.circle(originalFrame, (0, int(yLeft2)), 5, (0xFF, 0, 0), -1)
+                    elif xBottom2 >= 0:
+                        #print "case 6"
+                        line2Pt.append([xBottom2,maxY])
+                        cv2.line(originalFrame, (int(xBottom2), int(maxY)), (int(xIntersect), int(yIntersect)), (0, 255, 0), 2)
+                        cv2.circle(originalFrame,  (int(xBottom2), int(maxY)), 5, (0xFF, 0, 0), -1)
+                elif Theta2>np.pi/2:
+                    if yRight2 >= 0:
+                        #print "case 7"
+                        line2Pt.append([maxX,yRight2])
+                        cv2.line(originalFrame, (int(maxX), int(yRight2)), (int(xIntersect), int(yIntersect)), (0, 255, 0), 2)
+                        cv2.circle(originalFrame, (int(maxX), int(yRight2)), 5, (0xFF, 0, 0), -1)
+                    elif xBottom2 >= 0:
+                        #print "case 8"
+                        line2Pt.append([xBottom2,maxY])
+                        cv2.line(originalFrame, (int(xBottom2), int(maxY)), (int(xIntersect), int(yIntersect)), (0, 255, 0), 2)
+                        cv2.circle(originalFrame, (int(xBottom2), int(maxY)), 5, (0xFF, 0, 0), -1)
+                cv2.circle(originalFrame, (int(xIntersect), int(yIntersect)), 10, (0xFF, 0xFF, 0), -1)
+                distance1=self.EdgeDistance2D(line1Pt[0][0], line1Pt[0][1], xIntersect, yIntersect, centerX, centerY)
+                distance2=self.EdgeDistance2D(line2Pt[0][0], line2Pt[0][1], xIntersect, yIntersect, centerX, centerY)
+                if distance1 < distance2:
+                    distance3D=self.EdgeDistance3D(distance1,maxX,maxY)
+                    x,y = self.ShortestIntersection(line1Pt[0][0],line1Pt[0][1],xIntersect,yIntersect, centerX, centerY)
+                    cv2.circle(originalFrame, (int(x), int(y)), 5, (0xFF, 0, 0), -1)
+                    cv2.line(originalFrame, (int(x), int(y)), (int(centerX), int(centerY)), (0, 0, 0xFF), 1)
+                else:
+                    distance3D=self.EdgeDistance3D(distance2,maxX,maxY)
+                    x,y = self.ShortestIntersection(line2Pt[0][0],line2Pt[0][1],xIntersect,yIntersect, centerX, centerY)
+                    cv2.circle(originalFrame, (int(x), int(y)), 5, (0xFF, 0, 0), -1)
+                    cv2.line(originalFrame, (int(x), int(y)), (int(centerX), int(centerY)), (0, 0, 0xFF), 1)
 
-        names.append("RHipYawPitch")
-        times.append([1, 1.88])
-        keys.append([-0.16563, -0.16563])
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        dist3dStr=str(int(distance3D/10))
+        cv2.putText(originalFrame,"Distance:" + dist3dStr + " cm",(10,maxY-10), font, 1,(0,0xFF,0),2,cv2.CV_AA)
 
-        names.append("RKneePitch")
-        times.append([1, 1.88])
-        keys.append([-0.0873961, -0.0873961])
+        return dist3dStr,replicate_bgr
 
-        names.append("RShoulderPitch")
-        times.append([1, 1.88])
-        keys.append([1.48035, 1.48035])
+    def img(self):
+        self.UnsubscribeAllTouchEvent()
+        motionProxy = self.connectToProxy("ALMotion")
+        motionNames = ['HeadYaw', "HeadPitch"]
+        times = [[0.7], [0.7]] # time to preform (s)
 
-        names.append("RShoulderRoll")
-        times.append([1, 1.88])
-        keys.append([-0.15651, -0.15651])
+        motionProxy.angleInterpolation(motionNames, [0.0,0.0], times, True)
+        motionProxy.angleInterpolation(motionNames, [0.0,0.2], times, True)
+        self.SubscribeAllTouchEvent()
 
-        names.append("RWristYaw")
-        times.append([1, 1.88])
-        keys.append([0.078192, 0.078192])
+        while True:
+            naoImage = self.camProxy.getImageRemote(self.cameraId)
+            frame = (np.reshape(np.frombuffer(naoImage[6], dtype = '%iuint8' % naoImage[2]), (naoImage[1], naoImage[0], naoImage[2])))
+            #print "Image resolution is",naoImage[0], naoImage[1]
+            dist,debugFrame = self.measureDistance(naoImage[0],naoImage[1],frame)
+            self.camProxy.releaseImage(self.cameraId)
+            cv2.imshow('Original', frame)
+            cv2.imshow('Debug', debugFrame)
+            k = cv2.waitKey(1)
+            if k == 27:
+                break
+        cv2.destroyAllWindows()
 
-        self.updateWithBlink(names, keys, times, self.eyeColor['hope'], self.eyeShape['hope'],True, True)
+    '''
+    def checkEdgeDist(self):
 
-    def scaredEmotion3Edge(self):
-        names = list()
-        times = list()
-        keys = list()
-        self.bScared = False
+        # set nao position
+        # get edge stuff
+        return distINcm
 
-        names = list()
-        times = list()
-        keys = list()
-
-        names.append("HeadPitch")
-        times.append([1, 1.72, 2.28])
-        keys.append([-0.165714, 0.113474, 0.260738])
-
-        names.append("HeadYaw")
-        times.append([1, 1.72, 2.28])
-        keys.append([0.00302601, -0.0123138, 0.10427])
-
-        names.append("LAnklePitch")
-        times.append([1, 1.72, 2.28])
-        keys.append([0.0873961, 0.0935321, 0.0935321])
-
-        names.append("LAnkleRoll")
-        times.append([1, 1.72, 2.28])
-        keys.append([-0.13495, -0.13495, -0.13495])
-
-        names.append("LElbowRoll")
-        times.append([1, 1.72, 2.28])
-        keys.append([-0.404934, -1.38823, -1.49868])
-
-        names.append("LElbowYaw")
-        times.append([1, 1.72, 2.28])
-        keys.append([-1.17509, -1.37144, -1.11679])
-
-        names.append("LHand")
-        times.append([1, 1.72, 2.28])
-        keys.append([0.29, 0.524, 0.9896])
-
-        names.append("LHipPitch")
-        times.append([1, 1.72, 2.28])
-        keys.append([0.12583, 0.12583, 0.12583])
-
-        names.append("LHipRoll")
-        times.append([1, 1.72, 2.28])
-        keys.append([0.105888, 0.108956, 0.108956])
-
-        names.append("LHipYawPitch")
-        times.append([1, 1.72, 2.28])
-        keys.append([-0.16563, -0.176368, -0.16563])
-
-        names.append("LKneePitch")
-        times.append([1, 1.72, 2.28])
-        keys.append([-0.090548, -0.090548, -0.090548])
-
-        names.append("LShoulderPitch")
-        times.append([1, 1.72, 2.28])
-        keys.append([1.48334, 1.07836, 0.417206])
-
-        names.append("LShoulderRoll")
-        times.append([1, 1.72, 2.28])
-        keys.append([0.1733, 0.0337059, -0.127364])
-
-        names.append("LWristYaw")
-        times.append([1, 1.72, 2.28])
-        keys.append([0.08126, -1.6675, -1.20423])
-
-        names.append("RAnklePitch")
-        times.append([1, 1.72, 2.28])
-        keys.append([0.090548, 0.0828779, 0.093616])
-
-        names.append("RAnkleRoll")
-        times.append([1, 1.72, 2.28])
-        keys.append([0.122762, 0.124296, 0.135034])
-
-        names.append("RElbowRoll")
-        times.append([1, 1.72, 2.28])
-        keys.append([0.431096, 1.40825, 1.5049])
-
-        names.append("RElbowYaw")
-        times.append([1, 1.72, 2.28])
-        keys.append([1.17807, 1.59532, 1.15046])
-
-        names.append("RHand")
-        times.append([1, 1.72, 2.28])
-        keys.append([0.2868, 0.546, 0.7084])
-
-        names.append("RHipPitch")
-        times.append([1, 1.72, 2.28])
-        keys.append([0.12728, 0.122678, 0.122678])
-
-        names.append("RHipRoll")
-        times.append([1, 1.72, 2.28])
-        keys.append([-0.0935321, -0.098134, -0.108872])
-
-        names.append("RHipYawPitch")
-        times.append([1, 1.72, 2.28])
-        keys.append([-0.16563, -0.176368, -0.16563])
-
-        names.append("RKneePitch")
-        times.append([1, 1.72, 2.28])
-        keys.append([-0.0873961, -0.0873961, -0.0873961])
-
-        names.append("RShoulderPitch")
-        times.append([1, 1.72, 2.28])
-        keys.append([1.48035, 1.11219, 0.464844])
-
-        names.append("RShoulderRoll")
-        times.append([1, 1.72, 2.28])
-        keys.append([-0.168782, 0.147222, 0.185572])
-
-        names.append("RWristYaw")
-        times.append([1, 1.72, 2.28])
-        keys.append([0.078192, 1.27931, 1.27931])
-
-
-        self.updateWithBlink(names, keys, times, self.eyeColor['scared2'], self.eyeShape['scared2'],True)
-
+    '''

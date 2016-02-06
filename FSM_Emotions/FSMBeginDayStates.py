@@ -123,7 +123,8 @@ class FSMBeginDayStates:
         self.getUserFSMVars()
 
         sayText = "Hello " + self.userName + ". "
-        # sayText += "My name is " + self.robotName + " and I am going to be your diet and fitness companion"
+        if self.hasTalkedJapan or self.hasTalkedParis:
+            sayText += "My name is " + self.robotName + " and I am going to be your diet and fitness companion"
         self.FSMBody.sayWithEmotion(sayText)
 
         sayText = "How has your morning been so far?"
@@ -561,10 +562,10 @@ class FSMBeginDayStates:
         sayText = "Let me see if I can suggest an alternative."
         self.FSMBody.sayWithEmotion(sayText)
 
-        if self.meal2Options > 0:
-            self.FSMBody.setFSMState(self.FSMBody.state -3)
+        if self.meal2Options > 0 and len(self.meal2Tried) < 5:
+            self.FSMBody.setFSMState(self.FSMBody.state -3) # suggest again
         else:
-            self.FSMBody.setFSMState(self.FSMBody.state +1)
+            self.FSMBody.setFSMState(self.FSMBody.state +1) # dont suggest again
 
         appraiseState = False
         return appraiseState
@@ -697,8 +698,8 @@ class FSMBeginDayStates:
         sayText = "Let's see if there is anything else I can suggest."
         self.FSMBody.sayWithEmotion(sayText)
 
-        if self.meal3Options > 0:
-            self.FSMBody.setFSMState(self.FSMBody.state -3)
+        if self.meal3Options > 0 and len(self.meal3Tried) < 5:
+            self.FSMBody.setFSMState(self.FSMBody.state -3) # suggest again
         else:
             self.FSMBody.setFSMState(self.FSMBody.state +1)
 

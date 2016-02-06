@@ -5,7 +5,7 @@ import time
 
 from FoodDBManager import FoodDBManager
 import FileUtilitiy
-
+from EdgeDetection import EdgeDetection
 
 class GenUtil:
     def __init__(self, naoMotions):
@@ -25,6 +25,9 @@ class GenUtil:
 
         self.wasJustScared = False
         self.fDB = FoodDBManager()
+
+        NAOip, NAOport = naoMotions.getConnectInfo()
+        self.edgeDetector = EdgeDetection(NAOip, NAOport)
 		
     def toNum(self, numAsString):
         # Convert string to either int or float
@@ -70,12 +73,16 @@ class GenUtil:
                     self.showHappyBody()
                 elif oe == "Sad2":
                     self.showSadBody()
-                elif oe == "Fearful2":
+                elif oe == "Fearful":
                     self.showFearBody()
+                elif oe == "Fearful2":
+                    self.showFearBody2()
                 elif oe == "Angry2":
                     self.showAngryBody()
-                elif oe == "Hopeful2":
+                elif oe == "Hopeful":
                     self.showHopeBody()
+                elif oe == "Hopeful2":
+                    self.showHopeBody2()
                 elif oe == "Scared1" and not self.wasJustScared: #pickup
                     self.showScared1Body()
                     self.wasJustScared = True
@@ -161,16 +168,24 @@ class GenUtil:
         print "My body is Sad"
         
     def showFearBody(self):
+        self.naoMotions.fear2Emotion()
+        print "My body is Fear1"
+
+    def showFearBody2(self):
         self.naoMotions.fearEmotion()
-        print "My body is Fear"
+        print "My body is Fear2"
             
     def showAngryBody(self):
         self.naoMotions.angerEmotion()
         print "My body is Angry"
 
     def showHopeBody(self):
+        self.naoMotions.hope2Emotion()
+        print "My body is Hopeful1"
+
+    def showHopeBody2(self):
         self.naoMotions.hopeEmotion()
-        print "My body is Hopeful"
+        print "My body is Hopeful2"
 
     def showScared1Body(self):
         self.naoMotions.scaredEmotion3()
@@ -180,7 +195,7 @@ class GenUtil:
         self.naoMotions.scaredEmotion1()
         print "My body is Scared2"
     def showScared3Body(self):
-        self.naoMotions.scaredEmotion1()
+        self.naoMotions.scaredEmotion3Edge()
         print "My body is Scared2"
 
 ################################################# Body
@@ -306,10 +321,21 @@ class GenUtil:
         self.naoMotions.naoWaveRight()
 
     def checkEdgeSafety(self):
-        # check if NAO is fat enough away from the edge
-        self.naoMotions.naoShakeHead()
+        # check if NAO is far enough away from the edge
+        # self.naoMotions.naoShakeHead()
 
+        self.naoMotions.LookAtEdgeMotion()
+        thres = 20
+        nFrames = 4
+        status, distance, angle = self.edgeDetector.lookForEdge(thres, nFrames)
+        self.naoSeesHigh = status
+
+        print "Status: ", status, "Distance: ", distance, " Angle: ", angle
         if self.naoSeesHigh:
+            print "NAO is too close to the edge"
             self.naoSeesHighEdge()
+        else:
+            print "NAO is a safe distance from the edge"
 
+        self.naoMotions.naoStand()
         return self.naoSeesHigh
