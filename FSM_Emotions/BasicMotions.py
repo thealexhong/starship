@@ -819,107 +819,107 @@ class BasicMotions:
 
         names.append("HeadPitch")
         times.append([0.8, 2.36])
-        keys.append([-0.0537319, -0.498592])
+        keys.append([-0.0537319, 0.279146])
 
         names.append("HeadYaw")
         times.append([0.8, 2.36])
-        keys.append([0.0183661, -0.852946])
+        keys.append([0.0183661, -0.77011])
 
         names.append("LAnklePitch")
         times.append([0.8, 2.36])
-        keys.append([-0.34826, 0.208583])
+        keys.append([-0.34826, 0.21165])
 
         names.append("LAnkleRoll")
         times.append([0.8, 2.36])
-        keys.append([-0.00609397, -0.0873961])
+        keys.append([-0.00609397, -0.0935321])
 
         names.append("LElbowRoll")
         times.append([0.8, 2.36])
-        keys.append([-0.989389, -1.46186])
+        keys.append([-0.989389, -1.43118])
 
         names.append("LElbowYaw")
         times.append([0.8, 2.36])
-        keys.append([-1.3699, -0.895898])
+        keys.append([-1.3699, -0.90817])
 
         names.append("LHand")
         times.append([0.8, 2.36])
-        keys.append([0.262, 0.9908])
+        keys.append([0.262, 0.9844])
 
         names.append("LHipPitch")
         times.append([0.8, 2.36])
-        keys.append([-0.440216, -0.15796])
+        keys.append([-0.440216, -0.154892])
 
         names.append("LHipRoll")
         times.append([0.8, 2.36])
-        keys.append([0.00157595, 0.113558])
+        keys.append([0.00157595, 0.108956])
 
         names.append("LHipYawPitch")
         times.append([0.8, 2.36])
-        keys.append([0.00464392, -0.527655])
+        keys.append([0.00464392, -0.519984])
 
         names.append("LKneePitch")
         times.append([0.8, 2.36])
-        keys.append([0.707132, 0.36505])
+        keys.append([0.707132, 0.37272])
 
         names.append("LShoulderPitch")
         times.append([0.8, 2.36])
-        keys.append([1.45419, 0.343573])
+        keys.append([1.45419, 0.39573])
 
         names.append("LShoulderRoll")
         times.append([0.8, 2.36])
-        keys.append([0.299088, -0.259288])
+        keys.append([0.299088, -0.214802])
 
         names.append("LWristYaw")
         times.append([0.8, 2.36])
-        keys.append([0.0137641, 1.26091])
+        keys.append([0.0137641, 1.2517])
 
         names.append("RAnklePitch")
         times.append([0.8, 2.36])
-        keys.append([-0.352778, -0.542995])
+        keys.append([-0.352778, -0.5568])
 
         names.append("RAnkleRoll")
         times.append([0.8, 2.36])
-        keys.append([0.00771189, 0.165714])
+        keys.append([0.00771189, 0.158044])
 
         names.append("RElbowRoll")
         times.append([0.8, 2.36])
-        keys.append([0.981802, 1.33769])
+        keys.append([0.981802, 1.34536])
 
         names.append("RElbowYaw")
         times.append([0.8, 2.36])
-        keys.append([1.36829, 1.37135])
+        keys.append([1.36829, 1.36062])
 
         names.append("RHand")
         times.append([0.8, 2.36])
-        keys.append([0.2644, 0.9912])
+        keys.append([0.2644, 0.9844])
 
         names.append("RHipPitch")
         times.append([0.8, 2.36])
-        keys.append([-0.449504, 0.078192])
+        keys.append([-0.449504, 0.08126])
 
         names.append("RHipRoll")
         times.append([0.8, 2.36])
-        keys.append([-0.00609397, -0.283749])
+        keys.append([-0.00609397, -0.282214])
 
         names.append("RHipYawPitch")
         times.append([0.8, 2.36])
-        keys.append([0.00464392, -0.527655])
+        keys.append([0.00464392, -0.519984])
 
         names.append("RKneePitch")
         times.append([0.8, 2.36])
-        keys.append([0.70108, 0.859083])
+        keys.append([0.70108, 0.865218])
 
         names.append("RShoulderPitch")
         times.append([0.8, 2.36])
-        keys.append([1.45581, 0.33292])
+        keys.append([1.45581, 0.41729])
 
         names.append("RShoulderRoll")
         times.append([0.8, 2.36])
-        keys.append([-0.276162, 0.0628521])
+        keys.append([-0.276162, 0.0659201])
 
         names.append("RWristYaw")
         times.append([0.8, 2.36])
-        keys.append([0.0168321, -1.21037])
+        keys.append([0.0168321, -1.17815])
 
         self.updateWithBlink(names, keys, times, self.eyeColor['scared1'], self.eyeShape['scared1'])
 

@@ -1,0 +1,102 @@
+==========================================================================================================
+Instructions for running the Diet and Fitness Interactions with the NAO robot
+==========================================================================================================
+
+----------------------------------------------------------------------------------------------------------
+1. The Interaction input to start the interaction is set in file: \ProgramDataFiles\_FSM_INPUT.json
+
+a) Set the IP address of the robot ("naoIP") as either "leia.local" (red NAO) or "luke.local" (blue NAO), depending on which robot you are using
+
+b) Set the name of the user doing the interaction by changing variable "userName". NOTE: This name is what the robot will say during the interaction, and the name the program will use in the logs and saved variable files
+
+c) Set the user number of the user doing the interaction by chainging variable "userNumber". This number is mainly used as a secondary identifier of the user (if they need to be anonymous), and to allow for multiple people of the same name.
+
+d) Set the interaction type the NAO will preform by changing the "interactionType". Use "Morning" to preform the morning interaction, or "End of Day" to preform the end of day interaction
+
+e) Set whether the interaction is the last time the NAO will see the user by changing the "lastInteraction" variable. If set to false, then the robot will say they will see the user tomorrow at the end of the End of Day interaction. If set to true, then the robot will not say it will see them again.
+
+Make sure that all variables are set to the right NAO, User and Interaction before starting the program.
+
+----------------------------------------------------------------------------------------------------------
+2. During the interaction, there are many times where the robot asks the user a question. At these times, the Wizard must determine which of 1-3 types of responses they gave. These are input to the program by the number keys 1,2 and 3. At any question, the Wizard can hit the enter key without any input to repeat the question, however such actions do affect the Robots emotional state. 
+
+----------------------------------------------------------------------------------------------------------
+3. During the interaction, 3 types of reactive emotions can occur. The Wizard is responsible for assessing the situation should they occur, and only disable the robots reactive behaviour when they have determined it should. NOTE: this manual disabling of the behaviour is the only way it will stop. 
+
+a) Scared of Being Touched - stop the behaviour when the user is no longer touching the robot.
+
+b) Scared of Being Picked Up - stop the behaviour when the user has put the robot back down.
+
+c) Scared of High Ledges - stop the beaviour when the user readjusts the position of the robot to farther from the edge of the table. The robot will check its distance again after the reaction is disabled to be sure its safe.
+
+Press the "Stop Freak Out Button" on the pop up GUI to disable the reactive behaviour, and have the robot continue the interaction.
+
+
+
+
+==========================================================================================================
+Desciptions of Log and Variable files
+==========================================================================================================
+
+Each User will have its own folder containing their specific logs of the format "UserNumber_UserName"
+
+----------------------------------------------------------------------------------------------------------
+foodItemsJSON.txt
+- Stores all the meal options availiable to the robot to make as suggestions
+- Each meal has a number of variables
+id: unique key of the meal
+name: 		a description of the meal, the NAO will use this text during the interaction
+hasPoultry: weither or not the meal contains poultry ingredients
+hasGluten: 	weither or not the meal contains gluten ingredients
+hasFish: 	weither or not the meal contains fish ingredients
+calories: 	the number of calories the meal contains
+buyFrom: 	a restaurant that a similar meal can be bought from, the NAO will use this text during the interaction
+mealType: 	weither the meal is for breakfast, lunch or dinner
+
+----------------------------------------------------------------------------------------------------------
+userInfo.csv
+- Stores the following information about each interaction that has run
+User Name: 				The name of the user who did the interaction
+User Number:			The number of the user who did the interaction
+Interaction Type:		Which interaction was done (Morning or End of Day)
+Interaction Date Time:	The date and time the interaction took place
+
+----------------------------------------------------------------------------------------------------------
+UserNumber_Username\UserNumber_UserName_Vars.txt
+- Stores information about the interaction. The file is used to send information from interaction to interaction, such as from the Morning to the End of Day
+exerciseSuggested: 			The exercise the robot suggested in the Morning interaction
+exerciseSets:				The number of sets the robot suggested to do
+meal1Suggested: 			The breakfast meal the robot suggested in the Morning interaction (if there was one)
+meal2Suggested: 			The lunch meal the robot suggested in the Morning interaction
+meal3Suggested: 			The dinner meal the robot suggested in the Morning interaction
+
+hasTalkedJapan: 			If the robot has previously talked about Japan
+hasTalkedParis: 			If the robot has previously talked about Paris
+hasAskedBreakfast:			If the robot had done the breakfast behaviours
+
+canEatGluten, canEatPoultry, canEatFish, dateTime, weatherIsNice, activityInteractionType: self explanitory, and not used by the program from this file
+
+----------------------------------------------------------------------------------------------------------
+UserNumber_Username\UserNumber_UserName_Flow.csv
+- Stores all the FSM states the interaction went through, and other information that happened at that time
+State Time Stamp:		The time the state occured
+State Date Time:		The date the state occured
+FSM State:				The FSM state number of the state that occured
+FSM State Name:			The FSM state name of the state taht occured
+Robot Emotion:			The emotion number that the robot had during the state
+Observable Expression:	The observable expression the robot had during the state
+Drive Statuses:			The status of the robot drives during the state
+
+----------------------------------------------------------------------------------------------------------
+UserNumber_Username\UserNumber_UserName_Appraisals.txt
+- Stores data about the emotional appraisal process at every state that occurs
+
+
+
+
+
+
+
+
+
+

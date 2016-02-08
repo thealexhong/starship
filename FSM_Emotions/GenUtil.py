@@ -27,8 +27,12 @@ class GenUtil:
         self.fDB = FoodDBManager()
 
         NAOip, NAOport = naoMotions.getConnectInfo()
-        self.edgeDetector = EdgeDetection(NAOip, NAOport)
-		
+        try:
+            self.edgeDetector = EdgeDetection(NAOip, NAOport)
+        except Exception as e:
+            print "Edge Detector Failed to Create, possibly no camera on unit"
+            print e
+
     def toNum(self, numAsString):
         # Convert string to either int or float
         try:
@@ -327,10 +331,14 @@ class GenUtil:
         self.naoMotions.LookAtEdgeMotion()
         thres = 20
         nFrames = 4
-        status, distance, angle = self.edgeDetector.lookForEdge(thres, nFrames)
-        self.naoSeesHigh = status
+        try:
+            status, distance, angle = self.edgeDetector.lookForEdge(thres, nFrames)
+            print "Status: ", status, "Distance: ", distance, " Angle: ", angle
+            self.naoSeesHigh = status
+        except Exception as e:
+            print "Edge Detection failed"
+            print e
 
-        print "Status: ", status, "Distance: ", distance, " Angle: ", angle
         if self.naoSeesHigh:
             print "NAO is too close to the edge"
             self.naoSeesHighEdge()
