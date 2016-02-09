@@ -1,0 +1,2 @@
+java -cp weka.jar weka.classifiers.meta.ClassificationViaRegression -T FeatureVectorValence.arff -l v_2s_type5_classificationViaRegression.model -p 0
+java -cp weka.jar weka.classifiers.functions.Logistic -T FeatureVectorArousal.arff -l a_2s_type5_logistic.model -p 0

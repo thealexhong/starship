@@ -1388,6 +1388,14 @@ class BasicMotions(ALModule):
         names.append("RWristYaw")
         times.append([0.8, 1.6, 2, 2.2, 2.4, 2.6, 2.8])
         keys.append([0.033706, 0.621227, -0.145772, -0.121228, -0.145772, -0.121228, -0.145772])
+        '''
+        for i in range(len(times)):
+            for j in range(len(times[i])):
+             times[i][j] *= 2
+        '''
+        times=[]
+        for i in range(len(keys)):
+             times.append([0.8, 1.6, 2, 2.6, 3.2, 3.8, 4.4])
         self.updateWithBlink(names, keys, times, self.eyeColor['hope'], self.eyeShape['hope'])
         #self.updateWithBlink(names, keys, times, 0x00FFB428, "EyeTop")
 

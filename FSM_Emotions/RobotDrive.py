@@ -161,7 +161,8 @@ class DriveUserPositive(RobotDrive):
 		newlikelihood = 1 - LA.norm(happyVA - np.array([userValance, userArousal])) / math.sqrt(4+4) # normalize by the longest distance in the affective space
 		self.setDriveLikelihood(newlikelihood)
 		# print "UPositiveLikeli", self.likelihood, " Appraised: ", self.appraiseEmotions()
-		self.showDriveAppraisal(self.appraiseEmotions(), "UPositiveLikeli", str(newlikelihood))
+		showText = str(newlikelihood) + " " + "V:" + str(userValance) + " A:" + str(userArousal)
+		self.showDriveAppraisal(self.appraiseEmotions(), "UPositiveLikeli", showText)
 		return self.getLikelihoodSuccess()
 
 # To receive positive feelings upon providing recommendations

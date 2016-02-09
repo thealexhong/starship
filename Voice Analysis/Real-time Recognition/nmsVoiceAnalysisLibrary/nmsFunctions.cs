@@ -72,6 +72,7 @@ namespace nmsVoiceAnalysisLibrary
         private WaveLib.FifoStream m_Fifo = new WaveLib.FifoStream();
         private int newRecordedTime = 0;
         private int oldRecordedTime = 0;
+        private string dataArrivedTime = "";
         private int sampleRate = 11025;
         private int definition = 16;
         private int segmentLength = 2;
@@ -393,7 +394,7 @@ namespace nmsVoiceAnalysisLibrary
             WaveLib.WaveFormat fmt = new WaveLib.WaveFormat(sampleRate, definition, 1);
             m_Recorder = new WaveLib.WaveInRecorder(-1, fmt, sampleRate*segmentLength*(definition/8), 1, new WaveLib.BufferDoneEventHandler(DataArrived));
             
-            log = File.CreateText("LogFeatureVector.txt");
+            log = File.CreateText("LogFeatureVector.csv");
             log.Close();
 
             v_arff = File.CreateText("FeatureVectorValence.arff");
@@ -444,7 +445,7 @@ namespace nmsVoiceAnalysisLibrary
             a_arff.WriteLine("@data\n");
             a_arff.Close();
 
-            voiceOutput = File.CreateText("..\\..\\voiceOutput.txt");
+            voiceOutput = File.CreateText(@"..\..\voiceOutput.txt");
             voiceOutput.Close();
 
             Console.WriteLine("Recording...");
@@ -464,8 +465,10 @@ namespace nmsVoiceAnalysisLibrary
      
         private void DataArrived(IntPtr data, int size)
         {
-            oldRecordedTime = newRecordedTime;
+            //oldRecordedTime = newRecordedTime;
+            Console.WriteLine("Stop timer...");
             newRecordedTime = Int32.Parse(DateTime.Now.ToString("HHmmssfff"));
+            dataArrivedTime = DateTime.Now.ToString("HH:mm:ss.ff");
             Console.WriteLine("Time Elapsed: " + (newRecordedTime - oldRecordedTime).ToString());
             
             if (m_RecBuffer == null || m_RecBuffer.Length < size)
@@ -584,8 +587,8 @@ namespace nmsVoiceAnalysisLibrary
                 Console.WriteLine("Valence: " + valence);
                 Console.WriteLine("Arousal: " + arousal);
 
-                log = File.AppendText("LogFeatureVector.txt");
-                log.WriteLine(newRecordedTime + "\t" + fvStr + "\t" + valence + "\t" + arousal + "\t");
+                log = File.AppendText("LogFeatureVector.csv");
+                log.WriteLine(dataArrivedTime + "," + fvStr + "," + valence + "," + arousal);
                 log.Close();
                 
                 voiceOutput = File.AppendText("..\\..\\voiceOutput.txt");
@@ -673,6 +676,13 @@ namespace nmsVoiceAnalysisLibrary
             }
             /* Running during defined time*/
             count++;
+            while (File.Exists(@"..\..\voiceOutput.txt"))
+            {
+                Console.WriteLine("Waiting for Alex...");
+                Thread.Sleep(100);
+            }
+            Console.WriteLine("Start timer...");
+            oldRecordedTime = Int32.Parse(DateTime.Now.ToString("HHmmssfff"));
         }       
         
         /* Copy values to Emotion Structure */

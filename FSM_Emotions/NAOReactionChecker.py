@@ -9,8 +9,11 @@ import sys
 class NAOReactionChecker(ALModule):
     def __init__(self, genUtil, ip = "luke.local", port = 9559):
         self.name ="naoReactionChecker"
-        ALModule.__init__(self, self.name)
-        
+        try:
+            ALModule.__init__(self, self.name)
+        except Exception as e:
+            print e
+
         self.genUtil = genUtil
 
         global subscribed
@@ -75,7 +78,7 @@ def SubscribeAllTouchEvent():
     print "Subscribe Touch Events"
     name = "naoReactionChecker"
     onTouch = "onTouched"
-    sensors = ["RightBumperPressed", "LeftBumperPressed",
+    sensors = [#"RightBumperPressed", "LeftBumperPressed",
                "FrontTactilTouched", "MiddleTactilTouched",
                "RearTactilTouched", "HandRightBackTouched", "HandRightLeftTouched", "HandRightRightTouched",
                "HandLeftBackTouched", "HandLeftLeftTouched", "HandLeftRightTouched"]
@@ -84,7 +87,7 @@ def SubscribeAllTouchEvent():
 
 def UnsubscribeAllTouchEvent():
     name = "naoReactionChecker"
-    sensors = ["RightBumperPressed", "LeftBumperPressed",
+    sensors = [#"RightBumperPressed", "LeftBumperPressed",
                "FrontTactilTouched", "MiddleTactilTouched",
                "RearTactilTouched", "HandRightBackTouched", "HandRightLeftTouched", "HandRightRightTouched",
                "HandLeftBackTouched", "HandLeftLeftTouched", "HandLeftRightTouched"]

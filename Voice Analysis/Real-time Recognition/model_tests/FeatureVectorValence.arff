@@ -1,0 +1,24 @@
+@relation valence
+
+@attribute Angry numeric
+@attribute ConcentrationLevel numeric
+@attribute Embarrassment numeric
+@attribute Excitement numeric
+@attribute Hesitation numeric
+@attribute ImaginationActivity numeric
+@attribute IntensiveThinking numeric
+@attribute Content numeric
+@attribute SAF numeric
+@attribute Upset numeric
+@attribute ExtremeState numeric
+@attribute Stress numeric
+@attribute Uncertainty numeric
+@attribute Energy numeric
+@attribute BrainPower numeric
+@attribute EmoCogRatio numeric
+@attribute MaxAmpVol numeric
+@attribute VoiceEnergy numeric
+@attribute valence {-2, -1, 0, 1, 2}
+
+@data
+

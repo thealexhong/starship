@@ -436,7 +436,7 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			
 			// Yuma's workstation
 			std::string path_to_local_dir = "C:\\Users\\Yuma\\Desktop\\starship\\starship\\";
-			std::string path_to_java = "C:\\Program Files\\Java\\jdk1.7.0_80\\bin\\java.exe";
+			std::string path_to_java = "C:\\Program Files\\Java\\jdk1.8.0_73\\bin\\java.exe";
 			std::string path_to_weka = "C:\\Program Files\\Weka-3-6\\weka.jar";
 			
 			/*****************************************************************************************************************************************************************************/

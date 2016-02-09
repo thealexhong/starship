@@ -703,7 +703,11 @@ class DietFitnessFSM:
 
 		print "***************************************************************************"
 		print writeText + ": ",
-		textInput = raw_input()
+		textInput = ""
+		if self.genUtil.checkSafety():
+			self.genUtil.waitingForInput = True
+			textInput = raw_input()
+			self.genUtil.waitingForInput = False
 
 		return textInput
 

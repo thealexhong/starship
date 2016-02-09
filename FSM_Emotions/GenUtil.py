@@ -22,6 +22,7 @@ class GenUtil:
         self.naoIsHighEdge = False
 
         self.naoSeesHigh = False
+        self.waitingForInput = False
 
         self.wasJustScared = False
         self.fDB = FoodDBManager()
@@ -239,7 +240,8 @@ class GenUtil:
             self.naoIsTouched = True
             self.stopNAOActions()
             self.showScaredEyes()
-            FileUtilitiy.hitEnterOnConsole()
+            if self.waitingForInput:
+                FileUtilitiy.hitEnterOnConsole()
             self.showScaredVoice("I was Touched! " + touchedWhere)
         else:
             print "********************************** I was already touched"
@@ -253,7 +255,8 @@ class GenUtil:
             self.naoIsPickedUp = True
             self.stopNAOActions()
             self.showScaredEyes()
-            FileUtilitiy.hitEnterOnConsole()
+            if self.waitingForInput:
+                FileUtilitiy.hitEnterOnConsole()
             self.showScaredVoice("I was Picked up!")
         else:
             print " ********************************** I was already picked up"
@@ -261,7 +264,7 @@ class GenUtil:
     def naoSeesHighEdge(self):
         if not self.naoIsHighEdge:
             print "**********************************"
-            print "I was PICKED UP !!"
+            print "I'm TOO CLOSE to the edge!!"
             print "**********************************"
             self.naoIsSafe = False
             self.naoIsHighEdge = True
@@ -328,6 +331,7 @@ class GenUtil:
         # check if NAO is far enough away from the edge
         # self.naoMotions.naoShakeHead()
 
+        self.naoMotions.naoAliveOff()
         self.naoMotions.LookAtEdgeMotion()
         thres = 20
         nFrames = 4
@@ -346,4 +350,5 @@ class GenUtil:
             print "NAO is a safe distance from the edge"
 
         self.naoMotions.naoStand()
+        self.naoMotions.naoAliveON()
         return self.naoSeesHigh

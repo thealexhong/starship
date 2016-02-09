@@ -1,2 +1,2 @@
-java -cp weka.jar weka.classifiers.functions.MultilayerPerceptron -T FeatureVectorValence.arff -l MultiNN_v_2s_type0.model -p 0
-java -cp weka.jar weka.classifiers.functions.MultilayerPerceptron -T FeatureVectorArousal.arff -l MultiNN_a_2s_type0.model -p 0
+java -cp weka.jar weka.classifiers.meta.ClassificationViaRegression -T FeatureVectorValence.arff -l v_2s_type5_classificationViaRegression.model -p 0
+java -cp weka.jar weka.classifiers.functions.Logistic -T FeatureVectorArousal.arff -l a_2s_type5_logistic.model -p 0

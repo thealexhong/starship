@@ -13,13 +13,13 @@ class BasicMotions:
         self.logPrint = True
 
         self.createEyeGroup()
-        self.eyeColor={'happy': 0x0000FF00,
+        self.eyeColor={'happy': 0x00FFB428,
                        'sad': 0x00000060,
                        'scared1': 0x00600088,
                        'scared2': 0x00600088,
                        'scared3': 0x00600088,
                        'fear': 0x00600088,
-                       'hope': 0x00FFB428,
+                       'hope': 0x0000FF00,
                        'anger': 0x00FF0000}
         self.eyeShape={'happy': "EyeTop",
                        'sad': "EyeBottom",
@@ -36,7 +36,7 @@ class BasicMotions:
         tts.setParameter("doubleVoiceLevel", 0)
         try:
             audioProxy = self.connectToProxy("ALAudioDevice")
-            audioProxy.setOutputVolume(100/2)
+            audioProxy.setOutputVolume(0.7*100)
         except Exception as e:
             print "No Audio device found"
             print e
@@ -298,19 +298,23 @@ class BasicMotions:
                              math.radians(5.8), 0.3]
         defaultTimes = [2,2,2,2,2,2]
         moveID = motionProxy.post.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
+        motionProxy.wait(moveID, 0)
 
         # wave setup
         waveNames = ["RShoulderPitch", "RShoulderRoll", "RHand"]
         waveTimes = [2, 2, 2]
         waveAngles = [math.radians(-11), math.radians(-40), 0.99]
         moveID = motionProxy.post.angleInterpolation(waveNames, waveAngles, waveTimes, True)
-
+        motionProxy.wait(moveID, 0)
 
         for i in range(numWaves):
             moveID = motionProxy.post.angleInterpolation(["RElbowRoll"],  math.radians(88.5)*movePercent, [1], True)
+            motionProxy.wait(moveID, 0)
             moveID = motionProxy.post.angleInterpolation(["RElbowRoll"],  math.radians(27)*movePercent, [1], True)
+            motionProxy.wait(moveID, 0)
 
         moveID = motionProxy.post.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
+        motionProxy.wait(moveID, 0)
 
         print("------> Waved Right")
         self.postMotion()

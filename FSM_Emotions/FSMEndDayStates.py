@@ -800,7 +800,7 @@ class FSMEndDayStates:
     def exerciseCheckinNoDidNoCompDidntWant(self):
         sayText = "I see, but prioritizing is a key component of a healthy lifestyle. "
         sayText += "You should really try to implement more exercise into your daily routine. "
-        sayText += "Exercising can help you maintina a sharp mind."
+        sayText += "Exercising can help you maintain a sharp mind."
         self.FSMBody.sayWithEmotion(sayText)
 
         self.FSMBody.drives.finishContinueousDrives()

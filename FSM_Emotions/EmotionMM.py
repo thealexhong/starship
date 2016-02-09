@@ -61,23 +61,29 @@ class EmotionMM:
 			U_feed = np.ones(self.NumE)
 		A = np.transpose(np.transpose(self.Ainit) * U_in * U_feed)
 
-		# only use probabilities >15%
-		probThres = False
+		A = self.normalizeA(A)
+		# only use probabilities >10%
+		probThres = True
 		if probThres:
-			thres = 0.15
+			print "Checking Threshold"
+			thres = 0.10
 			for i in range(self.NumE):
 				for j in range(self.NumE):
-					if A[i, j] < thres and A[i, j] != 0:
-						print "Old Val: ", A[i, j], " i=", i, " j=", j
+					a = A[i, j]
+					if a < thres and a != 0.0:
+						print "Old Val: ", a, " i=", i, " j=", j
 						A[i, j] = 0
+		self.A = self.normalizeA(A)
+		return self.A
 
+	def normalizeA(self, A):
 		colsum = np.sum(A, axis = 0)
 		# print "colsum", colsum
 		for i in range(len(colsum)):
 			if colsum[i] <= 0:
 				colsum[i] = 1
-		self.A = A * np.transpose(1/colsum) # renormalize the columns of A to sum to 1
-		return self.A
+		A = A * np.transpose(1/colsum) # renormalize the columns of A to sum to 1
+		return A
 		
 	def incrementRobotEmotion(self):
 		vRE_t1 = self.getNextEmotionDistribution()

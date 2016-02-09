@@ -1206,3 +1206,12 @@
 {"valence":0, "arousal":1,"timeStamp":"2016-01-29 21:53:42.143"}
 {"valence":0, "arousal":1,"timeStamp":"2016-01-29 21:53:45.264"}
 {"valence":-1, "arousal":0,"timeStamp":"2016-01-29 21:53:48.387"}
+{"valence":-1, "arousal":0,"timeStamp":"2016-02-09 21:09:12.547"}
+{"valence":-1, "arousal":0,"timeStamp":"2016-02-09 21:09:22.772"}
+{"valence":1, "arousal":2,"timeStamp":"2016-02-09 21:09:26.088"}
+{"valence":1, "arousal":2,"timeStamp":"2016-02-09 21:09:27.760"}
+{"valence":1, "arousal":2,"timeStamp":"2016-02-09 21:09:31.022"}
+{"valence":-1, "arousal":0,"timeStamp":"2016-02-09 21:09:32.824"}
+{"valence":-1, "arousal":0,"timeStamp":"2016-02-09 21:09:36.154"}
+{"valence":-2, "arousal":-1,"timeStamp":"2016-02-09 21:09:37.887"}
+{"valence":-2, "arousal":-1,"timeStamp":"2016-02-09 21:09:41.186"}

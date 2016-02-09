@@ -229,8 +229,8 @@ class FSMBeginDayStates:
         return appraiseState
 
     def askWeatherGoodYesTravel(self):
-        sayText = "Amazing, I love traveling. I am a bit fragile though, so I require my own foam bed "
-        sayText += "during transportation. Lucky for me I am not that big so my bed can easily fit on a plane."
+        sayText = "Amazing, I love traveling. I am a bit fragile though so I require my own foam-bed "
+        sayText += "during transportation. Lucky for me I am not big so my bed can easily fit on a plane."
         self.FSMBody.sayWithEmotion(sayText)
 
         self.FSMBody.setFSMState(self.FSMBody.state+1+7)
@@ -793,7 +793,7 @@ class FSMBeginDayStates:
     def exerciseFeedbackBad(self):
         sayText = "Okay. Just for today I'll reduce your exercise, how about you "
         self.exerciseSets -= 1
-        sayText += self.exerciseSuggested + " " + str(self.exerciseSets) + " times instead."
+        sayText += self.exerciseSuggested + ", " + str(self.exerciseSets) + " times instead."
         self.FSMBody.sayWithEmotion(sayText)
 
         self.FSMBody.drives.finishContinueousDrives()

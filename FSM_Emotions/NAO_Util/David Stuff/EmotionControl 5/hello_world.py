@@ -151,9 +151,9 @@ if __name__ == '__main__':
     #NAOIP = "127.0.0.1"
     #NAOPort = 58357
 
-    NAOIP = "192.168.1.135"
+    #NAOIP = "192.168.1.135"
 
-    #NAOIP = "Leia.local"
+    NAOIP = "Luke.local"
     NAOPort = 9559
 
 

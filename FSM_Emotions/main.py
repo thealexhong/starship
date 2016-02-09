@@ -75,10 +75,10 @@ def main(NAOip, NAOport, name):
         thread1.quit()
         # thread2.quit()
         genUtil.naoTurnOffEyes()
-        naoMotions.naoAliveOff()
         # naoMotions.naoSit()
         NAOReactionChecker.ActuallyUnsubscribeAllEvents()
         myBroker.shutdown()
+        naoMotions.naoAliveOff()
 
         print
         [stateTimeStamp, stateDateTime, fsmStateHist,
