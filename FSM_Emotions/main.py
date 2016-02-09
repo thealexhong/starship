@@ -190,12 +190,12 @@ def exitingProgram():
     print "Program Exiting..."
 
 if __name__ == '__main__':
-    simulated = False
+    simulated = True
     name = "NAO"
     if simulated:
         #simulated NAO
         NAOIP = "127.0.0.1"
-        NAOPort = 64821
+        NAOPort = 55922
     else:
         useLuke = True
         #real NAO

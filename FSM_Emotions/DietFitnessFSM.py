@@ -712,8 +712,7 @@ class DietFitnessFSM:
 		return textInput
 
 	# ======================= Other functions
-	def sendUserEmotion(self):
-		print "Sending user emotion"
+	def getUserEmotion(self):
 		# userEmotionFileName = "ProgramDataFiles\userEmotionTextDump.txt"
 		# userEmotionFileName = "..\\Data_Files\\out_emotionmodelJSON_test.txt"
 		userEmotionFileName = "..\\Data_Files\\out_emotionmodelJSON.txt"
@@ -730,8 +729,21 @@ class DietFitnessFSM:
 			ueArousal += ueJson["arousal"] / 3.0
 
 		print "Valence: ", ueValence, ", Arousal: ", ueArousal
+		return [ueValence, ueArousal]
+
+	def sendUserEmotion(self):
+		print "Sending user emotion"
+		[ueValence, ueArousal] = self.getUserEmotion()
 
 		return self.drives.currentUserEmotionInput(ueValence, ueArousal)
+
+	def sendUserEmotionOnRecomend(self, recommendItem = 1):
+		print "Sending user emotion on Response"
+		[ueValence, ueArousal] = self.getUserEmotion()
+		if recommendItem <= 3:
+			return self.drives.userEmotionAfterRecomendationMeal(ueValence, ueArousal, recommendItem)
+		else:
+			return self.drives.userEmotionAfterRecomendationExercise(ueValence, ueArousal)
 
 	def sayWithEmotion(self, sayText):
 		self.genUtil.naoEmotionalSay(sayText, self.getOENumber())

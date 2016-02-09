@@ -539,6 +539,7 @@ class FSMBeginDayStates:
             urLikeli = self.FSMBody.drives.askedUser(True)
             if textInput == "1":
                 upbLikeli = self.FSMBody.drives.gotNewBranch(True)
+                uporLikeli = self.FSMBody.sendUserEmotionOnRecomend(2)
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
             else:
                 upbLikeli = self.FSMBody.drives.gotNewBranch(False)
@@ -675,6 +676,7 @@ class FSMBeginDayStates:
             urLikeli = self.FSMBody.drives.askedUser(True)
             if textInput == "1":
                 upbLikeli = self.FSMBody.drives.gotNewBranch(True)
+                uporLikeli = self.FSMBody.sendUserEmotionOnRecomend(3)
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
             else:
                 upbLikeli = self.FSMBody.drives.gotNewBranch(False)
@@ -764,6 +766,7 @@ class FSMBeginDayStates:
         upLikeli = self.FSMBody.sendUserEmotion()
         if textInput != "" and (textInput == "1" or textInput == "2" or textInput == "3"):
             urLikeli = self.FSMBody.drives.askedUser(True)
+            uporLikeli = self.FSMBody.sendUserEmotionOnRecomend(4)
             if textInput == "1":
                 upbLikeli = self.FSMBody.drives.gotNewBranch(True)
                 self.FSMBody.setFSMState(self.FSMBody.state+1)

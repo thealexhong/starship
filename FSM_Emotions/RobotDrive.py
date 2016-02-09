@@ -172,13 +172,28 @@ class DriveUserPositiveOnRecomendation(RobotDrive):
 			
 	def determineLikelihood(self, userValance, userArousal):
 		np.set_printoptions(precision=4)
-		if userValance > 0:
-			newlikelihood = 1
+		# happyVA = np.array([0.89, 0.17])
+		# newlikelihood = 1 - LA.norm(happyVA - np.array([userValance, userArousal])) / math.sqrt(4+4)
+
+		if userValance > 0:#newlikelihood > 0.8:
+			succeeded = True
 		else:
-			newlikelihood = 0
-		self.setDriveLikelihood(newlikelihood)
+			succeeded = False
+		return self.determineSucceeded(succeeded)
+
+
+	def determineSucceeded(self, succeeded):
+		if succeeded:
+			newLikelihood = 1.0
+		else:
+			newLikelihood = 0.0
+		self.setDriveLikelihood(newLikelihood)
+		if succeeded:
+			self.setDriveStatus(2)
+		else:
+			self.setDriveStatus(3)
 		# print "UPonRecLikeli: ", newlikelihood, " Appraised: ", self.appraiseEmotions()
-		self.showDriveAppraisal(self.appraiseEmotions(), "UPonRecLikeli", str(newlikelihood))
+		self.showDriveAppraisal(self.appraiseEmotions(), "UPonRecLikeli", str(newLikelihood))
 		return self.getLikelihoodSuccess()
 
 # To receive positive branches in the FSM
@@ -200,13 +215,13 @@ class DriveUserDidSuggestion(RobotDrive):
 	def __init__(self, userName, userNumber):
 		RobotDrive.__init__(self, 3, userName, userNumber)
 
-	def determineLikelihood(self, succeded):
-		if succeded:
+	def determineLikelihood(self, succeeded):
+		if succeeded:
 			newLikelihood = 1.0
 		else:
 			newLikelihood = 0.0
 		self.setDriveLikelihood(newLikelihood)
-		if succeded:
+		if succeeded:
 			self.setDriveStatus(2)
 		else:
 			self.setDriveStatus(3)
@@ -223,7 +238,6 @@ class RobotDriveCollection:
 		#### not needed
 		self.driveHealthyDiet = DriveHealthyDiet(userName, userNumber)
 		self.driveHealthyFitness = DriveHealthyFitness(userName, userNumber)
-		self.driveUserPositiveOnRecomendation = DriveUserPositiveOnRecomendation(userName, userNumber)
 		####
 
 		self.driveUserResponses = DriveUserResponses(userName, userNumber)
@@ -236,13 +250,21 @@ class RobotDriveCollection:
 		self.driveUserPositiveBranches = DriveUserPositiveBranches(userName, userNumber)
 		self.numPosBranches = 0
 		self.numBranches = 0
+
+		self.driveUserPositiveOnRecomendationMeal1 = DriveUserPositiveOnRecomendation(userName, userNumber)
+		self.driveUserPositiveOnRecomendationMeal2 = DriveUserPositiveOnRecomendation(userName, userNumber)
+		self.driveUserPositiveOnRecomendationMeal3 = DriveUserPositiveOnRecomendation(userName, userNumber)
+		self.driveUserPositiveOnRecomendationExcercise = DriveUserPositiveOnRecomendation(userName, userNumber)
+
 		self.driveUserDidSuggestionMeal1 = DriveUserDidSuggestion(userName, userNumber)
 		self.driveUserDidSuggestionMeal2 = DriveUserDidSuggestion(userName, userNumber)
 		self.driveUserDidSuggestionMeal3 = DriveUserDidSuggestion(userName, userNumber)
 		self.driveUserDidSuggestionExercise = DriveUserDidSuggestion(userName, userNumber)
 
-		self.drivesCollection = [#self.driveHealthyDiet, self.driveHealthyFitness, self.driveUserPositiveOnRecomendation,
+		self.drivesCollection = [#self.driveHealthyDiet, self.driveHealthyFitness,
 								 self.driveUserResponses, self.driveUserPositive, self.driveUserPositiveBranches,
+								 self.driveUserPositiveOnRecomendationMeal1, self.driveUserPositiveOnRecomendationMeal2,
+								 self.driveUserPositiveOnRecomendationMeal3, self.driveUserPositiveOnRecomendationExcercise,
 								 self.driveUserDidSuggestionMeal1, self.driveUserDidSuggestionMeal2,
 								 self.driveUserDidSuggestionMeal3, self.driveUserDidSuggestionExercise]
 
@@ -299,9 +321,24 @@ class RobotDriveCollection:
 			self.driveUserPositive.setDriveStatus(2)
 		return self.driveUserPositive.appraiseEmotions()
 
-	def userEmotionAfterRecomendation(self, userValance, userArousal):
-		self.driveUserPositiveOnRecomendation.determineLikelihood(userValance, userArousal)
-		return self.driveUserPositiveOnRecomendation.appraiseEmotions()
+	def userEmotionAfterRecomendationMeal(self, userValance, userArousal, mealNum):
+		userValance /= 2
+		userArousal /= 2
+		if mealNum == 1:
+			self.driveUserPositiveOnRecomendationMeal1.determineLikelihood(userValance, userArousal)
+			return self.driveUserPositiveOnRecomendationMeal1.appraiseEmotions()
+		if mealNum == 2:
+			self.driveUserPositiveOnRecomendationMeal2.determineLikelihood(userValance, userArousal)
+			return self.driveUserPositiveOnRecomendationMeal2.appraiseEmotions()
+		else:
+			self.driveUserPositiveOnRecomendationMeal3.determineLikelihood(userValance, userArousal)
+			return self.driveUserPositiveOnRecomendationMeal3.appraiseEmotions()
+
+	def userEmotionAfterRecomendationExercise(self, userValance, userArousal):
+		userValance /= 2
+		userArousal /= 2
+		self.driveUserPositiveOnRecomendationExcercise.determineLikelihood(userValance, userArousal)
+		return self.driveUserPositiveOnRecomendationExcercise.appraiseEmotions()
 
 	def checkinMeal(self, mealNum, userAteSuggestion):
 		if mealNum == 1:
@@ -340,10 +377,15 @@ class RobotDriveCollection:
 	def appraiseEmotions(self):
 		# healthyDietEV = self.driveHealthyDiet.appraiseEmotions()
 		# healthyFitnessEV = self.driveHealthyFitness.appraiseEmotions()
-		# userPositiveOnRecEV = self.driveUserPositiveOnRecomendation.appraiseEmotions()
 		userResponsesEV = self.driveUserResponses.appraiseEmotions()
 		userPositiveEV = self.driveUserPositive.appraiseEmotions()
 		userPosBranchEV = self.driveUserPositiveBranches.appraiseEmotions()
+
+		userPositiveOnRecM1EV = self.driveUserPositiveOnRecomendationMeal1.appraiseEmotions()
+		userPositiveOnRecM2EV = self.driveUserPositiveOnRecomendationMeal2.appraiseEmotions()
+		userPositiveOnRecM3EV = self.driveUserPositiveOnRecomendationMeal3.appraiseEmotions()
+		userPositiveOnRecEEV = self.driveUserPositiveOnRecomendationExcercise.appraiseEmotions()
+
 		userDidSugMeal1EV = self.driveUserDidSuggestionMeal1.appraiseEmotions()
 		userDidSugMeal2EV = self.driveUserDidSuggestionMeal2.appraiseEmotions()
 		userDidSugMeal3EV = self.driveUserDidSuggestionMeal3.appraiseEmotions()
@@ -352,16 +394,22 @@ class RobotDriveCollection:
 		print "Component EVs"
 		# print healthyDietEV
 		# print healthyFitnessEV
-		# print userPositiveOnRecEV
 		self.showAppraisal(userResponsesEV)
 		self.showAppraisal(userPositiveEV)
 		self.showAppraisal(userPosBranchEV)
+
+		self.showAppraisal(userPositiveOnRecM1EV)
+		self.showAppraisal(userPositiveOnRecM2EV)
+		self.showAppraisal(userPositiveOnRecM3EV)
+		self.showAppraisal(userPositiveOnRecEEV)
+
 		self.showAppraisal(userDidSugMeal1EV)
 		self.showAppraisal(userDidSugMeal2EV)
 		self.showAppraisal(userDidSugMeal3EV)
 		self.showAppraisal(userDidSugExerEV)
 
-		overallEV = 0.0 #+ healthyDietEV + healthyFitnessEV + userPositiveOnRecEV
+		overallEV = 0.0 #+ healthyDietEV + healthyFitnessEV
+		overallEV += userPositiveOnRecM1EV + userPositiveOnRecM2EV + userPositiveOnRecM3EV + userPositiveOnRecEEV
 		overallEV += userPositiveEV + userResponsesEV + userPosBranchEV
 		overallEV += userDidSugMeal1EV + userDidSugMeal2EV + userDidSugMeal3EV
 		overallEV += userDidSugExerEV
