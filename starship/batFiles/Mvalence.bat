@@ -1,1 +1,2 @@
-"C:\Program Files\Java\jdk1.8.0_73\bin\java.exe" -cp "C:\Program Files\Weka-3-6\weka.jar" weka.classifiers.bayes.NaiveBayes -l "C:\Users\Yuma\Desktop\starship\starship\TrainingData\MValenceTrain.model" -T "C:\Users\Yuma\Desktop\starship\starship\testDataFiles\Mvalence_test.arff" -p 0 > "C:\Users\Yuma\Desktop\starship\starship\wekaOutputFiles\MoutValence.txt"
+"C:\Program Files\Java\jdk1.7.0_80\bin\java.exe" -cp "C:\Program Files\Weka-3-6\weka.jar" weka.classifiers.bayes.NaiveBayes -l "C:\Users\Yuma\Desktop\starship\starship\TrainingData\MValenceTrain.model" -T "C:\Users\Yuma\Desktop\starship\starship\testDataFiles\Mvalence_test.arff" -p 0 > "C:\Users\Yuma\Desktop\starship\starship\wekaOutputFiles\MoutValence.txt"
+exit

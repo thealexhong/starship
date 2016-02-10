@@ -1,1 +1,2 @@
-"C:\Program Files\Java\jdk1.8.0_73\bin\java.exe" -cp "C:\Program Files\Weka-3-6\weka.jar" weka.classifiers.trees.RandomForest -l "C:\Users\Yuma\Desktop\starship\starship\TrainingData\BLValenceTrain.model" -T "C:\Users\Yuma\Desktop\starship\starship\testDataFiles\blvalence_test.arff" -p 0 > "C:\Users\Yuma\Desktop\starship\starship\wekaOutputFiles\bloutValence.txt"
+"C:\Program Files\Java\jdk1.7.0_80\bin\java.exe" -cp "C:\Program Files\Weka-3-6\weka.jar" weka.classifiers.trees.RandomForest -l "C:\Users\Yuma\Desktop\starship\starship\TrainingData\BLValenceTrain.model" -T "C:\Users\Yuma\Desktop\starship\starship\testDataFiles\blvalence_test.arff" -p 0 > "C:\Users\Yuma\Desktop\starship\starship\wekaOutputFiles\bloutValence.txt"
+exit
