@@ -268,7 +268,8 @@ void createBatWekaFile(std::string filename, std::string path_to_java,
 		   << weka_classifier.c_str() << " -l "
 		   << "\""<<path_to_weka_model.c_str()<<"\"" << " -T "
 		   << "\""<<path_to_test_data.c_str()<<"\"" << " -p 0 > " 
-		   << "\"" << outFilename.c_str() << "\"";
+		   << "\"" << outFilename.c_str() << "\"\n";
+	myfile << "exit";
 	myfile.close();
 
 	/* Sample Output

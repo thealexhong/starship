@@ -1,1 +1,2 @@
 "C:\Program Files\Java\jdk1.7.0_80\bin\java.exe" -cp "C:\Program Files\Weka-3-6\weka.jar" weka.classifiers.trees.RandomForest -l "C:\Users\Yuma\Desktop\starship\starship\TrainingData\BLArousalTrain.model" -T "C:\Users\Yuma\Desktop\starship\starship\testDataFiles\blarousal_test.arff" -p 0 > "C:\Users\Yuma\Desktop\starship\starship\wekaOutputFiles\bloutArousal.txt"
+exit

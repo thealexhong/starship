@@ -1215,3 +1215,13 @@
 {"valence":-1, "arousal":0,"timeStamp":"2016-02-09 21:09:36.154"}
 {"valence":0, "arousal":-1,"timeStamp":"2016-02-09 21:09:37.887"}
 {"valence":-2, "arousal":1,"timeStamp":"2016-02-09 21:09:41.186"}
+{"valence":0, "arousal":2,"timeStamp":"2016-02-10 17:21:48.071"}
+{"valence":-1, "arousal":2,"timeStamp":"2016-02-10 17:21:49.991"}
+{"valence":-1, "arousal":2,"timeStamp":"2016-02-10 17:21:53.048"}
+{"valence":0, "arousal":0,"timeStamp":"2016-02-10 17:23:06.221"}
+{"valence":0, "arousal":0,"timeStamp":"2016-02-10 17:23:10.138"}
+{"valence":0, "arousal":0,"timeStamp":"2016-02-10 17:23:14.079"}
+{"valence":0, "arousal":0,"timeStamp":"2016-02-10 17:23:18.013"}
+{"valence":0, "arousal":0,"timeStamp":"2016-02-10 17:23:22.037"}
+{"valence":0, "arousal":0,"timeStamp":"2016-02-10 17:23:26.008"}
+{"valence":0, "arousal":0,"timeStamp":"2016-02-10 17:23:30.000"}
