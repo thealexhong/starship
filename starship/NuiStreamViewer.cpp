@@ -485,6 +485,7 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			std::string line;
 			std::string path_to_voicefile ="..\\Voice Analysis\\voiceOutput.txt";
 			std::ifstream voicefile(path_to_voicefile);
+			boolean voiceExist = TRUE;
 			
 			// Open voice file
 			if (voicefile.is_open())
@@ -511,6 +512,10 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 				}
 				vvalence /= (FLOAT)vvalencevalues.size();
 				varousal /= (FLOAT)varousalvalues.size();
+			}
+			else
+			{
+				voiceExist = FALSE;
 			}
 
 			/* 
@@ -544,39 +549,41 @@ void NuiStreamViewer::DrawSkeleton(const NUI_SKELETON_DATA& skeletonData, const 
 			*/
 			
 			/* Multimodal Classification */
-			
-			// create test data
-			std::string path_to_MvalenceTest = "testDataFiles\\Mvalence_test.arff";
-			std::string path_to_MarousalTest = "testDataFiles\\Marousal_test.arff";
-
-			createMTestData(path_to_MvalenceTest, "MValenceResponse", "valence {-2,-1,0,1,2}", blvalence, blarousal, vvalence, varousal);
-			createMTestData(path_to_MarousalTest, "MArousalResponse", "arousal {-2,-1,0,1,2}", blvalence, blarousal, vvalence, varousal);
-
-			std::string mvalence_classifier = "weka.classifiers.bayes.NaiveBayes";
-			std::string marousal_classifier = "weka.classifiers.bayes.NaiveBayes";
-
-			std::string path_to_MArousalTrainingModel = path_to_local_dir + "TrainingData\\MArousalTrain.model";
-			std::string path_to_MValenceTrainingModel = path_to_local_dir + "TrainingData\\MValenceTrain.model";
-			std::string path_to_MArousalTestData = path_to_local_dir + "testDataFiles\\Marousal_test.arff";
-			std::string path_to_MValenceTestData = path_to_local_dir + "testDataFiles\\Mvalence_test.arff";
-			std::string path_to_MarousalBat = path_to_local_dir + "batFiles\\Marousal.bat";
-			std::string path_to_MvalenceBat = path_to_local_dir + "batFiles\\Mvalence.bat";
-			std::string path_to_MoutArousal = path_to_local_dir + "wekaOutputFiles\\MoutArousal.txt";
-			std::string path_to_MoutValence = path_to_local_dir + "wekaOutputFiles\\MoutValence.txt";
-
-			std::string path_to_MarousalVBS = path_to_local_dir + "batFiles\\vbsMArousal.vbs";
-			std::string path_to_MvalenceVBS = path_to_local_dir + "batFiles\\vbsMValence.vbs";
-
-			createBatWekaFile(path_to_MvalenceBat, path_to_java, path_to_weka, mvalence_classifier, path_to_MValenceTrainingModel, path_to_MValenceTestData, path_to_MoutValence);
-			createBatWekaFile(path_to_MarousalBat, path_to_java, path_to_weka, marousal_classifier, path_to_MArousalTrainingModel, path_to_MArousalTestData, path_to_MoutArousal);
-
-			mmarousal = getWekaResult(path_to_MarousalVBS, path_to_MoutArousal);
-			mmvalence = getWekaResult(path_to_MvalenceVBS, path_to_MoutValence);
-			
-			if (vvalence == 0 && varousal == 0) {
+			if (!voiceExist) {
 				mmvalence = blvalence;
 				mmarousal = blarousal;
 			}
+			else
+			{
+				// create test data
+				std::string path_to_MvalenceTest = "testDataFiles\\Mvalence_test.arff";
+				std::string path_to_MarousalTest = "testDataFiles\\Marousal_test.arff";
+
+				createMTestData(path_to_MvalenceTest, "MValenceResponse", "valence {-2,-1,0,1,2}", blvalence, blarousal, vvalence, varousal);
+				createMTestData(path_to_MarousalTest, "MArousalResponse", "arousal {-2,-1,0,1,2}", blvalence, blarousal, vvalence, varousal);
+
+				std::string mvalence_classifier = "weka.classifiers.bayes.NaiveBayes";
+				std::string marousal_classifier = "weka.classifiers.bayes.NaiveBayes";
+
+				std::string path_to_MArousalTrainingModel = path_to_local_dir + "TrainingData\\MArousalTrain.model";
+				std::string path_to_MValenceTrainingModel = path_to_local_dir + "TrainingData\\MValenceTrain.model";
+				std::string path_to_MArousalTestData = path_to_local_dir + "testDataFiles\\Marousal_test.arff";
+				std::string path_to_MValenceTestData = path_to_local_dir + "testDataFiles\\Mvalence_test.arff";
+				std::string path_to_MarousalBat = path_to_local_dir + "batFiles\\Marousal.bat";
+				std::string path_to_MvalenceBat = path_to_local_dir + "batFiles\\Mvalence.bat";
+				std::string path_to_MoutArousal = path_to_local_dir + "wekaOutputFiles\\MoutArousal.txt";
+				std::string path_to_MoutValence = path_to_local_dir + "wekaOutputFiles\\MoutValence.txt";
+
+				std::string path_to_MarousalVBS = path_to_local_dir + "batFiles\\vbsMArousal.vbs";
+				std::string path_to_MvalenceVBS = path_to_local_dir + "batFiles\\vbsMValence.vbs";
+
+				createBatWekaFile(path_to_MvalenceBat, path_to_java, path_to_weka, mvalence_classifier, path_to_MValenceTrainingModel, path_to_MValenceTestData, path_to_MoutValence);
+				createBatWekaFile(path_to_MarousalBat, path_to_java, path_to_weka, marousal_classifier, path_to_MArousalTrainingModel, path_to_MArousalTestData, path_to_MoutArousal);
+
+				mmarousal = getWekaResult(path_to_MarousalVBS, path_to_MoutArousal);
+				mmvalence = getWekaResult(path_to_MvalenceVBS, path_to_MoutValence);
+			}
+
 
 			// put this in another method. This just creates a timestamp
 			SYSTEMTIME st;

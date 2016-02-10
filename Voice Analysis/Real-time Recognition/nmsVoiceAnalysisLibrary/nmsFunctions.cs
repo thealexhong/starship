@@ -567,6 +567,7 @@ namespace nmsVoiceAnalysisLibrary
                 // Read the output stream first and then wait.
                 string output = p.StandardOutput.ReadToEnd();
                 p.WaitForExit();
+                p.Close();
                 //System.Console.WriteLine(output);
                 string[] tokens = output.Split(':');
                 //for(int i=0; i<tokens.Length; i++)
