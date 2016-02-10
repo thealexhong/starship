@@ -190,7 +190,7 @@ def exitingProgram():
     print "Program Exiting..."
 
 if __name__ == '__main__':
-    simulated = True
+    simulated = False
     name = "NAO"
     if simulated:
         #simulated NAO
@@ -207,6 +207,8 @@ if __name__ == '__main__':
             NAOIP = "leia.local"
             name = "Leia"
         NAOIP = getNAOIP()
+        name = NAOIP[0:4]
+        print "Robot Name: ", name
         NAOPort = 9559
 
     print("Initiated Values")

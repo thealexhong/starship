@@ -20,7 +20,7 @@ class DietFitnessFSM:
 		self.robotName = robotName
 		self.usersName = userName
 		self.userNumber = userNumber
-		initialState = 1
+		initialState = 1 + 12
 		self.state = initialState
 		self.s = initialState
 		self.dayCALS = 0

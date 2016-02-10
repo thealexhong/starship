@@ -22,6 +22,7 @@ class GenUtil:
         self.naoIsHighEdge = False
 
         self.naoSeesHigh = False
+        self.naoSeesHighTest = False
         self.waitingForInput = False
 
         self.wasJustScared = False
@@ -66,7 +67,7 @@ class GenUtil:
             elif "Hopeful" in oe:
                 self.showHopeEyes()
             elif "Scared" in oe:
-                self.showScaredEyes()
+                self.showScaredEyes(oe)
 
             sitTest = False
             if not sitTest:
@@ -159,8 +160,10 @@ class GenUtil:
         self.naoMotions.setEyeEmotion('hope')
         print "My eyes are Hopeful"
      
-    def showScaredEyes(self):
-        self.naoMotions.setEyeEmotion('scared1')
+    def showScaredEyes(self, expression = 'scared1'):
+        # self.naoMotions.setEyeEmotion('scared1')
+        self.naoMotions.blinkAlarmingEyes(2*3, expression.lower())
+        self.naoMotions.setEyeEmotion(expression)
         print "My eyes are Scared"
 
 ################################################# Body
@@ -201,7 +204,7 @@ class GenUtil:
         print "My body is Scared2"
     def showScared3Body(self):
         self.naoMotions.scaredEmotion3Edge()
-        print "My body is Scared2"
+        print "My body is Scared3"
 
 ################################################# Body
     def showHappyVoice(self, sayText):
@@ -239,7 +242,8 @@ class GenUtil:
             self.naoIsSafe = False
             self.naoIsTouched = True
             self.stopNAOActions()
-            self.showScaredEyes()
+            self.naoMotions.naoAliveOff()
+            self.showScaredEyes('scared2')
             if self.waitingForInput:
                 FileUtilitiy.hitEnterOnConsole()
             self.showScaredVoice("I was Touched! " + touchedWhere)
@@ -254,7 +258,8 @@ class GenUtil:
             self.naoIsSafe = False
             self.naoIsPickedUp = True
             self.stopNAOActions()
-            self.showScaredEyes()
+            self.naoMotions.naoAliveOff()
+            self.showScaredEyes('scared1')
             if self.waitingForInput:
                 FileUtilitiy.hitEnterOnConsole()
             self.showScaredVoice("I was Picked up!")
@@ -269,7 +274,8 @@ class GenUtil:
             self.naoIsSafe = False
             self.naoIsHighEdge = True
             self.stopNAOActions()
-            self.showScaredEyes()
+            self.naoMotions.naoAliveOff()
+            self.showScaredEyes('scared3')
             self.showScaredVoice("I'm so high up!")
         else:
             print " ********************************** I already see I'm high up"
@@ -282,6 +288,7 @@ class GenUtil:
         self.naoIsTouched = False
         self.naoIsPickedUp = False
         self.naoIsHighEdge = False
+        self.naoSeesHighTest = False
 
     def getTimeStamp(self):
         return time.time()
@@ -333,6 +340,7 @@ class GenUtil:
 
         self.naoMotions.naoAliveOff()
         self.naoMotions.LookAtEdgeMotion()
+        self.naoSeesHigh = False
         thres = 20
         nFrames = 4
         try:
@@ -343,6 +351,7 @@ class GenUtil:
             print "Edge Detection failed"
             print e
 
+        self.naoSeesHigh = self.naoSeesHigh or self.naoSeesHighTest
         if self.naoSeesHigh:
             print "NAO is too close to the edge"
             self.naoSeesHighEdge()

@@ -123,7 +123,7 @@ class FSMBeginDayStates:
         self.getUserFSMVars()
 
         sayText = "Hello " + self.userName + ". "
-        if self.hasTalkedJapan or self.hasTalkedParis:
+        if not (self.hasTalkedJapan or self.hasTalkedParis):
             sayText += "My name is " + self.robotName + " and I am going to be your diet and fitness companion"
         self.FSMBody.sayWithEmotion(sayText)
 

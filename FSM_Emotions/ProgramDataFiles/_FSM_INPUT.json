@@ -1,9 +1,9 @@
 {
 "_comment": "Fill in the data here to be read in by the program"
 
-,"naoIP":            "luke.local"
-,"userName":         "Human"
-,"userNumber":       6
+,"naoIP":            "leia.local"
+,"userName":         "Human Two"
+,"userNumber":       7
 ,"interactionType":  "Morning"
 ,"lastInteraction":  false
 }

@@ -1,0 +1,2206 @@
+
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 1 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 UResponsesLikeli: 1.0 Appraised: [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1 UPosBranchesLikeli: 1.0 Appraised: [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1  [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1  [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 OverallEV [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 Overall U input: [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 1 
+[[ 0.3856  0.4296  0.1312  0.2735  0.      0.2319  0.2319  0.2319]
+ [ 0.6144  0.5704  0.6968  0.7265  0.802   0.616   0.616   0.616 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.1721  0.      0.198   0.1521  0.1521  0.1521]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 1 New RE: [ 1.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 New OE: [ 0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 
+currentFSMState: 2 
+currentFSMState: 4 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 U Feedback: [ 2.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 4 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      0.8901  0.802   0.8901  0.802   0.802   0.802   0.802 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1099  0.198   0.1099  0.198   0.198   0.198   0.198 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 4 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 
+currentFSMState: 5 
+currentFSMState: 6 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 UResponsesLikeli: 0.666666666667 Appraised: [ 0.      0.6667  0.3333  0.3333  0.      0.      0.      0.    ]
+currentFSMState: 6 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 6 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 6 
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 47 
+currentFSMState: 6 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 UResponsesLikeli: 0.75 Appraised: [ 0.0833  0.75    0.      0.25    0.      0.      0.      0.    ]
+currentFSMState: 6 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.0833  0.75    0.      0.25    0.      0.      0.      0.    ]
+currentFSMState: 6  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 OverallEV [ 0.0833  3.7598  0.      1.2402  0.      0.      0.      0.    ]
+currentFSMState: 6 Overall U input: [ 0.0833  3.7598  0.      1.2402  0.      0.      0.      0.    ]
+currentFSMState: 6 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 6 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      0.8584  0.752   0.8584  0.752   0.752   0.752   0.752 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1416  0.248   0.1416  0.248   0.248   0.248   0.248 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 6 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 
+currentFSMState: 7 
+currentFSMState: 15 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 1 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 UResponsesLikeli: 1.0 Appraised: [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1 UPosBranchesLikeli: 0.0 Appraised: [ 0.  0.  1.  2.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1  [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1  [ 0.  0.  1.  2.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 OverallEV [ 0.5098  2.0098  1.      2.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 Overall U input: [ 0.5098  2.0098  1.      2.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 1 
+[[ 0.2203  0.2254  0.      0.1017  0.      0.      0.      0.    ]
+ [ 0.5212  0.4442  0.335   0.4008  0.3092  0.335   0.335   0.335 ]
+ [ 0.      0.      0.1667  0.1994  0.2308  0.1667  0.1667  0.1667]
+ [ 0.2585  0.3304  0.4984  0.2981  0.46    0.4984  0.4984  0.4984]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 1 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 
+currentFSMState: 3 
+currentFSMState: 4 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 UResponsesLikeli: 0.5 Appraised: [ 0.   0.5  0.5  0.5  0.   0.   0.   0. ]
+currentFSMState: 4 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 4 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 4 
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 1 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 UResponsesLikeli: 1.0 Appraised: [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1 UPosBranchesLikeli: 1.0 Appraised: [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1  [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1  [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 OverallEV [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 Overall U input: [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 1 
+[[ 0.3856  0.4296  0.1312  0.2735  0.      0.2319  0.2319  0.2319]
+ [ 0.6144  0.5704  0.6968  0.7265  0.802   0.616   0.616   0.616 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.1721  0.      0.198   0.1521  0.1521  0.1521]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 1 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 New OE: [ 0.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 
+currentFSMState: 2 
+currentFSMState: 4 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 UResponsesLikeli: 0.5 Appraised: [ 0.   0.5  0.5  0.5  0.   0.   0.   0. ]
+currentFSMState: 4 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 4 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 4 
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 47 
+currentFSMState: 4 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 UResponsesLikeli: 0.333333333333 Appraised: [ 0.      0.3333  0.1667  0.6667  0.      0.      0.      0.    ]
+currentFSMState: 4 New RE: [ 0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 4 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 4 
+currentFSMState: 48 New RE: [ 0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 
+currentFSMState: 48 New RE: [ 0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 
+currentFSMState: 48 
+currentFSMState: 4 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 UResponsesLikeli: 0.5 Appraised: [ 0.1667  0.5     0.      0.5     0.      0.      0.      0.    ]
+currentFSMState: 4 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.1667  0.5     0.      0.5     0.      0.      0.      0.    ]
+currentFSMState: 4  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 OverallEV [ 0.1667  3.5098  0.      1.4902  0.      0.      0.      0.    ]
+currentFSMState: 4 Overall U input: [ 0.1667  3.5098  0.      1.4902  0.      0.      0.      0.    ]
+currentFSMState: 4 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 4 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.876   0.8249  0.702   0.8249  0.702   0.702   0.702   0.702 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.124   0.1751  0.298   0.1751  0.298   0.298   0.298   0.298 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 4 New RE: [ 0.  0.  0.  1.  0.  0.  0.  0.]
+currentFSMState: 4 New OE: [ 0.  0.  0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 
+currentFSMState: 9 
+currentFSMState: 10 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 10 UResponsesLikeli: 0.4 Appraised: [ 0.   0.4  0.1  0.6  0.   0.   0.   0. ]
+currentFSMState: 10 New RE: [ 0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 10 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 10 
+currentFSMState: 48 New RE: [ 0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 
+currentFSMState: 48 New RE: [ 0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 1 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 UResponsesLikeli: 1.0 Appraised: [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1 UPosBranchesLikeli: 1.0 Appraised: [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1  [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1  [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 OverallEV [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 Overall U input: [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 1 
+[[ 0.3856  0.4296  0.1312  0.2735  0.      0.2319  0.2319  0.2319]
+ [ 0.6144  0.5704  0.6968  0.7265  0.802   0.616   0.616   0.616 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.1721  0.      0.198   0.1521  0.1521  0.1521]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 1 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 
+currentFSMState: 2 
+currentFSMState: 4 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 UResponsesLikeli: 0.5 Appraised: [ 0.   0.5  0.5  0.5  0.   0.   0.   0. ]
+currentFSMState: 4 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 4 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 4 
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 47 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 1 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 UResponsesLikeli: 0.0 Appraised: [ 0.   0.   0.5  1.   0.   0.   0.   0. ]
+currentFSMState: 1 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 1 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 1 
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 47 
+currentFSMState: 1 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 UResponsesLikeli: 0.5 Appraised: [ 0.5  0.5  0.   0.5  0.   0.   0.   0. ]
+currentFSMState: 1 UPosBranchesLikeli: 1.0 Appraised: [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.5  0.5  0.   0.5  0.   0.   0.   0. ]
+currentFSMState: 1  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1  [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 OverallEV [ 1.5     3.5098  0.      1.4902  0.      0.      0.      0.    ]
+currentFSMState: 1 Overall U input: [ 1.5     3.5098  0.      1.4902  0.      0.      0.      0.    ]
+currentFSMState: 1 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 1 
+[[ 0.416   0.4135  0.1304  0.2606  0.      0.2308  0.2308  0.2308]
+ [ 0.584   0.4838  0.6104  0.6099  0.702   0.54    0.54    0.54  ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1027  0.2592  0.1295  0.298   0.2293  0.2293  0.2293]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 1 New RE: [ 0.  0.  0.  1.  0.  0.  0.  0.]
+currentFSMState: 1 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.]
+currentFSMState: 1 
+currentFSMState: 2 
+currentFSMState: 4 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 UResponsesLikeli: 0.333333333333 Appraised: [ 0.      0.3333  0.1667  0.6667  0.      0.      0.      0.    ]
+currentFSMState: 4 New RE: [ 0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 4 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 4 
+currentFSMState: 48 New RE: [ 0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 
+currentFSMState: 48 New RE: [ 0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 
+currentFSMState: 48 
+currentFSMState: 4 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 UResponsesLikeli: 0.5 Appraised: [ 0.1667  0.5     0.      0.5     0.      0.      0.      0.    ]
+currentFSMState: 4 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.1667  0.5     0.      0.5     0.      0.      0.      0.    ]
+currentFSMState: 4  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 OverallEV [ 0.1667  3.5098  0.      1.4902  0.      0.      0.      0.    ]
+currentFSMState: 4 Overall U input: [ 0.1667  3.5098  0.      1.4902  0.      0.      0.      0.    ]
+currentFSMState: 4 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 4 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.876   0.8249  0.702   0.8249  0.702   0.702   0.702   0.702 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.124   0.1751  0.298   0.1751  0.298   0.298   0.298   0.298 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 4 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 
+currentFSMState: 5 
+currentFSMState: 6 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 UResponsesLikeli: 0.6 Appraised: [ 0.1  0.6  0.   0.4  0.   0.   0.   0. ]
+currentFSMState: 6 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.1  0.6  0.   0.4  0.   0.   0.   0. ]
+currentFSMState: 6  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 OverallEV [ 0.1     3.6098  0.      1.3902  0.      0.      0.      0.    ]
+currentFSMState: 6 Overall U input: [ 0.1     3.6098  0.      1.3902  0.      0.      0.      0.    ]
+currentFSMState: 6 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 6 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.8862  0.8385  0.722   0.8385  0.722   0.722   0.722   0.722 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.1138  0.1615  0.278   0.1615  0.278   0.278   0.278   0.278 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 6 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 
+currentFSMState: 8 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 1 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 UResponsesLikeli: 1.0 Appraised: [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1 UPosBranchesLikeli: 1.0 Appraised: [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1  [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1  [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 OverallEV [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 Overall U input: [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 1 
+[[ 0.3856  0.4296  0.1312  0.2735  0.      0.2319  0.2319  0.2319]
+ [ 0.6144  0.5704  0.6968  0.7265  0.802   0.616   0.616   0.616 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.1721  0.      0.198   0.1521  0.1521  0.1521]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 1 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 
+currentFSMState: 2 
+currentFSMState: 4 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 4 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      0.8901  0.802   0.8901  0.802   0.802   0.802   0.802 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1099  0.198   0.1099  0.198   0.198   0.198   0.198 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 4 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 
+currentFSMState: 5 
+currentFSMState: 6 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 6 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      0.8901  0.802   0.8901  0.802   0.802   0.802   0.802 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1099  0.198   0.1099  0.198   0.198   0.198   0.198 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 6 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 
+currentFSMState: 8 
+currentFSMState: 15 
+currentFSMState: 16 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 16 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 16  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 16 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 16 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 16 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      0.8901  0.802   0.8901  0.802   0.802   0.802   0.802 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1099  0.198   0.1099  0.198   0.198   0.198   0.198 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 16 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16 
+currentFSMState: 17 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 1 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 UResponsesLikeli: 1.0 Appraised: [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1 UPosBranchesLikeli: 1.0 Appraised: [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1  [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1  [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 OverallEV [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 Overall U input: [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 1 
+[[ 0.3856  0.4296  0.1312  0.2735  0.      0.2319  0.2319  0.2319]
+ [ 0.6144  0.5704  0.6968  0.7265  0.802   0.616   0.616   0.616 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.1721  0.      0.198   0.1521  0.1521  0.1521]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 1 New RE: [ 1.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 New OE: [ 0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 
+currentFSMState: 2 
+currentFSMState: 4 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 U Feedback: [ 2.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 4 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      0.8901  0.802   0.8901  0.802   0.802   0.802   0.802 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1099  0.198   0.1099  0.198   0.198   0.198   0.198 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 4 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 
+currentFSMState: 5 
+currentFSMState: 6 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 6 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      0.8901  0.802   0.8901  0.802   0.802   0.802   0.802 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1099  0.198   0.1099  0.198   0.198   0.198   0.198 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 6 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 New OE: [ 0.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 
+currentFSMState: 7 
+currentFSMState: 15 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 1 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 UResponsesLikeli: 1.0 Appraised: [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1 UPosBranchesLikeli: 1.0 Appraised: [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1  [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1  [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 OverallEV [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 Overall U input: [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 1 
+[[ 0.3856  0.4296  0.1312  0.2735  0.      0.2319  0.2319  0.2319]
+ [ 0.6144  0.5704  0.6968  0.7265  0.802   0.616   0.616   0.616 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.1721  0.      0.198   0.1521  0.1521  0.1521]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 1 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 New OE: [ 0.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 
+currentFSMState: 2 
+currentFSMState: 4 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 U Feedback: [ 1.  2.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 4 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      1.      0.8901  1.      0.8901  0.8901  0.8901  0.8901]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.1099  0.      0.1099  0.1099  0.1099  0.1099]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 4 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 
+currentFSMState: 5 
+currentFSMState: 6 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 6 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      0.8901  0.802   0.8901  0.802   0.802   0.802   0.802 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1099  0.198   0.1099  0.198   0.198   0.198   0.198 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 6 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 47 
+currentFSMState: 8 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 1 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 UResponsesLikeli: 1.0 Appraised: [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1 UPosBranchesLikeli: 1.0 Appraised: [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1  [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1  [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 OverallEV [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 Overall U input: [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 1 
+[[ 0.3856  0.4296  0.1312  0.2735  0.      0.2319  0.2319  0.2319]
+ [ 0.6144  0.5704  0.6968  0.7265  0.802   0.616   0.616   0.616 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.1721  0.      0.198   0.1521  0.1521  0.1521]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 1 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 
+currentFSMState: 2 
+currentFSMState: 4 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 4 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      0.8901  0.802   0.8901  0.802   0.802   0.802   0.802 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1099  0.198   0.1099  0.198   0.198   0.198   0.198 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 4 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 
+currentFSMState: 5 
+currentFSMState: 6 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 6 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      0.8901  0.802   0.8901  0.802   0.802   0.802   0.802 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1099  0.198   0.1099  0.198   0.198   0.198   0.198 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 6 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 
+currentFSMState: 7 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 1 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 UResponsesLikeli: 1.0 Appraised: [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1 UPosBranchesLikeli: 1.0 Appraised: [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1  [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1  [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 OverallEV [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 Overall U input: [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 1 
+[[ 0.3856  0.4296  0.1312  0.2735  0.      0.2319  0.2319  0.2319]
+ [ 0.6144  0.5704  0.6968  0.7265  0.802   0.616   0.616   0.616 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.1721  0.      0.198   0.1521  0.1521  0.1521]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 1 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 
+currentFSMState: 2 
+currentFSMState: 4 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 4 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      0.8901  0.802   0.8901  0.802   0.802   0.802   0.802 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1099  0.198   0.1099  0.198   0.198   0.198   0.198 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 4 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 
+currentFSMState: 5 
+currentFSMState: 6 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 6 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      0.8901  0.802   0.8901  0.802   0.802   0.802   0.802 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1099  0.198   0.1099  0.198   0.198   0.198   0.198 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 6 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 New OE: [ 0.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 
+currentFSMState: 7 
+currentFSMState: 15 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 1 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 UResponsesLikeli: 1.0 Appraised: [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1 UPosBranchesLikeli: 1.0 Appraised: [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1  [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1  [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 OverallEV [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 Overall U input: [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 1 
+[[ 0.3856  0.4296  0.1312  0.2735  0.      0.2319  0.2319  0.2319]
+ [ 0.6144  0.5704  0.6968  0.7265  0.802   0.616   0.616   0.616 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.1721  0.      0.198   0.1521  0.1521  0.1521]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 1 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 New OE: [ 0.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 
+currentFSMState: 2 
+currentFSMState: 4 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 U Feedback: [ 1.  2.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 4 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      1.      0.8901  1.      0.8901  0.8901  0.8901  0.8901]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.1099  0.      0.1099  0.1099  0.1099  0.1099]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 4 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 
+currentFSMState: 5 
+currentFSMState: 6 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 6 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      0.8901  0.802   0.8901  0.802   0.802   0.802   0.802 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1099  0.198   0.1099  0.198   0.198   0.198   0.198 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 6 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 
+currentFSMState: 7 
+currentFSMState: 15 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 1 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 UResponsesLikeli: 1.0 Appraised: [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1 UPosBranchesLikeli: 1.0 Appraised: [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1  [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1  [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 OverallEV [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 Overall U input: [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 1 
+[[ 0.3856  0.4296  0.1312  0.2735  0.      0.2319  0.2319  0.2319]
+ [ 0.6144  0.5704  0.6968  0.7265  0.802   0.616   0.616   0.616 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.1721  0.      0.198   0.1521  0.1521  0.1521]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 1 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 
+currentFSMState: 2 
+currentFSMState: 4 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 4 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      0.8901  0.802   0.8901  0.802   0.802   0.802   0.802 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1099  0.198   0.1099  0.198   0.198   0.198   0.198 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 4 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 
+currentFSMState: 5 
+currentFSMState: 6 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 6 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      0.8901  0.802   0.8901  0.802   0.802   0.802   0.802 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1099  0.198   0.1099  0.198   0.198   0.198   0.198 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 6 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 New OE: [ 0.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 
+currentFSMState: 7 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 1 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 UResponsesLikeli: 1.0 Appraised: [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1 UPosBranchesLikeli: 1.0 Appraised: [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1  [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1  [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 OverallEV [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 Overall U input: [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 1 
+[[ 0.3856  0.4296  0.1312  0.2735  0.      0.2319  0.2319  0.2319]
+ [ 0.6144  0.5704  0.6968  0.7265  0.802   0.616   0.616   0.616 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.1721  0.      0.198   0.1521  0.1521  0.1521]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 1 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 
+currentFSMState: 2 
+currentFSMState: 4 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 4 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      0.8901  0.802   0.8901  0.802   0.802   0.802   0.802 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1099  0.198   0.1099  0.198   0.198   0.198   0.198 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 4 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 New OE: [ 0.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 
+currentFSMState: 5 
+currentFSMState: 6 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 U Feedback: [ 1.  2.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 6 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      1.      0.8901  1.      0.8901  0.8901  0.8901  0.8901]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.1099  0.      0.1099  0.1099  0.1099  0.1099]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 6 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 New OE: [ 0.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 
+currentFSMState: 8 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 1 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 UResponsesLikeli: 0.0 Appraised: [ 0.   0.   0.5  1.   0.   0.   0.   0. ]
+currentFSMState: 1 New RE: [ 0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 1 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 1 
+currentFSMState: 48 New RE: [ 0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 
+currentFSMState: 48 New RE: [ 0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 
+currentFSMState: 48 New RE: [ 0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 
+currentFSMState: 48 New RE: [ 0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 
+currentFSMState: 48 New RE: [ 0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 
+currentFSMState: 48 
+currentFSMState: 1 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 UResponsesLikeli: 0.5 Appraised: [ 0.5  0.5  0.   0.5  0.   0.   0.   0. ]
+currentFSMState: 1 UPosBranchesLikeli: 1.0 Appraised: [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.5  0.5  0.   0.5  0.   0.   0.   0. ]
+currentFSMState: 1  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1  [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 OverallEV [ 1.5     3.5098  0.      1.4902  0.      0.      0.      0.    ]
+currentFSMState: 1 Overall U input: [ 1.5     3.5098  0.      1.4902  0.      0.      0.      0.    ]
+currentFSMState: 1 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 1 
+[[ 0.416   0.4135  0.1304  0.2606  0.      0.2308  0.2308  0.2308]
+ [ 0.584   0.4838  0.6104  0.6099  0.702   0.54    0.54    0.54  ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1027  0.2592  0.1295  0.298   0.2293  0.2293  0.2293]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 1 New RE: [ 0.  0.  0.  1.  0.  0.  0.  0.]
+currentFSMState: 1 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.]
+currentFSMState: 1 
+currentFSMState: 2 
+currentFSMState: 4 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 UResponsesLikeli: 0.666666666667 Appraised: [ 0.1667  0.6667  0.      0.3333  0.      0.      0.      0.    ]
+currentFSMState: 4 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.1667  0.6667  0.      0.3333  0.      0.      0.      0.    ]
+currentFSMState: 4  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 OverallEV [ 0.1667  3.6765  0.      1.3235  0.      0.      0.      0.    ]
+currentFSMState: 4 Overall U input: [ 0.1667  3.6765  0.      1.3235  0.      0.      0.      0.    ]
+currentFSMState: 4 U Feedback: [ 1.  1.  1.  2.  1.  1.  1.  1.]
+currentFSMState: 4 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.8065  0.7353  0.5814  0.7353  0.5814  0.5814  0.5814  0.5814]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.1935  0.2647  0.4186  0.2647  0.4186  0.4186  0.4186  0.4186]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 4 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 
+currentFSMState: 5 
+currentFSMState: 6 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 UResponsesLikeli: 0.75 Appraised: [ 0.0833  0.75    0.      0.25    0.      0.      0.      0.    ]
+currentFSMState: 6 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.0833  0.75    0.      0.25    0.      0.      0.      0.    ]
+currentFSMState: 6  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 OverallEV [ 0.0833  3.7598  0.      1.2402  0.      0.      0.      0.    ]
+currentFSMState: 6 Overall U input: [ 0.0833  3.7598  0.      1.2402  0.      0.      0.      0.    ]
+currentFSMState: 6 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 6 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      0.8584  0.752   0.8584  0.752   0.752   0.752   0.752 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1416  0.248   0.1416  0.248   0.248   0.248   0.248 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 6 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 New OE: [ 0.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 
+currentFSMState: 7 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 1 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 UResponsesLikeli: 1.0 Appraised: [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1 UPosBranchesLikeli: 1.0 Appraised: [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1  [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1  [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 OverallEV [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 Overall U input: [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 1 
+[[ 0.3856  0.4296  0.1312  0.2735  0.      0.2319  0.2319  0.2319]
+ [ 0.6144  0.5704  0.6968  0.7265  0.802   0.616   0.616   0.616 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.1721  0.      0.198   0.1521  0.1521  0.1521]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 1 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 
+currentFSMState: 2 
+currentFSMState: 4 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 4 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      0.8901  0.802   0.8901  0.802   0.802   0.802   0.802 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1099  0.198   0.1099  0.198   0.198   0.198   0.198 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 4 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 
+currentFSMState: 5 
+currentFSMState: 6 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 6 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      0.8901  0.802   0.8901  0.802   0.802   0.802   0.802 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1099  0.198   0.1099  0.198   0.198   0.198   0.198 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 6 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 
+currentFSMState: 8 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 1 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 UResponsesLikeli: 1.0 Appraised: [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1 UPosBranchesLikeli: 1.0 Appraised: [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1  [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1  [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 OverallEV [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 Overall U input: [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 1 
+[[ 0.3856  0.4296  0.1312  0.2735  0.      0.2319  0.2319  0.2319]
+ [ 0.6144  0.5704  0.6968  0.7265  0.802   0.616   0.616   0.616 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.1721  0.      0.198   0.1521  0.1521  0.1521]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 1 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 New OE: [ 0.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 
+currentFSMState: 2 
+currentFSMState: 4 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 U Feedback: [ 1.  2.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 4 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      1.      0.8901  1.      0.8901  0.8901  0.8901  0.8901]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.1099  0.      0.1099  0.1099  0.1099  0.1099]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 4 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 
+currentFSMState: 5 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 1 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 UResponsesLikeli: 1.0 Appraised: [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1 UPosBranchesLikeli: 1.0 Appraised: [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1  [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1  [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 OverallEV [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 Overall U input: [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 1 
+[[ 0.3856  0.4296  0.1312  0.2735  0.      0.2319  0.2319  0.2319]
+ [ 0.6144  0.5704  0.6968  0.7265  0.802   0.616   0.616   0.616 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.1721  0.      0.198   0.1521  0.1521  0.1521]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 1 New RE: [ 1.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 New OE: [ 0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 
+currentFSMState: 2 
+currentFSMState: 4 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 U Feedback: [ 2.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 4 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      0.8901  0.802   0.8901  0.802   0.802   0.802   0.802 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1099  0.198   0.1099  0.198   0.198   0.198   0.198 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 4 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 
+currentFSMState: 5 
+currentFSMState: 6 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 6 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      0.8901  0.802   0.8901  0.802   0.802   0.802   0.802 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1099  0.198   0.1099  0.198   0.198   0.198   0.198 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 6 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 
+currentFSMState: 7 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 1 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 UResponsesLikeli: 1.0 Appraised: [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1 UPosBranchesLikeli: 1.0 Appraised: [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1  [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1  [ 1.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 OverallEV [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 Overall U input: [ 1.5098  4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 1 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 1 
+[[ 0.3856  0.4296  0.1312  0.2735  0.      0.2319  0.2319  0.2319]
+ [ 0.6144  0.5704  0.6968  0.7265  0.802   0.616   0.616   0.616 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.1721  0.      0.198   0.1521  0.1521  0.1521]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 1 New RE: [ 1.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 New OE: [ 0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 
+currentFSMState: 2 
+currentFSMState: 4 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 4 U Feedback: [ 2.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 4 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      0.8901  0.802   0.8901  0.802   0.802   0.802   0.802 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.1099  0.198   0.1099  0.198   0.198   0.198   0.198 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 4 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 New OE: [ 0.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 4 
+currentFSMState: 5 
+currentFSMState: 6 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 UPosBranchesLikeli: 1.0 Appraised: [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6  [ 0.  2.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 OverallEV [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 Overall U input: [ 0.      4.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 6 U Feedback: [ 1.  2.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 6 
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.      1.      0.8901  1.      0.8901  0.8901  0.8901  0.8901]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.1099  0.      0.1099  0.1099  0.1099  0.1099]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 6 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 New OE: [ 0.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 6 
+currentFSMState: 7 
+currentFSMState: 15 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 13 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 13 
+currentFSMState: 15 
+currentFSMState: 16 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 16 UResponsesLikeli: 1.0 Appraised: [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 16  [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 16  [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16 OverallEV [ 0.5098  2.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 16 Overall U input: [ 0.5098  2.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 16 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 16 
+[[ 0.2664  0.2893  0.      0.1691  0.      0.1452  0.1452  0.1452]
+ [ 0.6301  0.5702  0.6699  0.6667  0.6699  0.5726  0.5726  0.5726]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.1035  0.1405  0.3301  0.1642  0.3301  0.2821  0.2821  0.2821]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 16 New RE: [ 1.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16 New OE: [ 1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16 
+currentFSMState: 17 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 13 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 13 
+currentFSMState: 15 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 13 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 13 
+currentFSMState: 15 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 13 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 13 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 13 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 47 
+currentFSMState: 13 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 13 
+currentFSMState: 15 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 13 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 13 
+currentFSMState: 15 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 15 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]
+currentFSMState: 49 
+currentFSMState: 49 
+currentFSMState: 15 
+currentFSMState: 16 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 16 UResponsesLikeli: 1.0 Appraised: [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 16  [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 16  [ 0.0098  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16 OverallEV [ 0.5098  2.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 16 Overall U input: [ 0.5098  2.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 16 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 16 
+[[ 0.2664  0.2893  0.      0.1691  0.      0.1452  0.1452  0.1452]
+ [ 0.6301  0.5702  0.6699  0.6667  0.6699  0.5726  0.5726  0.5726]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.1035  0.1405  0.3301  0.1642  0.3301  0.2821  0.2821  0.2821]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 16 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16 New OE: [ 0.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 16 
+currentFSMState: 17 
+currentFSMState: 22 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 22 UResponsesLikeli: 0.5 Appraised: [ 0.   0.5  0.5  0.5  0.   0.   0.   0. ]
+currentFSMState: 22 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 22 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 22 
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 47 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 47 
+currentFSMState: 47 
+currentFSMState: 22 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 22 UResponsesLikeli: 0.666666666667 Appraised: [ 0.1667  0.6667  0.      0.3333  0.      0.      0.      0.    ]
+currentFSMState: 22  [ 0.1667  0.6667  0.      0.3333  0.      0.      0.      0.    ]
+currentFSMState: 22  [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 22  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 22  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 22  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 22  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 22  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 22  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 22  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 22  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 22  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 22 OverallEV [ 0.1667  1.6765  0.      1.3235  0.      0.      0.      0.    ]
+currentFSMState: 22 Overall U input: [ 0.1667  1.6765  0.      1.3235  0.      0.      0.      0.    ]
+currentFSMState: 22 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 22 
+[[ 0.116   0.1248  0.      0.      0.      0.      0.      0.    ]
+ [ 0.6999  0.6275  0.5588  0.717   0.5588  0.5588  0.5588  0.5588]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.1842  0.2477  0.4412  0.283   0.4412  0.4412  0.4412  0.4412]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 22 New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 22 New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 22 
+currentFSMState: 23 
+currentFSMState: 18 UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.      1.0098  0.      0.9902  0.      0.      0.      0.    ]
+currentFSMState: 18 UResponsesLikeli: 0.5 Appraised: [ 0.      0.5     0.1667  0.5     0.      0.      0.      0.    ]
+currentFSMState: 18 New RE: [ 0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 18 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 18 
+currentFSMState: 48 New RE: [ 0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 
+currentFSMState: 48 New RE: [ 0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.]
+currentFSMState: 48 
+currentFSMState: 48 

@@ -26,11 +26,15 @@ class ThreadedChecker(threading.Thread):
         hs = self.root.winfo_screenheight()
         self.root.geometry('%dx%d+%d+%d' % (w, h, ws-w-25, 10))
         b = tk.Button(self.root, text="Freak out", command = self.freakOutClicked)
-        b.pack()
-        b2 = tk.Button(self.root, text="Freak out Stop", command = self.freakOutEndClicked)
-        b2.pack()
+        b.grid(row=0, column = 1)
+        b2 = tk.Button(self.root, text="Freak out Stop", command = self.freakOutEndClicked,
+                       height = 20, width = 50, bg = "red")
+        b2.grid(row=1, column = 1)
         b3 = tk.Button(self.root, text="NAO sees he is high up", command = self.naoSeesHighClicked)
+        b3.grid(row=3, column = 1)
+        b.pack()
         b3.pack()
+        b2.pack()
         # b4 = tk.Button(self.root, text="NAO doesn't see he is high up", command = self.naoNotSeeHighClicked)
         # b4.pack()
 
@@ -43,8 +47,7 @@ class ThreadedChecker(threading.Thread):
         self.genUtil.naoIsSafeAgain()
 
     def naoSeesHighClicked(self):
-        self.genUtil.naoSeesHigh = True
-        self.genUtil.naoIsHighEdge()
+        self.genUtil.naoSeesHighTest = True
 
     def naoNotSeeHighClicked(self):
         self.genUtil.naoSeesHigh = False
