@@ -115,6 +115,9 @@ class DietFitnessFSM:
 			elif self.genUtil.naoIsHighEdge:
 				self.s = self.FSMInUse.getNumMethods() + 3 # index past methods -> reactive method
 			print "Reaction ", self.s
+			self.genUtil.naoMotions.naoAliveOff()
+		else:
+			self.genUtil.wasJustScared = False
 
 		ts = self.genUtil.getTimeStamp()
 		self.stateTimeStamp.append(ts)

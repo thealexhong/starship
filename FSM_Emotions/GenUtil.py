@@ -26,6 +26,7 @@ class GenUtil:
         self.waitingForInput = False
 
         self.wasJustScared = False
+        self.scaredAllowed = True
         self.fDB = FoodDBManager()
 
         NAOip, NAOport = naoMotions.getConnectInfo()
@@ -103,6 +104,9 @@ class GenUtil:
                     self.naoMotions.naoStand()
                     self.naoMotions.naoAliveON()
                     self.wasJustScared = False
+                    self.scaredAllowed = True
+                else:
+                    self.scaredAllowed = False
 
             # if oe == "Scared2" and self.naoIsTouched and False:
             #     self.naoIsSafeAgain() # undo the scared after being touched
@@ -289,6 +293,7 @@ class GenUtil:
         self.naoIsPickedUp = False
         self.naoIsHighEdge = False
         self.naoSeesHighTest = False
+        self.scaredAllowed = True
 
     def getTimeStamp(self):
         return time.time()
