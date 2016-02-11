@@ -395,6 +395,7 @@ namespace nmsVoiceAnalysisLibrary
             m_Recorder = new WaveLib.WaveInRecorder(-1, fmt, sampleRate*segmentLength*(definition/8), 1, new WaveLib.BufferDoneEventHandler(DataArrived));
             
             log = File.CreateText("LogFeatureVector.csv");
+            log.WriteLine("Time,Angry,ConcentrationLevel,Embarrassment,Excitement,Hesitation,ImaginationActivity,IntensiveThinking,Content,SAF,Upset,ExtremeState,Stress,Uncertainty,Energy,BrainPower,EmoCogRatio,MaxAmpVol,VoiceEnergy,Unknown,Valence,Arousal");
             log.Close();
 
             v_arff = File.CreateText("FeatureVectorValence.arff");

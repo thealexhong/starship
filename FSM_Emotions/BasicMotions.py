@@ -638,14 +638,17 @@ class BasicMotions:
         elif configuration == "EyeTopBottom":
             self.setEyeColor(color, "LedEyeTopBottom")
 
-    def updateWithBlink(self, names, keys, times, color, configuration, bStand=None, bDisableEye=None):
+    def updateWithBlink(self, names, keys, times, color, configuration, bStand=None, bDisableEye=None,bDisableInit=None):
         self.preMotion()
         postureProxy = self.connectToProxy("ALRobotPosture")
         standResult = False
-        if bStand is None:
-            standResult = postureProxy.goToPosture("StandInit", 0.3)
-        elif bStand==True:
-            standResult = postureProxy.goToPosture("Stand", 0.3)
+        if bDisableInit is None:
+            if bStand is None:
+                standResult = postureProxy.goToPosture("StandInit", 0.3)
+            elif bStand==True:
+                standResult = postureProxy.goToPosture("Stand", 0.3)
+        else:
+            standResult=True
         if (standResult):
             print("------> Stood Up")
             try:
@@ -1464,112 +1467,10 @@ class BasicMotions:
         keys = list()
         self.bScared = False
         # Choregraphe simplified export in Python.
-
         names.append("HeadPitch")
-        times.append([1, 1.44, 1.84, 2.24, 2.64])
-        keys.append([-0.170316, -0.6704, -0.391212, -0.6704, -0.170316])
-
-        names.append("HeadYaw")
-        times.append([1, 1.44, 1.84, 2.24, 2.64])
-        keys.append([-0.00310993, -0.00771189, -0.019984, -0.00771189, -0.00310993])
-
-        names.append("LAnklePitch")
-        times.append([1, 2.64])
-        keys.append([0.0858622, 0.0858622])
-
-        names.append("LAnkleRoll")
-        times.append([1, 2.64])
-        keys.append([-0.124212, -0.124212])
-
-        names.append("LElbowRoll")
-        times.append([1, 2.64])
-        keys.append([-0.421808, -0.421808])
-
-        names.append("LElbowYaw")
-        times.append([1, 2.64])
-        keys.append([-1.20577, -1.20577])
-
-        names.append("LHand")
-        times.append([1, 2.64])
-        keys.append([0.294, 0.294])
-
-        names.append("LHipPitch")
-        times.append([1, 2.64])
-        keys.append([0.138102, 0.138102])
-
-        names.append("LHipRoll")
-        times.append([1, 2.64])
-        keys.append([0.09515, 0.0951499])
-
-        names.append("LHipYawPitch")
-        times.append([1, 2.64])
-        keys.append([-0.170232, -0.170232])
-
-        names.append("LKneePitch")
-        times.append([1, 2.64])
-        keys.append([-0.0828779, -0.0828778])
-
-        names.append("LShoulderPitch")
-        times.append([1, 2.64])
-        keys.append([1.46186, 1.46186])
-
-        names.append("LShoulderRoll")
-        times.append([1, 2.64])
-        keys.append([0.164096, 0.164096])
-
-        names.append("LWristYaw")
-        times.append([1, 2.64])
-        keys.append([0.0873961, 0.0873961])
-
-        names.append("RAnklePitch")
-        times.append([1, 2.64])
-        keys.append([0.096684, 0.0966839])
-
-        names.append("RAnkleRoll")
-        times.append([1, 2.64])
-        keys.append([0.122762, 0.122762])
-
-        names.append("RElbowRoll")
-        times.append([1, 2.64])
-        keys.append([0.444902, 0.444902])
-
-        names.append("RElbowYaw")
-        times.append([1, 2.64])
-        keys.append([1.21028, 1.21028])
-
-        names.append("RHand")
-        times.append([1, 2.64])
-        keys.append([0.2888, 0.2888])
-
-        names.append("RHipPitch")
-        times.append([1, 2.64])
-        keys.append([0.133416, 0.133416])
-
-        names.append("RHipRoll")
-        times.append([1, 2.64])
-        keys.append([-0.0966001, -0.0966001])
-
-        names.append("RHipYawPitch")
-        times.append([1, 2.64])
-        keys.append([-0.170232, -0.170232])
-
-        names.append("RKneePitch")
-        times.append([1, 2.64])
-        keys.append([-0.0923279, -0.0923279])
-
-        names.append("RShoulderPitch")
-        times.append([1, 2.64])
-        keys.append([1.46961, 1.46961])
-
-        names.append("RShoulderRoll")
-        times.append([1, 2.64])
-        keys.append([-0.16418, -0.16418])
-
-        names.append("RWristYaw")
-        times.append([1, 2.64])
-        keys.append([0.0843279, 0.0843279])
-
-        self.updateWithBlink(names, keys, times, self.eyeColor['hope'], self.eyeShape['hope'],True)
+        times.append([0.44, 0.84, 1.24, 1.64])
+        keys.append([ -0.6704, -0.391212, -0.6704, -0.170316])
+        self.updateWithBlink(names, keys, times, self.eyeColor['hope'], self.eyeShape['hope'], True, bDisableInit=None)
 
     def angerEmotion(self):
         names = list()

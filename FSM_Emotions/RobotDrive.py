@@ -175,7 +175,7 @@ class DriveUserPositiveOnRecomendation(RobotDrive):
 		# happyVA = np.array([0.89, 0.17])
 		# newlikelihood = 1 - LA.norm(happyVA - np.array([userValance, userArousal])) / math.sqrt(4+4)
 
-		if userValance > 0:#newlikelihood > 0.8:
+		if userValance >= 0:#newlikelihood > 0.8:
 			succeeded = True
 		else:
 			succeeded = False
