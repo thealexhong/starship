@@ -124,7 +124,7 @@ class FSMBeginDayStates:
 
         sayText = "Hello " + self.userName + ". "
         if not (self.hasTalkedJapan or self.hasTalkedParis):
-            sayText += "My name is " + self.robotName + " and I am going to be your diet and fitness companion"
+            sayText += "My name is " + self.robotName + ", and I am going to be your diet and fitness companion"
         self.FSMBody.sayWithEmotion(sayText)
 
         sayText = "How has your morning been so far?"
@@ -230,7 +230,7 @@ class FSMBeginDayStates:
 
     def askWeatherGoodYesTravel(self):
         sayText = "Amazing, I love traveling. I am a bit fragile though so I require my own foam-bed "
-        sayText += "during transportation. Lucky for me I am not big so my bed can easily fit on a plane."
+        sayText += "during transportation. Lucky for me I am not big, so my bed can easily fit on a plane."
         self.FSMBody.sayWithEmotion(sayText)
 
         self.FSMBody.setFSMState(self.FSMBody.state+1+7)

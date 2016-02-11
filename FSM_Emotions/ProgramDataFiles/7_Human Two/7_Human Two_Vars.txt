@@ -1,0 +1,2 @@
+
+{"exerciseSuggested": "walk a number of blocks one way, and back again", "hasTalkedJapan": true, "canEatGluten": false, "meal1Suggested": "One apple and a cup of gluten free granola", "meal2Suggested": "Chicken with brown rice and vegetables", "canEatPoultry": true, "dateTime": "2016-02-10_19-29-12", "hasAskedBreakfast": true, "hasTalkedParis": false, "weatherIsNice": true, "canEatFish": false, "exerciseSets": 10, "activityInteractionType": "Daily Companion Morning", "meal3Suggested": "Tofu with brown rice and vegetables"}

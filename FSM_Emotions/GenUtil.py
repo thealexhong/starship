@@ -356,7 +356,7 @@ class GenUtil:
             print "Edge Detection failed"
             print e
 
-        self.naoSeesHigh = self.naoSeesHigh or self.naoSeesHighTest
+        self.naoSeesHigh = False # self.naoSeesHigh or self.naoSeesHighTest
         if self.naoSeesHigh:
             print "NAO is too close to the edge"
             self.naoSeesHighEdge()

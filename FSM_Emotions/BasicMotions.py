@@ -12,13 +12,14 @@ class BasicMotions:
         self.NAOport = port
         self.logPrint = True
         self.isBreathing = False
+        self.motionProxy = self.connectToProxy("ALMotion")
 
         self.createEyeGroup()
         self.eyeColor={'happy': 0x0000FF00,
                        'sad': 0x00000060,
-                       'scared1': 0x00FF7F00,
-                       'scared2': 0x00FF7F00,
-                       'scared3': 0x00FF7F00,
+                       'scared1': 0x009F2C00,
+                       'scared2': 0x009F2C00,
+                       'scared3': 0x009F2C00,
                        'fear': 0x00600088,
                        'hope': 0x00FFB428,
                        'anger': 0x00FF0000}
@@ -37,7 +38,7 @@ class BasicMotions:
         tts.setParameter("doubleVoiceLevel", 0)
         try:
             audioProxy = self.connectToProxy("ALAudioDevice")
-            audioProxy.setOutputVolume(0.2*100)
+            audioProxy.setOutputVolume(0.7*100)
         except Exception as e:
             print "No Audio device found"
             print e
@@ -132,6 +133,7 @@ class BasicMotions:
         if not self.isBreathing:
             motionProxy = self.connectToProxy("ALMotion")
             motionProxy.setBreathEnabled('Body', True)
+            print "Started Breathing"
             self.isBreathing = True
 
     def naoBreathOFF(self):
@@ -582,7 +584,7 @@ class BasicMotions:
         ledProxy = self.connectToProxy("ALLeds")
         if ("sad" != emotion and emotion != 0x00600088 and "fear" != emotion and
             "scared1" != emotion and emotion != "scared2" and emotion != 0x00000060 and
-            emotion != 0x00FF7F00 and emotion != "scared3"):
+            emotion != 0x009F2C00 and emotion != "scared3"):
             ledProxy.fade("FaceLeds", 1, 0.1)
         else:
             ledProxy.fade("FaceLeds", 0, 0.1)

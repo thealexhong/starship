@@ -20,7 +20,7 @@ class DietFitnessFSM:
 		self.robotName = robotName
 		self.usersName = userName
 		self.userNumber = userNumber
-		initialState = 1 + 12
+		initialState = 1 + 20
 		self.state = initialState
 		self.s = initialState
 		self.dayCALS = 0
@@ -649,7 +649,7 @@ class DietFitnessFSM:
 		print "New OE: ", voe
 
 	def reactionScaredTouch(self):
-		sayText = "Ouch Ouch Ouch"
+		sayText = "Ow Ow Ow"
 		self.becomeScared()
 		self.sayWithEmotion(sayText)
 		time.sleep(1)

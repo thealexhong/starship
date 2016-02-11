@@ -22,15 +22,15 @@ class BasicMotions(ALModule):
         self.createEyeGroup()
         self.eyeColor={'happy':     0x0000FF00,
                        'sad':       0x00000060,
-                       'scared1':   0x00FF7F00,
+                       'scared1':   0x009F2C00,
                        'scared2':   0x00FF7F00,
                        'fear':      0x00600088,
                        'hope':      0x00FFB428,
                        'anger':     0x00FF0000}
         self.eyeShape={'happy': "EyeTop",
                        'sad': "EyeBottom",
-                       'scared1': "EyeNone",
-                       'scared2': "EyeNone",
+                       'scared1': "EyeTopBottom",
+                       'scared2': "EyeTopBottom",
                        'fear': "EyeBottom",
                        'hope': "EyeTop",
                        'anger': "EyeTopBottom"}
