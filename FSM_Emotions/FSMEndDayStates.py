@@ -827,7 +827,7 @@ class FSMEndDayStates:
         sayText = "Thanks for interacting with me today. "
 
         if not self.lastInteraction:
-            sayText += "See you tomorrow. "
+            sayText += "See you later. "
         else:
             sayText += "I wish you all the best with your diet and exercise plan. "
         self.FSMBody.sayWithEmotion(sayText)
