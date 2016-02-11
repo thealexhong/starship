@@ -20,7 +20,7 @@ class DietFitnessFSM:
 		self.robotName = robotName
 		self.usersName = userName
 		self.userNumber = userNumber
-		initialState = 1 + 20
+		initialState = 1# + 20
 		self.state = initialState
 		self.s = initialState
 		self.dayCALS = 0
@@ -750,6 +750,12 @@ class DietFitnessFSM:
 
 	def sayWithEmotion(self, sayText):
 		self.genUtil.naoEmotionalSay(sayText, self.getOENumber())
+
+	def waveSayWithEmotion(self, sayText):
+		self.genUtil.naoMotions.naoWaveRightFirst()
+		self.genUtil.naoMotions.naoWaveRightSecond(1, 2)
+		self.genUtil.naoEmotionalSay(sayText, self.getOENumber())
+		time.sleep(1)
 
 	def showData(self, showText):
 		fileName = "ProgramDataFiles\\" + str(self.userNumber) + "_" + self.usersName + "\\" + str(self.userNumber)  + "_" + self.usersName +"_Appraisals.txt"

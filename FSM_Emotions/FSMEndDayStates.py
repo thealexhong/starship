@@ -97,7 +97,10 @@ class FSMEndDayStates:
     def dayEndIntro(self):
         self.getUserFSMVariables()
 
-        sayText = "Hello again " + self.userName + ", how was the rest, of your day?"
+        sayText = "Hello again " + self.userName + "."
+        self.FSMBody.waveSayWithEmotion(sayText)
+
+        sayText = "How was the rest, of your day?"
         self.FSMBody.sayWithEmotion(sayText)
 
         writeText = "How was their day? (1) Good, (2) Bad, ('') No Response"
@@ -830,9 +833,7 @@ class FSMEndDayStates:
         self.FSMBody.sayWithEmotion(sayText)
 
         sayText = "Bye for now."
-        self.FSMBody.sayWithEmotion(sayText)
-
-        self.genUtil.naoWave()
+        self.FSMBody.waveSayWithEmotion(sayText)
 
         self.updateUserFSMVariables()
 

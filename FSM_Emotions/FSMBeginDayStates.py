@@ -123,9 +123,11 @@ class FSMBeginDayStates:
         self.getUserFSMVars()
 
         sayText = "Hello " + self.userName + ". "
+        self.FSMBody.waveSayWithEmotion(sayText)
+
         if not (self.hasTalkedJapan or self.hasTalkedParis):
-            sayText += "My name is " + self.robotName + ", and I am going to be your diet and fitness companion"
-        self.FSMBody.sayWithEmotion(sayText)
+            sayText = "My name is " + self.robotName + ", and I am going to be your diet and fitness companion"
+            self.FSMBody.sayWithEmotion(sayText)
 
         sayText = "How has your morning been so far?"
         self.FSMBody.sayWithEmotion(sayText)
@@ -823,9 +825,7 @@ class FSMBeginDayStates:
         self.FSMBody.sayWithEmotion(sayText)
 
         sayText = "Have a nice day"
-        self.FSMBody.sayWithEmotion(sayText)
-
-        self.genUtil.naoWave()
+        self.FSMBody.waveSayWithEmotion(sayText)
 
         self.writeUserFSMVariables()
 

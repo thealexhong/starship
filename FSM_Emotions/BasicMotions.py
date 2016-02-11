@@ -114,9 +114,8 @@ class BasicMotions:
         self.faceTrackingOFF()
 
     def faceTrackingON(self):
-        motionProxy = self.connectToProxy("ALMotion")
         # faceProxy = self.connectToProxy("ALFaceDetection")
-        self.StiffnessOn(motionProxy, "Head")
+        self.StiffnessOn(self.motionProxy, "Head")
         # faceProxy.setTrackingEnabled(True)
         tracker = self.connectToProxy("ALTracker")
         targetName = "Face"
@@ -131,21 +130,18 @@ class BasicMotions:
 
     def naoBreathON(self):
         if not self.isBreathing:
-            motionProxy = self.connectToProxy("ALMotion")
-            motionProxy.setBreathEnabled('Body', True)
+            self.motionProxy.setBreathEnabled('Body', True)
             print "Started Breathing"
             self.isBreathing = True
 
     def naoBreathOFF(self):
         if self.isBreathing:
-            motionProxy = self.connectToProxy("ALMotion")
-            motionProxy.setBreathEnabled('Body', False)
+            self.motionProxy.setBreathEnabled('Body', False)
             print "Stopped Breathing"
             self.isBreathing = False
 
     def getNaoBreathing(self):
-        motionProxy = self.connectToProxy("ALMotion")
-        return motionProxy.getBreathEnabled('Body')
+        return self.motionProxy.getBreathEnabled('Body')
 
     def naoSayWait(self, text, waitTime):
         speechProxy = self.connectToProxy("ALTextToSpeech")
@@ -161,15 +157,14 @@ class BasicMotions:
 
     def naoSit(self):
         self.preMotion()
-        motionProxy = self.connectToProxy("ALMotion")
         postureProxy = self.connectToProxy("ALRobotPosture")
 
-        motionProxy.wakeUp()
-        self.StiffnessOn(motionProxy)
+        self.motionProxy.wakeUp()
+        self.StiffnessOn(self.motionProxy)
 
         if self.NAOip != "127.0.0.1":
             try:
-                motionProxy.setFallManagerEnabled(False)
+                self.motionProxy.setFallManagerEnabled(False)
             except:
                 print "Couldn't turn off Fall manager"
 
@@ -180,17 +175,16 @@ class BasicMotions:
             print("------> Did NOT Sit Down...")
 
         if self.NAOip != "127.0.0.1":
-            motionProxy.setFallManagerEnabled(True)
-        self.StiffnessOff(motionProxy)
+            self.motionProxy.setFallManagerEnabled(True)
+        self.StiffnessOff(self.motionProxy)
         self.postMotion()
 
     def naoStand(self, speed = 0.5):
         self.preMotion()
-        motionProxy = self.connectToProxy("ALMotion")
         postureProxy = self.connectToProxy("ALRobotPosture")
 
-        motionProxy.wakeUp()
-        self.StiffnessOn(motionProxy)
+        self.motionProxy.wakeUp()
+        self.StiffnessOn(self.motionProxy)
         standResult = postureProxy.goToPosture("Stand", speed)
         if (standResult):
             print("------> Stood Up")
@@ -201,20 +195,19 @@ class BasicMotions:
 
     def naoWalk(self, xpos, ypos):
         self.preMotion()
-        motionProxy = self.connectToProxy("ALMotion")
         postureProxy = self.connectToProxy("ALRobotPosture")
 
-        motionProxy.wakeUp()
+        self.motionProxy.wakeUp()
         standResult = postureProxy.goToPosture("StandInit", 0.5)
-        motionProxy.setMoveArmsEnabled(True, True)
-        motionProxy.setMotionConfig([["ENABLE_FOOT_CONTACT_PROTECTION", True]])
+        self.motionProxy.setMoveArmsEnabled(True, True)
+        self.motionProxy.setMotionConfig([["ENABLE_FOOT_CONTACT_PROTECTION", True]])
 
         turnAngle = math.atan2(ypos,xpos)
         walkDist = math.sqrt(xpos*xpos + ypos*ypos)
 
         try:
-            motionProxy.walkTo(0.0,0.0, turnAngle)
-            motionProxy.walkTo(walkDist,0.0,0.0)
+            self.motionProxy.walkTo(0.0,0.0, turnAngle)
+            self.motionProxy.walkTo(walkDist,0.0,0.0)
         except Exception, e:
             print "The Robot could not walk to ", xpos, ", ", ypos
             print "Error was: ", e
@@ -225,73 +218,70 @@ class BasicMotions:
 
     def naoNodHead(self):
         self.preMotion()
-        motionProxy = self.connectToProxy("ALMotion")
         motionNames = ['HeadYaw', "HeadPitch"]
         times = [[0.7], [0.7]]
 
-        motionProxy.angleInterpolation(motionNames, [0.0,0.0], times, True)
+        self.motionProxy.angleInterpolation(motionNames, [0.0,0.0], times, True)
         for i in range(3):
-            motionProxy.angleInterpolation(motionNames, [0.0, 1.0], times, True)
-            motionProxy.angleInterpolation(motionNames, [0.0, -1.0], times, True)
-        motionProxy.angleInterpolation(motionNames, [0.0,0.0], times, True)
+            self.motionProxy.angleInterpolation(motionNames, [0.0, 1.0], times, True)
+            self.motionProxy.angleInterpolation(motionNames, [0.0, -1.0], times, True)
+        self.motionProxy.angleInterpolation(motionNames, [0.0,0.0], times, True)
 
         print("------> Nodded")
         self.postMotion()
 
     def naoShakeHead(self):
         self.preMotion()
-        motionProxy = self.connectToProxy("ALMotion")
-        motionProxy.wakeUp()
-        self.StiffnessOn(motionProxy)
+        self.motionProxy.wakeUp()
+        self.StiffnessOn(self.motionProxy)
 
         motionNames = ['HeadYaw', "HeadPitch"]
         times = [[0.7], [0.7]] # time to preform (s)
 
         # resets the angle of the motions (angle in radians)
-        motionProxy.angleInterpolation(motionNames, [0.0,0.0], times, True)
+        self.motionProxy.angleInterpolation(motionNames, [0.0,0.0], times, True)
         # shakes the head 3 times, back and forths
         for i in range(3):
-            motionProxy.angleInterpolation(motionNames, [1.0, 0.0], times, True)
-            motionProxy.angleInterpolation(motionNames, [-1.0, 0.0], times, True)
-        motionProxy.angleInterpolation(motionNames, [0.0,0.0], times, True)
+            self.motionProxy.angleInterpolation(motionNames, [1.0, 0.0], times, True)
+            self.motionProxy.angleInterpolation(motionNames, [-1.0, 0.0], times, True)
+        self.motionProxy.angleInterpolation(motionNames, [0.0,0.0], times, True)
 
         print("------> Nodded")
-        # self.StiffnessOff(motionProxy)
+        # self.StiffnessOff(self.motionProxy)
         self.postMotion()
 
     def naoShadeHeadSay(self, sayText = "Hi"):
         self.preMotion()
-        motionProxy = self.connectToProxy("ALMotion")
-#        motionProxy.wakeUp()
+#        self.motionProxy.wakeUp()
 
         motionNames = ['HeadYaw', "HeadPitch"]
         times = [[0.7], [0.7]] # time to preform (s)
 
         # resets the angle of the motions (angle in radians)
-        moveID = motionProxy.post.angleInterpolation(motionNames, [0.0,0.0], times, True)
+        moveID = self.motionProxy.post.angleInterpolation(motionNames, [0.0,0.0], times, True)
 
         sayID = self.naoSay(sayText)
-        motionProxy.wait(moveID, 0)
+        self.motionProxy.wait(moveID, 0)
 
         # shakes the head 3 times, back and forth
         for i in range(2):
-            motionProxy.angleInterpolation(motionNames, [1.0, 0.0], times, True)
+            self.motionProxy.angleInterpolation(motionNames, [1.0, 0.0], times, True)
 
-            motionProxy.angleInterpolation(motionNames, [-1.0, 0.0], times, True)
+            self.motionProxy.angleInterpolation(motionNames, [-1.0, 0.0], times, True)
 
-        motionProxy.angleInterpolation(motionNames, [0.0,0.0], times, True)
-        # motionProxy.wait(sayID, 0)
+        self.motionProxy.angleInterpolation(motionNames, [0.0,0.0], times, True)
+        # self.motionProxy.wait(sayID, 0)
         if self.logPrint:
             print "Moved head, now waiting"
         time.sleep(0.5)
 
         print("------> Shook Head")
-        # self.StiffnessOff(motionProxy)
+        # self.StiffnessOff(self.motionProxy)
         self.postMotion()
 
-    def naoWaveRight(self, movePercent = 1.0, numWaves = 3):
+    def naoWaveRightFirst(self, movePercent = 1.0, numWaves = 3):
         self.preMotion()
-        motionProxy = self.connectToProxy("ALMotion")
+        self.naoAliveOff()
 
         if movePercent > 1:
             movePercent = 1.0
@@ -302,71 +292,118 @@ class BasicMotions:
         elif numWaves < 0:
             numWaves = 0
 
-        rArmNames = motionProxy.getBodyNames("RArm")
+        rArmNames = self.motionProxy.getBodyNames("RArm")
         # set arm to the initial position
         rArmDefaultAngles = [math.radians(84.6), math.radians(-10.7),
                              math.radians(68.2), math.radians(23.3),
                              math.radians(5.8), 0.3]
         defaultTimes = [2,2,2,2,2,2]
-        moveID = motionProxy.post.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
-        motionProxy.wait(moveID, 0)
+        moveID = self.motionProxy.post.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
+        self.motionProxy.wait(moveID, 0)
+        # wave setup
+        waveNames = ["RShoulderPitch", "RShoulderRoll", "RHand"]
+        waveTimes = [2, 2, 2]
+        waveAngles = [math.radians(-11), math.radians(-40), 0.99]
+        moveID = self.motionProxy.post.angleInterpolation(waveNames, waveAngles, waveTimes, True)
+        self.motionProxy.wait(moveID, 0)
+
+    def naoWaveRightSecond(self, movePercent = 1.0, numWaves = 3):
+        for i in range(numWaves):
+
+            moveID = self.motionProxy.post.angleInterpolation(["RElbowRoll"],  math.radians(88.5)*movePercent, [1], True)
+            # self.motionProxy.wait(moveID, 0)
+            moveID = self.motionProxy.post.angleInterpolation(["RElbowRoll"],  math.radians(27)*movePercent, [1], True)
+            # self.motionProxy.wait(moveID, 0)
+
+        rArmNames = self.motionProxy.getBodyNames("RArm")
+        # set arm to the initial position
+        rArmDefaultAngles = [math.radians(84.6), math.radians(-10.7),
+                             math.radians(68.2), math.radians(23.3),
+                             math.radians(5.8), 0.3]
+        defaultTimes = [2,2,2,2,2,2]
+        moveID = self.motionProxy.post.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
+        # self.motionProxy.wait(moveID, 0)
+
+        print("------> Waved Right")
+        self.postMotion()
+        self.naoAliveON()
+
+    def naoWaveRight(self, movePercent = 1.0, numWaves = 3):
+        self.preMotion()
+
+        if movePercent > 1:
+            movePercent = 1.0
+        elif movePercent < 0:
+            movePercent = 0.0
+        if numWaves > 3:
+            numWaves = 3
+        elif numWaves < 0:
+            numWaves = 0
+
+        rArmNames = self.motionProxy.getBodyNames("RArm")
+        # set arm to the initial position
+        rArmDefaultAngles = [math.radians(84.6), math.radians(-10.7),
+                             math.radians(68.2), math.radians(23.3),
+                             math.radians(5.8), 0.3]
+        defaultTimes = [2,2,2,2,2,2]
+        moveID = self.motionProxy.post.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
+        self.motionProxy.wait(moveID, 0)
 
         # wave setup
         waveNames = ["RShoulderPitch", "RShoulderRoll", "RHand"]
         waveTimes = [2, 2, 2]
         waveAngles = [math.radians(-11), math.radians(-40), 0.99]
-        moveID = motionProxy.post.angleInterpolation(waveNames, waveAngles, waveTimes, True)
-        motionProxy.wait(moveID, 0)
+        moveID = self.motionProxy.post.angleInterpolation(waveNames, waveAngles, waveTimes, True)
+        self.motionProxy.wait(moveID, 0)
 
         for i in range(numWaves):
-            moveID = motionProxy.post.angleInterpolation(["RElbowRoll"],  math.radians(88.5)*movePercent, [1], True)
-            motionProxy.wait(moveID, 0)
-            moveID = motionProxy.post.angleInterpolation(["RElbowRoll"],  math.radians(27)*movePercent, [1], True)
-            motionProxy.wait(moveID, 0)
 
-        moveID = motionProxy.post.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
-        motionProxy.wait(moveID, 0)
+            moveID = self.motionProxy.post.angleInterpolation(["RElbowRoll"],  math.radians(88.5)*movePercent, [1], True)
+            self.motionProxy.wait(moveID, 0)
+            moveID = self.motionProxy.post.angleInterpolation(["RElbowRoll"],  math.radians(27)*movePercent, [1], True)
+            self.motionProxy.wait(moveID, 0)
+
+        moveID = self.motionProxy.post.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
+        self.motionProxy.wait(moveID, 0)
 
         print("------> Waved Right")
         self.postMotion()
 
     def naoWaveBoth(self):
         self.preMotion()
-        motionProxy = self.connectToProxy("ALMotion")
 
-        rArmNames = motionProxy.getBodyNames("RArm")
+        rArmNames = self.motionProxy.getBodyNames("RArm")
         # set arm to the initial position
         rArmDefaultAngles = [math.radians(84.6), math.radians(-10.7),
                              math.radians(68.2), math.radians(23.3),
                              math.radians(5.8), 0.3]
-        lArmNames = motionProxy.getBodyNames("LArm")
+        lArmNames = self.motionProxy.getBodyNames("LArm")
         lArmDefaultAngles = [math.radians(84.6), math.radians(10.7),
                              math.radians(-68.2), math.radians(-23.3),
                              math.radians(5.8), 0.3]
         defaultTimes = [2,2,2,2,2,2]
-        motionProxy.angleInterpolation(rArmNames + lArmNames, rArmDefaultAngles + lArmDefaultAngles, defaultTimes + defaultTimes, True)
+        self.motionProxy.angleInterpolation(rArmNames + lArmNames, rArmDefaultAngles + lArmDefaultAngles, defaultTimes + defaultTimes, True)
 
         # wave setup
         waveNames = ["RShoulderPitch", "RShoulderRoll", "RHand", "LShoulderPitch", "LShoulderRoll", "LHand"]
         waveTimes = [2, 2, 2, 2, 2, 2]
         waveAngles = [math.radians(-11), math.radians(-40), 0.99, math.radians(-11), math.radians(40), 0.99]
-        motionProxy.angleInterpolation(waveNames, waveAngles, waveTimes, True)
+        self.motionProxy.angleInterpolation(waveNames, waveAngles, waveTimes, True)
 
         for i in range(3):
             waveNames = ["RElbowRoll", "LElbowRoll"]
             waveAngles = [math.radians(88.5), math.radians(-88.5)]
-            motionProxy.angleInterpolation(waveNames,  waveAngles, [1,1], True)
+            self.motionProxy.angleInterpolation(waveNames,  waveAngles, [1,1], True)
             waveAngles = [math.radians(27), math.radians(-27)]
-            motionProxy.angleInterpolation(waveNames,  waveAngles, [1,1], True)
+            self.motionProxy.angleInterpolation(waveNames,  waveAngles, [1,1], True)
 
-        motionProxy.angleInterpolation(rArmNames + lArmNames, rArmDefaultAngles + lArmDefaultAngles, defaultTimes + defaultTimes, True)
+        self.motionProxy.angleInterpolation(rArmNames + lArmNames, rArmDefaultAngles + lArmDefaultAngles, defaultTimes + defaultTimes, True)
 
         print("------> Waved Both")
         self.postMotion()
 
     def naoWaveRightSay(self, sayText = "Hi", sayEmotion = -1, movePercent = 1.0, numWaves = 3):
         self.preMotion()
-        motionProxy = self.connectToProxy("ALMotion")
 
         if movePercent > 1:
             movePercent = 1.0
@@ -377,40 +414,39 @@ class BasicMotions:
         elif numWaves < 0:
             numWaves = 0
 
-        rArmNames = motionProxy.getBodyNames("RArm")
+        rArmNames = self.motionProxy.getBodyNames("RArm")
         # set arm to the initial position
         rArmDefaultAngles = [math.radians(84.6), math.radians(-10.7),
                              math.radians(68.2), math.radians(23.3),
                              math.radians(5.8), 0.3]
         defaultTimes = [2,2,2,2,2,2]
-        moveID = motionProxy.post.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
-        motionProxy.wait(moveID, 0)
+        moveID = self.motionProxy.post.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
+        self.motionProxy.wait(moveID, 0)
 
         # wave setup
         waveNames = ["RShoulderPitch", "RShoulderRoll", "RHand"]
         waveTimes = [2, 2, 2]
         waveAngles = [math.radians(-11), math.radians(-40), 0.99]
-        moveID = motionProxy.post.angleInterpolation(waveNames, waveAngles, waveTimes, True)
-        motionProxy.wait(moveID, 0)
+        moveID = self.motionProxy.post.angleInterpolation(waveNames, waveAngles, waveTimes, True)
+        self.motionProxy.wait(moveID, 0)
         self.naoSay(sayText)
 
         for i in range(numWaves):
-            moveID = motionProxy.post.angleInterpolation(["RElbowRoll"],  math.radians(88.5)*movePercent, [1], True)
-            motionProxy.wait(moveID, 0)
-            moveID = motionProxy.post.angleInterpolation(["RElbowRoll"],  math.radians(27)*movePercent, [1], True)
-            motionProxy.wait(moveID, 0)
+            moveID = self.motionProxy.post.angleInterpolation(["RElbowRoll"],  math.radians(88.5)*movePercent, [1], True)
+            self.motionProxy.wait(moveID, 0)
+            moveID = self.motionProxy.post.angleInterpolation(["RElbowRoll"],  math.radians(27)*movePercent, [1], True)
+            self.motionProxy.wait(moveID, 0)
 
-        moveID = motionProxy.post.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
-        motionProxy.wait(moveID, 0)
+        moveID = self.motionProxy.post.angleInterpolation(rArmNames, rArmDefaultAngles, defaultTimes, True)
+        self.motionProxy.wait(moveID, 0)
 
         print("------> Waved Right")
         self.postMotion()
 
     def stopNAOActions(self):
-        motionProxy = self.connectToProxy("ALMotion")
         speechProxy = self.connectToProxy("ALTextToSpeech")
 
-        motionProxy.killAll()
+        self.motionProxy.killAll()
         speechProxy.stopAll()
         print("------> Stopped All Actions")
 
@@ -618,9 +654,8 @@ class BasicMotions:
                 # print(max(max(times)))
                 if bDisableEye is None:
                     self.blinkEyes(color,max(max(times))*3, configuration)
-                motionProxy = self.connectToProxy("ALMotion")
-                motionProxy.angleInterpolation(names, keys, times, True)
-                # print 'Tasklist: ', motionProxy.getTaskList();
+                self.motionProxy.angleInterpolation(names, keys, times, True)
+                # print 'Tasklist: ', self.motionProxy.getTaskList();
                 time.sleep(max(max(times))+0.5)
             except BaseException, err:
                 print "***********************Did not show Emotion"

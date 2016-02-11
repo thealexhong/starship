@@ -339,6 +339,10 @@ class GenUtil:
     def naoWave(self):
         self.naoMotions.naoWaveRight()
 
+    # def naoWaveSay(self):
+    #     self.naoMotions.naoWaveRightFirst()
+    #     self.naoMotions.naoWaveRightSecond()
+
     def checkEdgeSafety(self):
         # check if NAO is far enough away from the edge
         # self.naoMotions.naoShakeHead()
@@ -356,7 +360,7 @@ class GenUtil:
             print "Edge Detection failed"
             print e
 
-        self.naoSeesHigh = False # self.naoSeesHigh or self.naoSeesHighTest
+        self.naoSeesHigh = self.naoSeesHigh or self.naoSeesHighTest
         if self.naoSeesHigh:
             print "NAO is too close to the edge"
             self.naoSeesHighEdge()
