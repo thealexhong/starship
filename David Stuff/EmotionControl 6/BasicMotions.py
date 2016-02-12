@@ -23,7 +23,7 @@ class BasicMotions(ALModule):
         self.eyeColor={'happy':     0x0000FF00,
                        'sad':       0x00000060,
                        'scared1':   0x009F2C00,
-                       'scared2':   0x00FF7F00,
+                       'scared2':   0x009F2C00,
                        'fear':      0x00600088,
                        'hope':      0x00FFB428,
                        'anger':     0x00FF0000}

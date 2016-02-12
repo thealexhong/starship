@@ -64,10 +64,10 @@ def main(NAOip, NAOport):
         elif user_input == "fear2motion": # do 2
             time.sleep(delay)
             BasicMotions.fear2Emotion()
-        elif user_input == "hope1motion": #do 1
+        elif user_input == "hope1motion": #do 4
             time.sleep(delay)
             BasicMotions.hope1Emotion()
-        elif user_input == "hope2motion": # do 4
+        elif user_input == "hope2motion": # do 1
             time.sleep(delay)
             BasicMotions.hope2Emotion()
         elif user_input == "angermotion": # do 7
@@ -154,13 +154,13 @@ def main(NAOip, NAOport):
     print("=== Main Program Finished Running ===")
 
 if __name__ == '__main__':
-    NAOIP = "127.0.0.1"
-    NAOPort = 56810
+    # NAOIP = "127.0.0.1"
+    # NAOPort = 56810
 
-    # NAOIP = "Luke.local"
+    NAOIP = "Luke.local"
 
     #NAOIP = "Leia.local"
-    # NAOPort = 9559
+    NAOPort = 9559
 
 
 
