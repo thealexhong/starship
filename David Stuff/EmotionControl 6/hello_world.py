@@ -46,39 +46,42 @@ def main(NAOip, NAOport):
         elif user_input == "rest":
             BasicMotions.naoRest()
         #=======EMOTION DISPLAY=============
-        elif user_input == "happymotion":
+        elif user_input == "happymotion": # do 3
             time.sleep(delay)
             BasicMotions.happyEmotion()
-        elif user_input == "sadmotion":
+        elif user_input == "sadmotion": # do 5
             time.sleep(delay)
             BasicMotions.sadEmotion()
-        elif user_input == "scared1motion":
+        elif user_input == "scared1motion": # touch do 8
             time.sleep(delay)
             BasicMotions.scaredEmotion1()
-        elif user_input == "scared2motion":
+        elif user_input == "scared2motion": # step back, not use this
             time.sleep(delay)
             BasicMotions.scaredEmotion2()
-        elif user_input == "fear1motion":
+        elif user_input == "fear1motion": # do 6
             time.sleep(delay)
             BasicMotions.fear1Emotion()
-        elif user_input == "fear2motion":
+        elif user_input == "fear2motion": # do 2
             time.sleep(delay)
             BasicMotions.fear2Emotion()
-        elif user_input == "hope1motion":
+        elif user_input == "hope1motion": #do 1
             time.sleep(delay)
             BasicMotions.hope1Emotion()
-        elif user_input == "hope2motion":
+        elif user_input == "hope2motion": # do 4
             time.sleep(delay)
             BasicMotions.hope2Emotion()
-        elif user_input == "angermotion":
+        elif user_input == "angermotion": # do 7
             time.sleep(delay)
             BasicMotions.angerEmotion()
         elif user_input == "lookmotion":
             time.sleep(delay)
             BasicMotions.LookAtEdgeEmotion()
-        elif user_input == "edgemotion":
+        elif user_input == "edgemotion": # do 9
             time.sleep(delay)
             BasicMotions.FoundEdgeEmotion()
+        elif user_input == "scared3motion": # do 10
+            time.sleep(delay)
+            BasicMotions.scaredEmotion3()
 
         #=======VOICE EFFECT=============
         elif user_input == "happy":
@@ -151,13 +154,13 @@ def main(NAOip, NAOport):
     print("=== Main Program Finished Running ===")
 
 if __name__ == '__main__':
-    #NAOIP = "127.0.0.1"
-    #NAOPort = 58357
+    NAOIP = "127.0.0.1"
+    NAOPort = 56810
 
-    NAOIP = "Luke.local"
+    # NAOIP = "Luke.local"
 
     #NAOIP = "Leia.local"
-    NAOPort = 9559
+    # NAOPort = 9559
 
 
 

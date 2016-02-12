@@ -10,6 +10,7 @@ from ThreadedCheckers import ThreadedChecker
 from UserAffectGenerator import UserAffectGenerator
 import json
 import atexit
+import time
 
 def main(NAOip, NAOport, name):
 
@@ -90,7 +91,7 @@ def main(NAOip, NAOport, name):
         print "History of Robot Emotions: ", reHist
         print "History of Observable Expressions: ", oeHist
         print "History of Drive Statuses: ", driveStatHist
-        writeUserHistories(userName, userNumber, userInfo,
+        writeUserHistories(userName, userNumber, userInfo, dateTime,
                            stateTimeStamp, stateDateTime, fsmStateHist, reHist, oeHist, driveStatHist, fsmStateNameHist)
 
     else:
@@ -129,9 +130,9 @@ def initiateUserInfo(userName, userNumber, activityType, dateTime):
 
     return writeLine
 
-def writeUserHistories(userName, userNumber, userInfo,
+def writeUserHistories(userName, userNumber, userInfo, dateTime,
                        stateTimeStamp, stateDateTime, fsmStateHist, reHist, oeHist, driveStatHist, fsmStateNameHist):
-    fileName = "ProgramDataFiles\\" + str(userNumber) + "_" + userName + "\\" + str(userNumber)  + "_" + userName +"_Flow.csv"
+    fileName = "ProgramDataFiles\\" + str(userNumber) + "_" + userName + "\\" + str(userNumber)  + "_" + userName +"_Flow_" + str(dateTime) + ".csv"
     FileUtilitiy.writeTextLine(fileName, userInfo + " \n")
     writeLine = "State Time Stamp, State Date Time, FSM State, FSM State Name, Robot Emotion, Observable Expression, Drive Statuses"
     FileUtilitiy.writeTextLine(fileName, writeLine + " \n")
@@ -190,12 +191,12 @@ def exitingProgram():
     print "Program Exiting..."
 
 if __name__ == '__main__':
-    simulated = False
+    simulated = True
     name = "NAO"
     if simulated:
         #simulated NAO
         NAOIP = "127.0.0.1"
-        NAOPort = 59502
+        NAOPort = 56702
     else:
         useLuke = True
         #real NAO

@@ -37,8 +37,12 @@ class BasicMotions(ALModule):
         self.bScared = False
         #=========SETUP FOR VOICE================
         self.tts = ALProxy("ALTextToSpeech")
-        audioProxy = ALProxy("ALAudioDevice")
-        audioProxy.setOutputVolume(10)
+        try:
+            audioProxy = ALProxy("ALAudioDevice")
+            audioProxy.setOutputVolume(10)
+        except Exception as e:
+            print "no audio"
+
         #Valid Value:50 to 200
         self.ttsPitch={      'default':   "\\vct=100\\",
                              'happy':     "\\vct=120\\",
@@ -420,8 +424,8 @@ class BasicMotions(ALModule):
                 print err
 
     def blinkAlarmingEyes(self,duration):
-        bAnimation= True;
-        accu=0;
+        bAnimation= True
+        accu=0
         rgbList=[]
         timeList=[]
         color = 0x00FF7F00
@@ -434,7 +438,7 @@ class BasicMotions(ALModule):
             timeList.extend(newTimeList)
         try:
             ledProxy = self.connectToProxy("ALLeds")
-            ledProxy.post.fadeListRGB("LedEyeCorner", rgbList, timeList)
+            ledProxy.post.fadeListRGB("LedEyeTopBottom", rgbList, timeList)
         except BaseException, err:
             print err
 
@@ -1170,6 +1174,12 @@ class BasicMotions(ALModule):
 
 
         #self.updateWithBlink(names, keys, times, 0x00000060, "EyeNone")
+
+    def scaredEmotion3(self):
+        self.blinkAlarmingEyes(4*3)
+        postureProxy = self.connectToProxy("ALRobotPosture")
+        postureProxy.goToPosture("StandInit", 0.5)
+        self.setEyeEmotion('scared1')
 
     def fear1Emotion(self):
         names = list()

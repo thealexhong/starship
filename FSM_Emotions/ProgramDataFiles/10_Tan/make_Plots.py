@@ -67,18 +67,20 @@ def plotAffect(csvList):
     MAs = []
     times = []
     timesV = []
-    vCols = [0, 2, 4, 6]
     for row in csvList:
         [bv, ba, vv, va, mv, ma, ts] = row[0:7]
-        BVs += [bv]
-        BAs += [ba]
+        BVs += [int(bv)]
+        BAs += [int(ba)]
         if vv != "_":
-            VVs += [vv]
-            VAs += [va]
-            timesV += [ts]
-        MVs += [mv]
-        MAs += [ma]
-        times += [ts]
+            VVs += [int(vv)]
+            VAs += [int(va)]
+            timesV += [float(ts)]
+        MVs += [int(mv)]
+        MAs += [int(ma)]
+        times += [float(ts)]
+    print times
+    AvgV = [np.mean(MVs)] * len(MVs)
+    AvgA = [np.mean(MAs)] * len(MAs)
 
     plt.figure(1)
 
@@ -86,16 +88,19 @@ def plotAffect(csvList):
     plt.title("User 10 Affect Measurements")
     plt.ylabel("Valence")
     plt.yticks(np.arange(-2.0, 3.0, 1.0))
-    bvp, = plt.plot(times, BVs, 'ro', label = "Body")
-    vvp, = plt.plot(timesV, VVs, 'bo', label = "Voice")
-    mvp, = plt.plot(times, MVs, 'g', label = "Multimodal")
-    plt.legend(handles=[bvp, vvp, mvp])#, bbox_to_anchor=(1.05,1))
+    plt.axis([-10, max(times) + 10, -2.1, 2.1])
+    bvp, = plt.plot(times, BVs, 'ro', label = "Body Language")
+    vvp, = plt.plot(timesV, VVs, 'bo', label = "Vocal Intonation")
+    mvp, = plt.plot(times, MVs, 'g', label = "Multi-modal Fusion")
+    avgvp, = plt.plot(times, AvgV, 'k--', label = "Average")
+    plt.legend(handles=[bvp, vvp, mvp, avgvp])#, bbox_to_anchor=(1.05,1))
 
     plt.subplot(2,1,2)
     plt.ylabel("Arousal")
     plt.xlabel("Time (s)")
     plt.yticks(np.arange(-2.0, 3.0, 1.0))
-    plt.plot(times, BAs, 'ro', timesV, VAs, 'bo', times, MAs, 'g')
+    plt.axis([-10, max(times) + 10, -2.1, 2.1])
+    plt.plot(times, BAs, 'ro', timesV, VAs, 'bo', times, MAs, 'g', times, AvgA, 'k--')
     plt.show()
 
 
