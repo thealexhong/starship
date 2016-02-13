@@ -38,7 +38,7 @@ class BasicMotions:
         tts.setParameter("doubleVoiceLevel", 0)
         try:
             audioProxy = self.connectToProxy("ALAudioDevice")
-            audioProxy.setOutputVolume(0.9*100)
+            audioProxy.setOutputVolume(0.5*100)
         except Exception as e:
             print "No Audio device found"
             print e
@@ -666,6 +666,9 @@ class BasicMotions:
         else:
             print("------> Did NOT Stand Up...")
         self.postMotion()
+
+    def happy1Emotion(self):
+        self.happyEmotion()
 
     def happyEmotion(self):
         names = list()
@@ -1471,6 +1474,9 @@ class BasicMotions:
         times.append([0.44, 0.84, 1.24, 1.64])
         keys.append([ -0.6704, -0.391212, -0.6704, -0.170316])
         self.updateWithBlink(names, keys, times, self.eyeColor['hope'], self.eyeShape['hope'], True, bDisableInit=None)
+
+    def hope3Emotion(self):
+        self.hope2Emotion()
 
     def angerEmotion(self):
         names = list()

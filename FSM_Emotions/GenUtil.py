@@ -11,7 +11,7 @@ class GenUtil:
     def __init__(self, naoMotions):
         # no inits
         self.emotionExpressionDict = ["Happy", "Hopeful", "Sad", "Fearful", "Angry",
-                                      "Happy2", "Hopeful2", "Sad2", "Fearful2", "Angry2",
+                                      "Happy2", "Hopeful2", "Sad2", "Fearful2", "Angry2", "Hopeful3",
                                       "Scared1", "Scared2", "Scared3"] #(pickup, touch, high)
                                     
         self.numOE = len(self.emotionExpressionDict)
@@ -76,8 +76,10 @@ class GenUtil:
                     self.naoMotions.naoStand(0.2)
                     self.naoMotions.naoAliveOff()
 
-                if oe == "Happy2":
-                    self.showHappyBody()
+                if oe == "Happy":
+                    self.showHappy1Body()
+                elif oe == "Happy2":
+                    self.showHappy2Body()
                 elif oe == "Sad2":
                     self.showSadBody()
                 elif oe == "Fearful":
@@ -90,6 +92,8 @@ class GenUtil:
                     self.showHopeBody()
                 elif oe == "Hopeful2":
                     self.showHopeBody2()
+                elif oe == "Hopeful3":
+                    self.showHopeBody3()
                 elif oe == "Scared1" and not self.wasJustScared: #pickup
                     self.showScared1Body()
                     self.wasJustScared = True
@@ -171,9 +175,12 @@ class GenUtil:
         print "My eyes are Scared"
 
 ################################################# Body
-    def showHappyBody(self):
+    def showHappy1Body(self):
+        self.naoMotions.happy1Emotion() # switch to new one
+        print "My body is Happy1"
+    def showHappy2Body(self):
         self.naoMotions.happyEmotion()
-        print "My body is Happy"
+        print "My body is Happy2"
        
     def showSadBody(self):
         self.naoMotions.sadEmotion()
@@ -198,6 +205,10 @@ class GenUtil:
     def showHopeBody2(self):
         self.naoMotions.hopeEmotion()
         print "My body is Hopeful2"
+
+    def showHopeBody3(self):
+        self.naoMotions.hope3Emotion()
+        print "My body is Hopeful3"
 
     def showScared1Body(self):
         self.naoMotions.scaredEmotion3()

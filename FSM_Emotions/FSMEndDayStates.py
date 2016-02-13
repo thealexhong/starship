@@ -2,6 +2,7 @@ import GenUtil
 import random
 import FileUtilitiy
 import json
+import time
 
 class FSMEndDayStates:
     def __init__(self, genUtil, FSMBody, userName = "Human", userNumber = 1, robotName = "NAO", lastInteraction = False):
@@ -33,6 +34,7 @@ class FSMEndDayStates:
             "meal1CheckinYesAte", "meal1CheckinYesAteYesReg", "meal1CheckinYesAteNoReg",
             "meal1CheckinNoAte", "meal1CheckinNoAteYesHad", "meal1CheckinNoAteNoHad",
             "checkEdgeSafety1",
+            "tellJoke_Statement1",
             "meal2CheckinLunch",
             "meal2CheckinYesAte", "meal2CheckinYesAteGood", "meal2CheckinYesAteBad",
             "meal2CheckinNoAte", "meal2CheckinNoAteYesComp", "meal2CheckinNoAteYesCompYesResp",
@@ -41,6 +43,7 @@ class FSMEndDayStates:
             "meal3CheckinYesAteBad", "meal3CheckinNoAte", "meal3CheckinNoAteYesComp", "meal3CheckinNoAteDontknowComp",
             "meal3CheckinNoAteNoComp", "meal3CheckinNoHad",
             "checkEdgeSafety2",
+            "tellJoke_Statement2",
             "exerciseCheckin",
             "exerciseCheckinYesDid", "exerciseCheckinYesDidGoodDiff", "exerciseCheckinYesDidHardDiff",
             "exerciseCheckinYesDidEasyDiff", "exerciseCheckinNoDid", "exerciseCheckinNoDidYesComp",
@@ -307,6 +310,31 @@ class FSMEndDayStates:
         seesHigh = self.genUtil.checkEdgeSafety()
         if not seesHigh:
             self.FSMBody.setFSMState(self.FSMBody.state+1)
+        appraiseState = False
+        return appraiseState
+
+    def tellJoke_Statement1(self):
+        re = self.FSMBody.getRENumber()
+        if re in [0, 1]: # happy, hope
+            sayText = "Your name must be Coca Cola."
+            self.FSMBody.sayWithEmotion(sayText)
+            time.sleep(3)
+            sayText = "Because you're soda, licious!"
+            self.FSMBody.sayWithEmotion(sayText)
+            time.sleep(1)
+            sayText = "Hah. hah. hah!"
+            self.FSMBody.sayWithEmotion(sayText)
+        else:
+            sayText = "Why was the robot so lazy."
+            self.FSMBody.sayWithEmotion(sayText)
+            time.sleep(3)
+            sayText = "It wasn't, it was just on its energy saving mode."
+            self.FSMBody.sayWithEmotion(sayText)
+            time.sleep(1)
+
+        time.sleep(1)
+        self.FSMBody.setFSMState(self.FSMBody.state+1)
+
         appraiseState = False
         return appraiseState
 
@@ -613,6 +641,31 @@ class FSMEndDayStates:
         seesHigh = self.genUtil.checkEdgeSafety()
         if not seesHigh:
             self.FSMBody.setFSMState(self.FSMBody.state+1)
+        appraiseState = False
+        return appraiseState
+
+    def tellJoke_Statement2(self):
+        re = self.FSMBody.getRENumber()
+        if re in [0, 1]: # happy, hope
+            sayText = "Why did the kid cross the play ground?"
+            self.FSMBody.sayWithEmotion(sayText)
+            time.sleep(3)
+            sayText = "Because he was trying to lose weight, just like you should be!"
+            self.FSMBody.sayWithEmotion(sayText)
+            time.sleep(1)
+            sayText = "Hah. hah. hah. hah. hah!"
+            self.FSMBody.sayWithEmotion(sayText)
+        else:
+            sayText = "Whats the fastest way to burn 2000 calories."
+            self.FSMBody.sayWithEmotion(sayText)
+            time.sleep(3)
+            sayText = "Leave brownies in the oven while you take a nap."
+            self.FSMBody.sayWithEmotion(sayText)
+            time.sleep(1)
+
+        time.sleep(1)
+        self.FSMBody.setFSMState(self.FSMBody.state+1)
+
         appraiseState = False
         return appraiseState
 

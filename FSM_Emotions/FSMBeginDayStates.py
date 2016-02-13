@@ -2,6 +2,7 @@ import GenUtil
 import random
 import FileUtilitiy
 import json
+import time
 
 class FSMBeginDayStates:
     def __init__(self, genUtil, FSMBody, userName = "Human", userNumber = 1, robotName = "NAO"):
@@ -40,6 +41,7 @@ class FSMBeginDayStates:
             "askWeatherBad", "askWeatherBadParis", "askWeatherBadSameHome", "askWeatherBadDiffHome",
             "askWeatherBadDiffHomeYesTake", "askWeatherBadDiffHomeNoTake",
             "checkEdgeSafety1",
+            "tellJoke_Statement1",
             "askBreakfast", "askBreakfastAte",
             "askDietGluten",
             "askDietGlutenYesEat", "askDietGlutenNoEat",
@@ -50,6 +52,7 @@ class FSMBeginDayStates:
             "mealFeedbackLunch", "meal2FeedbackYesDelici", "meal2FeedbackNoDelici", "meal2FeedbackNoOptions",
             "askDietFish", "askDietFishYesEat", "askDietFishNoEat",
             "checkEdgeSafety2",
+            "tellJoke_Statement2",
             "meal3DecideDinner",
             "meal3FeedbackDinner", "meal3FeedbackYesGood", "meal3FeedbackNoGood", "meal3FeedbackNoOptions",
             "exerciseDecide",
@@ -343,6 +346,30 @@ class FSMBeginDayStates:
         appraiseState = False
         return appraiseState
 
+    def tellJoke_Statement1(self):
+        re = self.FSMBody.getRENumber()
+        if re in [0, 1]: # happy, hope
+            sayText = "What does a wolf call a rabbit?"
+            self.FSMBody.sayWithEmotion(sayText)
+            time.sleep(3)
+            sayText = "Fast Food!"
+            self.FSMBody.sayWithEmotion(sayText)
+            sayText = "Hah. hah. hah!"
+            self.FSMBody.sayWithEmotion(sayText)
+        else:
+            sayText = "What happened to the Italian chef?"
+            self.FSMBody.sayWithEmotion(sayText)
+            time.sleep(3)
+            sayText = "He pastaa-away."
+            self.FSMBody.sayWithEmotion(sayText)
+            time.sleep(1)
+
+        time.sleep(1)
+        self.FSMBody.setFSMState(self.FSMBody.state+1)
+
+        appraiseState = False
+        return appraiseState
+
     def askBreakfast(self):
         sayText = "Let's start planning your die it for today."
         self.FSMBody.sayWithEmotion(sayText)
@@ -626,6 +653,30 @@ class FSMBeginDayStates:
         seesHigh = self.genUtil.checkEdgeSafety()
         if not seesHigh:
             self.FSMBody.setFSMState(self.FSMBody.state+1)
+        appraiseState = False
+        return appraiseState
+
+    def tellJoke_Statement2(self):
+        re = self.FSMBody.getRENumber()
+        if re in [0, 1]: # happy, hope
+            sayText = "Do you have raisins?"
+            self.FSMBody.sayWithEmotion(sayText)
+            time.sleep(3)
+            sayText = "No? How about a date!"
+            self.FSMBody.sayWithEmotion(sayText)
+            sayText = "Hah. hah. hah. hah. hah!"
+            self.FSMBody.sayWithEmotion(sayText)
+        else:
+            sayText = "I'm like ice-cream right now."
+            self.FSMBody.sayWithEmotion(sayText)
+            time.sleep(3)
+            sayText = "I'm feeling really cold right now."
+            self.FSMBody.sayWithEmotion(sayText)
+            time.sleep(1)
+
+        time.sleep(1)
+        self.FSMBody.setFSMState(self.FSMBody.state+1)
+
         appraiseState = False
         return appraiseState
 

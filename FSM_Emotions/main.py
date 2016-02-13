@@ -191,7 +191,7 @@ def exitingProgram():
     print "Program Exiting..."
 
 if __name__ == '__main__':
-    simulated = True
+    simulated = False
     name = "NAO"
     if simulated:
         #simulated NAO
