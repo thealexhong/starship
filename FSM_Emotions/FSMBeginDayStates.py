@@ -667,10 +667,10 @@ class FSMBeginDayStates:
             sayText = "Hah. hah. hah. hah. hah!"
             self.FSMBody.sayWithEmotion(sayText)
         elif re in [2, 3, 4]: # sad, fear, anger
-            sayText = "What can you make from baked beans and onions?"
+            sayText = "What is the difference between a viola and an onion?"
             self.FSMBody.sayWithEmotion(sayText)
             time.sleep(3)
-            sayText = "You can make tear gas."
+            sayText = "No one cries when you cut a viola."
             self.FSMBody.sayWithEmotion(sayText)
             time.sleep(1)
             #How many grams of protein are in an apple pi? 3.14159265
