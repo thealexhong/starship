@@ -659,7 +659,7 @@ class FSMBeginDayStates:
     def tellJoke_Statement2(self):
         re = self.FSMBody.getRENumber()
         if re in [0, 1]: # happy, hope
-            sayText = "Do you have raisins?"
+            sayText = "Do you have any raisins?"
             self.FSMBody.sayWithEmotion(sayText)
             time.sleep(3)
             sayText = "No? How about a date!"
@@ -667,12 +667,13 @@ class FSMBeginDayStates:
             sayText = "Hah. hah. hah. hah. hah!"
             self.FSMBody.sayWithEmotion(sayText)
         elif re in [2, 3, 4]: # sad, fear, anger
-            sayText = "I'm like ice-cream right now."
+            sayText = "What can you make from baked beans and onions?"
             self.FSMBody.sayWithEmotion(sayText)
             time.sleep(3)
-            sayText = "I'm feeling really cold right now."
+            sayText = "You can make tear gas."
             self.FSMBody.sayWithEmotion(sayText)
             time.sleep(1)
+            #How many grams of protein are in an apple pi? 3.14159265
 
         time.sleep(1)
         self.FSMBody.setFSMState(self.FSMBody.state+1)

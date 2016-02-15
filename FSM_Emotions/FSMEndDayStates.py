@@ -328,7 +328,7 @@ class FSMEndDayStates:
             sayText = "Why was the robot so lazy."
             self.FSMBody.sayWithEmotion(sayText)
             time.sleep(3)
-            sayText = "It wasn't, it was just on its energy saving mode."
+            sayText = "He wasn't, he was just in energy saving mode."
             self.FSMBody.sayWithEmotion(sayText)
             time.sleep(1)
 
@@ -647,16 +647,16 @@ class FSMEndDayStates:
     def tellJoke_Statement2(self):
         re = self.FSMBody.getRENumber()
         if re in [0, 1]: # happy, hope
-            sayText = "Why did the kid cross the play ground?"
+            sayText = "What do you get when you run behind a car?"
             self.FSMBody.sayWithEmotion(sayText)
             time.sleep(3)
-            sayText = "Because he was trying to lose weight, just like you should be!"
+            sayText = "You get Exhausted!"
             self.FSMBody.sayWithEmotion(sayText)
             time.sleep(1)
             sayText = "Hah. hah. hah. hah. hah!"
             self.FSMBody.sayWithEmotion(sayText)
         elif re in [2, 3, 4]: # sad, fear, anger
-            sayText = "Whats the fastest way to burn 2000 calories."
+            sayText = "What is the fastest way to burn 2000 calories."
             self.FSMBody.sayWithEmotion(sayText)
             time.sleep(3)
             sayText = "Leave brownies in the oven while you take a nap."
