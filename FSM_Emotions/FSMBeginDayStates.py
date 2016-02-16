@@ -595,6 +595,7 @@ class FSMBeginDayStates:
         if self.meal2Options > 0 and len(self.meal2Tried) < 5:
             self.FSMBody.setFSMState(self.FSMBody.state -3) # suggest again
         else:
+            uporLikeli = self.FSMBody.sendUserEmotionOnRecomend(2)
             self.FSMBody.setFSMState(self.FSMBody.state +1) # dont suggest again
 
         appraiseState = False
@@ -757,6 +758,7 @@ class FSMBeginDayStates:
         if self.meal3Options > 0 and len(self.meal3Tried) < 5:
             self.FSMBody.setFSMState(self.FSMBody.state -3) # suggest again
         else:
+            uporLikeli = self.FSMBody.sendUserEmotionOnRecomend(3)
             self.FSMBody.setFSMState(self.FSMBody.state +1)
 
         appraiseState = False

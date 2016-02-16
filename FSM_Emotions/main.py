@@ -196,7 +196,7 @@ if __name__ == '__main__':
     if simulated:
         #simulated NAO
         NAOIP = "127.0.0.1"
-        NAOPort = 49869
+        NAOPort = 61994
     else:
         useLuke = True
         #real NAO
