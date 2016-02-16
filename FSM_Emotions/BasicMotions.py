@@ -38,7 +38,7 @@ class BasicMotions:
         tts.setParameter("doubleVoiceLevel", 0)
         try:
             audioProxy = self.connectToProxy("ALAudioDevice")
-            audioProxy.setOutputVolume(0.5*100)
+            audioProxy.setOutputVolume(0.9*100) #use 90%
         except Exception as e:
             print "No Audio device found"
             print e
