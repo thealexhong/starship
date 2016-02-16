@@ -356,7 +356,7 @@ class FSMBeginDayStates:
             self.FSMBody.sayWithEmotion(sayText)
             sayText = "Hah. hah. hah!"
             self.FSMBody.sayWithEmotion(sayText)
-        elif re in [2, 3, 4]: # sad, fear, anger
+        elif re in [2, 3]: # sad, fear
             sayText = "What happened to the Italian chef?"
             self.FSMBody.sayWithEmotion(sayText)
             time.sleep(3)
@@ -667,7 +667,7 @@ class FSMBeginDayStates:
             self.FSMBody.sayWithEmotion(sayText)
             sayText = "Hah. hah. hah. hah. hah!"
             self.FSMBody.sayWithEmotion(sayText)
-        elif re in [2, 3, 4]: # sad, fear, anger
+        elif re in [2, 3]: # sad, fear
             sayText = "What is the difference between a viola and an onion?"
             self.FSMBody.sayWithEmotion(sayText)
             time.sleep(3)

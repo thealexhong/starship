@@ -20,7 +20,7 @@ class DietFitnessFSM:
 		self.robotName = robotName
 		self.usersName = userName
 		self.userNumber = userNumber
-		initialState = 1# + 20
+		initialState = 1 #+ 35#14
 		self.state = initialState
 		self.s = initialState
 		self.dayCALS = 0
@@ -176,6 +176,12 @@ class DietFitnessFSM:
 				voe = self.oeHMM.determineObservableExpression(vre)
 				self.showData( "New OE: " +  str(voe))
 			self.showData("")
+
+			setEmotion = False
+			if setEmotion:
+				self.genUtil.showSadEyes()
+				self.reMM.setCurrentEmotionByNumber(2)
+				voe = self.oeHMM.determineObservableExpression(self.reMM.getRobotEmotionVector())
 
 			if self.genUtil.checkSafety() and self.s > self.FSMInUse.getNumMethods():
 				sitTest = False

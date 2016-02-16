@@ -1468,16 +1468,16 @@ class BasicMotions:
         # Choregraphe simplified export in Python.
 
         names.append("HeadPitch")
-        times.append([0.8, 1.6])
-        keys.append([-0.10472, -0.09515])
+        times.append([0.8, 1.6, 1.88, 2.2, 2.52, 2.8, 3.04])
+        keys.append([-0.10472, -0.0951499, -0.102126, -0.102126, -0.102126, -0.102126, -0.102126])
 
         names.append("HeadYaw")
-        times.append([0.8, 1.6])
-        keys.append([-0.0279253, -0.191792])
+        times.append([0.8, 1.6, 1.88, 2.2, 2.52, 2.8, 3.04])
+        keys.append([-0.0279253, -0.191792, -0.350811, 0.349066, -0.350811, 0.349066, 0])
 
         names.append("LAnklePitch")
         times.append([0.8, 1.6])
-        keys.append([0.0889301, 0.0919981])
+        keys.append([0.0889301, 0.091998])
 
         names.append("LAnkleRoll")
         times.append([0.8, 1.6])
@@ -1485,7 +1485,7 @@ class BasicMotions:
 
         names.append("LElbowRoll")
         times.append([0.8, 1.6])
-        keys.append([-0.427944, -0.417206])
+        keys.append([-0.427944, -0.417205])
 
         names.append("LElbowYaw")
         times.append([0.8, 1.6])
@@ -1537,7 +1537,7 @@ class BasicMotions:
 
         names.append("RElbowYaw")
         times.append([0.8, 1.6])
-        keys.append([1.20261, 0.00302601])
+        keys.append([1.20261, 0.00302602])
 
         names.append("RHand")
         times.append([0.8, 1.6])
@@ -1549,7 +1549,7 @@ class BasicMotions:
 
         names.append("RHipRoll")
         times.append([0.8, 1.6])
-        keys.append([-0.091998, -0.0919981])
+        keys.append([-0.091998, -0.091998])
 
         names.append("RHipYawPitch")
         times.append([0.8, 1.6])
@@ -1561,15 +1561,15 @@ class BasicMotions:
 
         names.append("RShoulderPitch")
         times.append([0.8, 1.6])
-        keys.append([1.47268, -0.661112])
+        keys.append([1.47268, -0.661111])
 
         names.append("RShoulderRoll")
         times.append([0.8, 1.6])
-        keys.append([-0.168782, 0.305224])
+        keys.append([-0.168782, 0.305223])
 
         names.append("RWristYaw")
         times.append([0.8, 1.6])
-        keys.append([0.0904641, -0.78545])
+        keys.append([0.0904641, -0.785451])
 
         self.updateWithBlink(names, keys, times, self.eyeColor['fear'], self.eyeShape['fear'],True)
 

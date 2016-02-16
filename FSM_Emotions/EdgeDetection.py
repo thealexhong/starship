@@ -16,19 +16,33 @@ class EdgeDetection:
         self.camProxy = ALProxy("ALVideoDevice", self.NAOip, self.NAOport)
         self.resolution = vision_definitions.kQVGA
         self.colorSpace = vision_definitions.kBGRColorSpace
+        self.visionDefinition =  vision_definitions.kBottomCamera
         self.fps = 10
-        self.cameraId = self.camProxy.subscribe("python_GVM", self.resolution, self.colorSpace, self.fps)
-        print "The camera ID is", self.cameraId
-        self.camProxy.setActiveCamera(self.cameraId, vision_definitions.kBottomCamera)
+        #self.cameraId = self.camProxy.subscribe("python_GVM", self.resolution, self.colorSpace, self.fps)
+        #print "The camera ID is", self.cameraId
+        #self.camProxy.setActiveCamera(self.cameraId, vision_definitions.kBottomCamera)
         self.bDebug = False
         self.kernelClosing = np.ones((5, 5), np.uint8)
         self.kernelDilate = np.ones((5,5), np.uint8)
         self.kernelErode = np.ones((5,5), np.uint8)
         self.voteHoughLines=50
 
+    def GetCamera(self):
+        self.cameraId = self.camProxy.subscribe("python_GVM", self.resolution, self.colorSpace, self.fps)
+        if self.cameraId is None:
+            return None
+        else:
+            print "The camera ID is", self.cameraId
+            self.camProxy.setActiveCamera(self.cameraId, self.visionDefinition)
+            return self.cameraId
+
+    def ReleaseCamera(self):
+        if self.cameraId is not None:
+            self.camProxy.unsubscribe(self.cameraId)
+            self.cameraI=None
 
     def __del__(self):
-        self.camProxy.unsubscribe(self.cameraId)
+        self.ReleaseCamera()
         if self.bDebug:
             print "End camera subscription"
 
@@ -230,9 +244,9 @@ class EdgeDetection:
         lines = cv2.HoughLines(TableEdges,1,np.pi/180, self.voteHoughLines)
 
 
-        #if self.bDebug:
+        if self.bDebug:
             #cv2.imshow('Original', originalFrame)
-            #cv2.imshow('Edge',replicate_bgr)
+            cv2.imshow('Edge',replicate_bgr)
             #cv2.imshow('Smooth',blur_bgr)
             #cv2.imshow('Closing',closing)
             #cv2.imshow('TableEdge',TableEdges)
@@ -457,6 +471,9 @@ class EdgeDetection:
 
     def lookForEdge(self,Threshold,FrameToTake=None):
         #NOTE: distance in cm, angle in degree
+        id = self.GetCamera()
+        if id is None:
+            return False, None, None
 
         if FrameToTake is None:
             totalFrame = 5
@@ -478,6 +495,7 @@ class EdgeDetection:
                 countSuccess+=1
         if self.bDebug:
             cv2.destroyAllWindows()
+        self.ReleaseCamera()
         if countSuccess > (totalFrame*0.7):
             distance = np.mean(distanceList)
             angle = np.mean(angleList)
@@ -488,141 +506,3 @@ class EdgeDetection:
         else:
             return False, -1, -1
 
-    '''
-    def connectToProxy(self, proxyName):
-        try:
-            proxy = ALProxy(proxyName, self.NAOip, self.NAOport)
-        except Exception, e:
-            print "Could not create Proxy to ", proxyName
-            print "Error was: ", e
-        return proxy
-    '''
-    '''
-    def update(self, names, keys, times):
-        postureProxy = self.connectToProxy("ALRobotPosture")
-        standResult = postureProxy.goToPosture("StandInit", 0.3)
-        if (standResult):
-            print("------> Stood Up")
-            try:
-                # uncomment the following line and modify the IP if you use this script outside Choregraphe.
-                print("Time duration is ")
-                print(max(max(times)))
-                motionProxy = self.connectToProxy("ALMotion")
-                motionProxy.angleInterpolation(names, keys, times, True)
-                print 'Tasklist: ', motionProxy.getTaskList();
-                time.sleep(max(max(times))+0.5)
-            except BaseException, err:
-                print err
-        else:
-            print("------> Did NOT Stand Up...")
-    '''
-    '''
-    def happyEmotion(self):
-        names = list()
-        times = list()
-        keys = list()
-        names.append("HeadPitch")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([-0.0138481, -0.0138481, -0.50933, 0.00762796])
-
-        names.append("HeadYaw")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([-0.00924587, -0.00924587, -0.0138481, -0.0138481])
-
-        names.append("LAnklePitch")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([-0.345192, -0.357464, -0.354396, -0.354396])
-
-        names.append("LAnkleRoll")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([0.00157595, 0.00157595, 0.00157595, 0.00157595])
-
-        names.append("LElbowRoll")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([-0.99399, -0.99399, -0.983252, -0.99399])
-
-        names.append("LElbowYaw")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([-1.37297, -1.37297, -1.37297, -1.37297])
-
-        names.append("LHand")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([0.2572, 0.2572, 0.2572, 0.2572])
-
-        names.append("LHipPitch")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([-0.447886, -0.447886, -0.447886, -0.447886])
-
-        names.append("LHipRoll")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([4.19617e-05, 4.19617e-05, 4.19617e-05, 4.19617e-05])
-
-        names.append("LHipYawPitch")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([0.0061779, -0.00455999, -0.00455999, -0.00455999])
-
-        names.append("LKneePitch")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([0.70253, 0.70253, 0.70253, 0.70253])
-
-        names.append("LShoulderPitch")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([1.4097, 1.4097, 1.42044, 1.4097])
-
-        names.append("LShoulderRoll")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([0.291418, 0.291418, 0.28068, 0.291418])
-
-        names.append("LWristYaw")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([-0.0123138, -0.0123138, -0.0123138, -0.0123138])
-
-        names.append("RAnklePitch")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([-0.34971, -0.34971, -0.34971, -0.34971])
-
-        names.append("RAnkleRoll")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([-0.00609398, 0.00464392, 0.00464392, 0.00464392])
-
-        names.append("RElbowRoll")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([1.01555, 1.43893, 0.265424, 1.53251])
-
-        names.append("RElbowYaw")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([1.3913, 1.64287, 1.61679, 1.35755])
-
-        names.append("RHand")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([0.2544, 0.2544, 0.9912, 0.0108])
-
-        names.append("RHipPitch")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([-0.45564, -0.45564, -0.444902, -0.444902])
-
-        names.append("RHipRoll")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([0.00924587, -0.00149202, -0.00149202, -0.00149202])
-
-        names.append("RHipYawPitch")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([0.0061779, -0.00455999, -0.00455999, -0.00455999])
-
-        names.append("RKneePitch")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([0.70108, 0.70108, 0.70108, 0.70108])
-
-        names.append("RShoulderPitch")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([1.41132, 0.535408, -1.0216, 0.842208])
-
-        names.append("RShoulderRoll")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([-0.259288, 0.032172, 0.0444441, 0.202446])
-
-        names.append("RWristYaw")
-        times.append([0.8, 1.56, 2.12, 2.72])
-        keys.append([0.026036, 1.63213, 1.63213, 1.63213])
-        self.update(names, keys, times)
-        '''

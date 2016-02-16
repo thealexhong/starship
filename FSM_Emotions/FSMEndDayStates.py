@@ -324,7 +324,7 @@ class FSMEndDayStates:
             time.sleep(1)
             sayText = "Hah. hah. hah!"
             self.FSMBody.sayWithEmotion(sayText)
-        elif re in [2, 3, 4]: # sad, fear, anger
+        elif re in [2, 3]: # sad, fear
             sayText = "Why was the robot so lazy."
             self.FSMBody.sayWithEmotion(sayText)
             time.sleep(3)
@@ -655,7 +655,7 @@ class FSMEndDayStates:
             time.sleep(1)
             sayText = "Hah. hah. hah. hah. hah!"
             self.FSMBody.sayWithEmotion(sayText)
-        elif re in [2, 3, 4]: # sad, fear, anger
+        elif re in [2, 3]: # sad, fear
             sayText = "What is the fastest way to burn 2000 calories."
             self.FSMBody.sayWithEmotion(sayText)
             time.sleep(3)

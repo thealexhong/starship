@@ -380,7 +380,8 @@ class GenUtil:
         try:
             status, distance, angle = self.edgeDetector.lookForEdge(thres, nFrames)
             print "Status: ", status, "Distance: ", distance, " Angle: ", angle
-            self.naoSeesHigh = status
+            if distance is not None:
+                self.naoSeesHigh = status
         except Exception as e:
             print "Edge Detection failed"
             print e
