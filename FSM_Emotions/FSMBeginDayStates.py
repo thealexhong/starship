@@ -340,8 +340,14 @@ class FSMBeginDayStates:
         return appraiseState
 
     def checkEdgeSafety1(self):#15
+        sayText = "Give me a second to make sure I'm not too close to the edge."
+        self.FSMBody.sayWithEmotion(sayText)
+
         seesHigh = self.genUtil.checkEdgeSafety()
         if not seesHigh:
+            sayText = "Alright, I'm good."
+            self.FSMBody.sayWithEmotion(sayText)
+            time.sleep(2)
             self.FSMBody.setFSMState(self.FSMBody.state+1)
         appraiseState = False
         return appraiseState
@@ -651,8 +657,14 @@ class FSMBeginDayStates:
         return appraiseState
 
     def checkEdgeSafety2(self):#34
+        sayText = "Let me check the edge of the table again."
+        self.FSMBody.sayWithEmotion(sayText)
+
         seesHigh = self.genUtil.checkEdgeSafety()
         if not seesHigh:
+            sayText = "Seems like I'm in a safe spot."
+            self.FSMBody.sayWithEmotion(sayText)
+            time.sleep(2)
             self.FSMBody.setFSMState(self.FSMBody.state+1)
         appraiseState = False
         return appraiseState

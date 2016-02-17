@@ -7,10 +7,10 @@ import numpy as np
 
 userNumber = 10
 offsetHours = 5
-# affectFileName = "tan1 endofday 2016-02-11 4_33_30 PM.csv"
-# robotFileName = "10_Tan_Flow_endofday.csv"
-affectFileName = "tan1 2016-02-11 11_38_09 AM.csv"
-robotFileName = "10_Tan_Flow.csv"
+affectFileName = "tan1 endofday 2016-02-11 4_33_30 PM.csv"
+robotFileName = "10_Tan_Flow_endofday.csv"
+# affectFileName = "tan1 2016-02-11 11_38_09 AM.csv"
+# robotFileName = "10_Tan_Flow.csv"
 
 def importCSVFile(fileName):
     csvList = []
@@ -78,9 +78,10 @@ def formatRobotLog(csvList, timeStart, offsetHours = 5):
         RE = row[robotLogTitles['Robot Emotion']]
         OE = row[robotLogTitles['Observable Expression']]
         state = row[robotLogTitles['FSM State']]
+        stateN = row[robotLogTitles['FSM State Name']][1:]
         absTime = row[robotLogTitles['State Date Time']].replace(" ", "")
         time = t.mktime(dt.datetime.strptime(absTime, "%Y-%m-%d_%H-%M-%S").timetuple()) - timeStart
-        newRows.append([time, state, RE, OE])
+        newRows.append([time, state, RE, OE, stateN])
 
     interactionType = csvList[1][2][len(' Daily Companion '):]
     print '"' + interactionType + '"'
@@ -134,9 +135,27 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
     plt.plot(times, BAs, 'ro', timesV, VAs, 'bo', times, MAs, 'g', times, AvgA, 'k--')
     # plt.show()
 
-    morningAppraisals = [2,3,5,7,8,9,11,12,13,14,18,19,20,21,24,25,28,29,32,33,37,38,44,45,46]
+    morningAppraisals = [2,3,5,7,8,9,11,12,13,14,18,19,20,21,24,25,28,29,32,33,37,38,39,45,46,47]
+    morningAppraisals = ["morningGood","morningBad","askWeatherGood","askWeatherGoodYesTravel","askWeatherGoodNoTravel",
+                         "askWeatherBad","askWeatherBadSameHome","askWeatherBadDiffHome","askWeatherBadDiffHomeYesTake",
+                         "askWeatherBadDiffHomeNoTake","askBreakfastAte","askDietGluten","askDietGlutenYesEat",
+                         "askDietGlutenNoEat","askDietPoultryYesEat","askDietPoultryNoEat","meal2FeedbackYesDelici",
+                         "meal2FeedbackNoDelici","askDietFishYesEat","askDietFishNoEat","meal3FeedbackDinner",
+                         "meal3FeedbackYesGood","meal3FeedbackNoGood","exerciseFeedbackGood","exerciseFeedbackBad",
+                         "exerciseFeedbackEasy"]
     endDayAppraisals = [2,3,5,6,9,10,11,12,13,14,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,39,40,41,42,43,44,45,46,47,48,49]
-
+    endDayAppraisals = ["dayEndGood","dayEndBad","askWeekendYes","askWeekendNo","meal1CheckinYesAte",
+                        "meal1CheckinYesAteYesReg","meal1CheckinYesAteNoReg","meal1CheckinNoAte",
+                        "meal1CheckinNoAteYesHad","meal1CheckinNoAteNoHad","meal2CheckinYesAte","meal2CheckinYesAteGood",
+                        "meal2CheckinYesAteBad","meal2CheckinNoAte","meal2CheckinNoAteYesComp",
+                        "meal2CheckinNoAteYesCompYesResp","meal2CheckinNoAteDontknowComp","meal2CheckinNoAteNoComp",
+                        "meal3CheckinYesHad","meal3CheckinYesAte","meal3CheckinYesAteGood","meal3CheckinYesAteBad",
+                        "meal3CheckinNoAte","meal3CheckinNoAteYesComp","meal3CheckinNoAteDontknowComp",
+                        "meal3CheckinNoAteNoComp","meal3CheckinNoHad","exerciseCheckinYesDid",
+                        "exerciseCheckinYesDidGoodDiff","exerciseCheckinYesDidHardDiff","exerciseCheckinYesDidEasyDiff",
+                        "exerciseCheckinNoDid","exerciseCheckinNoDidYesComp","exerciseCheckinNoDidYesCompGotResp",
+                        "exerciseCheckinNoDidNoComp","exerciseCheckinNoDidNoCompCouldnt",
+                        "exerciseCheckinNoDidNoCompDidntWant","exerciseCheckinDontknowDid"]
 
     REs = []
     OEs = []
@@ -144,16 +163,26 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
     aREs = []
     aOEs = []
     atimes = []
+    last_stn = ""
+    last_re = 0
+    last_oe = 0
     for row in robotCSVList:
-        [ts, st, re, oe] = row
-        REs += [int(re)]
-        OEs += [int(oe)]
-        times += [float(ts)]
-        if (interactionType == "Morning" and int(st) in morningAppraisals) or (
-            interactionType == "End of Day" and int(st) in endDayAppraisals):
+        [ts, st, re, oe, stn] = row
+        if (interactionType == "Morning" and stn in morningAppraisals) or (
+            interactionType == "End of Day" and stn in endDayAppraisals) or (
+            stn == last_stn):
             aREs += [int(re)]
             aOEs += [int(oe)]
             atimes += [float(ts)]
+            REs += [int(last_re)]
+            OEs += [int(last_oe)]
+            times += [float(ts)-0.1]
+        REs += [int(re)]
+        OEs += [int(oe)]
+        times += [float(ts)]
+        last_stn = stn
+        last_re = re
+        last_oe = oe
 
     plt.subplot(r,c,4)
     # plt.title("Robot States")
@@ -161,10 +190,10 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
     plt.xlabel("Time (s)")
     plt.yticks(np.arange(0.0, 14.0, 2.0))
     plt.axis([-10, maxTime + 10, -0.1, 14.1])
-    rep, = plt.plot(times, REs, 'mo-', label = "Robot Emotion")
-    oep, = plt.plot(times, OEs, 'co-', label = "Robot Expression")
-    plt.plot(atimes, aREs, 'r|', markersize=200)
-    # plt.plot(atimes, aOEs, 'r|', markersize=15)
+    rep, = plt.plot(times, REs, 'm-', label = "Robot Emotion")
+    oep, = plt.plot(times, OEs, 'c-', label = "Robot Expression")
+    plt.plot(atimes, aREs, 'm|', markersize=10)
+    plt.plot(atimes, aOEs, 'c|', markersize=10)
     plt.grid(True)
     plt.subplots_adjust(hspace=0.5)
 

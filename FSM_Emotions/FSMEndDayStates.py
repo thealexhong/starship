@@ -307,8 +307,14 @@ class FSMEndDayStates:
         return appraiseState
 
     def checkEdgeSafety1(self):#15
+        sayText = "Let me see where I am on the table, I don't want to go and fall off."
+        self.FSMBody.sayWithEmotion(sayText)
+
         seesHigh = self.genUtil.checkEdgeSafety()
         if not seesHigh:
+            sayText = "Looks like I'm in a good spot."
+            self.FSMBody.sayWithEmotion(sayText)
+            time.sleep(2)
             self.FSMBody.setFSMState(self.FSMBody.state+1)
         appraiseState = False
         return appraiseState
@@ -638,8 +644,14 @@ class FSMEndDayStates:
         return appraiseState
 
     def checkEdgeSafety2(self):#36
+        sayText = "Please give me a second to check how close I am to the edge."
+        self.FSMBody.sayWithEmotion(sayText)
+
         seesHigh = self.genUtil.checkEdgeSafety()
         if not seesHigh:
+            sayText = "Looks like I'm a safe distance."
+            self.FSMBody.sayWithEmotion(sayText)
+            time.sleep(2)
             self.FSMBody.setFSMState(self.FSMBody.state+1)
         appraiseState = False
         return appraiseState
@@ -659,7 +671,7 @@ class FSMEndDayStates:
             sayText = "Its important to avoid over training during the week. Too much of a good thing will lead to negative results."
             self.FSMBody.sayWithEmotion(sayText)
             time.sleep(1)
-            sayText = "Be sure to take break days if you become extremely sore or exhausted."
+            sayText = "Be sure to take break, days if you become extremely sore or exhausted."
             self.FSMBody.sayWithEmotion(sayText)
             time.sleep(1)
 
@@ -893,4 +905,6 @@ class FSMEndDayStates:
         self.FSMBody.setFSMState(0)
         appraiseState = False
         return appraiseState
-    
+
+
+
