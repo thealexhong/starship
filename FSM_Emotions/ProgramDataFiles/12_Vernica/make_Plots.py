@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-userNumber = 10
-offsetHours = 5
+userNumber = 12
+offsetHours = 0
 affectFileName = "12 Veronica Morning.csv"
 robotFileName = "12_Vernica_Flow_2016-02-18_11-22-59.csv"
 # affectFileName = "tan1 2016-02-11 11_38_09 AM.csv"
@@ -43,7 +43,8 @@ def formatAffectList(csvList):
     affectLogTitles.update({'time':16, 'VV':17, 'VA':18})
 
     newRow = []
-    timeStart = t.mktime(dt.datetime.strptime(csvList[0][affectLogTitles['absTime']], "%Y-%m-%d %H:%M:%S.%f").timetuple())
+    absTime = "2016-02-18 11:" + csvList[0][affectLogTitles['absTime']]
+    timeStart = t.mktime(dt.datetime.strptime(absTime, "%Y-%m-%d %H:%M:%S.%f").timetuple())
     for row in csvList:
         vV = row[affectLogTitles['vV']]
         vA = row[affectLogTitles['vA']]
@@ -54,6 +55,7 @@ def formatAffectList(csvList):
             VV = vV
             VA = vA
         absTime = row[affectLogTitles['absTime']]
+        absTime = "2016-02-18 11:" + absTime
         time = t.mktime(dt.datetime.strptime(absTime, "%Y-%m-%d %H:%M:%S.%f").timetuple()) - timeStart
         newRow.append(row + [time, VV, VA])
 
