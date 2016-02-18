@@ -1,0 +1,948 @@
+C:\Python27\python.exe C:/Users/Yuma/Desktop/starship/FSM_Emotions/main.py
+Robot Name:  luke
+Initiated Values
+luke.local 9559
+[I] 15408 qimessaging.session: Session listener created on tcp://0.0.0.0:0
+[I] 15408 qimessaging.transportserver: TransportServer will listen on: tcp://10.254.25.125:63327
+[I] 15408 qimessaging.transportserver: TransportServer will listen on: tcp://127.0.0.1:63327
+Made Basic Motions
+------> Said something: Connected!
+Connection Test Finished
+True
+***************************************************************************
+***************************************************************************
+Have You updated the _FSM_INPUT File for this interaction? (1) yes, (2) no:  1
+***************************************************************************
+id  |  name  |  hasPoultry  |  hasGluten  |  calories  |  buyFrom  |  mealType  |  hasFish  | 
+{'hasFish': u'False', 'name': u'One sliced turkey sandwich on whole wheat bread with lettuce and tomatoes', 'buyFrom': u'Subway just across College Street', 'calories': u'600', 'hasGluten': u'True', 'hasPoultry': u'True', 'mealType': u'lunch', 'id': u'1'}
+{'hasFish': u'False', 'name': u'Chicken with brown rice and vegetables', 'buyFrom': u'Salad King, over on Younge Street', 'calories': u'650', 'hasGluten': u'False', 'hasPoultry': u'True', 'mealType': u'lunch', 'id': u'2'}
+{'hasFish': u'False', 'name': u'One whole wheat wrap with chick peas, beans and tomatoes', 'buyFrom': u'Vegetarian Heaven, over on Baldwin Street', 'calories': u'650', 'hasGluten': u'True', 'hasPoultry': u'False', 'mealType': u'lunch', 'id': u'3'}
+{'hasFish': u'False', 'name': u'Tofu with brown rice and vegetables', 'buyFrom': u'Vegetarian Heaven, over on Baldwin Street', 'calories': u'600', 'hasGluten': u'False', 'hasPoultry': u'False', 'mealType': u'dinner', 'id': u'4'}
+{'hasFish': u'False', 'name': u'One apple and two slices of toast with strawberry jam', 'buyFrom': u'', 'calories': u'350', 'hasGluten': u'True', 'hasPoultry': u'False', 'mealType': u'breakfast', 'id': u'5'}
+{'hasFish': u'False', 'name': u'One apple and a cup of gluten free granola', 'buyFrom': u'', 'calories': u'350', 'hasGluten': u'False', 'hasPoultry': u'False', 'mealType': u'breakfast', 'id': u'6'}
+{'hasFish': u'True', 'name': u'12 pieces of assorted sushi with miso soup and seaweed salad', 'buyFrom': u'Ematei, over on Queen Street West', 'calories': u'800', 'hasGluten': u'False', 'hasPoultry': u'False', 'mealType': u'dinner', 'id': u'7'}
+{'hasFish': u'False', 'name': u'Cooked vegetables with steamed rice, similar to Vegetable Biryani', 'buyFrom': u'Kothur, over on Yonge Street West', 'calories': u'700', 'hasGluten': u'False', 'hasPoultry': u'False', 'mealType': u'lunch', 'id': u'8'}
+{'hasFish': u'False', 'name': u'Grilled or rotisserie chicken with mashed potatoes and vegetables', 'buyFrom': u'Swiss Chalet, over on University Avenue', 'calories': u'800', 'hasGluten': u'False', 'hasPoultry': u'True', 'mealType': u'dinner', 'id': u'9'}
+inaoqi-broker: construct at 0.0.0.0:0, parent : luke.local:9559
+[I] 15408 qimessaging.session: Session listener created on tcp://0.0.0.0:0
+[I] 15408 qimessaging.transportserver: TransportServer will listen on: tcp://10.254.25.125:63335
+[I] 15408 qimessaging.transportserver: TransportServer will listen on: tcp://127.0.0.1:63335
+[W] 15408 qitype.metaobject: Method(113) already defined (and overriden): BIND_PYTHON::(m)
+[W] 15408 qitype.metaobject: Method(114) already defined (and overriden): addParam::(m)
+[W] 15408 qitype.metaobject: Method(115) already defined (and overriden): autoBind::(m)
+[W] 15408 qitype.metaobject: Method(100) already defined (and overriden): exit::()
+[W] 15408 qitype.metaobject: Method(116) already defined (and overriden): functionName::(m)
+[W] 15408 qitype.metaobject: Method(111) already defined (and overriden): getBrokerName::()
+[W] 15408 qitype.metaobject: Method(117) already defined (and overriden): getModule::(m)
+[W] 15408 qitype.metaobject: Method(120) already defined (and overriden): onPickUp::(mmm)
+[W] 15408 qitype.metaobject: Method(120) already defined (and overriden): onPickUp::(mmm)
+[W] 15408 qitype.metaobject: Method(120) already defined (and overriden): onPickUp::(mmm)
+[W] 15408 qitype.metaobject: Method(121) already defined (and overriden): onTouched::(mm)
+[W] 15408 qitype.metaobject: Method(121) already defined (and overriden): onTouched::(mm)
+[W] 15408 qitype.metaobject: Method(122) already defined (and overriden): pythonChanged::(mmm)
+[W] 15408 qitype.metaobject: Method(122) already defined (and overriden): pythonChanged::(mmm)
+[W] 15408 qitype.metaobject: Method(122) already defined (and overriden): pythonChanged::(mmm)
+[W] 15408 qitype.metaobject: Method(124) already defined (and overriden): setModuleDescription::(m)
+[W] 15408 qitype.metaobject: Method(103) already defined (and overriden): version::()
+Subscribe Touch Events
+Subscribe Pick Up Events
+
+userName:  Jacob  | userNumber:  13  | interactionType:  End of Day  | lastInteraction:  False
+
+My eyes are Happy
+NAO is currently:  Standing
+------> Stood Up
+Breathing and watching
+Started Breathing
+State Machine Started
+
+
+Starting Main Checker #1
+[[ 0.5  0.4  0.1  0.2  0.   0.2  0.2  0.2]
+ [ 0.3  0.2  0.2  0.2  0.2  0.2  0.2  0.2]
+ [ 0.1  0.1  0.2  0.2  0.3  0.2  0.2  0.2]
+ [ 0.1  0.1  0.2  0.1  0.2  0.2  0.2  0.2]
+ [ 0.   0.2  0.3  0.3  0.3  0.2  0.2  0.2]
+ [ 0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0. ]]
+
+[[ 0.5  0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.5  0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.4  0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.4  0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.5  0.   0.   0. ]
+ [ 0.5  0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.5  0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.6  0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.6  0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.5  0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   1.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   1.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   1. ]]
+
+['activityFSMState_Terminate', 'dayEndIntro', 'dayEndGood', 'dayEndBad', 'askWeekend', 'askWeekendYes', 'askWeekendNo', 'meal1IfSuggested', 'meal1CheckinBreakfast', 'meal1CheckinYesAte', 'meal1CheckinYesAteYesReg', 'meal1CheckinYesAteNoReg', 'meal1CheckinNoAte', 'meal1CheckinNoAteYesHad', 'meal1CheckinNoAteNoHad', 'checkEdgeSafety1', 'tellJoke_Statement1', 'meal2CheckinLunch', 'meal2CheckinYesAte', 'meal2CheckinYesAteGood', 'meal2CheckinYesAteBad', 'meal2CheckinNoAte', 'meal2CheckinNoAteYesComp', 'meal2CheckinNoAteYesCompYesResp', 'meal2CheckinNoAteDontknowComp', 'meal2CheckinNoAteNoComp', 'meal3CheckinDinner', 'meal3CheckinYesHad', 'meal3CheckinYesAte', 'meal3CheckinYesAteGood', 'meal3CheckinYesAteBad', 'meal3CheckinNoAte', 'meal3CheckinNoAteYesComp', 'meal3CheckinNoAteDontknowComp', 'meal3CheckinNoAteNoComp', 'meal3CheckinNoHad', 'checkEdgeSafety2', 'tellJoke_Statement2', 'exerciseCheckin', 'exerciseCheckinYesDid', 'exerciseCheckinYesDidGoodDiff', 'exerciseCheckinYesDidHardDiff', 'exerciseCheckinYesDidEasyDiff', 'exerciseCheckinNoDid', 'exerciseCheckinNoDidYesComp', 'exerciseCheckinNoDidYesCompGotResp', 'exerciseCheckinNoDidNoComp', 'exerciseCheckinNoDidNoCompCouldnt', 'exerciseCheckinNoDidNoCompDidntWant', 'exerciseCheckinDontknowDid', 'dayEndEnd', 'reactionScaredTouch', 'reactionScaredPickedUp', 'reactionScaredHighEdge']
+=========================================================================================
+FSM Info:  [1, 0, 0]
+driveStatuses:  [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+State: 1 dayEndIntro
+State  ProgramDataFiles\13_Jacob\13_Jacob_Vars.txt
+{u'exerciseSuggested': u'walk a number of blocks one way, and back again', u'hasTalkedJapan': True, u'canEatGluten': True, u'meal1Suggested': u'One apple and two slices of toast with strawberry jam', u'meal2Suggested': u'Chicken with brown rice and vegetables', u'canEatPoultry': True, u'dateTime': u'2016-02-18_11-49-41', u'hasAskedBreakfast': True, u'hasTalkedParis': False, u'weatherIsNice': True, u'canEatFish': True, u'exerciseSets': 9, u'activityInteractionType': u'Daily Companion Morning', u'meal3Suggested': u'12 pieces of assorted sushi with miso soup and seaweed salad'}
+No more breathing and watching
+Stopped Breathing
+------> Waved Right
+Breathing and watching
+Started Breathing
+Happy Voice
+------> Said something: \vct=120\\vol=060\\rspd=100\Hello again Jacob.
+My voice is Happy
+Happy Voice
+------> Said something: \vct=120\\vol=060\\rspd=100\How was the rest, of your day?
+My voice is Happy
+***************************************************************************
+How was their day? (1) Good, (2) Bad, ('') No Response:  1
+Sending user emotion
+Valence:  -2.0 , Arousal:  -1.0
+UPositiveLikeli: 0.291039493343 V:-1.0 A:-0.5 Appraised: [ 0.      0.5821  0.4179  1.4179  0.      0.      0.      0.    ]
+UResponsesLikeli: 1.0 Appraised: [ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+UPosBranchesLikeli: 1.0 Appraised: [ 1.  2.  0.  0.  0.  0.  0.  0.]
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  0.  0.  0.  0.]
+Component EVs
+[ 0.5  1.   0.   0.   0.   0.   0.   0. ]
+[ 0.      0.5821  0.4179  1.4179  0.      0.      0.      0.    ]
+[ 1.  2.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 1.5     3.5821  0.4179  1.4179  0.      0.      0.      0.    ]
+Overall U input: [ 1.5     3.5821  0.4179  1.4179  0.      0.      0.      0.    ]
+U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+Checking Threshold
+Old Val:  0.0208106448337  i= 2  j= 0
+Old Val:  0.0278614008877  i= 2  j= 1
+Old Val:  0.0677571928066  i= 2  j= 2
+Old Val:  0.0673093367025  i= 2  j= 3
+Old Val:  0.0604113594981  i= 2  j= 5
+Old Val:  0.0604113594981  i= 2  j= 6
+Old Val:  0.0604113594981  i= 2  j= 7
+Old Val:  0.0706062860451  i= 3  j= 0
+Old Val:  0.0945280675543  i= 3  j= 1
+
+[[ 0.411   0.4558  0.1304  0.259   0.      0.2308  0.2308  0.2308]
+ [ 0.589   0.5442  0.623   0.6186  0.6366  0.5511  0.5511  0.5511]
+ [ 0.      0.      0.      0.      0.1114  0.      0.      0.    ]
+ [ 0.      0.      0.2466  0.1224  0.252   0.2181  0.2181  0.2181]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+Random Emotion Number:  0.559079817733
+New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+Random Expression Number:  0.0354408045242
+New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+--------> New FSM State:  [2, 1, 1]
+=========================================================================================
+FSM Info:  [2, 1, 1]
+********************* Yay I can Express myself
+OE Num:  1
+Hopeful Face
+My eyes are Hopeful
+------> Stood Up
+No more breathing and watching
+Stopped Breathing
+------> Stood Up
+My body is Hopeful1
+------> Stood Up
+Breathing and watching
+Started Breathing
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  0.  0.  0.  0.]
+State: 2 dayEndGood
+State  Hopeful Voice
+------> Said something: \vct=100\\vol=050\\rspd=100\Awesome, I knew it would be a good day.
+My voice is Hopeful
+--------> New FSM State:  [4, 1, 1]
+=========================================================================================
+FSM Info:  [4, 1, 1]
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  0.  0.  0.  0.]
+State: 4 askWeekend
+State  Hopeful Voice
+------> Said something: \vct=100\\vol=050\\rspd=100\Do you have any big plans you are looking forward to later in the week or over the weekend?
+My voice is Hopeful
+***************************************************************************
+Are they looking forward to any plans? (1) Yes, (2) No/Don't know, ('') No Response:  2
+Sending user emotion
+Valence:  -2.0 , Arousal:  -1.0
+UPositiveLikeli: 0.291039493343 V:-1.0 A:-0.5 Appraised: [ 0.      0.5821  0.      1.4179  0.      0.      0.      0.    ]
+UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  0.  0.  0.  0.]
+Component EVs
+[ 0.  1.  0.  0.  0.  0.  0.  0.]
+[ 0.      0.5821  0.      1.4179  0.      0.      0.      0.    ]
+[ 0.  2.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.      3.5821  0.      1.4179  0.      0.      0.      0.    ]
+Overall U input: [ 0.      3.5821  0.      1.4179  0.      0.      0.      0.    ]
+U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+Checking Threshold
+
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.8834  0.8348  0.7164  0.8348  0.7164  0.7164  0.7164  0.7164]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.1166  0.1652  0.2836  0.1652  0.2836  0.2836  0.2836  0.2836]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+Random Emotion Number:  0.748271295988
+New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+Random Expression Number:  0.190484368965
+New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+--------> New FSM State:  [6, 1, 1]
+=========================================================================================
+FSM Info:  [6, 1, 1]
+********************* Yay I can Express myself
+OE Num:  1
+Hopeful Face
+My eyes are Hopeful
+------> Stood Up
+No more breathing and watching
+Stopped Breathing
+------> Stood Up
+My body is Hopeful1
+------> Stood Up
+Breathing and watching
+Started Breathing
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  0.  0.  0.  0.]
+State: 6 askWeekendNo
+State  Hopeful Voice
+------> Said something: \vct=100\\vol=050\\rspd=100\It would be great if you could plan something active.
+My voice is Hopeful
+--------> New FSM State:  [7, 1, 1]
+=========================================================================================
+FSM Info:  [7, 1, 1]
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  0.  0.  0.  0.]
+State: 7 meal1IfSuggested
+State  --------> New FSM State:  [8, 1, 1]
+=========================================================================================
+FSM Info:  [8, 1, 1]
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  0.  0.  0.  0.]
+State: 8 meal1CheckinBreakfast
+State  Hopeful Voice
+------> Said something: \vct=100\\vol=050\\rspd=100\Did you have the One apple and two slices of toast with strawberry jam for breakfast this morning?
+My voice is Hopeful
+***************************************************************************
+Did they have the suggested breakfast? (1) Yes, (2) No, ('') No Response:  2
+Sending user emotion
+Valence:  -2.0 , Arousal:  -1.0
+UPositiveLikeli: 0.291039493343 V:-1.0 A:-0.5 Appraised: [ 0.      0.5821  0.      1.4179  0.      0.      0.      0.    ]
+UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+UPosBranchesLikeli: 0.5 Appraised: [ 0.  1.  1.  1.  0.  0.  0.  0.]
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  0.  0.  0.  0.]
+Component EVs
+[ 0.  1.  0.  0.  0.  0.  0.  0.]
+[ 0.      0.5821  0.      1.4179  0.      0.      0.      0.    ]
+[ 0.  1.  1.  1.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.      2.5821  1.      2.4179  0.      0.      0.      0.    ]
+Overall U input: [ 0.      2.5821  1.      2.4179  0.      0.      0.      0.    ]
+U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+Checking Threshold
+Old Val:  0.0895723620523  i= 2  j= 0
+
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.7621  0.6017  0.4303  0.5389  0.3972  0.4303  0.4303  0.4303]
+ [ 0.      0.1165  0.1667  0.2087  0.2308  0.1667  0.1667  0.1667]
+ [ 0.2379  0.2817  0.403   0.2523  0.372   0.403   0.403   0.403 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+Random Emotion Number:  0.497210732531
+New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+Random Expression Number:  0.406605961872
+New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+--------> New FSM State:  [12, 1, 1]
+=========================================================================================
+FSM Info:  [12, 1, 1]
+********************* Yay I can Express myself
+OE Num:  1
+Hopeful Face
+My eyes are Hopeful
+------> Stood Up
+No more breathing and watching
+Stopped Breathing
+------> Stood Up
+My body is Hopeful1
+------> Stood Up
+Breathing and watching
+Started Breathing
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  0.  0.  0.  0.]
+State: 12 meal1CheckinNoAte
+State  Hopeful Voice
+------> Said something: \vct=100\\vol=050\\rspd=100\Did you at least have any breakfast this morning?
+My voice is Hopeful
+***************************************************************************
+Did they have any breakfast? (1) Yes, (2) No, ('') No Response:  2
+Sending user emotion
+Valence:  -1.0 , Arousal:  0.0
+UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.4277  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+UPosBranchesLikeli: 0.333333333333 Appraised: [ 0.      0.6667  0.3333  1.3333  0.      0.      0.      0.    ]
+UDidSuggLikeli: 0.0 Appraised: [ 0.   0.   1.5  0.   3.   0.   0.   0. ]
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  0.  0.  0.]
+Component EVs
+[ 0.  1.  0.  0.  0.  0.  0.  0.]
+[ 0.4277  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+[ 0.      0.6667  0.3333  1.3333  0.      0.      0.      0.    ]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.   0.   1.5  0.   3.   0.   0.   0. ]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.4277  2.6765  1.8333  2.3235  3.      0.      0.      0.    ]
+Overall U input: [ 0.4277  2.6765  1.8333  2.3235  3.      0.      0.      0.    ]
+U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+Checking Threshold
+Old Val:  0.09935012122  i= 0  j= 1
+Old Val:  0.0185204759131  i= 0  j= 2
+Old Val:  0.0403535735297  i= 0  j= 3
+Old Val:  0.0416837376182  i= 0  j= 5
+Old Val:  0.0416837376182  i= 0  j= 6
+Old Val:  0.0416837376182  i= 0  j= 7
+
+[[ 0.1493  0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.5605  0.3451  0.2362  0.2631  0.2185  0.2722  0.2722  0.2722]
+ [ 0.128   0.1182  0.1618  0.1802  0.2245  0.1864  0.1864  0.1864]
+ [ 0.1622  0.1498  0.205   0.1142  0.1897  0.2363  0.2363  0.2363]
+ [ 0.      0.3869  0.3971  0.4424  0.3673  0.3051  0.3051  0.3051]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+Random Emotion Number:  0.392681750944
+New RE: [ 0.  0.  1.  0.  0.  0.  0.  0.]
+Random Expression Number:  0.153175049939
+New OE: [ 0.  0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+--------> New FSM State:  [14, 2, 2]
+=========================================================================================
+FSM Info:  [14, 2, 2]
+********************* Yay I can Express myself
+OE Num:  2
+Sad Face
+My eyes are Sad
+------> Stood Up
+No more breathing and watching
+Stopped Breathing
+------> Stood Up
+My body is Sad
+------> Stood Up
+Breathing and watching
+Started Breathing
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  0.  0.  0.]
+State: 14 meal1CheckinNoAteNoHad
+State  Sad Voice
+------> Said something: \vct=50\\vol=035\\rspd=70\Breakfast is the most important meal of the day; skipping breakfast often leads to unhealthy habits and overeating later in the day. Please try to have at least something for breakfast in the future, and even better if you have something like the One apple and two slices of toast with strawberry jam.
+My voice is Sad
+--------> New FSM State:  [15, 2, 2]
+=========================================================================================
+FSM Info:  [15, 2, 2]
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  0.  0.  0.]
+State: 15 checkEdgeSafety1
+State  Sad Voice
+------> Said something: \vct=50\\vol=035\\rspd=70\Let me see where I am on the table, I don't want to go and fall off.
+My voice is Sad
+No more breathing and watching
+Stopped Breathing
+------> Stood Up
+The camera ID is python_GVM_0
+Status:  False Distance:  22.5749941091  Angle:  0.14787654567
+NAO is a safe distance from the edge
+------> Stood Up
+Breathing and watching
+Started Breathing
+Sad Voice
+------> Said something: \vct=50\\vol=035\\rspd=70\Looks like I'm in a good spot.
+My voice is Sad
+--------> New FSM State:  [16, 2, 2]
+=========================================================================================
+FSM Info:  [16, 2, 2]
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  0.  0.  0.]
+State: 16 tellJoke_Statement1
+State  Sad Voice
+------> Said something: \vct=50\\vol=035\\rspd=70\Did you know that a typical bottle of pop or ice tea can contain as much as 65 grams of sugar?
+My voice is Sad
+Sad Voice
+------> Said something: \vct=50\\vol=035\\rspd=70\That's almost 5 tablespoons worth.
+My voice is Sad
+--------> New FSM State:  [17, 2, 2]
+=========================================================================================
+FSM Info:  [17, 2, 2]
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  0.  0.  0.]
+State: 17 meal2CheckinLunch
+State  Sad Voice
+------> Said something: \vct=50\\vol=035\\rspd=70\Did you get a chance to have the Chicken with brown rice and vegetables for lunch today?
+My voice is Sad
+***************************************************************************
+Did they have the suggested lunch? (1) Yes, (2) No, ('') No Response:  2
+Sending user emotion
+Valence:  -2.0 , Arousal:  -0.666666666667
+UPositiveLikeli: 0.308493994563 V:-1.0 A:-0.333333333333 Appraised: [ 0.      0.617   0.3928  1.383   0.      0.      0.      0.    ]
+UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+UPosBranchesLikeli: 0.25 Appraised: [ 0.      0.5     0.1667  1.5     0.      0.      0.      0.    ]
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  0.  0.  0.]
+Component EVs
+[ 0.  1.  0.  0.  0.  0.  0.  0.]
+[ 0.      0.617   0.3928  1.383   0.      0.      0.      0.    ]
+[ 0.      0.5     0.1667  1.5     0.      0.      0.      0.    ]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.      2.117   0.5595  2.883   0.      0.      0.      0.    ]
+Overall U input: [ 0.      2.117   0.5595  2.883   0.      0.      0.      0.    ]
+U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+Checking Threshold
+Old Val:  0.0571276236877  i= 2  j= 0
+Old Val:  0.0728820755662  i= 2  j= 1
+
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.6878  0.5949  0.3808  0.5141  0.3625  0.3808  0.3808  0.3808]
+ [ 0.      0.      0.1006  0.1359  0.1437  0.1006  0.1006  0.1006]
+ [ 0.3122  0.4051  0.5186  0.3501  0.4937  0.5186  0.5186  0.5186]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+Random Emotion Number:  0.989712049559
+New RE: [ 0.  0.  0.  1.  0.  0.  0.  0.]
+Random Expression Number:  0.211751559118
+New OE: [ 0.  0.  0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+--------> New FSM State:  [21, 3, 3]
+=========================================================================================
+FSM Info:  [21, 3, 3]
+********************* Yay I can Express myself
+OE Num:  3
+Fearful Face
+My eyes are Fear
+------> Stood Up
+No more breathing and watching
+Stopped Breathing
+------> Stood Up
+My body is Fear1
+------> Stood Up
+Breathing and watching
+Started Breathing
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  0.  0.  0.]
+State: 21 meal2CheckinNoAte
+State  Fearful Voice
+------> Said something: \vct=65\\vol=050\\rspd=75\Did. you. at. least. have. something. comparably. healthy. instead?
+My voice is Fear
+***************************************************************************
+Did they have a comparably healthy lunch instead? (1) Yes, (2) No, (3) Don't know, ('') No Response:  1
+Sending user emotion
+Valence:  -2.0 , Arousal:  -0.666666666667
+UPositiveLikeli: 0.308493994563 V:-1.0 A:-0.333333333333 Appraised: [ 0.     0.617  0.     1.383  0.     0.     0.     0.   ]
+UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+UPosBranchesLikeli: 0.4 Appraised: [ 0.3  0.8  0.   1.2  0.   0.   0.   0. ]
+UDidSuggLikeli: 1.0 Appraised: [ 1.5  0.   0.   0.   0.   0.   0.   0. ]
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  2.  0.  0.]
+Component EVs
+[ 0.  1.  0.  0.  0.  0.  0.  0.]
+[ 0.     0.617  0.     1.383  0.     0.     0.     0.   ]
+[ 0.3  0.8  0.   1.2  0.   0.   0.   0. ]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 1.5  0.   0.   0.   0.   0.   0.   0. ]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 1.8    2.417  0.     2.583  0.     0.     0.     0.   ]
+Overall U input: [ 1.8    2.417  0.     2.583  0.     0.     0.     0.   ]
+U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+Checking Threshold
+
+[[ 0.4779  0.4926  0.1525  0.3268  0.      0.2647  0.2647  0.2647]
+ [ 0.385   0.3307  0.4097  0.4388  0.4834  0.3554  0.3554  0.3554]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.1371  0.1767  0.4378  0.2345  0.5166  0.3799  0.3799  0.3799]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+Random Emotion Number:  0.632160454122
+New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+Random Expression Number:  0.113349692134
+New OE: [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+--------> New FSM State:  [22, 1, 1]
+=========================================================================================
+FSM Info:  [22, 1, 1]
+********************* Yay I can Express myself
+OE Num:  1
+Hopeful Face
+My eyes are Hopeful
+------> Stood Up
+No more breathing and watching
+Stopped Breathing
+------> Stood Up
+My body is Hopeful1
+------> Stood Up
+Breathing and watching
+Started Breathing
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  2.  0.  0.]
+State: 22 meal2CheckinNoAteYesComp
+State  Hopeful Voice
+------> Said something: \vct=100\\vol=050\\rspd=100\Works for me, you are well on your way to a healthier die it.
+My voice is Hopeful
+Hopeful Voice
+------> Said something: \vct=100\\vol=050\\rspd=100\What did you eat instead?
+My voice is Hopeful
+***************************************************************************
+What did they have instead? (1) Got Response, ('') No Response:  1
+Sending user emotion
+Valence:  -2.0 , Arousal:  0.333333333333
+UPositiveLikeli: 0.331783052528 V:-1.0 A:0.166666666667 Appraised: [ 0.0466  0.6636  0.      1.3364  0.      0.      0.      0.    ]
+UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  2.  0.  0.]
+Component EVs
+[ 0.  1.  0.  0.  0.  0.  0.  0.]
+[ 0.0466  0.6636  0.      1.3364  0.      0.      0.      0.    ]
+[ 0.   0.8  0.   1.2  0.   0.   0.   0. ]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.0466  2.4636  0.      2.5364  0.      0.      0.      0.    ]
+Overall U input: [ 0.0466  2.4636  0.      2.5364  0.      0.      0.      0.    ]
+U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+Checking Threshold
+Old Val:  0.0229222497301  i= 0  j= 0
+Old Val:  0.024354957016  i= 0  j= 1
+Old Val:  0.00463621696786  i= 0  j= 2
+Old Val:  0.0123275975624  i= 0  j= 3
+Old Val:  0.00922964330682  i= 0  j= 5
+Old Val:  0.00922964330682  i= 0  j= 6
+Old Val:  0.00922964330682  i= 0  j= 7
+
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.7445  0.6602  0.4927  0.6602  0.4927  0.4927  0.4927  0.4927]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.2555  0.3398  0.5073  0.3398  0.5073  0.5073  0.5073  0.5073]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+Random Emotion Number:  0.521252068567
+New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+Random Expression Number:  0.915426275945
+New OE: [ 0.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+--------> New FSM State:  [23, 1, 6]
+=========================================================================================
+FSM Info:  [23, 1, 6]
+********************* Yay I can Express myself
+OE Num:  6
+Hopeful2 Face
+My eyes are Hopeful
+------> Stood Up
+No more breathing and watching
+Stopped Breathing
+------> Stood Up
+My body is Hopeful2
+------> Stood Up
+Breathing and watching
+Started Breathing
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  2.  0.  0.]
+State: 23 meal2CheckinNoAteYesCompYesResp
+State  Hopeful2 Voice
+------> Said something: \vct=100\\vol=050\\rspd=100\Interesting, that sounds really delicious, I'll keep that in mind as a future recommendation.
+My voice is Hopeful
+--------> New FSM State:  [26, 1, 6]
+=========================================================================================
+FSM Info:  [26, 1, 6]
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  2.  0.  0.]
+State: 26 meal3CheckinDinner
+State  Hopeful2 Voice
+------> Said something: \vct=100\\vol=050\\rspd=100\Have you had dinner yet today?
+My voice is Hopeful
+***************************************************************************
+Did they have dinner yet? (1) Yes, (2) No, ('') No Response:  2
+Sending user emotion
+Valence:  -1.0 , Arousal:  0.0
+UPositiveLikeli: 0.504899000203 V:-0.5 A:0.0 Appraised: [ 0.3462  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+UPosBranchesLikeli: 0.333333333333 Appraised: [ 0.      0.6667  0.1333  1.3333  0.      0.      0.      0.    ]
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  2.  0.  0.]
+Component EVs
+[ 0.  1.  0.  0.  0.  0.  0.  0.]
+[ 0.3462  1.0098  0.      0.9902  0.      0.      0.      0.    ]
+[ 0.      0.6667  0.1333  1.3333  0.      0.      0.      0.    ]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.3462  2.6765  0.1333  2.3235  0.      0.      0.      0.    ]
+Overall U input: [ 0.3462  2.6765  0.1333  2.3235  0.      0.      0.      0.    ]
+U Feedback: [ 1.  2.  1.  1.  1.  1.  1.  1.]
+Checking Threshold
+Old Val:  0.0855028002583  i= 0  j= 0
+Old Val:  0.0951993698917  i= 0  j= 1
+Old Val:  0.0216858090668  i= 0  j= 2
+Old Val:  0.0495022754366  i= 0  j= 3
+Old Val:  0.0424510331344  i= 0  j= 5
+Old Val:  0.0424510331344  i= 0  j= 6
+Old Val:  0.0424510331344  i= 0  j= 7
+Old Val:  0.00658539754476  i= 2  j= 0
+Old Val:  0.00916528018458  i= 2  j= 1
+Old Val:  0.0167023387951  i= 2  j= 2
+Old Val:  0.0190632448373  i= 2  j= 3
+Old Val:  0.0253921027331  i= 2  j= 4
+Old Val:  0.0163478230263  i= 2  j= 5
+Old Val:  0.0163478230263  i= 2  j= 6
+Old Val:  0.0163478230263  i= 2  j= 7
+
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.8736  0.8217  0.6973  0.8217  0.6973  0.6973  0.6973  0.6973]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.1264  0.1783  0.3027  0.1783  0.3027  0.3027  0.3027  0.3027]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+Random Emotion Number:  0.187452156479
+New RE: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+Random Expression Number:  0.723665995283
+New OE: [ 0.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+--------> New FSM State:  [35, 1, 6]
+=========================================================================================
+FSM Info:  [35, 1, 6]
+********************* Yay I can Express myself
+OE Num:  6
+Hopeful2 Face
+My eyes are Hopeful
+------> Stood Up
+No more breathing and watching
+Stopped Breathing
+------> Stood Up
+My body is Hopeful2
+------> Stood Up
+Breathing and watching
+Started Breathing
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  2.  0.  0.]
+State: 35 meal3CheckinNoHad
+State  Hopeful2 Voice
+------> Said something: \vct=100\\vol=050\\rspd=100\In that case, be sure to have the 12 pieces of assorted sushi with miso soup and seaweed salad when it comes time for dinner today.
+My voice is Hopeful
+--------> New FSM State:  [36, 1, 6]
+=========================================================================================
+FSM Info:  [36, 1, 6]
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  2.  0.  0.]
+State: 36 checkEdgeSafety2
+State  Hopeful2 Voice
+------> Said something: \vct=100\\vol=050\\rspd=100\Please give me a second to check how close I am to the edge.
+My voice is Hopeful
+No more breathing and watching
+Stopped Breathing
+------> Stood Up
+The camera ID is python_GVM_0
+Status:  False Distance:  23.1082278208  Angle:  0.18714009892
+NAO is a safe distance from the edge
+------> Stood Up
+Breathing and watching
+Started Breathing
+Hopeful2 Voice
+------> Said something: \vct=100\\vol=050\\rspd=100\Looks like I'm a safe distance.
+My voice is Hopeful
+--------> New FSM State:  [37, 1, 6]
+=========================================================================================
+FSM Info:  [37, 1, 6]
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  2.  0.  0.]
+State: 37 tellJoke_Statement2
+State  Hopeful2 Voice
+------> Said something: \vct=100\\vol=050\\rspd=100\What do you get when you run behind a car?
+My voice is Hopeful
+Hopeful2 Voice
+------> Said something: \vct=100\\vol=050\\rspd=100\You get Exhausted!
+My voice is Hopeful
+Hopeful2 Voice
+------> Said something: \vct=100\\vol=050\\rspd=100\Hah. hah. hah. hah. hah!
+My voice is Hopeful
+--------> New FSM State:  [38, 1, 6]
+=========================================================================================
+FSM Info:  [38, 1, 6]
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  2.  0.  0.]
+State: 38 exerciseCheckin
+State  Hopeful2 Voice
+------> Said something: \vct=100\\vol=050\\rspd=100\Did you get a chance to walk a number of blocks one way, and back again today?
+My voice is Hopeful
+***************************************************************************
+Did they do the suggested exercise? (1) Yes, (2) No, ('') No Response:  2
+Sending user emotion
+Valence:  -2.0 , Arousal:  1.0
+UPositiveLikeli: 0.321674856724 V:-1.0 A:0.5 Appraised: [ 0.      0.6433  0.3664  1.3567  0.      0.      0.      0.    ]
+UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+UPosBranchesLikeli: 0.285714285714 Appraised: [ 0.      0.5714  0.0952  1.4286  0.      0.      0.      0.    ]
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  2.  0.  0.]
+Component EVs
+[ 0.  1.  0.  0.  0.  0.  0.  0.]
+[ 0.      0.6433  0.3664  1.3567  0.      0.      0.      0.    ]
+[ 0.      0.5714  0.0952  1.4286  0.      0.      0.      0.    ]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.      2.2148  0.4617  2.7852  0.      0.      0.      0.    ]
+Overall U input: [ 0.      2.2148  0.4617  2.7852  0.      0.      0.      0.    ]
+U Feedback: [ 1.  2.  1.  1.  1.  1.  1.  1.]
+Checking Threshold
+Old Val:  0.0279207891974  i= 2  j= 0
+Old Val:  0.0381369215503  i= 2  j= 1
+Old Val:  0.0601431000101  i= 2  j= 2
+Old Val:  0.0734718528137  i= 2  j= 3
+Old Val:  0.0875809549489  i= 2  j= 4
+Old Val:  0.0601431000101  i= 2  j= 5
+Old Val:  0.0601431000101  i= 2  j= 6
+Old Val:  0.0601431000101  i= 2  j= 7
+
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.8267  0.7608  0.614   0.7608  0.614   0.614   0.614   0.614 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.1733  0.2392  0.386   0.2392  0.386   0.386   0.386   0.386 ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+Random Emotion Number:  0.789340407175
+New RE: [ 0.  0.  0.  1.  0.  0.  0.  0.]
+Random Expression Number:  0.330209612055
+New OE: [ 0.  0.  0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+--------> New FSM State:  [43, 3, 3]
+=========================================================================================
+FSM Info:  [43, 3, 3]
+********************* Yay I can Express myself
+OE Num:  3
+Fearful Face
+My eyes are Fear
+------> Stood Up
+No more breathing and watching
+Stopped Breathing
+------> Stood Up
+My body is Fear1
+------> Stood Up
+Breathing and watching
+Started Breathing
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  2.  0.  0.]
+State: 43 exerciseCheckinNoDid
+State  Fearful Voice
+------> Said something: \vct=65\\vol=050\\rspd=75\Did. you. at. least. partake. in. a. comparable. exercise?
+My voice is Fear
+***************************************************************************
+Did they do something comparable? (1) Yes, (2) No, (3) Don't know, ('') No Response:  2
+Sending user emotion
+Valence:  -2.0 , Arousal:  1.0
+UPositiveLikeli: 0.321674856724 V:-1.0 A:0.5 Appraised: [ 0.      0.6433  0.      1.3567  0.      0.      0.      0.    ]
+UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+UPosBranchesLikeli: 0.25 Appraised: [ 0.      0.5     0.0714  1.5     0.      0.      0.      0.    ]
+UDidSuggLikeli: 0.0 Appraised: [ 0.   0.   1.5  0.   3.   0.   0.   0. ]
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  2.  0.  3.]
+Component EVs
+[ 0.  1.  0.  0.  0.  0.  0.  0.]
+[ 0.      0.6433  0.      1.3567  0.      0.      0.      0.    ]
+[ 0.      0.5     0.0714  1.5     0.      0.      0.      0.    ]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.   0.   1.5  0.   3.   0.   0.   0. ]
+[ 0.      2.1433  1.5714  2.8567  3.      0.      0.      0.    ]
+Overall U input: [ 0.      2.1433  1.5714  2.8567  3.      0.      0.      0.    ]
+U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+Checking Threshold
+
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.5922  0.2913  0.1936  0.2223  0.1808  0.2239  0.2239  0.2239]
+ [ 0.1447  0.1068  0.1419  0.163   0.1988  0.1642  0.1642  0.1642]
+ [ 0.2631  0.1941  0.258   0.1481  0.2409  0.2985  0.2985  0.2985]
+ [ 0.      0.4078  0.4065  0.4667  0.3795  0.3134  0.3134  0.3134]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+Random Emotion Number:  0.677337452079
+New RE: [ 0.  0.  0.  0.  1.  0.  0.  0.]
+Random Expression Number:  0.858896071771
+New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.]
+--------> New FSM State:  [46, 4, 9]
+=========================================================================================
+FSM Info:  [46, 4, 9]
+********************* Yay I can Express myself
+OE Num:  9
+Angry2 Face
+My eyes are Angry
+------> Stood Up
+No more breathing and watching
+Stopped Breathing
+------> Stood Up
+My body is Angry2
+------> Stood Up
+Breathing and watching
+Started Breathing
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  2.  0.  3.]
+State: 46 exerciseCheckinNoDidNoComp
+State  Angry2 Voice
+------> Said something: \vct=55\\vol=060\\rspd=110\Any particular reason why not?
+My voice is Angry
+***************************************************************************
+Any reason why not? (1) Couldn't (2) Didn't want to, ('') No Response:  2
+Sending user emotion
+Valence:  -2.0 , Arousal:  0.333333333333
+UPositiveLikeli: 0.331783052528 V:-1.0 A:0.166666666667 Appraised: [ 0.0202  0.6636  0.      1.3364  0.      0.      0.      0.    ]
+UResponsesLikeli: 1.0 Appraised: [ 0.  1.  0.  0.  0.  0.  0.  0.]
+UPosBranchesLikeli: 0.222222222222 Appraised: [ 0.      0.4444  0.0556  1.5556  0.      0.      0.      0.    ]
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  2.  0.  3.]
+Component EVs
+[ 0.  1.  0.  0.  0.  0.  0.  0.]
+[ 0.0202  0.6636  0.      1.3364  0.      0.      0.      0.    ]
+[ 0.      0.4444  0.0556  1.5556  0.      0.      0.      0.    ]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.0202  2.108   0.0556  2.892   0.      0.      0.      0.    ]
+Overall U input: [ 0.0202  2.108   0.0556  2.892   0.      0.      0.      0.    ]
+U Feedback: [ 1.  1.  1.  1.  2.  1.  1.  1.]
+Checking Threshold
+Old Val:  0.0107847689983  i= 0  j= 0
+Old Val:  0.0111624444948  i= 0  j= 1
+Old Val:  0.00199543362919  i= 0  j= 2
+Old Val:  0.00556959570004  i= 0  j= 3
+Old Val:  0.00398291960666  i= 0  j= 5
+Old Val:  0.00398291960666  i= 0  j= 6
+Old Val:  0.00398291960666  i= 0  j= 7
+Old Val:  0.00592740628373  i= 2  j= 0
+Old Val:  0.00766872517747  i= 2  j= 1
+Old Val:  0.0109670831469  i= 2  j= 2
+Old Val:  0.0153055000787  i= 2  j= 3
+Old Val:  0.016393442623  i= 2  j= 4
+Old Val:  0.0109452426417  i= 2  j= 5
+Old Val:  0.0109452426417  i= 2  j= 6
+Old Val:  0.0109452426417  i= 2  j= 7
+
+[[ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.6862  0.5931  0.4216  0.5931  0.4216  0.4216  0.4216  0.4216]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.3138  0.4069  0.5784  0.4069  0.5784  0.5784  0.5784  0.5784]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+Random Emotion Number:  0.426237345768
+New RE: [ 0.  0.  0.  1.  0.  0.  0.  0.]
+Random Expression Number:  0.589310235206
+New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.  0.]
+--------> New FSM State:  [48, 3, 8]
+=========================================================================================
+FSM Info:  [48, 3, 8]
+********************* Yay I can Express myself
+OE Num:  8
+Fearful2 Face
+My eyes are Fear
+------> Stood Up
+No more breathing and watching
+Stopped Breathing
+------> Stood Up
+My body is Fear2
+------> Stood Up
+Breathing and watching
+Started Breathing
+driveStatuses:  [ 1.  1.  1.  0.  0.  0.  0.  3.  2.  0.  3.]
+State: 48 exerciseCheckinNoDidNoCompDidntWant
+State  Fearful2 Voice
+------> Said something: \vct=65\\vol=050\\rspd=75\I. see,. but. prioritizing. is. a. key. component. of. a. healthy. lifestyle.. You. should. really. try. to. implement. more. exercise. into. your. daily. routine.. Exercising. can. help. you. maintain. a. sharp. mind.
+My voice is Fear
+1.81579869072
+--------> New FSM State:  [50, 3, 8]
+=========================================================================================
+FSM Info:  [50, 3, 8]
+driveStatuses:  [ 2.  3.  3.  0.  0.  0.  0.  3.  2.  0.  3.]
+State: 50 dayEndEnd
+State  Fearful2 Voice
+------> Said something: \vct=65\\vol=050\\rspd=75\Thanks. for. interacting. with. me. today.. See. you. later.. 
+My voice is Fear
+No more breathing and watching
+Stopped Breathing
+------> Waved Right
+Breathing and watching
+Started Breathing
+Fearful2 Voice
+------> Said something: \vct=65\\vol=050\\rspd=75\Bye. for. now.
+My voice is Fear
+{u'exerciseSuggested': u'walk a number of blocks one way, and back again', u'hasTalkedJapan': True, u'canEatGluten': True, u'meal1Suggested': u'One apple and two slices of toast with strawberry jam', u'meal2Suggested': u'Chicken with brown rice and vegetables', u'canEatPoultry': True, u'dateTime': u'2016-02-18_11-49-41', u'hasAskedBreakfast': True, u'hasTalkedParis': False, u'weatherIsNice': True, u'canEatFish': True, u'exerciseSets': 9, u'activityInteractionType': u'Daily Companion Morning', u'meal3Suggested': u'12 pieces of assorted sushi with miso soup and seaweed salad'}
+{"exerciseSuggested": "walk a number of blocks one way, and back again", "hasTalkedJapan": true, "canEatGluten": true, "meal1Suggested": "One apple and two slices of toast with strawberry jam", "meal2Suggested": "Chicken with brown rice and vegetables", "canEatPoultry": true, "dateTime": "2016-02-18_11-49-41", "hasAskedBreakfast": true, "hasTalkedParis": false, "weatherIsNice": true, "canEatFish": true, "exerciseSets": 9, "activityInteractionType": "Daily Companion Morning", "meal3Suggested": "12 pieces of assorted sushi with miso soup and seaweed salad"}
+--------> New FSM State:  [0, 3, 8]
+Ending Main Checker #1
+Unsubscribe Touch Events
+Unsubscribe Pick Up Events
+[I] 15408 behavior.inaoqi: Stop broker myBroker
+No more breathing and watching
+Stopped Breathing
+
+History of TimeStamps:  [1455831150.248, 1455831180.466, 1455831183.481, 1455831208.312, 1455831211.446, 1455831211.448, 1455831237.085, 1455831262.251, 1455831286.792, 1455831311.072, 1455831326.916, 1455831356.892, 1455831382.798, 1455831409.942, 1455831416.187, 1455831435.941, 1455831444.287, 1455831465.266, 1455831476.827, 1455831504.336, 1455831527.166, 1455831549.484, 1455831565.742]
+History of DateTimes:  ['2016-02-18_16-32-30', '2016-02-18_16-33-00', '2016-02-18_16-33-03', '2016-02-18_16-33-28', '2016-02-18_16-33-31', '2016-02-18_16-33-31', '2016-02-18_16-33-57', '2016-02-18_16-34-22', '2016-02-18_16-34-46', '2016-02-18_16-35-11', '2016-02-18_16-35-26', '2016-02-18_16-35-56', '2016-02-18_16-36-22', '2016-02-18_16-36-49', '2016-02-18_16-36-56', '2016-02-18_16-37-15', '2016-02-18_16-37-24', '2016-02-18_16-37-45', '2016-02-18_16-37-56', '2016-02-18_16-38-24', '2016-02-18_16-38-47', '2016-02-18_16-39-09', '2016-02-18_16-39-25']
+History of FSM States:  [1, 2, 4, 6, 7, 8, 12, 14, 15, 16, 17, 21, 22, 23, 26, 35, 36, 37, 38, 43, 46, 48, 50]
+History of FSM State Names:  ['dayEndIntro', 'dayEndGood', 'askWeekend', 'askWeekendNo', 'meal1IfSuggested', 'meal1CheckinBreakfast', 'meal1CheckinNoAte', 'meal1CheckinNoAteNoHad', 'checkEdgeSafety1', 'tellJoke_Statement1', 'meal2CheckinLunch', 'meal2CheckinNoAte', 'meal2CheckinNoAteYesComp', 'meal2CheckinNoAteYesCompYesResp', 'meal3CheckinDinner', 'meal3CheckinNoHad', 'checkEdgeSafety2', 'tellJoke_Statement2', 'exerciseCheckin', 'exerciseCheckinNoDid', 'exerciseCheckinNoDidNoComp', 'exerciseCheckinNoDidNoCompDidntWant', 'dayEndEnd']
+History of Robot Emotions:  [0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 1, 1, 1, 1, 1, 1, 1, 3, 4, 3, 3]
+History of Observable Expressions:  [0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 1, 6, 6, 6, 6, 6, 6, 3, 9, 8, 8]
+History of Drive Statuses:  [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 3.0, 0.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 3.0, 0.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 3.0, 0.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 3.0, 0.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 3.0, 0.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 3.0, 2.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 3.0, 2.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 3.0, 2.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 3.0, 2.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 3.0, 2.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 3.0, 2.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 3.0, 2.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 3.0, 2.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 3.0, 2.0, 0.0, 3.0], [1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 3.0, 2.0, 0.0, 3.0], [2.0, 3.0, 3.0, 0.0, 0.0, 0.0, 0.0, 3.0, 2.0, 0.0, 3.0]]
+
+State Machine Finished
+Program Exiting...
+Quitting Reaction Checker
+
+Process finished with exit code 0
