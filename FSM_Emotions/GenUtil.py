@@ -81,23 +81,27 @@ class GenUtil:
                     self.showHappy1Body()
                 elif oe == "Happy2":
                     self.showHappy2Body()
-                elif oe == "Happy3":
+                elif oe == "Happy3":# not used anymore
                     self.showHappy3Body()
-                elif oe == "Sad2":
+                elif oe == "Sad":
                     self.showSadBody()
+                elif oe == "Sad2":
+                    self.showSad2Body()
                 elif oe == "Fearful":
                     self.showFearBody()
                 elif oe == "Fearful2":
                     self.showFearBody2()
-                elif oe == "Angry2":
+                elif oe == "Angry":
                     self.showAngryBody()
+                elif oe == "Angry2":
+                    self.showAngryBody2()
                 elif oe == "Hopeful":
                     self.showHopeBody()
                 elif oe == "Hopeful2":
                     self.showHopeBody2()
-                elif oe == "Hopeful3":
+                elif oe == "Hopeful3":# not used
                     self.showHopeBody3()
-                elif oe == "Hopeful4":
+                elif oe == "Hopeful4":#not used
                     self.showHopeBody4()
                 elif oe == "Scared1" and not self.wasJustScared: #pickup
                     self.showScared1Body()
@@ -181,20 +185,24 @@ class GenUtil:
 
 ################################################# Body
     def showHappy1Body(self):
-        self.naoMotions.happy1Emotion() # switch to new one
+        self.naoMotions.happyEmotion() # switch to new one
         print "My body is Happy1"
 
     def showHappy2Body(self):
-        self.naoMotions.happyEmotion()
+        self.naoMotions.happy3Emotion()
         print "My body is Happy2"
 
-    def showHappy3Body(self):
+    def showHappy3Body(self): # not used anymore
         self.naoMotions.happy3Emotion()
         print "My body is Happy3"
-       
+
     def showSadBody(self):
-        self.naoMotions.sadEmotion()
+        self.naoMotions.sad2Emotion()
         print "My body is Sad"
+
+    def showSad2Body(self):
+        self.naoMotions.sadEmotion()
+        print "My body is Sad2"
         
     def showFearBody(self):
         self.naoMotions.fear2Emotion()
@@ -208,12 +216,16 @@ class GenUtil:
         self.naoMotions.angerEmotion()
         print "My body is Angry"
 
+    def showAngryBody2(self):
+        self.naoMotions.anger2Emotion()
+        print "My body is Angry2"
+
     def showHopeBody(self):
-        self.naoMotions.hope2Emotion()
+        self.naoMotions.hopeEmotion()
         print "My body is Hopeful1"
 
     def showHopeBody2(self):
-        self.naoMotions.hopeEmotion()
+        self.naoMotions.hope2Emotion()
         print "My body is Hopeful2"
 
     def showHopeBody3(self):

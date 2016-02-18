@@ -180,7 +180,7 @@ class DietFitnessFSM:
 			setEmotion = False
 			if setEmotion:
 				self.genUtil.showSadEyes()
-				self.reMM.setCurrentEmotionByNumber(2)
+				self.reMM.setCurrentEmotionByNumber(4)
 				voe = self.oeHMM.determineObservableExpression(self.reMM.getRobotEmotionVector())
 
 			if self.genUtil.checkSafety() and self.s > self.FSMInUse.getNumMethods():
