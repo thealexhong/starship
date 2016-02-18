@@ -1,0 +1,19 @@
+
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 1 UPositiveLikeli: 0.680082475906 V:0.0 A:0.333333333333 Appraised: [ 0.3602  1.3602  0.      0.6398  0.      0.      0.      0.    ]
+currentFSMState: 1 UResponsesLikeli: 0.0 Appraised: [ 0.   0.   0.5  1.   0.   0.   0.   0. ]
+currentFSMState: 1 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 1 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 1 
+currentFSMState: 49 New RE: [ 0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 49 New OE: [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+currentFSMState: 49 
+currentFSMState: 49 
