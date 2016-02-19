@@ -7,8 +7,8 @@ import numpy as np
 
 userNumber = 13
 offsetHours = 5
-affectFileName = "13 Jacob Morning.csv"
-robotFileName = "13_Jacob_Flow_2016-02-18_11-42-01.csv"
+affectFileName = "13 Jacob End of day.csv"
+robotFileName = "13_Jacob_Flow_2016-02-18_16-32-26.csv"
 # affectFileName = "tan1 2016-02-11 11_38_09 AM.csv"
 # robotFileName = "10_Tan_Flow.csv"
 
