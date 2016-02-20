@@ -74,7 +74,7 @@ class GenUtil:
             sitTest = False
             if not sitTest:
                 if not self.wasJustScared:
-                    self.naoMotions.naoStand(0.2)
+                    self.naoMotions.naoStand()
                     self.naoMotions.naoAliveOff()
 
                 if oe == "Happy":

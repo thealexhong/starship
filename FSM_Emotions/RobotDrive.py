@@ -70,8 +70,8 @@ class RobotDrive: # parent class of all drives
 			if self.currentFSMState == self.statusChangeState:
 				eHappy = self.getDesireability() * self.getLikelihoodSuccessChange()
 				eSad = self.getDesireability() * self.getLikelihoodFailChange()
-			eFear = self.getDesireability() * self.getLikelihoodFail()
-			eHope = self.getDesireability() * self.getLikelihoodSuccess()
+				eFear = self.getDesireability() * self.getLikelihoodFail() # outside second if?
+				eHope = self.getDesireability() * self.getLikelihoodSuccess()
 
 		if self.getStatus() == 2 and self.currentFSMState == self.statusChangeState:
 			eHappy = self.getDesireability() * self.getLikelihoodSuccessChange()
@@ -95,7 +95,7 @@ class RobotDrive: # parent class of all drives
 		
 
 # To be told of a healthy diet by the user
-class DriveHealthyDiet(RobotDrive):
+class DriveHealthyDiet(RobotDrive): # not used
 	
 	def __init__(self, userName, userNumber):
 		RobotDrive.__init__(self, 1, userName, userNumber)
@@ -118,7 +118,7 @@ class DriveHealthyDiet(RobotDrive):
 		return self.userTotalCAL
 		
 # To be told of an active life style by the user
-class DriveHealthyFitness(RobotDrive):
+class DriveHealthyFitness(RobotDrive): # not used
 	
 	def __init__(self, userName, userNumber):
 		RobotDrive.__init__(self, 1, userName, userNumber)
@@ -168,7 +168,7 @@ class DriveUserPositive(RobotDrive):
 # To receive positive feelings upon providing recommendations
 class DriveUserPositiveOnRecomendation(RobotDrive):
 	def __init__(self, userName, userNumber):
-		RobotDrive.__init__(self, 2, userName, userNumber)
+		RobotDrive.__init__(self, 3, userName, userNumber)
 			
 	def determineLikelihood(self, userValance, userArousal):
 		np.set_printoptions(precision=4)
@@ -180,7 +180,6 @@ class DriveUserPositiveOnRecomendation(RobotDrive):
 		else:
 			succeeded = False
 		return self.determineSucceeded(succeeded)
-
 
 	def determineSucceeded(self, succeeded):
 		if succeeded:

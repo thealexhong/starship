@@ -1,0 +1,2 @@
+
+{"exerciseSuggested": "Climb some flights of stairs", "hasTalkedJapan": false, "canEatGluten": false, "meal1Suggested": "No Suggestion 1", "meal2Suggested": "Cooked vegetables with steamed rice, similar to Vegetable Biryani", "canEatPoultry": false, "dateTime": "2016-02-19_18-41-18", "hasAskedBreakfast": false, "hasTalkedParis": true, "weatherIsNice": false, "canEatFish": false, "exerciseSets": 9, "activityInteractionType": "Daily Companion Morning", "meal3Suggested": "Tofu with brown rice and vegetables"}
