@@ -26,6 +26,7 @@ class EdgeDetection:
         self.kernelDilate = np.ones((5,5), np.uint8)
         self.kernelErode = np.ones((5,5), np.uint8)
         self.voteHoughLines=50
+        self.cameraId=None
 
     def GetCamera(self):
         self.cameraId = self.camProxy.subscribe("python_GVM", self.resolution, self.colorSpace, self.fps)
@@ -37,9 +38,13 @@ class EdgeDetection:
             return self.cameraId
 
     def ReleaseCamera(self):
-        if self.cameraId is not None:
-            self.camProxy.unsubscribe(self.cameraId)
-            self.cameraI=None
+        try:
+            if self.cameraId is not None:
+                self.camProxy.unsubscribe(self.cameraId)
+                self.cameraId=None
+        except Exception as e:
+            print "Failed to release camera"
+            print e
 
     def __del__(self):
         self.ReleaseCamera()

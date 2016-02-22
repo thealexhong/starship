@@ -162,6 +162,12 @@ def testNaoConnection(NAOip, NAOport):
         naoMotions.naoSay("Connected!")
         # naoMotions.naoSit()
         # naoMotions.naoShadeHeadSay("Hello, the connection worked!")
+
+        testExpressions = False
+        if testExpressions:
+            genUtil = GenUtil(naoMotions)
+            genUtil.testExpressions()
+
         worked = True
     except Exception as e:
         print "Connection Failed, maybe wrong IP and/or Port"
@@ -215,7 +221,7 @@ if __name__ == '__main__':
     print("Initiated Values")
 
     connWorks = testNaoConnection(NAOIP, NAOPort)
-    print connWorks
+    print "Connection Worked: ",connWorks
     atexit.register(exitingProgram)
     if connWorks:
         main(NAOIP, NAOPort, name)

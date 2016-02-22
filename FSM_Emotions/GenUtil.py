@@ -408,3 +408,32 @@ class GenUtil:
         self.naoMotions.naoStand()
         self.naoMotions.naoAliveON()
         return self.naoSeesHigh
+
+    def testExpressions(self):
+        expressionDict = range(0,9+1)
+
+        for e in expressionDict:
+            self.expressEmotion(int(e))
+            # time.sleep(2)
+
+        self.naoMotions.naoStand()
+        self.naoMotions.naoAliveOff()
+        self.showScared1Body()
+        self.naoMotions.naoStand()
+        self.naoMotions.naoAliveON()
+        # time.sleep(2)
+        self.naoMotions.naoStand()
+        self.naoMotions.naoAliveOff()
+        self.showScared2Body()
+        self.naoMotions.naoStand()
+        self.naoMotions.naoAliveON()
+        # time.sleep(2)
+        self.naoMotions.naoStand()
+        self.naoMotions.naoAliveOff()
+        self.showScared3Body()
+        self.naoMotions.naoStand()
+        self.naoMotions.naoAliveON()
+        # time.sleep(2)
+
+        print "Done testing"
+
