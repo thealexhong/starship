@@ -35,8 +35,11 @@ class BasicMotions(ALModule):
         self.bScared = False
         #=========SETUP FOR VOICE================
         self.tts = ALProxy("ALTextToSpeech")
-        audioProxy = ALProxy("ALAudioDevice")
-        audioProxy.setOutputVolume(70)
+        try:
+            audioProxy = ALProxy("ALAudioDevice")
+            audioProxy.setOutputVolume(70)
+        except:
+            pass
         #Valid Value:50 to 200
         self.ttsPitch={      'default':   "\\vct=100\\",
                              'happy':     "\\vct=120\\",
