@@ -5672,6 +5672,6 @@
 {"valence":0, "arousal":2,"timeStamp":"2016-02-20 00:58:56.013"}
 {"valence":0, "arousal":2,"timeStamp":"2016-02-20 00:58:57.295"}
 {"valence":2, "arousal":2,"timeStamp":"2016-02-20 00:59:21.494"}
-{"valence":0, "arousal":2,"timeStamp":"2016-02-20 00:59:29.040"}
+{"valence":2, "arousal":2,"timeStamp":"2016-02-20 00:59:29.040"}
 {"valence":2, "arousal":2,"timeStamp":"2016-02-20 00:59:41.221"}
-{"valence":0, "arousal":2,"timeStamp":"2016-02-20 00:59:49.177"}
+{"valence":2, "arousal":2,"timeStamp":"2016-02-20 00:59:49.177"}
