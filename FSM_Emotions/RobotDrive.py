@@ -11,8 +11,8 @@ class RobotDrive: # parent class of all drives
 		self.desireability = desireability
 		self.userName = userName
 		self.userNumber = userNumber
-		self.likelihood = 0.5
-		self.pastLikelihood = 0.5
+		self.likelihood = 0.4
+		self.pastLikelihood = 0.4
 		self.status = 0 # 0 = inactive, 1 = active, 2 = succeeded, 3 = failed
 		self.statusChangeState = 0
 
@@ -168,7 +168,7 @@ class DriveUserPositive(RobotDrive):
 # To receive positive feelings upon providing recommendations
 class DriveUserPositiveOnRecomendation(RobotDrive):
 	def __init__(self, userName, userNumber):
-		RobotDrive.__init__(self, 3, userName, userNumber)
+		RobotDrive.__init__(self, 4, userName, userNumber)
 			
 	def determineLikelihood(self, userValance, userArousal):
 		np.set_printoptions(precision=4)
@@ -212,7 +212,7 @@ class DriveUserPositiveBranches(RobotDrive):
 
 class DriveUserDidSuggestion(RobotDrive):
 	def __init__(self, userName, userNumber):
-		RobotDrive.__init__(self, 3, userName, userNumber)
+		RobotDrive.__init__(self, 8, userName, userNumber)
 
 	def determineLikelihood(self, succeeded):
 		if succeeded:

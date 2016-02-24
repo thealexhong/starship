@@ -158,14 +158,14 @@ def main(NAOip, NAOport):
     print("=== Main Program Finished Running ===")
 
 if __name__ == '__main__':
-    #NAOIP = "127.0.0.1"
-    #NAOPort = 58357
+    NAOIP = "127.0.0.1"
+    NAOPort = 56645
 
-    NAOIP = "Luke.local"
+    # NAOIP = "Luke.local"
 
     #NAOIP = "Leia.local"
     #NAOIP = "127.0.0.1"
-    NAOPort = 9559
+    # NAOPort = 9559
     #NAOPort = 57089
 
 

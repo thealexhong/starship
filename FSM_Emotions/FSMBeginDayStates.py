@@ -390,6 +390,7 @@ class FSMBeginDayStates:
             urLikeli = self.FSMBody.drives.askedUser(True)
             if textInput == "1":
                 self.FSMBody.setFSMState(self.FSMBody.state+1)
+                uporLikeli = self.FSMBody.sendUserEmotionOnRecomend(1)
             else:
                 self.hasAskedBreakfast = True
                 if not self.hasAskedGluten:

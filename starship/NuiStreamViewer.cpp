@@ -734,7 +734,7 @@ void NuiStreamViewer::DrawJoint(const NUI_SKELETON_DATA& skeletonData, const D2D
     {
         m_pImageRenderer->DrawCircle(point, 3.0f, ImageRendererBrushJointTracked, 3.0f);
     }
-    else
+    else	
     {
         if (!IsOutOfImageRect(point, imageRect))
         {

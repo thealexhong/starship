@@ -27,7 +27,7 @@ class BasicMotions:
                        'sad': "EyeBottom",
                        'scared1': "EyeTopBottom",
                        'scared2': "EyeTopBottom",
-                       'scared3': "EyeNone",
+                       'scared3': "EyeTopBottom",
                        'fear': "EyeBottom",
                        'hope': "EyeTop",
                        'anger': "EyeTopBottom"}
@@ -38,7 +38,7 @@ class BasicMotions:
         tts.setParameter("doubleVoiceLevel", 0)
         try:
             audioProxy = self.connectToProxy("ALAudioDevice")
-            audioProxy.setOutputVolume(0.5*100) #use 90%
+            audioProxy.setOutputVolume(0.9*100) #use 90%
         except Exception as e:
             print "No Audio device found"
             print e
@@ -680,7 +680,7 @@ class BasicMotions:
             print("------> Did NOT Stand Up...")
         self.postMotion()
 
-    def happy1Emotion(self): # praise the sun
+    def happy1Emotion(self): # praise the sun --------- Not Used
         names = list()
         times = list()
         keys = list()
@@ -1013,7 +1013,7 @@ class BasicMotions:
 
         self.updateWithBlink(names, keys, times, self.eyeColor['happy'], self.eyeShape['happy'])
 
-    def sadEmotion(self):
+    def sadEmotion(self): # arms in front head down
         names = list()
         times = list()
         keys = list()
@@ -1124,7 +1124,7 @@ class BasicMotions:
 
         self.updateWithBlink(names, keys, times, self.eyeColor['sad'], self.eyeShape['sad'])
 
-    def sad2Emotion(self):
+    def sad2Emotion(self): # and to face, crying
         names = list()
         times = list()
         keys = list()
@@ -1300,9 +1300,7 @@ class BasicMotions:
         self.updateWithBlink(names, keys, times, self.eyeColor['scared1'], self.eyeShape['scared1'],bDisableEye=True)
         self.setEyeEmotion('scared1')
 
-        #self.updateWithBlink(names, keys, times, 0x00000060,"EyeNone")
-
-    def scaredEmotion2(self):
+    def scaredEmotion2(self): #
         names = list()
         times = list()
         keys = list()
@@ -1706,7 +1704,7 @@ class BasicMotions:
 
         self.updateWithBlink(names, keys, times, self.eyeColor['hope'], self.eyeShape['hope'], True)
 
-    def hope2Emotion(self): # head bacl
+    def hope2Emotion(self): # head back ------------- Not Used
         names = list()
         times = list()
         keys = list()
@@ -1817,7 +1815,7 @@ class BasicMotions:
 
         self.updateWithBlink(names, keys, times, self.eyeColor['hope'], self.eyeShape['hope'], True)
 
-    def hope3Emotion(self): # mr burns
+    def hope3Emotion(self): # mr burns ----------- Not Used
         names = list()
         times = list()
         keys = list()
@@ -1930,7 +1928,7 @@ class BasicMotions:
 
         self.updateWithBlink(names, keys, times, self.eyeColor['hope'], self.eyeShape['hope'],True, bDisableInit=True)
 
-    def hope4Emotion(self): # mr burns fingers
+    def hope4Emotion(self): # mr burns fingers --------- Not Used
         names = list()
         times = list()
         keys = list()
