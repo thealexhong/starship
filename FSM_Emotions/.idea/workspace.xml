@@ -41,12 +41,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_FSM_INPUT.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_FSM_INPUT.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ProgramDataFiles/_FSM_INPUT.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41087613">
+            <state vertical-scroll-proportion="-5.230769">
               <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="make_Plots_2.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ProgramDataFiles/25_Veronica/make_Plots_2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.23809524">
+              <caret line="231" column="58" selection-start-line="231" selection-start-column="58" selection-end-line="231" selection-end-column="58" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -131,7 +143,6 @@
         <option value="$PROJECT_DIR$/BasicMotions.py" />
         <option value="$PROJECT_DIR$/ProgramDataFiles/14_Geoff/make_Plots.py" />
         <option value="$PROJECT_DIR$/ProgramDataFiles/16_Christina/make_Plots.py" />
-        <option value="$PROJECT_DIR$/ProgramDataFiles/15_Chris/make_Plots.py" />
         <option value="$PROJECT_DIR$/ProgramDataFiles/17_Yugong/make_Plots.py" />
         <option value="$PROJECT_DIR$/ProgramDataFiles/18_Evgeny/make_Plots.py" />
         <option value="$PROJECT_DIR$/ProgramDataFiles/22_Christina/make_Plots.py" />
@@ -143,12 +154,14 @@
         <option value="$PROJECT_DIR$/ProgramDataFiles/28_Christina/make_Plots.py" />
         <option value="$PROJECT_DIR$/ProgramDataFiles/29_Rahul/make_Plots.py" />
         <option value="$PROJECT_DIR$/ProgramDataFiles/_FSM_INPUT.json" />
+        <option value="$PROJECT_DIR$/ProgramDataFiles/15_Chris/make_Plots.py" />
+        <option value="$PROJECT_DIR$/ProgramDataFiles/25_Veronica/make_Plots_2.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-7" />
-    <option name="width" value="697" />
+    <option name="width" value="988" />
     <option name="height" value="735" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -193,6 +206,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -227,7 +241,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -249,24 +262,7 @@
       <recent name="C:\Users\Calvin\Box Sync\NL UToronto\NAO Robot\NAO Programs\starship\FSM_Emotions\" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
-    <configuration default="false" name="make_Plots (4)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ProgramDataFiles/25_Veronica" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="HMM Python" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ProgramDataFiles/25_Veronica/make_Plots.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python.make_Plots_2">
     <configuration default="false" name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -280,23 +276,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="HMM Python" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="make_Plots (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ProgramDataFiles/26_Tan" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="HMM Python" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ProgramDataFiles/26_Tan/make_Plots.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -331,6 +310,40 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="HMM Python" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ProgramDataFiles/29_Rahul/make_Plots.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="make_Plots_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ProgramDataFiles/25_Veronica" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="HMM Python" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ProgramDataFiles/25_Veronica/make_Plots_2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="make_Plots (3)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ProgramDataFiles/15_Chris" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="HMM Python" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ProgramDataFiles/15_Chris/make_Plots.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -458,19 +471,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.make_Plots (4)" />
-      <item index="1" class="java.lang.String" itemvalue="Python.main" />
-      <item index="2" class="java.lang.String" itemvalue="Python.make_Plots (1)" />
-      <item index="3" class="java.lang.String" itemvalue="Python.make_Plots (2)" />
-      <item index="4" class="java.lang.String" itemvalue="Python.make_Plots" />
+      <item index="0" class="java.lang.String" itemvalue="Python.main" />
+      <item index="1" class="java.lang.String" itemvalue="Python.make_Plots (2)" />
+      <item index="2" class="java.lang.String" itemvalue="Python.make_Plots" />
+      <item index="3" class="java.lang.String" itemvalue="Python.make_Plots_2" />
+      <item index="4" class="java.lang.String" itemvalue="Python.make_Plots (3)" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.main" />
-        <item index="1" class="java.lang.String" itemvalue="Python.make_Plots" />
-        <item index="2" class="java.lang.String" itemvalue="Python.make_Plots (2)" />
-        <item index="3" class="java.lang.String" itemvalue="Python.make_Plots (1)" />
-        <item index="4" class="java.lang.String" itemvalue="Python.make_Plots (4)" />
+        <item index="0" class="java.lang.String" itemvalue="Python.make_Plots_2" />
+        <item index="1" class="java.lang.String" itemvalue="Python.make_Plots (3)" />
+        <item index="2" class="java.lang.String" itemvalue="Python.main" />
+        <item index="3" class="java.lang.String" itemvalue="Python.make_Plots" />
+        <item index="4" class="java.lang.String" itemvalue="Python.make_Plots (2)" />
       </list>
     </recent_temporary>
   </component>
@@ -488,15 +501,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="697" height="735" extended-state="0" />
-    <editor active="false" />
+    <frame x="-7" y="0" width="988" height="735" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27312776" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19135803" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.384" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.384" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -543,13 +556,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/BasicMotions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="191" column="0" selection-start-line="191" selection-start-column="0" selection-end-line="191" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RobotDrive.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -805,13 +811,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ProgramDataFiles/15_Chris/make_Plots.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="50" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ProgramDataFiles/17_Yugong/make_Plots.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -899,7 +898,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -914,11 +913,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ProgramDataFiles/15_Chris/make_Plots.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23809524">
+          <caret line="259" column="21" selection-start-line="259" selection-start-column="21" selection-end-line="259" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ProgramDataFiles/_FSM_INPUT.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41087613">
+        <state vertical-scroll-proportion="-5.230769">
           <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProgramDataFiles/25_Veronica/make_Plots_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23809524">
+          <caret line="231" column="58" selection-start-line="231" selection-start-column="58" selection-end-line="231" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

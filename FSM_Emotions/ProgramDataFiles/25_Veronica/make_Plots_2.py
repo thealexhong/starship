@@ -7,10 +7,10 @@ from matplotlib import gridspec
 import matplotlib
 
 
-userNumber = 15
+userNumber = 25
 offsetHours = 5
-affectFileName = "15 Chris Morning.csv"
-robotFileName = "15_Chris_Flow_2016-02-24_11-24-21.csv"
+affectFileName = "25 Veronica End of Day.csv"
+robotFileName = "25_Veronica_Flow_2016-02-25_18-40-57.csv"
 # affectFileName = "tan1 2016-02-11 11_38_09 AM.csv"
 # robotFileName = "10_Tan_Flow.csv"
 
@@ -195,7 +195,7 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
     # plt.title("Robot States")
     plt.ylabel("Robot\nState #")
     plt.xlabel("Time (s)")
-    plt.yticks(np.arange(0.0, 14.0, 2.0))
+    plt.yticks(np.arange(0.0, 14.0, 1.0))
     plt.axis([-10, maxTime + 10, -0.1, 14.1])
     rep, = plt.plot(times, REs, 'm-', label = "Robot Emotion")
     oep, = plt.plot(times, OEs, 'c-', label = "Robot Expression")
@@ -213,7 +213,7 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
 
     ###### make new plots
 
-    fig2 = plt.figure(2,figsize=(6,4))
+    fig2 = plt.figure(2,figsize=(8.5,5.2))
     timeStart = times[0]
     timeEnd = times[-1]
     print timeStart, ' ', timeEnd
@@ -238,16 +238,16 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
     AvgV = [np.mean(MVs)] * len(MVs)
     AvgA = [np.mean(MAs)] * len(MAs)
 
-    gs = gridspec.GridSpec(3,1, height_ratios=[2,2,1])
+    gs = gridspec.GridSpec(3,2, height_ratios=[2,2,1], width_ratios=[1,100])
     r = 3
     c = 1
-    plt.subplot(gs[0])
-    plt.title("User " + str(userNumber) + " " + interactionType + " Interaction Measurements", fontsize=14)
-    plt.yticks(np.arange(-2.0, 3.0, 1.0), fontsize=12)
+    plt.subplot(gs[1])
+    plt.title("User " + str(userNumber) + " " + interactionType + " Interaction Measurements", fontsize=16)
+    plt.yticks(np.arange(-2.0, 3.0, 1.0), fontsize=14)
     plt.xticks(fontsize=10)
     plt.axis([-10, timeEnd-timeStart + 10, -2.1, 2.1])
     plt.grid(True)
-    plt.ylabel("User Affect", fontsize=12)
+    plt.ylabel("User Affect", fontsize=14)
     # plt.xlabel("Time (s)")
     mvp, = plt.plot(aff_times, MVs, 'g', label = "User's Valence")
     map, = plt.plot(aff_times, MAs, 'b', label = "User's Arousal")
@@ -258,25 +258,87 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
         times[t] -= timeStart
     for t in range(len(atimes)):
         atimes[t] -= timeStart
-    plt.subplot(gs[1])
-    plt.ylabel("Robot\nState #", fontsize=12)
+    print times
+    print REs
+    print OEs
+    REOEs, ts = colourREplotData(times, REs, OEs)
+    print
+    print REOEs
+    # print ts
+    h, i, s, w, a, h2, i2, s2, w2, a2, sc1, sc2, sc3 = REOEs
+    # h_t, i_t, s_t, w_t, a_t, h2_t, i2_t, s2_t, w2_t, a2_t, sc1_t, sc2_t, sc3_t = ts
+
+    print h
+    print ts
+    print len(h)
+    print len(ts)
+
+    plt.subplot(gs[3])
+    labels = ["Happy", "Interested", "Sad", "Worried", "Angery", "Scared 1", "Scared 2", "Scared 3"]
+    plt.ylabel("Robot\nState #", fontsize=14)
     plt.xlabel("Time (s)", fontsize=12)
-    plt.yticks(np.arange(0.0, 14.0, 4.0), fontsize=12)
+    plt.yticks(np.arange(0.0, 8.0, 1.0), labels, fontsize=14)
     # plt.yticks(np.arange(0.0, 14.0, 1.0), minor=True)
     plt.xticks(fontsize=10)
-    plt.axis([-10, timeEnd-timeStart + 10, -0.1, 14.1])
-    rep, = plt.plot(times, REs, 'm-', label = "Robot Emotion")
+    plt.axis([-10, timeEnd-timeStart + 10, -1, 8.1])
+    # rep, = plt.plot(times, REs, 'm-', label = "Robot Emotion")
+    hp, = plt.plot(ts, h, '-', label = "Happy", color="yellowgreen", linewidth=3)
+    ip, = plt.plot(ts, i, '-', label = "Interested", color="yellow", linewidth=3)
+    sp, = plt.plot(ts, s, '-', label = "Sad", color="blue", linewidth=3)
+    wp, = plt.plot(ts, w, '-', label = "Worried", color="magenta", linewidth=3)
+    ap, = plt.plot(ts, a, '-', label = "Anger", color="red", linewidth=3)
+
+    h2p, = plt.plot(ts, h2, '-', label = "Happy 2", color="darkgreen", linewidth=3)
+    i2p, = plt.plot(ts, i2, '-', label = "Interested 2", color="darkgoldenrod", linewidth=3)
+    s2p, = plt.plot(ts, s2, '-', label = "Sad 2", color="darkblue", linewidth=3)
+    w2p, = plt.plot(ts, w2, '-', label = "Worried 2", color="darkmagenta", linewidth=3)
+    a2p, = plt.plot(ts, a2, '-', label = "Anger 2", color="darkred", linewidth=3)
+
+    sc1p, = plt.plot(ts, sc1, '-', label = "Scared 1", color="orange", linewidth=3)
+    sc2p, = plt.plot(ts, sc2, '-', label = "Scared 2", color="orangered", linewidth=3)
+    sc3p, = plt.plot(ts, sc3, '-', label = "Scared 3", color="tomato", linewidth=3)
     # oep, = plt.plot(times, OEs, 'c-', label = "Robot Expression")
     # plt.plot(atimes, aREs, 'm|', markersize=10)
     # plt.plot(atimes, aOEs, 'c|', markersize=10)
     plt.grid(True)
 
-    fig2.legend((mvp, map, avgvp, avgap, rep, oep),
-                ('User Valence', 'User Arousal', "Valence Average", "Arousal Average",
-                 "Robot Emotion", "Robot Expression"),
-                'lower center', ncol = 2, prop={'size':10})
+    blank, = plt.plot([0], [0], '-', color='none', label='')
+    fig2.legend((mvp, map, avgvp, avgap, blank,
+                 hp, ip, sp, wp, ap, h2p, i2p, s2p, w2p, a2p, blank,
+                 sc1p, sc2p, sc3p
+                 ),
+                ('User Valence', 'User Arousal', "Valence Average", "Arousal Average", ""
+                    ,"Low Degree Happy", "Low Degree Interested", "Low Degree Sad", "Low Degree Worried", "Low Degree Anger",
+                    "High Degree Happy", "High Degree Interested", "High Degree Sad", "High Degree Worried", "High Degree Anger",
+                    "", "Scared 1 (Touched)", "Scared 2 (Picked up)", "Scared 3 (Ledges)"
+                 ),
+                'lower center', ncol = 4, prop={'size':10})
 
     plt.show()
+
+def colourREplotData(times, REs, OEs):
+    # h = i = s = w = a = h2 = i2 = s2 = w2 = a2 = sc1 = sc2 = sc3 = []
+    # h_t = i_t = s_t = w_t = a_t = h2_t = i2_t = s2_t = w2_t = a2_t = sc1_t = sc2_t = sc3_t = []
+    # REOEs = [h, i, s, w, a, h2, i2, s2, w2, a2, sc1, sc2, sc3]
+    REOEs = [[],[],[],[],[],[],[],[],[],[],[],[],[]]
+    # ts  = [h_t, i_t, s_t, w_t, a_t, h2_t, i2_t, s2_t, w2_t, a2_t, sc1_t, sc2_t, sc3_t]
+    ts = []
+
+    last_re = 0
+    for t in range(len(times)):
+        re = REs[t]
+        oe = OEs[t]
+        REOEs[oe].append(last_re)
+        REOEs[oe].append(re)
+        for r in range(13):
+            if r != oe:
+                REOEs[r].append(None)
+                REOEs[r].append(None)
+        ts += [times[t]-0.1,times[t]]
+        last_re = re
+
+    return REOEs, ts
+
 
 affectLog = importCSVFile(affectFileName)
 # printCSVList(affectLog)
