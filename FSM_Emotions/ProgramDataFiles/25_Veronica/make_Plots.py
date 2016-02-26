@@ -3,9 +3,10 @@ import time as t
 import datetime as dt
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib import gridspec
 
 
-userNumber = 25
+userNumber = 14
 offsetHours = 5
 affectFileName = "25 Veronica Morning.csv"
 robotFileName = "25_Veronica_Flow_2016-02-25_13-02-54.csv"
@@ -201,6 +202,69 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
                 ('Body Language', 'Vocal Intonation', 'Multi-modal Fusion', 'Average', "Robot Emotion", "Robot Expression"),
                 'upper left', ncol = 2)
 
+
+    # plt.show()
+
+    ###### make new plots
+    fig2 = plt.figure(2)
+    timeStart = times[0]
+    timeEnd = times[-1]
+    print timeStart, ' ', timeEnd
+    want_Square = False
+    MVs = []
+    MAs = []
+    last_v = 0
+    last_a = 0
+    aff_times = []
+    for row in affectCSVList:
+        [bv, ba, vv, va, mv, ma, ts] = row[0:7]
+        if float(ts) >= timeStart and float(ts) <= timeEnd:
+            if want_Square:
+                MVs += [last_v]
+                MAs += [last_a]
+                aff_times += [float(ts) - timeStart - 0.1]
+            MVs += [int(mv)]
+            MAs += [int(ma)]
+            aff_times += [float(ts) - timeStart]
+            last_v = int(mv)
+            last_a = int(ma)
+    AvgV = [np.mean(MVs)] * len(MVs)
+    AvgA = [np.mean(MAs)] * len(MAs)
+
+    gs = gridspec.GridSpec(3,1, height_ratios=[2.5,2.5,1])
+    r = 3
+    c = 1
+    plt.subplot(gs[0])
+    plt.title("User " + str(userNumber) + " " + interactionType + " Interaction Measurements")
+    plt.yticks(np.arange(-2.0, 3.0, 1.0))
+    plt.axis([-10, timeEnd-timeStart + 10, -2.1, 2.1])
+    plt.grid(True)
+    plt.ylabel("User Affect")
+    # plt.xlabel("Time (s)")
+    mvp, = plt.plot(aff_times, MVs, 'g', label = "User's Valence")
+    map, = plt.plot(aff_times, MAs, 'b', label = "User's Arousal")
+    avgvp, = plt.plot(aff_times, AvgV, 'g--', label = "Average Valence")
+    avgap, = plt.plot(aff_times, AvgA, 'b--', label = "Average Arousal")
+
+    for t in range(len(times)):
+        times[t] -= timeStart
+    for t in range(len(atimes)):
+        atimes[t] -= timeStart
+    plt.subplot(gs[1])
+    plt.ylabel("Robot\nState #")
+    plt.xlabel("Time (s)")
+    plt.yticks(np.arange(0.0, 14.0, 2.0))
+    plt.axis([-10, timeEnd-timeStart + 10, -0.1, 14.1])
+    rep, = plt.plot(times, REs, 'm-', label = "Robot Emotion")
+    oep, = plt.plot(times, OEs, 'c-', label = "Robot Expression")
+    plt.plot(atimes, aREs, 'm|', markersize=10)
+    plt.plot(atimes, aOEs, 'c|', markersize=10)
+    plt.grid(True)
+
+    fig2.legend((mvp, map, avgvp, avgap, rep, oep),
+                ('User Valence', 'User Arousal', "Valence Average", "Arousal Average",
+                 "Robot Emotion", "Robot Expression"),
+                'lower center', ncol = 2)
 
     plt.show()
 

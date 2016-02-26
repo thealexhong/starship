@@ -210,7 +210,7 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
     timeStart = times[0]
     timeEnd = times[-1]
     print timeStart, ' ', timeEnd
-    want_Square = True
+    want_Square = False
     MVs = []
     MAs = []
     last_v = 0
