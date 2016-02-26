@@ -1,0 +1,34 @@
+
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 0  
+currentFSMState: 1 UPositiveLikeli: 0.794891627561 V:0.333333333333 A:0.333333333333 Appraised: [ 0.7898  1.5898  0.      0.4102  0.      0.      0.      0.    ]
+currentFSMState: 1 UResponsesLikeli: 1.0 Appraised: [ 0.6  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1 UPosBranchesLikeli: 1.0 Appraised: [ 1.2  2.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1  [ 0.6  1.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1  [ 0.7898  1.5898  0.      0.4102  0.      0.      0.      0.    ]
+currentFSMState: 1  [ 1.2  2.   0.   0.   0.   0.   0.   0. ]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1  [ 0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 OverallEV [ 2.5898  4.5898  0.      0.4102  0.      0.      0.      0.    ]
+currentFSMState: 1 Overall U input: [ 2.5898  4.5898  0.      0.4102  0.      0.      0.      0.    ]
+currentFSMState: 1 U Feedback: [ 1.  1.  1.  1.  1.  1.  1.  1.]
+currentFSMState: 1 
+[[ 0.4846  0.5302  0.22    0.3607  0.      0.3607  0.3607  0.3607]
+ [ 0.5154  0.4698  0.78    0.6393  1.      0.6393  0.6393  0.6393]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.    ]]
+currentFSMState: 1 New RE: [ 1.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 New OE: [ 1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+currentFSMState: 1 
+currentFSMState: 2 
