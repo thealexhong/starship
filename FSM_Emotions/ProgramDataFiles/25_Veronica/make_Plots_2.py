@@ -245,7 +245,7 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
     plt.title("User " + str(userNumber) + " " + interactionType + " Interaction Measurements", fontsize=16)
     plt.yticks(np.arange(-2.0, 3.0, 1.0), fontsize=14)
     plt.xticks(fontsize=10)
-    plt.axis([-10, timeEnd-timeStart + 10, -2.1, 2.1])
+    plt.axis([0, timeEnd-timeStart, -2.1, 2.1])
     plt.grid(True)
     plt.ylabel("User Affect", fontsize=14)
     # plt.xlabel("Time (s)")
@@ -275,12 +275,12 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
 
     plt.subplot(gs[3])
     labels = ["Happy", "Interested", "Sad", "Worried", "Angery", "Scared 1", "Scared 2", "Scared 3"]
-    plt.ylabel("Robot\nState #", fontsize=14)
+    plt.ylabel("Robot\nEmotional State", fontsize=14)
     plt.xlabel("Time (s)", fontsize=12)
     plt.yticks(np.arange(0.0, 8.0, 1.0), labels, fontsize=14)
     # plt.yticks(np.arange(0.0, 14.0, 1.0), minor=True)
     plt.xticks(fontsize=10)
-    plt.axis([-10, timeEnd-timeStart + 10, -1, 8.1])
+    plt.axis([0, timeEnd-timeStart, -1, 8])
     # rep, = plt.plot(times, REs, 'm-', label = "Robot Emotion")
     hp, = plt.plot(ts, h, '-', label = "Happy", color="yellowgreen", linewidth=3)
     ip, = plt.plot(ts, i, '-', label = "Interested", color="yellow", linewidth=3)
