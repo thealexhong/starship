@@ -213,7 +213,7 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
 
     ###### make new plots
 
-    fig2 = plt.figure(2,figsize=(8.5,5.2))
+    fig2 = plt.figure(2,figsize=(8.5,5.6))
     timeStart = times[0]
     timeEnd = times[-1]
     print timeStart, ' ', timeEnd
@@ -310,7 +310,7 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
                 ('User Valence', 'User Arousal', "Valence Average", "Arousal Average", ""
                     ,"Low Degree Happy", "Low Degree Interested", "Low Degree Sad", "Low Degree Worried", "Low Degree Anger",
                     "High Degree Happy", "High Degree Interested", "High Degree Sad", "High Degree Worried", "High Degree Anger",
-                    "", "Scared 1 (Touched)", "Scared 2 (Picked up)", "Scared 3 (Ledges)"
+                    "", "Scared 1 (Picked Up)", "Scared 2 (Touched)", "Scared 3 (Ledges)"
                  ),
                 'lower center', ncol = 4, prop={'size':10})
 
