@@ -230,6 +230,7 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
             last_a = int(ma)
     AvgV = [np.mean(MVs)] * len(MVs)
     AvgA = [np.mean(MAs)] * len(MAs)
+   
 
     gs = gridspec.GridSpec(3,1, height_ratios=[2.5,2.5,1])
     r = 3

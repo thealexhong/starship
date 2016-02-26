@@ -213,7 +213,7 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
 
     ###### make new plots
 
-    fig2 = plt.figure(2,figsize=(4,3))
+    fig2 = plt.figure(2,figsize=(6,4))
     timeStart = times[0]
     timeEnd = times[-1]
     print timeStart, ' ', timeEnd
@@ -238,11 +238,11 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
     AvgV = [np.mean(MVs)] * len(MVs)
     AvgA = [np.mean(MAs)] * len(MAs)
 
-    gs = gridspec.GridSpec(3,1, height_ratios=[1,1,1])
+    gs = gridspec.GridSpec(3,1, height_ratios=[2,2,1])
     r = 3
     c = 1
     plt.subplot(gs[0])
-    plt.title("User " + str(userNumber) + " " + interactionType + " Interaction Measurements", fontsize=12)
+    plt.title("User " + str(userNumber) + " " + interactionType + " Interaction Measurements", fontsize=14)
     plt.yticks(np.arange(-2.0, 3.0, 1.0), fontsize=12)
     plt.xticks(fontsize=10)
     plt.axis([-10, timeEnd-timeStart + 10, -2.1, 2.1])
@@ -262,6 +262,7 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
     plt.ylabel("Robot\nState #", fontsize=12)
     plt.xlabel("Time (s)", fontsize=12)
     plt.yticks(np.arange(0.0, 14.0, 4.0), fontsize=12)
+    plt.yticks(np.arange(0.0, 14.0, 1.0), minor=True)
     plt.xticks(fontsize=10)
     plt.axis([-10, timeEnd-timeStart + 10, -0.1, 14.1])
     rep, = plt.plot(times, REs, 'm-', label = "Robot Emotion")
