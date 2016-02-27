@@ -7,7 +7,7 @@ from matplotlib import gridspec
 import matplotlib
 
 
-userNumber = 17
+userNumber = 25
 offsetHours = 5
 affectFileName = "25 Veronica End of Day.csv"
 robotFileName = "25_Veronica_Flow_2016-02-25_18-40-57.csv"
@@ -244,7 +244,7 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
     r = 3
     c = 1
     plt.subplot(gs[1])
-    plt.title("User " + str(userNumber) + " " + interactionType + " Interaction Measurements", fontsize=16)
+    # plt.title("User " + str(userNumber) + " " + interactionType + " Interaction Measurements", fontsize=16)
     plt.yticks(np.arange(-2.0, 3.0, 1.0), fontsize=14)
     plt.xticks(fontsize=10)
     plt.axis([0, timeEnd-timeStart, -2.1, 2.1])
@@ -276,7 +276,7 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
     print len(ts)
 
     plt.subplot(gs[3])
-    labels = ["Happy", "Interested", "Sad", "Worried", "Angry", "Scared 1", "Scared 2", "Scared 3"]
+    labels = ["Happy", "Interested", "Sad", "Worried", "Angry", "Scared P", "Scared T", "Scared L"]
     plt.ylabel("Robot\nEmotional State", fontsize=14)
     plt.xlabel("Time (s)", fontsize=12)
     plt.yticks(np.arange(0.0, 8.0, 1.0), labels, fontsize=14)
@@ -285,20 +285,20 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
     plt.axis([0, timeEnd-timeStart, -1, 8])
     # rep, = plt.plot(times, REs, 'm-', label = "Robot Emotion")
     hp, = plt.plot(ts, h, '-', label = "Happy", color="yellowgreen", linewidth=3)
-    ip, = plt.plot(ts, i, '-', label = "Interested", color="yellow", linewidth=3)
-    sp, = plt.plot(ts, s, '-', label = "Sad", color="blue", linewidth=3)
+    ip, = plt.plot(ts, i, '-', label = "Interested", color="#ffff00", linewidth=3)
+    sp, = plt.plot(ts, s, '-', label = "Sad", color="cyan", linewidth=3)
     wp, = plt.plot(ts, w, '-', label = "Worried", color="magenta", linewidth=3)
-    ap, = plt.plot(ts, a, '-', label = "Angry", color="red", linewidth=3)
+    ap, = plt.plot(ts, a, '-', label = "Angry", color="#ff0000", linewidth=3)
 
     h2p, = plt.plot(ts, h2, '-', label = "Happy 2", color="darkgreen", linewidth=3)
-    i2p, = plt.plot(ts, i2, '-', label = "Interested 2", color="darkgoldenrod", linewidth=3)
+    i2p, = plt.plot(ts, i2, '-', label = "Interested 2", color="#e5c100", linewidth=3)
     s2p, = plt.plot(ts, s2, '-', label = "Sad 2", color="darkblue", linewidth=3)
-    w2p, = plt.plot(ts, w2, '-', label = "Worried 2", color="darkmagenta", linewidth=3)
-    a2p, = plt.plot(ts, a2, '-', label = "Angry 2", color="darkred", linewidth=3)
+    w2p, = plt.plot(ts, w2, '-', label = "Worried 2", color="darkorchid", linewidth=3)
+    a2p, = plt.plot(ts, a2, '-', label = "Angry 2", color="#bb0000", linewidth=3)
 
-    sc1p, = plt.plot(ts, sc1, '-', label = "Scared 1", color="orange", linewidth=3)
-    sc2p, = plt.plot(ts, sc2, '-', label = "Scared 2", color="orangered", linewidth=3)
-    sc3p, = plt.plot(ts, sc3, '-', label = "Scared 3", color="tomato", linewidth=3)
+    sc1p, = plt.plot(ts, sc1, '-', label = "Scared P", color="#ffa500", linewidth=3)
+    sc2p, = plt.plot(ts, sc2, '-', label = "Scared T", color="orangered", linewidth=3)
+    sc3p, = plt.plot(ts, sc3, '-', label = "Scared L", color="#996300", linewidth=3)
     # oep, = plt.plot(times, OEs, 'c-', label = "Robot Expression")
     # plt.plot(atimes, aREs, 'm|', markersize=10)
     # plt.plot(atimes, aOEs, 'c|', markersize=10)
@@ -306,13 +306,13 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
 
     blank, = plt.plot([0], [0], '-', color='none', label='')
     fig2.legend((mvp, map, avgvp, avgap, blank,
-                 hp, ip, sp, wp, ap, h2p, i2p, s2p, w2p, a2p, blank,
-                 sc1p, sc2p, sc3p
+                 hp, ip, sp, wp, ap, h2p, i2p, s2p, w2p, a2p,
+                 sc1p, sc2p, sc3p, blank, blank
                  ),
                 ('User Valence', 'User Arousal', "Valence Average", "Arousal Average", ""
                     ,"Low Degree Happy", "Low Degree Interested", "Low Degree Sad", "Low Degree Worried", "Low Degree Angry",
                     "High Degree Happy", "High Degree Interested", "High Degree Sad", "High Degree Worried", "High Degree Angry",
-                    "", "Scared 1 (Picked Up)", "Scared 2 (Touched)", "Scared 3 (Ledges)"
+                    "Scared P (Picked Up)", "Scared T (Touched)", "Scared L (Ledges)", "", ""
                  ),
                 'lower center', ncol = 4, prop={'size':10})
 
