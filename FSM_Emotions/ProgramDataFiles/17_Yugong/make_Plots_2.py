@@ -9,8 +9,8 @@ import matplotlib
 
 userNumber = 17
 offsetHours = 5
-affectFileName = "25 Veronica End of Day.csv"
-robotFileName = "25_Veronica_Flow_2016-02-25_18-40-57.csv"
+affectFileName = "17 Yugong Morning.csv"
+robotFileName = "17_Yugong_Flow_2016-02-24_12-31-36.csv"
 # affectFileName = "tan1 2016-02-11 11_38_09 AM.csv"
 # robotFileName = "10_Tan_Flow.csv"
 

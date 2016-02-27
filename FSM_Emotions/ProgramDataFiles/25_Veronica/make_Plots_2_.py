@@ -7,10 +7,10 @@ from matplotlib import gridspec
 import matplotlib
 
 
-userNumber = 17
+userNumber = 28
 offsetHours = 5
-affectFileName = "25 Veronica End of Day.csv"
-robotFileName = "25_Veronica_Flow_2016-02-25_18-40-57.csv"
+affectFileName = "28 Christina End of Day.csv"
+robotFileName = "28_Christina_Flow_2016-02-26_16-16-30.csv"
 # affectFileName = "tan1 2016-02-11 11_38_09 AM.csv"
 # robotFileName = "10_Tan_Flow.csv"
 
@@ -237,8 +237,6 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
             last_a = int(ma)
     AvgV = [np.mean(MVs)] * len(MVs)
     AvgA = [np.mean(MAs)] * len(MAs)
-
-    print "average V: ", np.mean(MVs), "Average A: ",np.mean(MAs)
 
     gs = gridspec.GridSpec(3,2, height_ratios=[2,2,1], width_ratios=[1,100])
     r = 3

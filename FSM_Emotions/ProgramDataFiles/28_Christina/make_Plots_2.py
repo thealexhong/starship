@@ -7,10 +7,10 @@ from matplotlib import gridspec
 import matplotlib
 
 
-userNumber = 17
+userNumber = 26
 offsetHours = 5
-affectFileName = "25 Veronica End of Day.csv"
-robotFileName = "25_Veronica_Flow_2016-02-25_18-40-57.csv"
+affectFileName = "28 Christina End of Day.csv"
+robotFileName = "28_Christina_Flow_2016-02-26_16-16-30.csv"
 # affectFileName = "tan1 2016-02-11 11_38_09 AM.csv"
 # robotFileName = "10_Tan_Flow.csv"
 
@@ -118,6 +118,7 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
     AvgV = [np.mean(MVs)] * len(MVs)
     AvgA = [np.mean(MAs)] * len(MAs)
     maxTime = max(times)
+    print "average V: ", np.mean(MVs), "Average A: ",np.mean(MAs)
 
     fig = plt.figure(1)
     r = 4
@@ -238,8 +239,6 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
     AvgV = [np.mean(MVs)] * len(MVs)
     AvgA = [np.mean(MAs)] * len(MAs)
 
-    print "average V: ", np.mean(MVs), "Average A: ",np.mean(MAs)
-
     gs = gridspec.GridSpec(3,2, height_ratios=[2,2,1], width_ratios=[1,100])
     r = 3
     c = 1
@@ -276,7 +275,7 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
     print len(ts)
 
     plt.subplot(gs[3])
-    labels = ["Happy", "Interested", "Sad", "Worried", "Angry", "Scared 1", "Scared 2", "Scared 3"]
+    labels = ["Happy", "Interested", "Sad", "Worried", "Angery", "Scared 1", "Scared 2", "Scared 3"]
     plt.ylabel("Robot\nEmotional State", fontsize=14)
     plt.xlabel("Time (s)", fontsize=12)
     plt.yticks(np.arange(0.0, 8.0, 1.0), labels, fontsize=14)
@@ -288,13 +287,13 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
     ip, = plt.plot(ts, i, '-', label = "Interested", color="yellow", linewidth=3)
     sp, = plt.plot(ts, s, '-', label = "Sad", color="blue", linewidth=3)
     wp, = plt.plot(ts, w, '-', label = "Worried", color="magenta", linewidth=3)
-    ap, = plt.plot(ts, a, '-', label = "Angry", color="red", linewidth=3)
+    ap, = plt.plot(ts, a, '-', label = "Anger", color="red", linewidth=3)
 
     h2p, = plt.plot(ts, h2, '-', label = "Happy 2", color="darkgreen", linewidth=3)
     i2p, = plt.plot(ts, i2, '-', label = "Interested 2", color="darkgoldenrod", linewidth=3)
     s2p, = plt.plot(ts, s2, '-', label = "Sad 2", color="darkblue", linewidth=3)
     w2p, = plt.plot(ts, w2, '-', label = "Worried 2", color="darkmagenta", linewidth=3)
-    a2p, = plt.plot(ts, a2, '-', label = "Angry 2", color="darkred", linewidth=3)
+    a2p, = plt.plot(ts, a2, '-', label = "Anger 2", color="darkred", linewidth=3)
 
     sc1p, = plt.plot(ts, sc1, '-', label = "Scared 1", color="orange", linewidth=3)
     sc2p, = plt.plot(ts, sc2, '-', label = "Scared 2", color="orangered", linewidth=3)
@@ -310,8 +309,8 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
                  sc1p, sc2p, sc3p
                  ),
                 ('User Valence', 'User Arousal', "Valence Average", "Arousal Average", ""
-                    ,"Low Degree Happy", "Low Degree Interested", "Low Degree Sad", "Low Degree Worried", "Low Degree Angry",
-                    "High Degree Happy", "High Degree Interested", "High Degree Sad", "High Degree Worried", "High Degree Angry",
+                    ,"Low Degree Happy", "Low Degree Interested", "Low Degree Sad", "Low Degree Worried", "Low Degree Anger",
+                    "High Degree Happy", "High Degree Interested", "High Degree Sad", "High Degree Worried", "High Degree Anger",
                     "", "Scared 1 (Picked Up)", "Scared 2 (Touched)", "Scared 3 (Ledges)"
                  ),
                 'lower center', ncol = 4, prop={'size':10})
