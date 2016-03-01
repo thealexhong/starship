@@ -23,23 +23,23 @@ def importCSVFile(fileName):
 
 def makeGroupPlot(affectLog,robotLog):
 
-    colours = ['blue', 'green', 'red', 'orange', 'yellow', 'black', 'cyan', 'magenta']
+    colours = ['blue', 'green', 'red', 'orange', 'yellow', 'grey', 'cyan', 'magenta']
     userNumbers = [17,18, 21,24,25,26,28,29]
 
     legend = []
     legendName = []
 
-    fig = plt.figure(1,figsize=(8.5,5.6))
-    gs = gridspec.GridSpec(3,2, height_ratios=[2,2,1], width_ratios=[1,100])
+    fig = plt.figure(1,figsize=(9,7))
+    gs = gridspec.GridSpec(3,2, height_ratios=[2.5,2.5,1], width_ratios=[1,100])
     r = 3
     c = 1
     plt.subplot(gs[1])
     # plt.title("User " + str(userNumber) + " " + interactionType + " Interaction Measurements", fontsize=16)
-    plt.yticks(np.arange(-2.0, 3.0, 1.0), fontsize=14)
-    plt.xticks(fontsize=10)
+    plt.yticks(np.arange(-2.0, 3.0, 1.0), fontsize=16)
+    plt.xticks(fontsize=14)
     plt.axis([0, 1, -2, 2])
     plt.grid(True)
-    plt.ylabel("User Affect", fontsize=14)
+    plt.ylabel("User Affect", fontsize=22)
 
     for u in range(len(userNumbers)):
         userNum = userNumbers[u]
@@ -59,11 +59,11 @@ def makeGroupPlot(affectLog,robotLog):
 
     plt.subplot(gs[3])
     labels = ["Happy", "Interested", "Sad", "Worried", "Angry", "Scared P", "Scared T", "Scared L"]
-    plt.ylabel("Robot\nEmotional State", fontsize=14)
-    plt.xlabel("Normalized Interaction Time", fontsize=12)
-    plt.yticks(np.arange(0.0, 8.0, 1.0), labels, fontsize=14)
+    plt.ylabel("Robot Emotional State", fontsize=22)
+    plt.xlabel("Normalized Interaction Time", fontsize=18)
+    plt.yticks(np.arange(0.0, 8.0, 1.0), labels, fontsize=16)
     # plt.yticks(np.arange(0.0, 14.0, 1.0), minor=True)
-    plt.xticks(fontsize=10)
+    plt.xticks(fontsize=14)
     plt.axis([0, 1, -1, 8])
     plt.grid(True)
     for u in range(len(userNumbers)):
@@ -91,10 +91,18 @@ def makeGroupPlot(affectLog,robotLog):
         legend.append(rLsp)
         legendName.append("User " + str(userNum))
 
+    valp, = plt.plot(-1, -1, '-', color = 'black')
+    arop, = plt.plot(-1, -1, ':', color = 'black')
+    rlowp, = plt.plot(-1, -1, '-', color = 'black', linewidth=3.0)
+    rhighp, = plt.plot(-1, -1, '--', color = 'black', linewidth=3.0)
+    styleLegend = [valp, arop, rlowp, rhighp]
+    styleLegendNames = ["Valence", "Arousal", "Low Degree Expression", "High Degree Expression"]
 
     blank, = plt.plot([0], [0], '-', color='none', label='')
     fig.legend(legend,legendName,
-                'lower center', ncol = 2, prop={'size':10})
+                bbox_to_anchor=(-0.44, -0.81, 1, 1), ncol = 2, prop={'size':14})
+    fig.legend(styleLegend, styleLegendNames,
+                bbox_to_anchor=(-0.09, -0.81, 1, 1), ncol = 1, prop={'size':14})
 
     plt.show()
 
