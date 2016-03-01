@@ -9,8 +9,8 @@ import matplotlib
 
 userNumber = 18
 offsetHours = 5
-affectFileName = "18 Evgeny Morning.csv"
-robotFileName = "18_Evgeny_Flow_2016-02-24_12-57-24.csv"
+affectFileName = "18 Evgeny End of day.csv"
+robotFileName = "18_Evgeny_Flow_2016-02-24_16-57-28.csv"
 # affectFileName = "tan1 2016-02-11 11_38_09 AM.csv"
 # robotFileName = "10_Tan_Flow.csv"
 
@@ -318,6 +318,15 @@ def plotAffect(affectCSVList, robotCSVList, userNumber = 1, interactionType = "M
 
     plt.show()
 
+    last_t = max(aff_times)
+    aff_times2 = []
+    for t in range(len(aff_times)):
+        aff_times2.append(1.0 * aff_times[t] / last_t)
+    affData = [aff_times2, MVs, MAs]
+    robtData = groupColourData(times, REs, OEs)
+    makeFormatDataset(affData, robtData, str(userNumber), interactionType)
+
+
 def colourREplotData(times, REs, OEs):
     # h = i = s = w = a = h2 = i2 = s2 = w2 = a2 = sc1 = sc2 = sc3 = []
     # h_t = i_t = s_t = w_t = a_t = h2_t = i2_t = s2_t = w2_t = a2_t = sc1_t = sc2_t = sc3_t = []
@@ -340,6 +349,73 @@ def colourREplotData(times, REs, OEs):
         last_re = re
 
     return REOEs, ts
+
+
+def groupColourData(times, REs, OEs):
+
+    REOEs = [[], [], []] # low degree, high degree, scared3
+    ts = []
+
+    last_re = 0
+    for t in range(len(times)):
+        re = REs[t]
+        oe = OEs[t]
+        style = 2
+        if oe < 5 or oe == 10:
+            style = 0
+        elif oe < 12:
+            style = 1
+        REOEs[style].append(last_re)
+        REOEs[style].append(re)
+
+        for s in range(3):
+            if s != style:
+                REOEs[s].append(-1)
+                REOEs[s].append(-1)
+        ts += [times[t]-0.1,times[t]]
+        last_re = re
+
+    last_time = max(ts)
+    print last_time
+    for t in range(len(ts)):
+        ts[t] /= 1.0*last_time
+
+    return REOEs, ts
+
+
+def makeFormatDataset(affData, robtData,  userNumber, interactionType):
+    fileNameAff = "AffectData_" + userNumber + "_" + interactionType + ".csv"
+    [aff_times, MVs, MAs] = affData
+
+    for t in range(len(aff_times)):
+        writeText = userNumber + "," + str(aff_times[t]) + "," + str(MVs[t]) + "," + str(MAs[t])
+        writeTextLine(fileNameAff, writeText)
+
+    fileNameRobt = "RobotData_" + userNumber + "_" + interactionType + ".csv"
+    [REOEs, ts] = robtData
+    print REOEs
+    print len(REOEs[2])
+    print len((ts))
+    for t in range(len(ts)):
+        print t
+        writeText = userNumber + "," + str(ts[t]) + "," + str(REOEs[0][t]) + "," + str(REOEs[1][t]) + "," + str(REOEs[2][t])
+        writeTextLine(fileNameRobt, writeText)
+
+def writeTextLine(textFile, lineText):
+    try:
+        import os.path
+        if os.path.isfile(textFile):
+            f = open(textFile, 'a')
+        else:
+            f = open(textFile.replace('\\', '/'), 'a')
+        s = "\n" + str(lineText)
+        f.write(s)
+        f.close()
+    except Exception, e:
+        print "Writing to file '" + textFile + "' Failed with error:"
+        print e
+
+
 
 
 affectLog = importCSVFile(affectFileName)
