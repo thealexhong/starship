@@ -26,6 +26,9 @@ def makeGroupPlot(affectLog,robotLog):
     colours = ['blue', 'green', 'red', 'orange', 'yellow', 'black', 'cyan', 'magenta']
     userNumbers = [17,18, 21,24,25,26,28,29]
 
+    legend = []
+    legendName = []
+
     fig = plt.figure(1,figsize=(8.5,5.6))
     gs = gridspec.GridSpec(3,2, height_ratios=[2,2,1], width_ratios=[1,100])
     r = 3
@@ -34,7 +37,7 @@ def makeGroupPlot(affectLog,robotLog):
     # plt.title("User " + str(userNumber) + " " + interactionType + " Interaction Measurements", fontsize=16)
     plt.yticks(np.arange(-2.0, 3.0, 1.0), fontsize=14)
     plt.xticks(fontsize=10)
-    plt.axis([0, 1, -2.1, 2.1])
+    plt.axis([0, 1, -2, 2])
     plt.grid(True)
     plt.ylabel("User Affect", fontsize=14)
 
@@ -51,17 +54,18 @@ def makeGroupPlot(affectLog,robotLog):
                 Vs.append(v)
                 As.append(a)
         mvp, = plt.plot(ts, Vs, '-', color = colours[u])
-        map, = plt.plot(ts, As, '--', color = colours[u])
+        map, = plt.plot(ts, As, ':', color = colours[u])
 
 
     plt.subplot(gs[3])
     labels = ["Happy", "Interested", "Sad", "Worried", "Angry", "Scared P", "Scared T", "Scared L"]
     plt.ylabel("Robot\nEmotional State", fontsize=14)
-    plt.xlabel("Time (s)", fontsize=12)
+    plt.xlabel("Normalized Interaction Time", fontsize=12)
     plt.yticks(np.arange(0.0, 8.0, 1.0), labels, fontsize=14)
     # plt.yticks(np.arange(0.0, 14.0, 1.0), minor=True)
     plt.xticks(fontsize=10)
     plt.axis([0, 1, -1, 8])
+    plt.grid(True)
     for u in range(len(userNumbers)):
         userNum = userNumbers[u]
         ts2 = []
@@ -80,9 +84,17 @@ def makeGroupPlot(affectLog,robotLog):
                 Ls.append(ls)
                 Hs.append(hs)
                 S3s.append(s3s)
-        rLsp, = plt.plot(ts2, Ls, '-', color = colours[u])
-        rHsp, = plt.plot(ts2, Hs, '--', color = colours[u])
-        rS3sp, = plt.plot(ts2, S3s, ':', color = colours[u])
+        rLsp, = plt.plot(ts2, Ls, '-', color = colours[u], linewidth=3.0)
+        rHsp, = plt.plot(ts2, Hs, '--', color = colours[u], linewidth=3.0)
+        rS3sp, = plt.plot(ts2, S3s, ':', color = colours[u], linewidth=3.0)
+
+        legend.append(rLsp)
+        legendName.append("User " + str(userNum))
+
+
+    blank, = plt.plot([0], [0], '-', color='none', label='')
+    fig.legend(legend,legendName,
+                'lower center', ncol = 2, prop={'size':10})
 
     plt.show()
 
