@@ -46,9 +46,20 @@ def makeGroupPlot(affectLog,robotLog):
         ts = []
         Vs = []
         As = []
-        for row in affectLog:
-            print row
+        filterSize = 4
+        for i in range(filterSize,len(affectLog)-filterSize):
+            row = affectLog[i]
+            # print row
             [uNum, t, v, a] = row
+            v = 0
+            a = 0
+            for j in range(-1*filterSize, filterSize+1):
+                v += float(affectLog[i+j][2])/(2*filterSize+1.0)
+                a += float(affectLog[i+j][3])/(2*filterSize+1.0)
+            v = np.round(v)
+            a = np.round(a)
+            if v > 2 or a >2:
+                print a, ' ', v
             if uNum == str(userNum):
                 ts.append(t)
                 Vs.append(v)
@@ -77,7 +88,7 @@ def makeGroupPlot(affectLog,robotLog):
             for r in range(len(row)):
                 if row[r] == str(-1):
                     row[r] = None
-            print row
+            # print row
             [uNum, t, ls, hs, s3s] = row
             if uNum == str(userNum):
                 ts2.append(t)
