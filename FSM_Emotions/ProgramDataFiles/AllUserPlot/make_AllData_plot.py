@@ -89,7 +89,7 @@ def makeGroupPlot(affectLog,robotLog):
         rS3sp, = plt.plot(ts2, S3s, ':', color = colours[u], linewidth=3.0)
 
         legend.append(rLsp)
-        legendName.append("User " + str(userNum))
+        legendName.append("User " + str(u+1))
 
     valp, = plt.plot(-1, -1, '-', color = 'black')
     arop, = plt.plot(-1, -1, ':', color = 'black')
