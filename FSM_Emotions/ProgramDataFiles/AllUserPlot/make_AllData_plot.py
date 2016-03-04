@@ -46,26 +46,35 @@ def makeGroupPlot(affectLog,robotLog):
         ts = []
         Vs = []
         As = []
-        filterSize = 4
-        for i in range(filterSize,len(affectLog)-filterSize):
+
+        for i in range(len(affectLog)):
             row = affectLog[i]
             # print row
             [uNum, t, v, a] = row
-            v = 0
-            a = 0
-            for j in range(-1*filterSize, filterSize+1):
-                v += float(affectLog[i+j][2])/(2*filterSize+1.0)
-                a += float(affectLog[i+j][3])/(2*filterSize+1.0)
-            v = np.round(v)
-            a = np.round(a)
-            if v > 2 or a >2:
-                print a, ' ', v
             if uNum == str(userNum):
                 ts.append(t)
                 Vs.append(v)
                 As.append(a)
+
+        filterSize = 10
+        # print 2*filterSize+1.0
+        for i in range(filterSize, len(ts)-filterSize):
+            v = 0
+            a = 0
+            for j in range(-1*filterSize, filterSize+1):
+                # print j
+                v += float(Vs[i+j])/(2*filterSize+1.0)
+                a += float(As[i+j])/(2*filterSize+1.0)
+            Vs[i] = v
+            As[i] = a
+        for i in range(filterSize):
+            Vs[i] = None
+            As[i] = None
+            Vs[-1*i] = None
+            As[-1*i] = None
+
         mvp, = plt.plot(ts, Vs, '-', color = colours[u])
-        map, = plt.plot(ts, As, ':', color = colours[u])
+        map, = plt.plot(ts, As, '--', color = colours[u])
 
 
     plt.subplot(gs[3])
@@ -103,15 +112,15 @@ def makeGroupPlot(affectLog,robotLog):
         legendName.append("User " + str(u+1))
 
     valp, = plt.plot(-1, -1, '-', color = 'black')
-    arop, = plt.plot(-1, -1, ':', color = 'black')
+    arop, = plt.plot(-1, -1, '--', color = 'black')
     rlowp, = plt.plot(-1, -1, '-', color = 'black', linewidth=3.0)
     rhighp, = plt.plot(-1, -1, '--', color = 'black', linewidth=3.0)
     styleLegend = [valp, arop, rlowp, rhighp]
-    styleLegendNames = ["Valence", "Arousal", "Low Degree Expression", "High Degree Expression"]
+    styleLegendNames = ["Valence", "Arousal", "Low Intensity Expression", "High Intensity Expression"]
 
     blank, = plt.plot([0], [0], '-', color='none', label='')
     fig.legend(legend,legendName,
-                bbox_to_anchor=(-0.44, -0.81, 1, 1), ncol = 2, prop={'size':14})
+                bbox_to_anchor=(-0.46, -0.81, 1, 1), ncol = 2, prop={'size':14})
     fig.legend(styleLegend, styleLegendNames,
                 bbox_to_anchor=(-0.09, -0.81, 1, 1), ncol = 1, prop={'size':14})
 
