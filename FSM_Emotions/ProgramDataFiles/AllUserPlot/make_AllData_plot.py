@@ -23,14 +23,14 @@ def importCSVFile(fileName):
 
 def makeGroupPlot(affectLog,robotLog):
 
-    colours = ['blue', 'green', 'red', 'orange', 'yellow', 'grey', 'cyan', 'magenta']
+    colours = ['blue', 'green', 'red', 'orange', 'yellow', '#614126', 'cyan', 'magenta']
     userNumbers = [17,18, 21,24,25,26,28,29]
 
     legend = []
     legendName = []
 
-    fig = plt.figure(1,figsize=(9,7))
-    gs = gridspec.GridSpec(3,2, height_ratios=[2.5,2.5,1], width_ratios=[1,100])
+    fig = plt.figure(1,figsize=(9,7.1))
+    gs = gridspec.GridSpec(3,2, height_ratios=[1.4,1.4,1], width_ratios=[1,100])
     r = 3
     c = 1
     plt.subplot(gs[1])
@@ -56,7 +56,7 @@ def makeGroupPlot(affectLog,robotLog):
                 Vs.append(v)
                 As.append(a)
 
-        filterSize = 10
+        filterSize = 0
         # print 2*filterSize+1.0
         for i in range(filterSize, len(ts)-filterSize):
             v = 0
@@ -75,6 +75,17 @@ def makeGroupPlot(affectLog,robotLog):
 
         mvp, = plt.plot(ts, Vs, '-', color = colours[u])
         map, = plt.plot(ts, As, '--', color = colours[u])
+
+    allUserV = allUserA = 0
+    for row in affectLog:
+        allUserV += float(row[2])/len(affectLog)
+        allUserA += float(row[3])/len(affectLog)
+    tav = np.arange(0,1.025,0.025)
+    Va = [np.round(allUserV)] * len(tav)
+    Aa = [np.round(allUserA)] * len(tav)
+    print "Average V:",allUserV, " Average A:", allUserA
+    vap, = plt.plot(tav, Va, '-', color = 'blACK', linewidth=3.0)
+    aap, = plt.plot(tav, Aa, '--', color = 'blACK', linewidth=3.0)
 
 
     plt.subplot(gs[3])
@@ -108,7 +119,9 @@ def makeGroupPlot(affectLog,robotLog):
         rHsp, = plt.plot(ts2, Hs, '--', color = colours[u], linewidth=3.0)
         rS3sp, = plt.plot(ts2, S3s, ':', color = colours[u], linewidth=3.0)
 
-        legend.append(rLsp)
+        # legend.append(rLsp)
+        lgd, = plt.plot(-1, -1, '-', color = colours[u], linewidth=3.0)
+        legend.append(lgd)
         legendName.append("User " + str(u+1))
 
     valp, = plt.plot(-1, -1, '-', color = 'black')
@@ -119,10 +132,14 @@ def makeGroupPlot(affectLog,robotLog):
     styleLegendNames = ["Valence", "Arousal", "Low Intensity Expression", "High Intensity Expression"]
 
     blank, = plt.plot([0], [0], '-', color='none', label='')
-    fig.legend(legend,legendName,
-                bbox_to_anchor=(-0.46, -0.81, 1, 1), ncol = 2, prop={'size':14})
-    fig.legend(styleLegend, styleLegendNames,
-                bbox_to_anchor=(-0.09, -0.81, 1, 1), ncol = 1, prop={'size':14})
+    # fig.legend(legend,legendName,
+    #             bbox_to_anchor=(-0.46, -0.81, 1, 1), ncol = 2, prop={'size':14})
+    # fig.legend(styleLegend, styleLegendNames,
+    #             bbox_to_anchor=(-0.09, -0.81, 1, 1), ncol = 1, prop={'size':14})
+    fig.legend([blank] + legend[0:2] + [rlowp,blank,blank] + legend[2:4] + [rhighp,blank,blank] + legend[4:6] + [blank,blank,blank] + legend[6:8] + [blank,blank],
+               [""] + legendName[0:2] + ["Average Valence\nAcross Users","",""] + legendName[2:4] + ["Average Arousal\nAcross Users","",""] + legendName[4:6] + ["","",""] + legendName[6:8] + ["",""],
+                'lower center', ncol = 4, prop={'size':14})
+
 
     plt.show()
 
