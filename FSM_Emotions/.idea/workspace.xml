@@ -43,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="make_AllData_plot.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="make_AllData_plot.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ProgramDataFiles/AllUserPlot/make_AllData_plot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="51" column="23" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.4490566">
+              <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -55,11 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="make_AllData_plot_morning.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="make_AllData_plot_morning.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ProgramDataFiles/AllUserPlot/make_AllData_plot_morning.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4490566">
-              <caret line="119" column="39" selection-start-line="119" selection-start-column="39" selection-end-line="119" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -126,8 +126,8 @@
         <option value="$PROJECT_DIR$/ProgramDataFiles/26_Tan/make_Plots_2.py" />
         <option value="$PROJECT_DIR$/ProgramDataFiles/28_Christina/make_Plots_2.py" />
         <option value="$PROJECT_DIR$/ProgramDataFiles/29_Rahul/make_Plots_2.py" />
-        <option value="$PROJECT_DIR$/ProgramDataFiles/AllUserPlot/make_AllData_plot.py" />
         <option value="$PROJECT_DIR$/ProgramDataFiles/AllUserPlot/make_AllData_plot_morning.py" />
+        <option value="$PROJECT_DIR$/ProgramDataFiles/AllUserPlot/make_AllData_plot.py" />
       </list>
     </option>
   </component>
@@ -178,7 +178,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -199,6 +198,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -220,7 +220,7 @@
       <recent name="C:\Users\Calvin\Box Sync\NL UToronto\NAO Robot\NAO Programs\starship\FSM_Emotions\" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.make_AllData_plot_morning">
+  <component name="RunManager" selected="Python.make_AllData_plot">
     <configuration default="false" name="make_Plots_2 (4)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -437,8 +437,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.make_AllData_plot_morning" />
-        <item index="1" class="java.lang.String" itemvalue="Python.make_AllData_plot" />
+        <item index="0" class="java.lang.String" itemvalue="Python.make_AllData_plot" />
+        <item index="1" class="java.lang.String" itemvalue="Python.make_AllData_plot_morning" />
         <item index="2" class="java.lang.String" itemvalue="Python.make_Plots_2 (1)" />
         <item index="3" class="java.lang.String" itemvalue="Python.make_Plots_2" />
         <item index="4" class="java.lang.String" itemvalue="Python.make_Plots_2 (4)" />
@@ -861,21 +861,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ProgramDataFiles/AllUserPlot/make_AllData_plot.py">
+    <entry file="file://$PROJECT_DIR$/ProgramDataFiles/AllUserPlot/make_AllData_plot_morning.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="23" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
+          <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ProgramDataFiles/AllUserPlot/make_AllData_plot_morning.py">
+    <entry file="file://$PROJECT_DIR$/ProgramDataFiles/AllUserPlot/make_AllData_plot.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4490566">
-          <caret line="119" column="39" selection-start-line="119" selection-start-column="39" selection-end-line="119" selection-end-column="39" />
-          <folding />
+          <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

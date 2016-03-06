@@ -39,7 +39,7 @@ def makeGroupPlot(affectLog,robotLog):
     plt.xticks(fontsize=14)
     plt.axis([0, 1, -2, 2])
     plt.grid(True)
-    plt.ylabel("User Affect", fontsize=22)
+    plt.ylabel("User Affect", fontsize=18)
 
     for u in range(len(userNumbers)):
         userNum = userNumbers[u]
@@ -90,7 +90,7 @@ def makeGroupPlot(affectLog,robotLog):
 
     plt.subplot(gs[3])
     labels = ["Happy", "Interested", "Sad", "Worried", "Angry", "Scared P", "Scared T", "Scared L"]
-    plt.ylabel("Robot Emotional State", fontsize=22)
+    plt.ylabel("Robot\nEmotional State", fontsize=18)
     plt.xlabel("Normalized Interaction Time", fontsize=18)
     plt.yticks(np.arange(0.0, 8.0, 1.0), labels, fontsize=16)
     # plt.yticks(np.arange(0.0, 14.0, 1.0), minor=True)
