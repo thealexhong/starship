@@ -108,6 +108,7 @@ class EmotionMM:
 		return self.vRE
 	
 	def getRobotEmotionNumber(self):
+		#RE means robot emotion
 		return np.argmax(self.vRE)
 		
 	def getTransitionMatrix(self):

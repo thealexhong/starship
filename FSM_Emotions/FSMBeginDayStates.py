@@ -137,7 +137,7 @@ class FSMBeginDayStates:
         writeText = "How was their morning? (1) Good, (2) Bad, ('') No Response"
         textInput = self.FSMBody.getUserInput(writeText)
 
-        upLikeli = self.FSMBody.sendUserEmotion()
+        upLikeli = self.FSMBody.sendUserEmotion() #from Alex's program
         if textInput != "" and (textInput == "1" or textInput == "2"):
             urLikeli = self.FSMBody.drives.askedUser(True)
             if textInput.lower() == "1":

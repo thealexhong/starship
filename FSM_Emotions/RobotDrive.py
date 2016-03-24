@@ -58,6 +58,7 @@ class RobotDrive: # parent class of all drives
 		self.likelihood = newLikelihood
 		
 	def appraiseEmotions(self):
+		#this function is called for each drives
 		eHappy = 0.0
 		eSad = 0.0
 		eFear = 0.0
@@ -83,7 +84,7 @@ class RobotDrive: # parent class of all drives
 			eSad = self.getDesireability() * self.getLikelihoodFailChange()
 			eAnger = 1.0*self.getDesireability()
 			# print "eAnger: ", eAnger
-
+		#eV is Uei
 		eV = np.array([eHappy, eHope, eSad, eFear, eAnger, eScared1, eScared2, eScared3])
 		# remove negative influences and set them to 0 chance
 		for i in range(len(eV)):
@@ -286,6 +287,7 @@ class RobotDriveCollection:
 		self.driveHealthyFitness.setDriveStatus(newStatus)
 
 	def askedUser(self, gotResponse):
+		#Evaluate the likelihood for this drive
 		self.numAsked += 1
 		if gotResponse:
 			self.numResponses += 1

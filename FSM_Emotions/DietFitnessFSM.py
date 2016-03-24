@@ -48,6 +48,7 @@ class DietFitnessFSM:
 		# state methods are in index order of State Number
 		# "activityFSMState_Terminate" is required as state 0
 		# pic your interaction
+		# Obsolete 3/24/2016
 		self.stateMethodNames = {"Consultant By Appointment":[
 								 "activityFSMState_Intro", "activityFSMState_GetName",
 								 "activityFSMState_DietBreakfast", "activityFSMState_DietLunch",
@@ -101,6 +102,8 @@ class DietFitnessFSM:
 		
 	def activityFSM(self):
 		# stateMachineInUse = self.stateMethodNames[self.activityType]
+		#state: Normal interaction state (keep track of the normal state)
+		#s: Normal interaction states or reactive states
 		self.s = self.state
 		###### for testing all states
 #		s = self.testState
@@ -177,6 +180,8 @@ class DietFitnessFSM:
 				self.showData( "New OE: " +  str(voe))
 			self.showData("")
 
+			#override the emotion state
+			#manually set the emotion
 			setEmotion = False
 			if setEmotion:
 				self.genUtil.showSadEyes()
@@ -687,6 +692,7 @@ class DietFitnessFSM:
 		return fsmInfo
 
 	def getRENumber(self):
+		#MM means Morkov Model
 		return self.reMM.getRobotEmotionNumber()
 
 	def getOENumber(self):
