@@ -1,0 +1,2 @@
+
+{"exerciseSuggested": "Climb some flights of stairs", "hasTalkedJapan": false, "canEatGluten": true, "meal1Suggested": "No Suggestion 1", "meal2Suggested": "One sliced turkey sandwich on whole wheat bread with lettuce and tomatoes", "canEatPoultry": true, "dateTime": "2016-03-28_14-45-33", "hasAskedBreakfast": false, "hasTalkedParis": true, "weatherIsNice": false, "canEatFish": true, "exerciseSets": 10, "activityInteractionType": "Daily Companion Morning", "meal3Suggested": "12 pieces of assorted sushi with miso soup and seaweed salad"}

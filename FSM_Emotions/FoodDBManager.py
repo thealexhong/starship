@@ -35,6 +35,7 @@ class FoodDBManager:
         self.conn.commit()
 
     def showDB(self):
+        #DB: data base
         sqlStr = "PRAGMA table_info('" + self.dbName + "')"
         self.c.execute(sqlStr)
         dbRows = self.c.fetchall()

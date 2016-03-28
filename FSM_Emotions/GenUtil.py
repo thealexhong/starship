@@ -119,7 +119,7 @@ class GenUtil:
                     self.wasJustScared = False
                     self.scaredAllowed = True
                 else:
-                    self.scaredAllowed = False
+                    self.scaredAllowed = False # obsolete
 
             # if oe == "Scared2" and self.naoIsTouched and False:
             #     self.naoIsSafeAgain() # undo the scared after being touched

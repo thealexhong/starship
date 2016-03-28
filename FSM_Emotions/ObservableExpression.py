@@ -36,7 +36,8 @@ class ObservableExpression:
 		# set the default expression
 		self.vOE = np.zeros(self.NumOE)
 		self.vOE[0] = 1
-
+		#observation feedback influence
+		#note some entries are NOT 1.0
 		self.EmotionExpressionAssociation = np.array([
 				# ha, ho,  sad, fe, anger,sc1,sc2, sc 3
 				[1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0], # happy
@@ -65,7 +66,7 @@ class ObservableExpression:
 		
 	def getExpressionDistribution(self, vRE):
 		# calculate the distribution of the observable expressions
-		vOE_t1 = self.B * vRE
+		vOE_t1 = self.B * vRE #formula A2 in paper(final version)
 		vOE_t1 = np.sum(vOE_t1, axis = 1)
 		return vOE_t1
 		
@@ -94,7 +95,7 @@ class ObservableExpression:
 		return self.vOE
 	
 	def getObservableExpressionNumber(self):
-		return np.argmax(self.vOE)
+		return np.argmax(self.vOE) #v means vector #OE: observable expression
 		
 	def getTransitionMatrix(self):
 		return self.B	

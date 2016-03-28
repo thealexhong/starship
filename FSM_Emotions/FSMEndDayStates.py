@@ -8,7 +8,7 @@ class FSMEndDayStates:
     def __init__(self, genUtil, FSMBody, userName = "Human", userNumber = 1, robotName = "NAO", lastInteraction = False):
         self.genUtil = genUtil
         self.FSMBody = FSMBody
- 
+
         self.robotName = robotName
         self.userName = userName
         self.userNumber = userNumber

@@ -31,26 +31,27 @@ class EmotionMM:
 	
 	def getNextEmotionDistribution(self):
 		# calculate the distribution of the next emotional state
-		vRE_t1 = self.A * self.vRE
+		vRE_t1 = self.A * self.vRE #RE means robot emotion #Equivalent to X in formula A1 in paper(final version)
+		#NOTE: numpy do not add multiplication of matrix elements together, need to sum it up explicitly
 		vRE_t1 = np.sum(vRE_t1, axis = 1)
 		
 		return vRE_t1
 
 	def determineNextRobotEmotion(self, vRE_t1):
 		# randomly pick the new emotion based on the distribution of RE_t+1
-		randRE = random.random()
+		randRE = random.random() #between 0 and 1
 		print "Random Emotion Number: ", randRE
-		cdf = 0
-		newRE = 0
-		for pdf in vRE_t1:
+		cdf = 0 #cumulative distribution function
+		newRE = 0 #new robot emotion
+		for pdf in vRE_t1: #probability distribution function
 			cdf = cdf + pdf
 			if randRE <= cdf:
 				break
-			newRE += 1
+			newRE += 1 #emotion index increment
 		
 		vRE = np.zeros(self.NumE)
 		vRE[newRE] = 1
-
+		#it is convenient to store the emotion index as vector
 		self.vRE = vRE
 		
 	def applyInputInfluence(self, U_in = np.zeros(1), U_feed = np.zeros(1)):
@@ -59,14 +60,14 @@ class EmotionMM:
 			U_in = np.ones(self.NumE)
 		if np.sum(U_feed) <= 0:
 			U_feed = np.ones(self.NumE)
-		A = np.transpose(np.transpose(self.Ainit) * U_in * U_feed)
+		A = np.transpose(np.transpose(self.Ainit) * U_in * U_feed) #formula A6 in the final version of the paper
 
 		A = self.normalizeA(A)
 		# only use probabilities >10%
 		probThres = True
 		if probThres:
 			print "Checking Threshold"
-			thres = 0.10
+			thres = 0.10 #emperical value
 			for i in range(self.NumE):
 				for j in range(self.NumE):
 					a = A[i, j]
@@ -77,6 +78,7 @@ class EmotionMM:
 		return self.A
 
 	def normalizeA(self, A):
+		#formula A7 in the paper (final version)
 		colsum = np.sum(A, axis = 0)
 		# print "colsum", colsum
 		for i in range(len(colsum)):

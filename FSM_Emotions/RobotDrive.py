@@ -67,6 +67,7 @@ class RobotDrive: # parent class of all drives
 		eScared1 = 0.0
 		eScared2 = 0.0
 		eScared3 = 0.0
+		# 0 = inactive, 1 = active, 2 = succeeded, 3 = failed
 		if self.getStatus() == 1:
 			if self.currentFSMState == self.statusChangeState:
 				eHappy = self.getDesireability() * self.getLikelihoodSuccessChange()
@@ -157,8 +158,9 @@ class DriveUserPositive(RobotDrive):
 	def determineLikelihood(self, userValance, userArousal):
 		np.set_printoptions(precision=4)
 		########################## need to update here - 0.89, 0.17 - Seeing Stars of Valence and Arousal in Blog Posts
-		happyVA = np.array([0.89, 0.17])
+		happyVA = np.array([0.89, 0.17])#g in formula (12) in the paper(first version)
 		# happyVA = np.array([0.85, 0.63]) # coordinates of happiness on the affective space
+		#formula (12) in the paper(first version)
 		newlikelihood = 1 - LA.norm(happyVA - np.array([userValance, userArousal])) / math.sqrt(4+4) # normalize by the longest distance in the affective space
 		self.setDriveLikelihood(newlikelihood)
 		# print "UPositiveLikeli", self.likelihood, " Appraised: ", self.appraiseEmotions()

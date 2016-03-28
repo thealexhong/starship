@@ -95,6 +95,9 @@ class DietFitnessFSM:
 
 		self.ReactiveStateNames = ["reactionScaredTouch", "reactionScaredPickedUp", "reactionScaredHighEdge"]
 		self.TerminateStateNames = ["activityFSMState_Terminate"]
+		#TerminateState : 0
+		#FSMStateNames: 1- ~50
+		#ReactiveStates are after FSMStates
 		self.FSMStateNames = self.TerminateStateNames + self.FSMStateNames + self.ReactiveStateNames
 
 		print self.FSMStateNames
@@ -155,12 +158,12 @@ class DietFitnessFSM:
 			if self.appraiseState and self.genUtil.checkSafety() and self.s <= self.FSMInUse.getNumMethods() :
 				# determine the emotions of the robot after this event
 				np.set_printoptions(precision=4)
-				driveStatuses = self.drives.getDriveStatuses()
-				U_in = self.drives.appraiseEmotions()
+				driveStatuses = self.drives.getDriveStatuses() #not used
+				U_in = self.drives.appraiseEmotions() #Ue
 				self.showData("Overall U input: " +  str(U_in))
-				U_feedback = self.oeHMM.getEmotionAssociation()
+				U_feedback = self.oeHMM.getEmotionAssociation() #Uo
 				self.showData("U Feedback: " +  str(U_feedback))
-				newA = self.reMM.applyInputInfluence(U_in, U_feedback)
+				newA = self.reMM.applyInputInfluence(U_in, U_feedback) #newA is At
 				self.showData("\n" + str(newA))
 				vre = self.reMM.incrementRobotEmotion()
 				self.showData( "New RE: " +  str(vre))
@@ -648,7 +651,7 @@ class DietFitnessFSM:
 	def becomeScared(self):
 		# reactive emotion taking place
 		if self.genUtil.naoIsTouched:
-			self.reMM.setCurrentEmotionByNumber(6) # robot is now scared
+			self.reMM.setCurrentEmotionByNumber(6) # robot is now scared #manually set the emotion state
 		elif self.genUtil.naoIsPickedUp:
 			self.reMM.setCurrentEmotionByNumber(5)
 		elif self.genUtil.naoIsHighEdge:
