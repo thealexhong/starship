@@ -1,0 +1,64 @@
+@relation valence
+
+@attribute Zcr numeric
+@attribute Energy numeric
+@attribute EnergyEntropy numeric
+@attribute SpectralCentroid numeric
+@attribute SpectralCentroidSpread numeric
+@attribute SpectralEntropy numeric
+@attribute SpectralFlux numeric
+@attribute SpectralRollOff numeric
+@attribute MFCC1 numeric
+@attribute MFCC2 numeric
+@attribute MFCC3 numeric
+@attribute MFCC4 numeric
+@attribute MFCC5 numeric
+@attribute MFCC6 numeric
+@attribute MFCC7 numeric
+@attribute MFCC8 numeric
+@attribute MFCC9 numeric
+@attribute MFCC10 numeric
+@attribute MFCC11 numeric
+@attribute MFCC12 numeric
+@attribute MFCC13 numeric
+@attribute MFCC14 numeric
+@attribute MFCC15 numeric
+@attribute MFCC16 numeric
+@attribute MFCC17 numeric
+@attribute MFCC18 numeric
+@attribute MFCC19 numeric
+@attribute MFCC20 numeric
+@attribute HarmonicRatio numeric
+@attribute F0 numeric
+@attribute ChromaVector1 numeric
+@attribute ChromaVector2 numeric
+@attribute ChromaVector3 numeric
+@attribute ChromaVector4 numeric
+@attribute ChromaVector5 numeric
+@attribute ChromaVector6 numeric
+@attribute ChromaVector7 numeric
+@attribute ChromaVector8 numeric
+@attribute ChromaVector9 numeric
+@attribute ChromaVector10 numeric
+@attribute ChromaVector11 numeric
+@attribute ChromaVector12 numeric
+@attribute LPC1 numeric
+@attribute LPC2 numeric
+@attribute LPC3 numeric
+@attribute LPC4 numeric
+@attribute LPC5 numeric
+@attribute LPC6 numeric
+@attribute LPC7 numeric
+@attribute LPC8 numeric
+@attribute LPC9 numeric
+@attribute LPC10 numeric
+@attribute LPC11 numeric
+@attribute LPC12 numeric
+@attribute LPC13 numeric
+@attribute LPC14 numeric
+@attribute LPC15 numeric
+@attribute LPC16 numeric
+@attribute valence {-2,-1,0,1,2}
+
+@data
+18,0,2,99,179,12,333,2,-5827,241,47,57,42,50,41,26,-10,-31,-22,18,21,-6,-3,30,19,-16,3,14,0,15,64,28,101,7,48,168,23,51,19,4,476,49,-106,2,-1,2,-1,3,-1,1,-1,1,-0,2,-2,1,1,3,?
