@@ -1,0 +1,57 @@
+@relation arousal
+
+@attribute Zcr numeric
+@attribute Energy numeric
+@attribute SpectralCentroidSpread numeric
+@attribute SpectralEntropy numeric
+@attribute SpectralFlux numeric
+@attribute SpectralRollOff numeric
+@attribute MFCC1 numeric
+@attribute MFCC2 numeric
+@attribute MFCC3 numeric
+@attribute MFCC4 numeric
+@attribute MFCC5 numeric
+@attribute MFCC6 numeric
+@attribute MFCC7 numeric
+@attribute MFCC8 numeric
+@attribute MFCC9 numeric
+@attribute MFCC10 numeric
+@attribute MFCC11 numeric
+@attribute MFCC12 numeric
+@attribute MFCC13 numeric
+@attribute MFCC14 numeric
+@attribute MFCC15 numeric
+@attribute MFCC16 numeric
+@attribute MFCC17 numeric
+@attribute MFCC18 numeric
+@attribute F0 numeric
+@attribute ChromaVector1 numeric
+@attribute ChromaVector2 numeric
+@attribute ChromaVector3 numeric
+@attribute ChromaVector4 numeric
+@attribute ChromaVector5 numeric
+@attribute ChromaVector6 numeric
+@attribute ChromaVector7 numeric
+@attribute ChromaVector8 numeric
+@attribute ChromaVector9 numeric
+@attribute ChromaVector10 numeric
+@attribute ChromaVector11 numeric
+@attribute ChromaVector12 numeric
+@attribute LPC1 numeric
+@attribute LPC2 numeric
+@attribute LPC3 numeric
+@attribute LPC4 numeric
+@attribute LPC5 numeric
+@attribute LPC6 numeric
+@attribute LPC7 numeric
+@attribute LPC8 numeric
+@attribute LPC9 numeric
+@attribute LPC10 numeric
+@attribute LPC11 numeric
+@attribute LPC12 numeric
+@attribute LPC13 numeric
+@attribute LPC14 numeric
+@attribute arousal {-2,-1,0,1,2}
+
+@data
+0.0669744,0.4619022,0.2816447,0.0112799,0.6330447,0.1256003,0.8008247,0.5371277,0.7356148,1.0814410,0.9796176,0.5528076,0.3650310,0.6583783,0.6280934,0.7031101,0.7576160,0.6091453,0.6550027,0.5543261,0.5986219,0.6915322,0.6755638,0.8207438,0.0806571,0.0204764,0.1380883,0.1194959,0.1251262,0.0203538,0.2321143,0.0966743,0.0295166,0.0248440,0.0594791,0.6972052,0.0370723,0.5589036,0.2437014,0.9009722,0.1289200,0.7541536,0.2242821,0.5383911,0.4048326,0.3533485,0.1303053,1.0054937,0.3184047,0.5934193,0.4213315,?
