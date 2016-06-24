@@ -4,11 +4,15 @@ import numpy as np
 from matplotlib import gridspec
 
 # name of the files containing the data from all users (8 users used in plots)
-affectFileName = "_AffectData_End of Day.csv"
-robotFileName = "_RobotData_End of Day.csv"
+if(0):
+    affectFileName = "_AffectData_Morning.csv"
+    robotFileName = "_RobotData_Morning.csv"
+else:
+    affectFileName = "_AffectData_End of Day.csv"
+    robotFileName = "_RobotData_End of Day.csv"
 
-#ignore this
-numUsers = 1
+
+
 
 # reads in the CSV file into a list
 def importCSVFile(fileName):
@@ -37,10 +41,8 @@ def makeGroupPlot(affectLog,robotLog):
     # create the figure size and the ratios between the subplot sizes
     fig = plt.figure(1,figsize=(9,7.1))
     gs = gridspec.GridSpec(3,2, height_ratios=[1.4,1.4,1], width_ratios=[1,100])
-    r = 3
-    c = 1
     plt.subplot(gs[1])
-    # plt.title("User " + str(userNumber) + " " + interactionType + " Interaction Measurements", fontsize=16)
+
 
     # format the first subplot - plotting the Valence and Arousal
     plt.yticks(np.arange(-2.0, 3.0, 1.0), fontsize=16)
@@ -51,6 +53,7 @@ def makeGroupPlot(affectLog,robotLog):
 
     for u in range(len(userNumbers)):
         userNum = userNumbers[u]
+        ###################################################################
         # keep separate lists of the time, valance and arousal for each users data
         ts = []
         Vs = []
@@ -66,27 +69,32 @@ def makeGroupPlot(affectLog,robotLog):
                 Vs.append(v)
                 As.append(a)
 
+
+        filteredVs = [0]*len(ts)
+        filteredAs = [0]*len(ts)
+
         # apply an averaging mask of size 1+filterSize if we want to smooth the curve
-        filterSize = 0
+        filterSize = 2
         # print 2*filterSize+1.0
         for i in range(filterSize, len(ts)-filterSize):
-            v = 0
-            a = 0
             for j in range(-1*filterSize, filterSize+1):
-                # print j
-                v += float(Vs[i+j])/(2*filterSize+1.0)
-                a += float(As[i+j])/(2*filterSize+1.0)
-            Vs[i] = v
-            As[i] = a
+                index = i+j
+                #if(index<0):
+                #    index=0
+                #elif(index>=len(ts)-1):
+                #    index=len(ts)-1
+                filteredVs[i] += float(Vs[index])/(2*filterSize+1.0)
+                filteredAs[i] += float(As[index])/(2*filterSize+1.0)
+
         for i in range(filterSize):
-            Vs[i] = None
-            As[i] = None
-            Vs[-1*i] = None
-            As[-1*i] = None
+            filteredVs[i] = filteredVs[filterSize]
+            filteredAs[i] = filteredAs[filterSize]
+            filteredVs[-1*i] = filteredVs[-filterSize]
+            filteredAs[-1*i] = filteredVs[-filterSize]
 
         # plot this users data to the first subplot
-        mvp, = plt.plot(ts, Vs, '-', color = colours[u])
-        map, = plt.plot(ts, As, '--', color = colours[u])
+        mvp, = plt.plot(ts, filteredVs, '-', color = colours[u])
+        map, = plt.plot(ts, filteredAs, '--', color = colours[u])
 
     # get ther average Valence and Arousal for all the users
     allUserV = allUserA = 0
@@ -119,24 +127,25 @@ def makeGroupPlot(affectLog,robotLog):
         Ls = []
         Hs = []
         S3s = []
-
         # loop through all the robot data for each user and select the data relevant to user 'u'
         for row in robotLog:
-            for r in range(len(row)):
-                # set data that had no expression to None (will need to read the code that formats the data files to understand this)
-                if row[r] == str(-1):
-                    row[r] = None
-            # print row
             [uNum, t, ls, hs, s3s] = row
             if uNum == str(userNum):
+                for r in range(len(row)):
+                # set data that had no expression to None (will need to read the code that formats the data files to understand this)
+                    if row[r] == str(-1):
+                        row[r] = None
+                # print row
+                [uNum, t, ls, hs, s3s] = row
                 ts2.append(t)
                 Ls.append(ls)
                 Hs.append(hs)
                 S3s.append(s3s)
         # plot the robot data for each users interaction
+
         rLsp, = plt.plot(ts2, Ls, '-', color = colours[u], linewidth=3.0)
         rHsp, = plt.plot(ts2, Hs, '--', color = colours[u], linewidth=3.0)
-        rS3sp, = plt.plot(ts2, S3s, ':', color = colours[u], linewidth=3.0)
+        rS3sp, = plt.plot(ts2, S3s, '--', color = colours[u], linewidth=3.0)
 
         # legend.append(rLsp)
         lgd, = plt.plot(-1, -1, '-', color = colours[u], linewidth=3.0)
