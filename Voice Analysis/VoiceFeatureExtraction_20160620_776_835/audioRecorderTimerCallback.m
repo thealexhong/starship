@@ -5,7 +5,7 @@ function audioRecorderTimerCallback(obj, event)
     % This is the callback used by the audiorecorder object
     %    
     
-    MAX_SEGMENTS_TO_RECORD = 50;
+    MAX_SEGMENTS_TO_RECORD = 300;
     Fs           = get(obj, 'SampleRate');
     num_channels = get(obj, 'NumberOfChannels');
     num_bits     = get(obj, 'BitsPerSample');    
@@ -33,7 +33,8 @@ function audioRecorderTimerCallback(obj, event)
         rtFeatures = normalize_ft_matrix(rtFeatures);
         rtFeatures = rtFeatures(:,1:end-1);
         createRealTimeARFF(rtFeatures);
-        s = system('python classify.py');
+        [s,o] = system('python classify.py');
+        disp(o);
         drawnow;
         record(obj);              
     catch

@@ -14,6 +14,7 @@ featurevector = lines[-1].replace("?", "");
 
 f = open('..\\voiceOutput.txt', 'w')
 f.write(predict_valence + "," + predict_arousal)
+print predict_valence + "," + predict_arousal
 
 f = open('log.csv', 'a')
 time = strftime("%Y-%m-%d %H:%M:%S", localtime())

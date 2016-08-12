@@ -1,6 +1,6 @@
 function recObject = audioRecorderOnline
 
-timerPeriod = 1.9; % Adjusted so capture 2 seconds of samples
+timerPeriod = 2; % Adjusted so capture 2 seconds of samples
 recObject = audiorecorder(11025, 16, 1);
 
 set(recObject, 'TimerFcn', @audioRecorderTimerCallback, 'TimerPeriod', timerPeriod);
