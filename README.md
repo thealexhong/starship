@@ -51,3 +51,9 @@ Misc. documents for reference.
 * starship
 
 Alex's GUI for affect recognition. Running this VS solution will enable body language recognition. Run vocal intonation affect recognition in parallel for multimodal affect recognition output. Voice affect is read from 'startship/Voice Analysis/voiceOutput.txt'. Training data for body language is located inside 'starship/TrainingData/'. 'starship/batFiles' contains windows script for running Weka in the background for classification - these will change automatically.
+
+Important Files to note inside starship folder:
+
+1. BLFeatureCalculator: Calculates body language features based off Derek's previous dynamic body language work.
+
+2. NuiStreamViewer: Creates .bat files for running Weka, parameter ML files for weka to use, specify which ML algorithm to use, draws skeleton onto the body, and the main controller to write the final results to both GUI and csv file.
