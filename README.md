@@ -1,8 +1,8 @@
-#Starship
+# Starship
 
 An architecture for affective human-robot interaction (HRI) on the NAO robots (Luke and Leia). The architecture consist of a multi-modal affect recognition system to recognize arousal and valence levels from vocal intonation and body language, and an emotional response behaviour model for HRI.
 
-##External Libraries and Requirements
+## External Libraries and Requirements
 
 * Windows OS
 * Kinect SDK 1.8 (Uses Kinect 1)
@@ -14,7 +14,24 @@ An architecture for affective human-robot interaction (HRI) on the NAO robots (L
 * Python 2.X
 * Visual Studio
 
-##Folder Structure
+## Running Starship
+
+1. Connect the Kinect, Microphone, and router to the computer. The router is used to communicate with the Nao robot.
+
+2. Open `starship > starship.sln`. This should work with VS Community (free to download). Build and run the solution. If everything is working, you should see a 2D and 3D camera view of the kinect on the starship GUI. You can walk in front of the Kinect to test affective dynamic body language recognition. All log files are written to `starship/logs/` directory for analysis.
+
+3. For multimodal recognition, starship expects input from a seperate voice program. Open `Voice Analysis/Real-time Recognition/nmsVoiceAnalysisRun/nmsVoiceAnalysisRun.sln` in VS 2008. The current state of the program only works in VS 2008. Run the solution. If everything is working, you should see voice affect outputs from starship. starship will also calculate the multimodal output, based on a previous trained model (`starship/TrainingData/`).
+
+4. For human-robot interaction, starship outputs a log for another program to read to control the robot. Run `starship/FSM_Emotions/main.py` in PyCharm. The robot should move, and interact with a human. The robot uses Wizard of Oz for speech recognition to interact.
+
+5. To save results, copy log files from starship, and `starship/FSM_Emotions/ProgramDataFiles/ConsoleOutput` to `starship/FSM_Emotions/ProgramDataFiles/<new user>`. The data needs to be processed before a graph is generated. Data should be aligned with when the robot reads the emotion from human so there's no continuous fluctuations in emotion. Copy a make_plots.py from another user and change variables to produce graphs.
+
+```
+affectFileName = "13 Jacob End of day.csv"
+robotFileName = "13_Jacob_Flow_2016-02-18_16-32-26.csv"
+```
+
+## Folder Structure
 
 * Data_Files
 
